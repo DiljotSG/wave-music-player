@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.team.ten.wavemusic"
+        applicationId "com.team_ten.wavemusic"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1

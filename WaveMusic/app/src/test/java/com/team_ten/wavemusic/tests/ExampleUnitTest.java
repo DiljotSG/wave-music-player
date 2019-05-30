@@ -1,4 +1,4 @@
-package com.team.ten.wavemusic;
+package com.team_ten.wavemusic.tests;
 
 import org.junit.Test;
 

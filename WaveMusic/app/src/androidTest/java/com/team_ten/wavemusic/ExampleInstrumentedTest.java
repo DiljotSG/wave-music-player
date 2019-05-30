@@ -1,4 +1,4 @@
-package com.team.ten.wavemusic;
+package com.team_ten.wavemusic;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.team.ten.wavemusic", appContext.getPackageName());
+        assertEquals("com.team_ten.wavemusic", appContext.getPackageName());
     }
 }

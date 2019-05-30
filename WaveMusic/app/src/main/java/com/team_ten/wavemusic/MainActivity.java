@@ -1,4 +1,4 @@
-package com.team.ten.wavemusic;
+package com.team_ten.wavemusic;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

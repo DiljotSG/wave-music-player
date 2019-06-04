@@ -1,4 +1,4 @@
-#Architecture.md
+# Architecture
 
 Broadly, WaveMusic (henceforth referred to as "the app") consists of the main source package and a test package. The test package contains one file for each testable class in the main package. The app follows a three-tier architecture with persistence, business and presentation layers. These layers are represented as collections of classes in the main package, as described in this document.
 

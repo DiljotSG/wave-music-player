@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
     <LinearLayout
-        tools:context=".MainActivity"
-        android:orientation="vertical"
+        tools:context=".NowPlayingActivity"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ListView
+    <TextView
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/list_songs">
-    </ListView>
+        android:layout_width="wrap_content"
+        android:id="@+id/test"/>
 
 </LinearLayout>

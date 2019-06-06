@@ -3,18 +3,25 @@ package com.team_ten.wavemusic;
 // An individual song with all of a song's properties.
 public class Song
 {
+	// Instance variables
 	private String name;
 	private String artist;
 	private String album;
-	private String playlist;
 	private String URI;
 
-	Song(String songName, String songArtist, String songAlbum, String songPlaylist, String songURI)
+	/**
+	 * The default constructor for the Song class.
+	 * @param songName The Song's name
+	 * @param songArtist The Song's Artist
+	 * @param songAlbum The Song's Album
+	 * @param songURI The Song's URI
+	 */
+	public Song(String songName, String songArtist, String songAlbum, String songURI)
 	{
+		// Set the instance variables
 		name = songName;
 		artist = songArtist;
 		album = songAlbum;
-		playlist = songPlaylist;
 		URI = songURI;
 	}
 
@@ -46,16 +53,6 @@ public class Song
 	public String getAlbum()
 	{
 		return album;
-	}
-
-	/**
-	 * Purpose: Get the playlist the song belongs to.
-	 *
-	 * @return A string value that is the Playlist of the song.
-	 */
-	public String getPlaylist()
-	{
-		return playlist;
 	}
 
 	/**
@@ -99,16 +96,6 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Set the playlist that the song belongs to.
-	 *
-	 * @param songPlaylist A string value that is the name of the playlist.
-	 */
-	public void setPlaylist(String songPlaylist)
-	{
-		playlist = songPlaylist;
-	}
-
-	/**
 	 * Purpose: Set the URI of the song.
 	 *
 	 * @param songURI A string value that is the location of the song on disk.
@@ -116,5 +103,33 @@ public class Song
 	public void setURI(String songURI)
 	{
 		URI = songURI;
+	}
+
+	/**
+	 * Purpose: To print the information of the Song object FOR USER, not including URI.
+	 *
+	 * @return String A String including title, artist and album of this song object.
+	 */
+	@Override
+	public String toString()
+	{
+		return name + "\n" +
+				artist + " - " + album;
+	}
+
+	/**
+	 * Purpose: To check if 2 Song objects are equal.
+	 *
+	 * @return boolean To return true if they are equal, false otherwise.
+	 */
+	@Override
+	public boolean equals(Object other)
+	{
+		if(other instanceof Song)
+		{
+			// Two Song objects are equal if they have the same URI.
+			return ((Song) (other)).getURI().equals(this.getURI());
+		}
+		return false;
 	}
 }

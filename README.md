@@ -8,6 +8,9 @@
   - 1.1 - [Application Vision Statement](README.md/#application-vision-statement)
   - 1.2 - [Application Features](README.md/#application-features)
   - 1.3 - [Iteration 1 user stories](README.md/#iteration-1-user-stories)
+- 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
+  - 2.1 - [Application Architecture Document](README.md/#application-architecture-document)
+  - 2.2 - [Contribution Guidelines](README.md/#contribution-guidelines)
 
 ## Documentation for Iteration 0
 
@@ -60,3 +63,13 @@ User stories that *will be implemented* in **iteration 1**:
 6. [Skipping a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/24)
 7. [Pausing a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/22)
 8. [Selecting a song to play](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/19)
+
+## Documentation for Iteration 1
+
+### Application Architecture Document
+
+**[View the application architecture document here](ARCHITECTURE.md)**.
+
+### Contribution Guidelines
+
+**[View the repository contribution guidelines here](CONTRIBUTING.md)**.

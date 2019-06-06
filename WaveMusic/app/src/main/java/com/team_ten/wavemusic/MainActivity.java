@@ -1,19 +1,17 @@
 package com.team_ten.wavemusic;
 
-// Import statements
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.os.Environment;
-import android.Manifest;
 import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v4.content.ContextCompat;
-
 
 public class MainActivity extends AppCompatActivity
 {
@@ -23,12 +21,12 @@ public class MainActivity extends AppCompatActivity
 	private static final int PERMISSIONS_REQUEST_READ_STORAGE_CODE = 0;
 	private static final int PERMISSIONS_REQUEST_WRITE_STORAGE_CODE = 1;
 
-
 	// Private helper methods
 	private String getExternalPath()
 	{
 		return Environment.getExternalStorageDirectory().getAbsolutePath();
 	}
+
 	private String getDefaultLocation()
 	{
 		return getExternalPath() + "/" + DEFAULT_LOCATION + "/";
@@ -40,16 +38,17 @@ public class MainActivity extends AppCompatActivity
 	private void getFilePermissions()
 	{
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-				!= PackageManager.PERMISSION_GRANTED) {
+				!= PackageManager.PERMISSION_GRANTED)
+		{
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
 					PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				!= PackageManager.PERMISSION_GRANTED) {
+				!= PackageManager.PERMISSION_GRANTED)
+		{
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 					PERMISSIONS_REQUEST_WRITE_STORAGE_CODE);
 		}
-
 	}
 
 	/**
@@ -58,10 +57,10 @@ public class MainActivity extends AppCompatActivity
 	private void buildLibraryView()
 	{
 		// Start building the user's library
-		final PlayList userLibrary = new PlayList(LIBRARY_NAME);
+		final FakeDatabase databaseController = new FakeDatabase();
 
 		// Build the user library based off the default location
-		buildUserLibrary(userLibrary, getDefaultLocation());
+		buildUserLibrary(databaseController, getDefaultLocation());
 
 		// Populate the list view in the main activity
 		ListView listView = findViewById(R.id.list_songs);
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity
 		ArrayAdapter<Song> listAdapter = new ArrayAdapter<>(
 				this,
 				android.R.layout.simple_list_item_1,
-				userLibrary.getList()
+				databaseController.getLibrary()
 		);
 		listView.setAdapter(listAdapter);
 
@@ -82,8 +81,8 @@ public class MainActivity extends AppCompatActivity
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
 				Intent intent = new Intent(MainActivity.this, NowPlayingActivity.class);
-				intent.putExtra("title", userLibrary.getSong(position).getName());
-				intent.putExtra("URI", userLibrary.getSong(position).getURI());
+				intent.putExtra("title", databaseController.getSong(position).getName());
+				intent.putExtra("URI", databaseController.getSong(position).getURI());
 				startActivity(intent);
 			}
 		};
@@ -91,20 +90,19 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	/**
-	 * Builds a playlist representing the user's library given a playlist and the directory to scan.
-	 * @param library The PlayList object to populate.
-	 * @param directoryToScan A String that represents the absolute path to the directory to scan.
+	 * Purpose: Builds a playlist representing the user's library given a playlist and the directory to scan.
+	 *
+	 * @param databaseController The databaseController object to populate.
+	 * @param directoryToScan    A String that represents the absolute path to the directory to scan.
 	 */
-	private void buildUserLibrary(PlayList library, String directoryToScan)
+	private void buildUserLibrary(FakeDatabase databaseController, String directoryToScan)
 	{
 		MusicDirectoryManager scanner = new MusicDirectoryManager(directoryToScan);
 
-		while(scanner.hasNext())
+		while (scanner.hasNext())
 		{
 			Song currentSong = scanner.getNextSong();
-			library.add(currentSong);
-			// dbcontroller.add(currentSong);
-			// Future proofing
+			databaseController.addSong(currentSong);
 		}
 	}
 

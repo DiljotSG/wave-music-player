@@ -1,13 +1,14 @@
 package com.team_ten.wavemusic;
 
 // Import statements
+
 import java.util.ArrayList;
 
 public class PlayList
 {
 	// Instance variables
-	private String title;			// This is the title for the playlist
-	private ArrayList<Song> list;	// This is a list of all songs in the playlist.
+	private String title;            // This is the title for the playlist
+	private ArrayList<Song> list;    // This is a list of all songs in the playlist.
 
 	/**
 	 * Purpose: Constructor.
@@ -31,7 +32,7 @@ public class PlayList
 		boolean exists = list.contains(newSong);
 
 		// To add the song if it is not in the playlist, otherwise do nothing.
-		if(!exists)
+		if (!exists)
 		{
 			list.add(newSong);
 		}
@@ -71,6 +72,7 @@ public class PlayList
 
 	/**
 	 * Purpose: To get a song based on its position in the playlist.
+	 *
 	 * @param position The position of the song to be searched in the playlist.
 	 * @return Song The song found.
 	 */

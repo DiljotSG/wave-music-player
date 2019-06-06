@@ -21,7 +21,8 @@ public class MusicDirectoryManager
 	};
 
 	/**
-	 * Constructor for the music directory manager
+	 * Purpose: Constructor for the music directory manager
+	 *
 	 * @param fullPath The absolute path to the desired directory
 	 */
 	public MusicDirectoryManager(String fullPath)
@@ -34,7 +35,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Gives the directory currently associated with this object.
+	 * Purpose: Gives the directory currently associated with this object.
 	 *
 	 * @return The directory as a string.
 	 */
@@ -44,22 +45,23 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Checks to see if there are more music files in the folder.
+	 * Purpose: Checks to see if there are more music files in the folder.
+	 *
 	 * @return Does the director have more music files?
 	 */
 	public boolean hasNext()
 	{
 		// Basic error checking
-		if(files != null && curr < files.length)
+		if (files != null && curr < files.length)
 		{
 			// Grab the file extension
 			int extensionPosition = files[curr].getName().lastIndexOf(".");
 			String extension;
-			if(extensionPosition != -1)
+			if (extensionPosition != -1)
 			{
 				// Check to see if the extension is one associated with music files
 				extension = files[curr].getName().substring(extensionPosition);
-				if(isValidExtension(extension))
+				if (isValidExtension(extension))
 				{
 					return true;
 				} else
@@ -73,22 +75,23 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Gives the next song in the folder.
+	 * Purpose: Gives the next song in the folder.
+	 *
 	 * @return Returns a Song object representing the next song in the folder.
 	 */
 	public Song getNextSong()
 	{
 		Song result = null;
-		if(hasNext())
+		if (hasNext())
 		{
 			// Parse the metadata from the file
 			MediaMetadataRetriever parser = new MediaMetadataRetriever();
 			parser.setDataSource(files[curr].getAbsolutePath());
 			result = new Song(
-				parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
-				parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST),
-				parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
-				files[curr].toURI().toString()
+					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
+					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST),
+					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
+					files[curr].toURI().toString()
 			);
 
 			// Iterate our "pointer"
@@ -103,7 +106,8 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Checks to see if the given extension is valid.
+	 * Purpose: Checks to see if the given extension is valid.
+	 *
 	 * @param extension The desired extension to check.
 	 * @return A boolean that is true, if the extension is valid, false otherwise.
 	 */

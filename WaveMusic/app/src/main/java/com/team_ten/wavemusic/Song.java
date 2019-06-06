@@ -11,10 +11,11 @@ public class Song
 
 	/**
 	 * The default constructor for the Song class.
-	 * @param songName The Song's name
+	 *
+	 * @param songName   The Song's name
 	 * @param songArtist The Song's Artist
-	 * @param songAlbum The Song's Album
-	 * @param songURI The Song's URI
+	 * @param songAlbum  The Song's Album
+	 * @param songURI    The Song's URI
 	 */
 	public Song(String songName, String songArtist, String songAlbum, String songURI)
 	{
@@ -125,7 +126,7 @@ public class Song
 	@Override
 	public boolean equals(Object other)
 	{
-		if(other instanceof Song)
+		if (other instanceof Song)
 		{
 			// Two Song objects are equal if they have the same URI.
 			return ((Song) (other)).getURI().equals(this.getURI());

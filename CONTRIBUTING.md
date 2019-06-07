@@ -94,11 +94,15 @@
 
 - All comments must be a full sentence, with punctuation and correct grammar.
 
-- Block comment must be placed before the method signature, and describe the following:
+- In-line comments should not be placed on the same line as code.
 
-  - The functionality of the method briefly.
-  - The input parameters if any.
-  - The return values if any.
+- A comment must be places before class signatures describing their purpose.
+
+- A block comment must be placed before method signatures, describing the following:
+
+  - The functionality and purpose of the method.
+  - The input parameters of the method, if any.
+  - The return value of the method, if any.
 
   Example:
 

@@ -1,16 +1,18 @@
 package com.team_ten.wavemusic.objects;
 
-
 import java.util.ArrayList;
 
 public class Playlist
 {
-	// Instance variables
-	private String title;            // This is the title for the playlist
-	private ArrayList<Song> list;    // This is a list of all songs in the playlist.
+	// Instance variables.
+
+	// This is the title for the playlist
+	private String title;
+	// This is a list of all songs in the playlist.
+	private ArrayList<Song> list;
 
 	/**
-	 * Purpose: Constructor.
+	 * Constructor for the playlist.
 	 *
 	 * @param listTitle The title of the new Playlist object to be created.
 	 */
@@ -21,7 +23,7 @@ public class Playlist
 	}
 
 	/**
-	 * Purpose: Add a song to the playlist if it is not in the playlist at that time.
+	 * Add a song to the playlist if it is not in the playlist at that time.
 	 *
 	 * @param newSong The song to be added into the playlist.
 	 *
@@ -41,7 +43,7 @@ public class Playlist
 	}
 
 	/**
-	 * Purpose: To get the title of this playlist.
+	 * To get the title of this playlist.
 	 *
 	 * @return String The title of this playlist.
 	 */
@@ -51,7 +53,7 @@ public class Playlist
 	}
 
 	/**
-	 * Purpose: To get the list of this playlist.
+	 * To get the list of this playlist.
 	 *
 	 * @return ArrayList<Song> The list of this playlist.
 	 */
@@ -61,7 +63,7 @@ public class Playlist
 	}
 
 	/**
-	 * Purpose: To get the amount of songs in this playlist.
+	 * To get the amount of songs in this playlist.
 	 *
 	 * @return int The amount of songs in this playlist.
 	 */
@@ -71,7 +73,7 @@ public class Playlist
 	}
 
 	/**
-	 * Purpose: To get a song based on its position in the playlist.
+	 * To get a song based on its position in the playlist.
 	 *
 	 * @param position The position of the song to be searched in the playlist.
 	 *

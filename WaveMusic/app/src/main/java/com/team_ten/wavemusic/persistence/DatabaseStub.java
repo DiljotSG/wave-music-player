@@ -8,13 +8,16 @@ public class DatabaseStub implements IDatabaseController
 {
 	private ArrayList<Song> songList;
 
+	/**
+	 * Contructor for a database stub.
+	 */
 	public DatabaseStub()
 	{
 		songList = new ArrayList<>();
 	}
 
 	/***
-	 * Purpose: Add a song to the database.
+	 * Add a song to the database.
 	 *
 	 * @param song Song to add to the database.
 	 */
@@ -27,7 +30,7 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/**
-	 * Purpose: Get all songs from the specified artist.
+	 * Get all songs from the specified artist.
 	 *
 	 * @param artist The name of the artist.
 	 *
@@ -54,9 +57,10 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/***
-	 * Purpose: Get all songs from the specified album.
+	 * Get all songs from the specified album.
 	 *
 	 * @param album The name of the album.
+	 *
 	 * @return An ArrayList of Songs from the specified album.
 	 */
 	public ArrayList<Song> getSongsFromAlbum(String album)
@@ -80,7 +84,7 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/**
-	 * Purpose: Get the specified song from the library.
+	 * Get the specified song from the library.
 	 *
 	 * @param songName Name of the song to get.
 	 *
@@ -107,7 +111,7 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/**
-	 * Purpose: Get the song at the specified index
+	 * Get the song at the specified index.
 	 *
 	 * @param index The index in songList to get the song from.
 	 *
@@ -115,7 +119,7 @@ public class DatabaseStub implements IDatabaseController
 	 */
 	public Song getSong(int index)
 	{
-		// To return the song only if the position parameter is valid.
+		// Return the song only if the position parameter is valid.
 		if (index < 0 || index >= songList.size())
 		{
 			return null;
@@ -127,7 +131,7 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/**
-	 * Purpose: Get the library of songs.
+	 * Get the library of songs.
 	 *
 	 * @return An ArrayList of Songs.
 	 */
@@ -137,7 +141,7 @@ public class DatabaseStub implements IDatabaseController
 	}
 
 	/**
-	 * Purpose: Checks if the library exists.
+	 * Checks if the library exists.
 	 *
 	 * @return A Boolean specifying if the library exists or does not exist.
 	 */

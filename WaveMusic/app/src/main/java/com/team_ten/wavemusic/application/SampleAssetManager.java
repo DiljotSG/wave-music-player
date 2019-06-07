@@ -12,20 +12,19 @@ import java.io.InputStream;
 
 public class SampleAssetManager
 {
-	// Constants
+	// Constants.
 	private static final String DEFAULT_LOCATION = "Music";
 	private static final String[] SAMPLE_TRACKS = {
 			"music/sample1.mp3",
 			"music/sample2.mp3",
 			"music/sample3.mp3",
-			"music/sample4.mp3"
-	};
+			"music/sample4.mp3"};
 
-	// Instance variables
+	// Instance variables.
 	private MainActivity mainView;
 
 	/**
-	 * Purpose: The constructor for SampleAssetManager
+	 * The constructor for SampleAssetManager.
 	 */
 	public SampleAssetManager(MainActivity mainActivity)
 	{
@@ -33,7 +32,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Extracts the sample music assets into the Music directory on the device
+	 * Extracts the sample music assets into the Music directory on the device.
 	 */
 	public void extractMusicAssets()
 	{
@@ -53,7 +52,7 @@ public class SampleAssetManager
 		}
 	}
 
-	// Private helper methods
+	// Private helper methods.
 
 	/**
 	 * Extracts a specific asset from the APK to the system.
@@ -64,17 +63,17 @@ public class SampleAssetManager
 	 */
 	private void extractFile(String fileName) throws IOException
 	{
-		// Create an asset manager
+		// Create an asset manager.
 		AssetManager manager = mainView.getApplicationContext().getResources().getAssets();
 
-		// Create a buffer to read the asset to
+		// Create a buffer to read the asset to.
 		InputStream inputStream = manager.open(fileName);
 		int size = inputStream.available();
 		byte[] fileBuffer = new byte[size];
 		inputStream.read(fileBuffer);
 		inputStream.close();
 
-		// Write the buffer to an object
+		// Write the buffer to an object.
 		FileOutputStream fileOutputStream =
 				new FileOutputStream(new File(getOutputPath(fileName)));
 		fileOutputStream.write(fileBuffer);
@@ -82,7 +81,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Purpose: Does the given file exist on the system?
+	 * Checks whether the given file exists on the system.
 	 *
 	 * @param fileName The file name to check.
 	 *
@@ -95,7 +94,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Purpose: Gives the output path of the asset.
+	 * Gives the output path of the asset.
 	 *
 	 * @param fileName The file name we want to extract.
 	 *
@@ -107,7 +106,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Purpose: Gives the full path to the asset on the system.
+	 * Gives the full path to the asset on the system.
 	 *
 	 * @param fileName The file name.
 	 *
@@ -119,7 +118,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Purpose: Gives the music directory.
+	 * Gives the music directory.
 	 *
 	 * @return The default music directory in Android.
 	 */
@@ -129,7 +128,7 @@ public class SampleAssetManager
 	}
 
 	/**
-	 * Purpose: Gives the path to the external directory.
+	 * Gives the path to the external directory.
 	 *
 	 * @return The path to the external storage directory.
 	 */

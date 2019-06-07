@@ -10,20 +10,20 @@ import java.util.Arrays;
 
 public class MusicDirectoryManager
 {
-	// Constants
-	// A list of the valid extensions the application can handle
-	private final static String[] VALID_MUSIC_FORMATS = {
-			".mp3", ".wav"};
+	// Constants.
+
+	// A list of the valid extensions the application can handle.
+	private final static String[] VALID_MUSIC_FORMATS = {".mp3", ".wav"};
 	private static final String DEFAULT_LOCATION = "Music";
 
-	// Instance variables
+	// Instance variables.
 	private String directory;
 	private File folder;
 	private File[] files;
 	private int curr;
 
 	/**
-	 * Purpose: Constructor for the music directory manager
+	 * Constructor for the music directory manager.
 	 */
 	public MusicDirectoryManager()
 	{
@@ -35,9 +35,9 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Constructor for the music directory manager
+	 * Constructor for the music directory manager.
 	 *
-	 * @param fullPath The absolute path to the desired directory
+	 * @param fullPath The absolute path to the desired directory.
 	 */
 	public MusicDirectoryManager(String fullPath)
 	{
@@ -49,7 +49,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Gives the directory currently associated with this object.
+	 * Gives the directory currently associated with this object.
 	 *
 	 * @return The directory as a string.
 	 */
@@ -59,7 +59,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Checks to see if there are more music files in the folder.
+	 * Checks to see if there are more music files in the folder.
 	 *
 	 * @return Does the director have more music files?
 	 */
@@ -88,7 +88,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Gives the next song in the folder.
+	 * Gives the next song in the folder.
 	 *
 	 * @return Returns a Song object representing the next song in the folder.
 	 */
@@ -106,22 +106,21 @@ public class MusicDirectoryManager
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
 					files[curr].toURI().toString());
 
-			// Iterate our "pointer"
+			// Iterate our "pointer".
 			curr++;
 		}
 		else if (!hasNext() && curr < files.length)
 		{
-			// If we encounter a non-music file, but we have more files in the folder
-			// Move on
+			// If we encounter a non-music file, but we have more files in the folder, move on.
 			curr++;
 		}
 		return result;
 	}
 
-	// Private helper methods
+	// Private helper methods.
 
 	/**
-	 * Purpose: Checks to see if the given extension is valid.
+	 * Checks to see if the given extension is valid.
 	 *
 	 * @param extension The desired extension to check.
 	 *
@@ -133,7 +132,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Gives the extension for the current file in the directory.
+	 * Gives the extension for the current file in the directory.
 	 *
 	 * @return The current file in the directory's extension.
 	 */
@@ -151,7 +150,7 @@ public class MusicDirectoryManager
 	}
 
 	/**
-	 * Purpose: Gives the path to the external directory.
+	 * Gives the path to the external directory.
 	 *
 	 * @return The path to the external storage directory.
 	 */

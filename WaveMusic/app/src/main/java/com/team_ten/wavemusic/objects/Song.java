@@ -3,14 +3,14 @@ package com.team_ten.wavemusic.objects;
 // An individual song with all of a song's properties.
 public class Song
 {
-	// Instance variables
+	// Instance variables.
 	private String name;
 	private String artist;
 	private String album;
 	private String URI;
 
 	/**
-	 * The default constructor for the Song class.
+	 * Constructor for a song.
 	 *
 	 * @param songName   The Song's name
 	 * @param songArtist The Song's Artist
@@ -19,7 +19,6 @@ public class Song
 	 */
 	public Song(String songName, String songArtist, String songAlbum, String songURI)
 	{
-		// Set the instance variables
 		name = songName;
 		artist = songArtist;
 		album = songAlbum;
@@ -27,7 +26,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Get the name of the song.
+	 * Get the name of the song.
 	 *
 	 * @return A string value that is the name of the song.
 	 */
@@ -37,7 +36,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Set the name of the song.
+	 * Set the name of the song.
 	 *
 	 * @param songName A string value that is the name of the song.
 	 */
@@ -47,7 +46,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Get the artist of the song.
+	 * Get the artist of the song.
 	 *
 	 * @return A string value that is the artist of the song.
 	 */
@@ -57,7 +56,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Set the artist of the song.
+	 * Set the artist of the song.
 	 *
 	 * @param songArtist A string value that is the name of the artist.
 	 */
@@ -67,7 +66,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Get the album of the song.
+	 * Get the album of the song.
 	 *
 	 * @return A string value that is the album of the song.
 	 */
@@ -77,7 +76,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Set the album of the song.
+	 * Set the album of the song.
 	 *
 	 * @param songAlbum A string value that is the name of the album.
 	 */
@@ -87,7 +86,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Get the URI of the song.
+	 * Get the URI of the song.
 	 *
 	 * @return A string value that is the URI of the song.
 	 */
@@ -97,7 +96,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: Set the URI of the song.
+	 * Set the URI of the song.
 	 *
 	 * @param songURI A string value that is the location of the song on disk.
 	 */
@@ -107,7 +106,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: To print the information of the Song object FOR USER, not including URI.
+	 * To print the information of the Song object FOR USER, not including URI.
 	 *
 	 * @return String A String including title, artist and album of this song object.
 	 */
@@ -117,7 +116,7 @@ public class Song
 	}
 
 	/**
-	 * Purpose: To check if 2 Song objects are equal.
+	 * To check if 2 Song objects are equal.
 	 *
 	 * @return boolean To return true if they are equal, false otherwise.
 	 */

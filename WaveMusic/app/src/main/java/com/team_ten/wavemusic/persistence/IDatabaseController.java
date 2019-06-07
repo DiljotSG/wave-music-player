@@ -7,14 +7,14 @@ import java.util.ArrayList;
 public interface IDatabaseController
 {
 	/***
-	 * Purpose: Add a song to the database.
+	 * Add a song to the database.
 	 *
 	 * @param song Song to add to the database.
 	 */
 	void addSong(Song song);
 
 	/**
-	 * Purpose: Get all songs from the specified artist.
+	 * Get all songs from the specified artist.
 	 *
 	 * @param artist The name of the artist.
 	 *
@@ -23,15 +23,16 @@ public interface IDatabaseController
 	ArrayList<Song> getSongsFromArtist(String artist);
 
 	/***
-	 * Purpose: Get all songs from the specified album.
+	 * Get all songs from the specified album.
 	 *
 	 * @param album The name of the album.
+	 *
 	 * @return An ArrayList of Songs from the specified album.
 	 */
 	ArrayList<Song> getSongsFromAlbum(String album);
 
 	/**
-	 * Purpose: Get the specified song from the library.
+	 * Get the specified song from the library.
 	 *
 	 * @param songName Name of the song to get.
 	 *
@@ -40,7 +41,7 @@ public interface IDatabaseController
 	Song getSong(String songName);
 
 	/**
-	 * Purpose: Get the song at the specified index
+	 * Get the song at the specified index.
 	 *
 	 * @param index The index in songList to get the song from.
 	 *
@@ -49,14 +50,14 @@ public interface IDatabaseController
 	Song getSong(int index);
 
 	/**
-	 * Purpose: Get the library of songs.
+	 * Get the library of songs.
 	 *
 	 * @return An ArrayList of Songs.
 	 */
 	ArrayList<Song> getLibrary();
 
 	/**
-	 * Purpose: Checks if the library exists.
+	 * Checks if the library exists.
 	 *
 	 * @return A Boolean specifying if the library exists or does not exist.
 	 */

@@ -9,57 +9,48 @@ import com.team_ten.wavemusic.presentation.MainActivity;
 
 public class PermissionManager
 {
-	// Constants
+	// Constants.
 	private static final int PERMISSIONS_REQUEST_READ_STORAGE_CODE = 0;
 	private static final int PERMISSIONS_REQUEST_WRITE_STORAGE_CODE = 1;
 
-	// Instance variables
+	// Instance variables.
 	private MainActivity mainView;
 
 	/**
-	 * Purpose: The constructor for PermissionManager
+	 * The constructor for PermissionManager.
 	 */
 	public PermissionManager(MainActivity mainActivity)
 	{
 		mainView = mainActivity;
 	}
 
-
 	/**
 	 * Sets the permissions of the android app for reading/writing files.
 	 */
 	public void getFilePermissions()
 	{
-		// Get the current permissions
-		int readPerm = ContextCompat.checkSelfPermission(
-				mainView,
-				Manifest.permission.READ_EXTERNAL_STORAGE
-		);
-		int writePerm = ContextCompat.checkSelfPermission(
-				mainView,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE
-		);
+		// Get the current permissions.
+		int readPerm = ContextCompat.checkSelfPermission(mainView,
+														 Manifest.permission.READ_EXTERNAL_STORAGE);
+		int writePerm = ContextCompat.checkSelfPermission(mainView,
+														  Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-		// Check if we have access
+		// Check if we have access.
 		boolean readAccess = readPerm == PackageManager.PERMISSION_GRANTED;
 		boolean writeAccess = writePerm == PackageManager.PERMISSION_GRANTED;
 
-		// If not, request those permissions
+		// If not, request those permissions.
 		if (!readAccess)
 		{
-			ActivityCompat.requestPermissions(
-					mainView,
-					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-					PERMISSIONS_REQUEST_READ_STORAGE_CODE
-			);
+			ActivityCompat.requestPermissions(mainView,
+											  new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+											  PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
 		if (!writeAccess)
 		{
-			ActivityCompat.requestPermissions(
-					mainView,
-					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-					PERMISSIONS_REQUEST_WRITE_STORAGE_CODE
-			);
+			ActivityCompat.requestPermissions(mainView,
+											  new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+											  PERMISSIONS_REQUEST_WRITE_STORAGE_CODE);
 		}
 	}
 }

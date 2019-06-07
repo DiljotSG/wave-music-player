@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity
 {
 	private void buildUserLibraryView(final ActivityController activityController)
 	{
-		// Build the view asynchronously
+		// Build the view asynchronously.
 		new Thread(new Runnable()
 		{
 			@Override public void run()

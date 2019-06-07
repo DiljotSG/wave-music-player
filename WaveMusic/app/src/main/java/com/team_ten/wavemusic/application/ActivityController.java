@@ -16,11 +16,11 @@ import com.team_ten.wavemusic.presentation.NowPlayingActivity;
 
 public class ActivityController
 {
-	// Instance variables
+	// Instance variables.
 	private MainActivity mainView;
 
 	/**
-	 * Purpose: The constructor for the ActivityController class
+	 * The constructor for the ActivityController class.
 	 *
 	 * @param mainActivity The activity that is the main application activity.
 	 */
@@ -34,10 +34,10 @@ public class ActivityController
 	 */
 	public void buildLibraryView()
 	{
-		// Start building the user's library
+		// Start building the user's library.
 		final DatabaseStub databaseController = new DatabaseStub();
 
-		// Build the user library based off the default location
+		// Build the user library based off the default location.
 		buildUserLibrary(databaseController);
 
 		// Build the view on the main UI thread (can't be done from the background).
@@ -50,10 +50,10 @@ public class ActivityController
 		});
 	}
 
-	// Private helper methods
+	// Private helper methods.
 
 	/**
-	 * Purpose: Builds a database representing the user's library given a database.
+	 * Builds a database representing the user's library given a database.
 	 *
 	 * @param databaseController The databaseController object to populate.
 	 */
@@ -68,25 +68,23 @@ public class ActivityController
 	}
 
 	/**
-	 * Purpose: Actually populates the main view with the user's library.
+	 * Actually populates the main view with the user's library.
 	 *
 	 * @param databaseController The IDatabaseController to pull songs from.
 	 */
 	private void updateMainView(final IDatabaseController databaseController)
 	{
-		// Populate the list view in the main activity
+		// Populate the list view in the main activity.
 		ListView listView = mainView.findViewById(R.id.list_songs);
 
-		// To connect the playlist with the ListView using ArrayAdapter
-		ArrayAdapter<Song> listAdapter = new ArrayAdapter<>(
-				mainView,
-				android.R.layout.simple_list_item_1,
-				databaseController.getLibrary()
-		);
+		// To connect the playlist with the ListView using ArrayAdapter.
+		ArrayAdapter<Song> listAdapter = new ArrayAdapter<>(mainView,
+															android.R.layout.simple_list_item_1,
+															databaseController.getLibrary());
 		listView.setAdapter(listAdapter);
 
-		// When a song in the ListView is clicked,
-		// start a new NowPlaying activity and pass the song's title and URI into it.
+		// When a song in the ListView is clicked, start a new NowPlaying activity and pass the
+		// song's title and URI into it.
 		AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
 		{
 			@Override

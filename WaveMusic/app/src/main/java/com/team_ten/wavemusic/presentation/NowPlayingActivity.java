@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.team_ten.wavemusic.R;
 
-
 public class NowPlayingActivity extends AppCompatActivity
 {
-
-	private String title;        // The title of the song playing.
-	private String URI;        // The URI of the song playing.
+	// The title of the song playing.
+	private String title;
+	// The URI of the song playing.
+	private String URI;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -21,6 +21,8 @@ public class NowPlayingActivity extends AppCompatActivity
 
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
+
+		// TODO: should have two null checks here.
 		title = intent.getStringExtra("title");
 		URI = intent.getStringExtra("URI");
 

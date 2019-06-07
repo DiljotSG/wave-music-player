@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- 0 - [Contributing Members](README.md#contributing-members)
 - 1 - [Documentation for Iteration 0](README.md/#documentation-for-iteration-0)
   - 1.1 - [Application Vision Statement](README.md/#application-vision-statement)
   - 1.2 - [Application Features](README.md/#application-features)
@@ -11,6 +12,48 @@
 - 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
   - 2.1 - [Application Architecture Document](README.md/#application-architecture-document)
   - 2.2 - [Contribution Guidelines](README.md/#contribution-guidelines)
+
+## Contributing Members
+<table>
+<tr>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/powerseed">
+            <img src="https://secure.gravatar.com/avatar/332ea32ab46c3782a25fa3821fc77c87?s=800&d=identicon" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Jiehao Luo</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/garchads">
+            <img src="https://secure.gravatar.com/avatar/489638821273c78330dc27fe4170b07f?s=180&d=identicon" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Diljot Garcha</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/Tyler">
+            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/185/avatar.png?width=90" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Tyler Loewen</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/lukas">
+            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/198/avatar.png?width=90" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Lukas Timmerman</b>
+            </sub>
+        </a>
+    </td>
+</tr>
+</table>
 
 ## Documentation for Iteration 0
 

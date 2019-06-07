@@ -1,7 +1,7 @@
 package com.team_ten.wavemusic.tests;
 
 // Import statements
-import com.team_ten.wavemusic.Song;
+import com.team_ten.wavemusic.objects.Song;
 import org.junit.Test;
 
 public class TestSongClass

@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.tests;
 
 // Import Statements
 import org.junit.Test;
-import com.team_ten.wavemusic.MusicDirectoryManager;
+import com.team_ten.wavemusic.logic.MusicDirectoryManager;
 
 public class TestMusicDirectoryManager
 {

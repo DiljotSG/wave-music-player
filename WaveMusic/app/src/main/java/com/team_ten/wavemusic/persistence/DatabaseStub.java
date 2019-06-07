@@ -4,7 +4,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public class DatabaseStub implements DatabaseController
+public class DatabaseStub implements IDatabaseController
 {
 	private ArrayList<Song> songList;
 

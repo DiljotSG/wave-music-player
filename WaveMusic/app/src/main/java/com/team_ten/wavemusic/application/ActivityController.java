@@ -9,7 +9,7 @@ import android.widget.ListView;
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.MusicDirectoryManager;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.DatabaseController;
+import com.team_ten.wavemusic.persistence.IDatabaseController;
 import com.team_ten.wavemusic.persistence.DatabaseStub;
 import com.team_ten.wavemusic.presentation.MainActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingActivity;
@@ -70,9 +70,9 @@ public class ActivityController
 	/**
 	 * Purpose: Actually populates the main view with the user's library.
 	 *
-	 * @param databaseController The DatabaseController to pull songs from.
+	 * @param databaseController The IDatabaseController to pull songs from.
 	 */
-	private void updateMainView(final DatabaseController databaseController)
+	private void updateMainView(final IDatabaseController databaseController)
 	{
 		// Populate the list view in the main activity
 		ListView listView = mainView.findViewById(R.id.list_songs);

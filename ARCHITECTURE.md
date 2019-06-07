@@ -1,5 +1,15 @@
 # Application Architecture
 
+## Table of Contents
+
+- 1 - [Introduction](ARCHITECTURE.md/#introduction)
+- 2 - [Presentation Layer](ARCHITECTURE.md/#presentation-layer)
+- 3 - [Logic Layer](ARCHITECTURE.md/#logic-layer)
+- 4 - [Persistence Layer](ARCHITECTURE.md/#persistence-layer)
+- 5 - [Domain Specific Objects](ARCHITECTURE.md/#domain-specific-objects)
+
+## Introduction
+
 Broadly, Wave Music (henceforth referred to as "the app") consists of the main source package and a test package. The test package contains one file for each testable class in the main package. The app follows a three-tier architecture with persistence, logic and presentation layers. These layers are represented as collections of classes in the main package, as described in this document.
 
 ## Presentation Layer
@@ -26,7 +36,7 @@ There are several classes defined to handle business logic; they are "presentati
 
 ## Persistence Layer
 
-The persistence layer is defined abstractly by the `DatabaseController` interface, and then implemented by the `DatabaseStub` class.
+The persistence layer is defined abstractly by the `IDatabaseController` interface, and then implemented by the `DatabaseStub` class.
 
 * **DatabaseStub:** Responsible for storing the library of songs as well as querying the library of songs with a variety of different search parameters (song name, artist name, album name, etc.).
 

@@ -26,7 +26,7 @@ There are several classes defined to handle business logic; they are "presentati
 
 ## Persistence Layer
 
-The persistence layer is defined abstractly by the `IDatabaseController` interface, and then implemented by the `DatabaseStub` class.
+The persistence layer is defined abstractly by the `DatabaseController` interface, and then implemented by the `DatabaseStub` class.
 
 * **DatabaseStub:** Responsible for storing the library of songs as well as querying the library of songs with a variety of different search parameters (song name, artist name, album name, etc.).
 

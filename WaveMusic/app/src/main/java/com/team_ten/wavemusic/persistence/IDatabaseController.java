@@ -4,7 +4,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public interface DatabaseController
+public interface IDatabaseController
 {
 	/***
 	 * Purpose: Add a song to the database.

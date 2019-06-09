@@ -88,11 +88,11 @@ public class DatabaseStub implements IDatabaseController
 	 *
 	 * @param songName Name of the song to get.
 	 *
-	 * @return The matching Song or null if the song is not found.
+	 * @return An ArrayList of matching Songs.
 	 */
-	public Song getSong(String songName)
+	public ArrayList<Song> getSong(String songName)
 	{
-		Song result = null;
+		ArrayList<Song> result = new ArrayList<Song>();
 
 		if (hasLibrary())
 		{
@@ -101,8 +101,7 @@ public class DatabaseStub implements IDatabaseController
 				String temp = songList.get(i).getName();
 				if (temp.equals(songName))
 				{
-					result = songList.get(i);
-					break;
+					result.add(songList.get(i));
 				}
 			}
 		}

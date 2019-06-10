@@ -36,9 +36,9 @@ public interface IDatabaseController
 	 *
 	 * @param songName Name of the song to get.
 	 *
-	 * @return The matching Song or null if the song is not found.
+	 * @return An ArrayList of matching Songs.
 	 */
-	Song getSong(String songName);
+	ArrayList<Song> getSong(String songName);
 
 	/**
 	 * Get the song at the specified index.

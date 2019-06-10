@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Wave Music</string>
+    <string name="skip">&gt;&gt;</string>
+    <string name="play">&gt;</string>
+    <string name="pause">[  ]</string>
+    <string name="back">&lt;</string>
+    <string name="skip_back">&lt;&lt;</string>
+
 </resources>

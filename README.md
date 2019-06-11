@@ -1,5 +1,7 @@
 # Wave Music Player
 
+[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/master/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/master)
+
 ## Table of Contents
 
 - 1 - [Documentation for Iteration 0](README.md/#documentation-for-iteration-0)

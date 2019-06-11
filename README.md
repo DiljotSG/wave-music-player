@@ -1,6 +1,6 @@
 # Wave Music Player
 
-[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/develop/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/develop)
+[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/release/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/release)
 
 ## Table of Contents
 

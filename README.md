@@ -1,11 +1,61 @@
 # Wave Music Player
 
+[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/develop/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/develop)
+
 ## Table of Contents
 
+- 0 - [Contributing Members](README.md#contributing-members)
 - 1 - [Documentation for Iteration 0](README.md/#documentation-for-iteration-0)
   - 1.1 - [Application Vision Statement](README.md/#application-vision-statement)
   - 1.2 - [Application Features](README.md/#application-features)
   - 1.3 - [Iteration 1 user stories](README.md/#iteration-1-user-stories)
+- 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
+  - 2.1 - [Brief Description](README.md#brief-description)
+  - 2.2 - [Application Architecture Document](README.md/#application-architecture-document)
+  - 2.3 - [Contribution Guidelines](README.md/#contribution-guidelines)
+  - 2.4 - [User stories moved to Iteration 2](README.md#user-stories-moved-to-iteration-2)
+
+## Contributing Members
+<table>
+<tr>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/powerseed">
+            <img src="https://secure.gravatar.com/avatar/332ea32ab46c3782a25fa3821fc77c87?s=800&d=identicon" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Jiehao Luo</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/garchads">
+            <img src="https://secure.gravatar.com/avatar/489638821273c78330dc27fe4170b07f?s=180&d=identicon" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Diljot Garcha</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/Tyler">
+            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/185/avatar.png?width=90" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Tyler Loewen</b>
+            </sub>
+        </a>
+    </td>
+    <td style="text-align: center;">
+        <a href="https://code.cs.umanitoba.ca/lukas">
+            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/198/avatar.png?width=90" width="100px;"/>
+            <br/>
+            <sub>
+                <b>Lukas Timmerman</b>
+            </sub>
+        </a>
+    </td>
+</tr>
+</table>
 
 ## Documentation for Iteration 0
 
@@ -58,3 +108,33 @@ User stories that *will be implemented* in **iteration 1**:
 6. [Skipping a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/24)
 7. [Pausing a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/22)
 8. [Selecting a song to play](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/19)
+
+## Documentation for Iteration 1
+
+### Brief Description 
+
+Upon starting the Wave Music Player Application, the user is presented with their music located in Android's default Music directory. The app will automatically scan this directory for songs, and display them to the user in the `MainActivity` for playback. There are several playback controls implemented in this iteration. The buttons and the are descriptions are listed below.
+
+| Symbol | Meaning                                              |
+|--------|------------------------------------------------------|
+| `<<`   | Skipping back to the previous track.                 |
+| `<`    | Restarting the current track.                        |
+| `[]`   | Pausing the current track (must be playing).         |
+| `>`    | Playing/resuming the current track (must be paused). |
+| `>>`   | Skipping to the next track.                          |
+
+The application comes packaged with four sample tracks, these tracks will be extracted to Android's default Music directory upon initial launch of the application. The songs are then read from the Music directory for the user to play. The app has two main views, the `MainActivity` and `NowPlayingActivity`, both are described in more detail in the Application Architecture document.
+
+### Application Architecture Document
+
+**[View the application architecture document here](ARCHITECTURE.md)**.
+
+### Contribution Guidelines
+
+**[View the repository contribution guidelines here](CONTRIBUTING.md)**.
+
+### User stories moved to Iteration 2 
+
+The following user stories were moved to the next iteration:
+
+1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1).

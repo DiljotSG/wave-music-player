@@ -11,8 +11,9 @@
   - 1.3 - [Iteration 1 user stories](README.md/#iteration-1-user-stories)
 - 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
   - 2.1 - [Brief Description](README.md#brief-description)
-  - 2.1 - [Application Architecture Document](README.md/#application-architecture-document)
-  - 2.2 - [Contribution Guidelines](README.md/#contribution-guidelines)
+  - 2.2 - [Application Architecture Document](README.md/#application-architecture-document)
+  - 2.3 - [Contribution Guidelines](README.md/#contribution-guidelines)
+  - 2.4 - [User stories moved to Iteration 2](README.md#user-stories-moved-to-iteration-2)
 
 ## Contributing Members
 <table>
@@ -122,7 +123,7 @@ Upon starting the Wave Music Player Application, the user is presented with thei
 | `>`    | Playing/resuming the current track (must be played). |
 | `>>`   | Skipping to the next track.                          |
 
-The application comes packaged with 4 sample tracks, these tracks will be extracted to Android's default Music directory upon initial launch of the application. The songs are then read from the Music directory for the user to play. The app has two main views, the `MainActivity` and `NowPlayingActivity`, both are described in more detail in the Application Architecture document.
+The application comes packaged with four sample tracks, these tracks will be extracted to Android's default Music directory upon initial launch of the application. The songs are then read from the Music directory for the user to play. The app has two main views, the `MainActivity` and `NowPlayingActivity`, both are described in more detail in the Application Architecture document.
 
 ### Application Architecture Document
 
@@ -132,7 +133,7 @@ The application comes packaged with 4 sample tracks, these tracks will be extrac
 
 **[View the repository contribution guidelines here](CONTRIBUTING.md)**.
 
-### Iteration 2 user stories
+### User stories moved to Iteration 2 
 
 The following user stories were moved to the next iteration:
 

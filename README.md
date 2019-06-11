@@ -10,6 +10,7 @@
   - 1.2 - [Application Features](README.md/#application-features)
   - 1.3 - [Iteration 1 user stories](README.md/#iteration-1-user-stories)
 - 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
+  - 2.1 - [Brief Description](README.md#brief-description)
   - 2.1 - [Application Architecture Document](README.md/#application-architecture-document)
   - 2.2 - [Contribution Guidelines](README.md/#contribution-guidelines)
 
@@ -109,6 +110,20 @@ User stories that *will be implemented* in **iteration 1**:
 
 ## Documentation for Iteration 1
 
+### Brief Description 
+
+Upon starting the Wave Music Player Application, the user is presented with their music located in Android's default Music directory. The app will automatically scan this directory for songs, and display them to the user in the `MainActivity` for playback. There are several playback controls implemented in this iteration. The buttons and the are descriptions are listed below.
+
+| Symbol | Meaning                                              |
+|--------|------------------------------------------------------|
+| `<<`   | Skipping back to the previous track.                 |
+| `<`    | Restarting the current track.                        |
+| `[]`   | Pausing the current track (must be playing).         |
+| `>`    | Playing/resuming the current track (must be played). |
+| `>>`   | Skipping to the next track.                          |
+
+The application comes packaged with 4 sample tracks, these tracks will be extracted to Android's default Music directory upon initial launch of the application. The songs are then read from the Music directory for the user to play. The app has two main views, the `MainActivity` and `NowPlayingActivity`, both are described in more detail in the Application Architecture document.
+
 ### Application Architecture Document
 
 **[View the application architecture document here](ARCHITECTURE.md)**.
@@ -119,4 +134,6 @@ User stories that *will be implemented* in **iteration 1**:
 
 ### Iteration 2 user stories
 
-1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1)
+The following user stories were moved to the next iteration:
+
+1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1).

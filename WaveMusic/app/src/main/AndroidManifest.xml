@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.NowPlayingActivity"
+        <activity android:name=".presentation.NowPlayingMusicActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.MainMusicActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

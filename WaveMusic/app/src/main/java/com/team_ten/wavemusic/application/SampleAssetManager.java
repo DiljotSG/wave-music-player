@@ -3,7 +3,7 @@ package com.team_ten.wavemusic.application;
 import android.content.res.AssetManager;
 import android.os.Environment;
 
-import com.team_ten.wavemusic.presentation.MainActivity;
+import com.team_ten.wavemusic.presentation.MainMusicActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,15 +18,16 @@ public class SampleAssetManager
 			"music/sample1.mp3",
 			"music/sample2.mp3",
 			"music/sample3.mp3",
-			"music/sample4.mp3"};
+			"music/sample4.mp3"
+	};
 
 	// Instance variables.
-	private MainActivity mainView;
+	private MainMusicActivity mainView;
 
 	/**
 	 * The constructor for SampleAssetManager.
 	 */
-	public SampleAssetManager(MainActivity mainActivity)
+	public SampleAssetManager(MainMusicActivity mainActivity)
 	{
 		mainView = mainActivity;
 	}

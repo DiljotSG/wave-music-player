@@ -54,4 +54,4 @@ The application package contains classes that are required for the basic operati
 
 ## Diagram
 
-[Diagram](diagram.png)
+![Diagram](diagram.png)

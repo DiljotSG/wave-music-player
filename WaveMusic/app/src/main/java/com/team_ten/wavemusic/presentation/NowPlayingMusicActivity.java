@@ -33,4 +33,52 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		PlaybackController.startSong(song);
 		createMusicControls();
 	}
+
+	/**
+	 * Sets the title of the NowPlayingActivity after a song is skipped forward.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	@Override
+	public void afterNext(Song newSong)
+	{
+		song = newSong;
+		getSupportActionBar().setTitle(song.getName());
+	}
+
+	/**
+	 * Sets the title of the NowPlayingActivity after a song is played.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	@Override
+	public void afterPlay(Song newSong)
+	{
+		song = newSong;
+		getSupportActionBar().setTitle(song.getName());
+	}
+
+	/**
+	 * Sets the title of the NowPlayingActivity after a song is restarted.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	@Override
+	public void afterRestart(Song newSong)
+	{
+		song = newSong;
+		getSupportActionBar().setTitle(song.getName());
+	}
+
+	/**
+	 * Sets the title of the NowPlayingActivity after a song is skipped back.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	@Override
+	public void afterBack(Song newSong)
+	{
+		song = newSong;
+		getSupportActionBar().setTitle(song.getName());
+	}
 }

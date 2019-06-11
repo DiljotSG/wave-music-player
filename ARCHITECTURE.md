@@ -8,6 +8,7 @@
 * 4 - [Persistence Layer](ARCHITECTURE.md/#persistence-layer)
 * 5 - [Domain Specific Objects](ARCHITECTURE.md/#domain-specific-objects)
 * 6 - [Other](ARCHITECTURE.md/#other)
+* 7 - [Diagram](ARCHITECTURE.md/#diagram)
 
 ## Introduction
 
@@ -49,3 +50,8 @@ The application package contains classes that are required for the basic operati
 
 * **PermissionManager:** Responsible for setting the correct system permissions to allow access to the device's file structure.
 * **SampleAssetManager:** Responsible for reading the sample music files from the project's assets folder when the app launches.
+* 
+
+## Diagram
+
+[Diagram](diagram.png)

@@ -5,7 +5,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.team_ten.wavemusic.presentation.MainActivity;
+import com.team_ten.wavemusic.presentation.MainMusicActivity;
 
 public class PermissionManager
 {
@@ -14,12 +14,12 @@ public class PermissionManager
 	private static final int PERMISSIONS_REQUEST_WRITE_STORAGE_CODE = 1;
 
 	// Instance variables.
-	private MainActivity mainView;
+	private MainMusicActivity mainView;
 
 	/**
 	 * The constructor for PermissionManager.
 	 */
-	public PermissionManager(MainActivity mainActivity)
+	public PermissionManager(MainMusicActivity mainActivity)
 	{
 		mainView = mainActivity;
 	}

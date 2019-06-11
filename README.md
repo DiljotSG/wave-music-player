@@ -116,3 +116,7 @@ User stories that *will be implemented* in **iteration 1**:
 ### Contribution Guidelines
 
 **[View the repository contribution guidelines here](CONTRIBUTING.md)**.
+
+### Iteration 2 user stories
+
+1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1)

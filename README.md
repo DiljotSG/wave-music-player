@@ -120,7 +120,7 @@ Upon starting the Wave Music Player Application, the user is presented with thei
 | `<<`   | Skipping back to the previous track.                 |
 | `<`    | Restarting the current track.                        |
 | `[]`   | Pausing the current track (must be playing).         |
-| `>`    | Playing/resuming the current track (must be played). |
+| `>`    | Playing/resuming the current track (must be paused). |
 | `>>`   | Skipping to the next track.                          |
 
 The application comes packaged with four sample tracks, these tracks will be extracted to Android's default Music directory upon initial launch of the application. The songs are then read from the Music directory for the user to play. The app has two main views, the `MainActivity` and `NowPlayingActivity`, both are described in more detail in the Application Architecture document.

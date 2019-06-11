@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.PlaybackController;
+import com.team_ten.wavemusic.objects.Song;
 
 // This abstract class shares common methods that are
 // Used in multiple activities, it's children can access these calls.
@@ -28,14 +29,16 @@ public abstract class CommonMusicActivity extends AppCompatActivity
 		{
 			public void onClick(View v)
 			{
-				PlaybackController.playNext();
+				Song song = PlaybackController.playNext();
+				afterNext(song);
 			}
 		});
 		play_button.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
 			{
-				PlaybackController.startSong();
+				Song song = PlaybackController.startSong();
+				afterPlay(song);
 			}
 		});
 		pause_button.setOnClickListener(new View.OnClickListener()
@@ -43,21 +46,78 @@ public abstract class CommonMusicActivity extends AppCompatActivity
 			public void onClick(View v)
 			{
 				PlaybackController.pause();
+				afterPause();
 			}
 		});
 		back_button.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
 			{
-				PlaybackController.restart();
+				Song song = PlaybackController.restart();
+				afterRestart(song);
 			}
 		});
 		skip_back_button.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
 			{
-				PlaybackController.playPrev();
+				Song song = PlaybackController.playPrev();
+				afterBack(song);
 			}
 		});
+	}
+
+
+	/**
+	 * Optional behaviour called after a song is skipped forward.
+	 * Not abstract, as it can be _optionally_ implemented by subclasses.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	public void afterNext(Song newSong)
+	{
+		//pass
+	}
+
+	/**
+	 * Optional behaviour called after a song is played.
+	 * Not abstract, as it can be _optionally_ implemented by subclasses.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	public void afterPlay(Song newSong)
+	{
+		//pass
+	}
+
+	/**
+	 * Optional behaviour called after a song is paused.
+	 * Not abstract, as it can be _optionally_ implemented by subclasses.
+	 */
+	public void afterPause()
+	{
+		//pass
+	}
+
+	/**
+	 * Optional behaviour called after a song is restarted.
+	 * Not abstract, as it can be _optionally_ implemented by subclasses.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	public void afterRestart(Song newSong)
+	{
+		//pass
+	}
+
+	/**
+	 * Optional behaviour called after a song is skipped back.
+	 * Not abstract, as it can be _optionally_ implemented by subclasses.
+	 *
+	 * @param newSong The song that we switched to.
+	 */
+	public void afterBack(Song newSong)
+	{
+		//pass
 	}
 }

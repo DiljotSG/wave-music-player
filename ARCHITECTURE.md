@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Broadly, Wave Music (henceforth referred to as "the app") consists of a main source package and a test package. The test package contains one file for each testable class in the main package. The app follows a three-tier architecture with presentation, logic and persistence layers. These layers are represented as collections of classes in the main package, as described in this document.
+Broadly, Wave Music (henceforth referred to as "the app") consists of the main source package and a test package. The test package contains one file for each testable class in the main package. The app follows a three-tier architecture with presentation, logic and persistence layers. These layers are represented as collections of classes in the main package, as described in this document.
 
 ## Presentation Layer
 
@@ -40,13 +40,13 @@ The persistence layer is defined abstractly by the `IDatabaseController` interfa
 
 There are also several domain objects that are used throughout the hierarchy.
 
-* **Song:** An object for each song in the library. It contains information about the song such as the it's name, artist, album, and location on disk.
+* **Song:** An object for each song in the library. It contains information about the song such as the song's name, artist, album, and location on disk.
 * **Playlist:** A user-created playlist that contains a list of songs belonging to the playlist.
 * **PlaybackQueue:** A list of upcoming songs to be played. The contents of this list depend on which group of songs was selected to be played. For example, a whole artist, album, or playlist.
 
 ## Other
 
-The application package contains classes that are required for the basic operation of the application but do not belong in a 3-tiered architecture.
+The application package contains classes that are required for the basic operation of the application but do not belong in the traditional 3-tiered architecture.
 
 * **PermissionManager:** Responsible for setting the correct system permissions to allow access to the device's file structure.
 * **SampleAssetManager:** Responsible for reading the sample music files from the project's assets folder when the app launches.

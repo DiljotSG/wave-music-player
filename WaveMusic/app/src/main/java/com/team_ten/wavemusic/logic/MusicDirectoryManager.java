@@ -27,7 +27,7 @@ public class MusicDirectoryManager
 	 */
 	public MusicDirectoryManager()
 	{
-		// Sets the instance variables
+		// Sets the instance variables.
 		directory = getExternalPath() + "/" + DEFAULT_LOCATION + "/";
 		folder = new File(directory);
 		files = folder.listFiles();
@@ -65,14 +65,14 @@ public class MusicDirectoryManager
 	 */
 	public boolean hasNext()
 	{
-		// Basic error checking
+		// Basic error checking.
 		boolean result = false;
 		if (files != null && curr < files.length)
 		{
-			// Grab the file extension
+			// Grab the file extension.
 			String extension = getCurrentExtension();
 
-			// Check to see if the extension is one associated with music files
+			// Check to see if the extension is one associated with music files.
 			if (extension != null && isValidExtension(extension))
 			{
 				result = true;
@@ -97,7 +97,7 @@ public class MusicDirectoryManager
 		Song result = null;
 		if (hasNext())
 		{
-			// Parse the metadata from the file
+			// Parse the metadata from the file.
 			MediaMetadataRetriever parser = new MediaMetadataRetriever();
 			parser.setDataSource(files[curr].getAbsolutePath());
 			result = new Song(
@@ -138,12 +138,13 @@ public class MusicDirectoryManager
 	 */
 	private String getCurrentExtension()
 	{
-		String result = null;    // Value to return
+		// Value to return
+		String result = null;
 		// Get the position
 		int extensionPosition = files[curr].getName().lastIndexOf(".");
 		if (extensionPosition != -1)
 		{
-			// If it is valid, store the result
+			// If it is valid, store the result.
 			result = files[curr].getName().substring(extensionPosition);
 		}
 		return result;

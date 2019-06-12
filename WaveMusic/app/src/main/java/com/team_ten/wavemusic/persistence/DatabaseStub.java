@@ -32,11 +32,11 @@ public class DatabaseStub implements IDatabaseController
 	/**
 	 * Get all songs from the specified artist.
 	 *
-	 * @param artist The name of the artist.
+	 * @param songArtist The name of the artist.
 	 *
 	 * @return An ArrayList of Songs from the specified artist.
 	 */
-	public ArrayList<Song> getSongsFromArtist(String artist)
+	public ArrayList<Song> getSongsFromArtist(String songArtist)
 	{
 		ArrayList<Song> result = new ArrayList<>();
 
@@ -44,11 +44,11 @@ public class DatabaseStub implements IDatabaseController
 		{
 			for (int i = 0; i < songList.size(); i++)
 			{
-				String temp = songList.get(i).getArtist();
+				Song currSong = songList.get(i);
 
-				if (temp.equals(artist))
+				if ((currSong.getArtist()).equals(songArtist))
 				{
-					result.add(songList.get(i));
+					result.add(currSong);
 				}
 			}
 		}
@@ -59,11 +59,11 @@ public class DatabaseStub implements IDatabaseController
 	/***
 	 * Get all songs from the specified album.
 	 *
-	 * @param album The name of the album.
+	 * @param songAlbum The name of the album.
 	 *
 	 * @return An ArrayList of Songs from the specified album.
 	 */
-	public ArrayList<Song> getSongsFromAlbum(String album)
+	public ArrayList<Song> getSongsFromAlbum(String songAlbum)
 	{
 		ArrayList<Song> result = new ArrayList<>();
 
@@ -71,11 +71,11 @@ public class DatabaseStub implements IDatabaseController
 		{
 			for (int i = 0; i < songList.size(); i++)
 			{
-				String temp = songList.get(i).getAlbum();
+				Song currSong = songList.get(i);
 
-				if (temp.equals(album))
+				if ((currSong.getAlbum()).equals(songAlbum))
 				{
-					result.add(songList.get(i));
+					result.add(currSong);
 				}
 			}
 		}
@@ -92,16 +92,17 @@ public class DatabaseStub implements IDatabaseController
 	 */
 	public ArrayList<Song> getSong(String songName)
 	{
-		ArrayList<Song> result = new ArrayList<Song>();
+		ArrayList<Song> result = new ArrayList<>();
 
 		if (hasLibrary())
 		{
 			for (int i = 0; i < songList.size(); i++)
 			{
-				String temp = songList.get(i).getName();
-				if (temp.equals(songName))
+				Song currSong = songList.get(i);
+
+				if ((currSong.getName()).equals(songName))
 				{
-					result.add(songList.get(i));
+					result.add(currSong);
 				}
 			}
 		}

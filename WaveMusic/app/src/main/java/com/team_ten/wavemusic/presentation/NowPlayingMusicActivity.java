@@ -10,7 +10,8 @@ import com.team_ten.wavemusic.objects.Song;
 
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
-	private Song song;    // Song currently being played
+	// Song currently being played.
+	private Song song;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -39,8 +40,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	 *
 	 * @param newSong The song that we switched to.
 	 */
-	@Override
-	public void afterNext(Song newSong)
+	@Override public void afterNext(Song newSong)
 	{
 		song = newSong;
 		getSupportActionBar().setTitle(song.getName());
@@ -51,8 +51,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	 *
 	 * @param newSong The song that we switched to.
 	 */
-	@Override
-	public void afterPlay(Song newSong)
+	@Override public void afterPlay(Song newSong)
 	{
 		song = newSong;
 		getSupportActionBar().setTitle(song.getName());
@@ -63,8 +62,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	 *
 	 * @param newSong The song that we switched to.
 	 */
-	@Override
-	public void afterRestart(Song newSong)
+	@Override public void afterRestart(Song newSong)
 	{
 		song = newSong;
 		getSupportActionBar().setTitle(song.getName());
@@ -75,8 +73,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	 *
 	 * @param newSong The song that we switched to.
 	 */
-	@Override
-	public void afterBack(Song newSong)
+	@Override public void afterBack(Song newSong)
 	{
 		song = newSong;
 		getSupportActionBar().setTitle(song.getName());

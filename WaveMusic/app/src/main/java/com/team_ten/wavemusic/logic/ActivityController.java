@@ -94,10 +94,11 @@ public class ActivityController
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
+				Song selectedSong = databaseController.getSong(position);
 				Intent intent = new Intent(mainView, NowPlayingMusicActivity.class);
-				intent.putExtra("song", databaseController.getSong(position));
-				intent.putExtra("title", databaseController.getSong(position).getName());
-				intent.putExtra("URI", databaseController.getSong(position).getURI());
+				intent.putExtra("song", selectedSong);
+				intent.putExtra("title", selectedSong.getName());
+				intent.putExtra("URI", selectedSong.getURI());
 				mainView.startActivity(intent);
 			}
 		};

@@ -14,7 +14,7 @@
 
 - Commit messages must be written in present-tense.
 
-- If more detail is required, add a paragraph after the message separated by a new line character.
+- If more detail is required, add a paragraph after the message separated by a newline character.
 
 - There must not be punctuation in the commit message.
 
@@ -59,14 +59,14 @@
 
 ### Braces
 
-- Braces must always be used, even around loops or if statements that only have a one line body.
+- Braces must always be used, even around loops or if statements that only have a one-line body.
 
 ### New Line
 
 - Place opening braces on a new line.
 - Place closing braces on a new line.
   - The exception is empty code blocks, which can have their opening and closing braces on the same line.
-- Place the `else` of and if-else statement on a new line.
+- Place the `else` of an if-else statement on a new line.
 - Place the `catch` and `finally` of a try-catch on a new line.
 
 ### Variables
@@ -96,7 +96,7 @@
 
 - In-line comments should not be placed on the same line as code.
 
-- A comment must be places before class signatures describing their purpose.
+- A comment must be placed before class signatures describing their purpose.
 
 - A block comment must be placed before method signatures, describing the following:
 

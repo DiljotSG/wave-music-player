@@ -15,11 +15,7 @@ public class SampleAssetManager
 	// Constants.
 	private static final String DEFAULT_LOCATION = "Music";
 	private static final String[] SAMPLE_TRACKS = {
-			"music/sample1.mp3",
-			"music/sample2.mp3",
-			"music/sample3.mp3",
-			"music/sample4.mp3"
-	};
+			"music/sample1.mp3", "music/sample2.mp3", "music/sample3.mp3", "music/sample4.mp3"};
 
 	// Instance variables.
 	private MainMusicActivity mainView;

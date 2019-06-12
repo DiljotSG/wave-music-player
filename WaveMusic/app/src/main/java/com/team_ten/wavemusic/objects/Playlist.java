@@ -6,7 +6,7 @@ public class Playlist
 {
 	// Instance variables.
 
-	// This is the title for the playlist
+	// This is the title for the playlist.
 	private String title;
 	// This is a list of all songs in the playlist.
 	private ArrayList<Song> list;

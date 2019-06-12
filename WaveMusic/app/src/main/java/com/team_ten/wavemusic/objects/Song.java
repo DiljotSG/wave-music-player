@@ -14,10 +14,10 @@ public class Song implements Serializable
 	/**
 	 * Constructor for a song.
 	 *
-	 * @param songName   The Song's name
-	 * @param songArtist The Song's Artist
-	 * @param songAlbum  The Song's Album
-	 * @param songURI    The Song's URI
+	 * @param songName   The Song's name.
+	 * @param songArtist The Song's Artist.
+	 * @param songAlbum  The Song's Album.
+	 * @param songURI    The Song's URI.
 	 */
 	public Song(String songName, String songArtist, String songAlbum, String songURI)
 	{

@@ -38,7 +38,7 @@ public class PlaybackController
 	private static boolean initialized;
 
 	/**
-	 * Initializes the media player of the playback controller
+	 * Initializes the media player of the playback controller.
 	 */
 	public static void init()
 	{
@@ -55,7 +55,7 @@ public class PlaybackController
 
 	/**
 	 * Initializes the media player of the playback controller for test methods (no
-	 * library calls)
+	 * library calls).
 	 */
 	public static void init_for_testing()
 	{
@@ -69,9 +69,9 @@ public class PlaybackController
 	}
 
 	/**
-	 * Returns the playback state as an integer; intended mainly for unit testing
+	 * Returns the playback state as an integer; intended mainly for unit testing.
 	 *
-	 * @return an integer representation of the current playback mode
+	 * @return an integer representation of the current playback mode.
 	 */
 	public static int get_playback_state_num()
 	{
@@ -79,9 +79,9 @@ public class PlaybackController
 	}
 
 	/**
-	 * Returns the number of playback modes as an integer, generally for unit testing
+	 * Returns the number of playback modes as an integer, generally for unit testing.
 	 *
-	 * @return an integer representation of the number of available playback modes
+	 * @return an integer representation of the number of available playback modes.
 	 */
 	public static int get_num_playback_states()
 	{
@@ -89,7 +89,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Stop audio from playing
+	 * Stop audio from playing.
 	 */
 	public static void pause()
 	{
@@ -98,7 +98,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Start playing audio
+	 * Start playing audio.
 	 */
 	public static Song startSong()
 	{
@@ -116,7 +116,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Move to next song repeat mode
+	 * Move to next song repeat mode.
 	 */
 	public static void toggleLoopMode()
 	{
@@ -127,7 +127,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Start playing a specific song
+	 * Start playing a specific song.
 	 */
 	public static Song startSong(Song song)
 	{
@@ -141,7 +141,8 @@ public class PlaybackController
 		}
 		else
 		{
-			if (playbackQueue.getCurrentSong() == null || !(playbackQueue.getCurrentSong().equals(song)))
+			if (playbackQueue.getCurrentSong() == null ||
+				!(playbackQueue.getCurrentSong().equals(song)))
 			{
 				playbackQueue.jumpSong(song);
 			}
@@ -190,7 +191,7 @@ public class PlaybackController
 
 
 	/**
-	 * Start playing the next song in the playback queue
+	 * Start playing the next song in the playback queue.
 	 */
 	public static Song playNext()
 	{
@@ -207,7 +208,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Start playing the previous song in the playback queue
+	 * Start playing the previous song in the playback queue.
 	 */
 	public static Song playPrev()
 	{
@@ -224,7 +225,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Start current song from beginning
+	 * Start current song from beginning.
 	 */
 	public static Song restart()
 	{
@@ -241,7 +242,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Set the current queue of songs to play
+	 * Set the current queue of songs to play.
 	 */
 	public static void setPlaybackQueue(ArrayList<Song> newQueue)
 	{
@@ -249,7 +250,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Return the currently playing song
+	 * Return the currently playing song.
 	 */
 	public static Song getCurrentSong()
 	{

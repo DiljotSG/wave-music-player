@@ -1,6 +1,16 @@
 # Wave Music Player
 
+Master branch pipeline status:
+
+[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/master/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/master)
+
+Release branch pipeline status:
+
 [![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/release/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/release)
+
+Develop branch pipeline status:
+
+[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/develop/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/develop)
 
 ## Table of Contents
 

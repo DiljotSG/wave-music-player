@@ -156,7 +156,7 @@ public class PlaybackQueue
 
 	public Song jumpRandom() {
 		Random random = new Random();
-		int index = random.nextInt() % playbackQueue.size();
+		int index = random.nextInt(playbackQueue.size());
 
 		return jumpIndex(index);
 	}

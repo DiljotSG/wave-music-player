@@ -36,6 +36,7 @@ public class PlaybackController
 	private static PlaybackMode playbackMode;
 	private static MediaPlayer mediaPlayer;
 	private static boolean initialized;
+	private static boolean shuffle;
 
 	/**
 	 * Initializes the media player of the playback controller.
@@ -62,6 +63,7 @@ public class PlaybackController
 					}
 				}
 			});
+			shuffle = true;
 		}
 	}
 
@@ -219,7 +221,10 @@ public class PlaybackController
 	{
 		boolean was_paused = state == PlaybackState.PAUSED;
 
-		startSong(playbackQueue.jumpNext());
+		if (shuffle)
+			startSong(playbackQueue.jumpRandom());
+		else
+			startSong(playbackQueue.jumpNext());
 
 		if (was_paused)
 		{
@@ -277,5 +282,12 @@ public class PlaybackController
 	public static Song getCurrentSong()
 	{
 		return playbackQueue.getCurrentSong();
+	}
+
+	/**
+	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
+	 */
+	public static void toggleShuffle() {
+		PlaybackController.shuffle = !PlaybackController.shuffle;
 	}
 }

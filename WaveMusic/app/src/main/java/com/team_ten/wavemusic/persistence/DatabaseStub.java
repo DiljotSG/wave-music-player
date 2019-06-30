@@ -2,9 +2,10 @@ package com.team_ten.wavemusic.persistence;
 
 import com.team_ten.wavemusic.objects.Song;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DatabaseStub implements IDatabaseController
+public class DatabaseStub implements IDatabaseController, Serializable
 {
 	private ArrayList<Song> songList;
 

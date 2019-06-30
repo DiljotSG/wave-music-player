@@ -16,7 +16,9 @@ import android.widget.ListView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.ActivityController;
+import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.logic.SwipeDismissListViewTouchListener;
+import com.team_ten.wavemusic.objects.PlaybackQueue;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;
@@ -162,6 +164,8 @@ public class ListOfSongsFragment extends Fragment
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
 				Song selectedSong = songList.get(position);
+				// Update the playback queue to match our playlist
+				PlaybackController.setPlaybackQueue(songList);
 				activityController.startNowPlayingActivity(callerActivity,
 														   selectedSong,
 														   selectedSong.getName(),

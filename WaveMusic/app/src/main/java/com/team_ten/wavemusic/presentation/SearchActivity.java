@@ -87,6 +87,21 @@ public class SearchActivity extends AppCompatActivity
 	}
 
 	/**
+	*	Return whether or not a song should be included based on search text
+	*
+	*/
+	private boolean includedInSearch(Song song, String target) {
+		if (song.getName() == null)
+			return false;
+
+		boolean titleIncluded = song.getName().toLowerCase().contains(target.toLowerCase());
+		boolean artistIncluded = song.getArtist().toLowerCase().contains(target.toLowerCase());
+		boolean albumIncluded = song.getAlbum().toLowerCase().contains(target.toLowerCase());
+
+		return titleIncluded || artistIncluded || albumIncluded;
+	}
+
+	/**
 	 * The listview will refresh after each time the user enter a character.
 	 * If a song's title has all the characters the user entered, it will appear in the
 	 * listview.
@@ -110,7 +125,7 @@ public class SearchActivity extends AppCompatActivity
 				{
 					for (Song song: allSongs)
 					{
-						if (song.getName() != null && song.getName().toLowerCase().contains(newText.toLowerCase()))
+						if (includedInSearch(song, newText))
 						{
 							results.add(song);
 						}

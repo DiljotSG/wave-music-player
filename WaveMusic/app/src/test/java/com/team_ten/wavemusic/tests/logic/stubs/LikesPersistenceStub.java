@@ -21,7 +21,10 @@ public class LikesPersistenceStub implements ILikesPersistence
 	 */
 	public void likeSong(Song songToLike)
 	{
-		songList.add(songToLike);
+		if(!songList.contains(songToLike))
+		{
+			songList.add(songToLike);
+		}
 	}
 
 	/**

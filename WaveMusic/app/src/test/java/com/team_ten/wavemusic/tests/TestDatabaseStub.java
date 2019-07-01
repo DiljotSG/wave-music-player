@@ -16,13 +16,13 @@ import static org.junit.Assert.assertTrue;
 public class TestDatabaseStub
 {
 	// Instance variables.
-	DatabaseStub databaseStub;
-	Song songOne;
-	Song songTwo;
-	Song songThree;
-	Song songFour;
-	Song songFive;
-	Song songSix;
+	private DatabaseStub databaseStub;
+	private Song songOne;
+	private Song songTwo;
+	private Song songThree;
+	private Song songFour;
+	private Song songFive;
+	private Song songSix;
 
 	@Before public void setUp()
 	{

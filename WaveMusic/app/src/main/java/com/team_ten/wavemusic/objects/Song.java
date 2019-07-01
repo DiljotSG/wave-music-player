@@ -10,6 +10,7 @@ public class Song implements Serializable
 	private String artist;
 	private String album;
 	private String URI;
+	private int playCount;
 
 	/**
 	 * Constructor for a song.
@@ -19,12 +20,13 @@ public class Song implements Serializable
 	 * @param songAlbum  The Song's Album.
 	 * @param songURI    The Song's URI.
 	 */
-	public Song(String songName, String songArtist, String songAlbum, String songURI)
+	public Song(String songName, String songArtist, String songAlbum, String songURI, int count)
 	{
 		name = songName;
 		artist = songArtist;
 		album = songAlbum;
 		URI = songURI;
+		playCount = count;
 	}
 
 	/**
@@ -105,6 +107,22 @@ public class Song implements Serializable
 	public void setURI(String songURI)
 	{
 		URI = songURI;
+	}
+
+	/**
+	 * Returns the play count of the song
+	 */
+	public int getPlayCount()
+	{
+		return playCount;
+	}
+
+	/**
+	 * Increases the play count of a Song.
+	 */
+	public int incrementPlayCount()
+	{
+		return playCount++;
 	}
 
 	/**

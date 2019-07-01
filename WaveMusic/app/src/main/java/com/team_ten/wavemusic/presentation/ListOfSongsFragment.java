@@ -188,14 +188,15 @@ public class ListOfSongsFragment extends Fragment
 				listView,
 				new SwipeDismissListViewTouchListener.DismissCallbacks()
 				{
-
-					@Override public boolean canDismiss(
+					@Override
+					public boolean canDismiss(
 							int position)
 					{
 						return true;
 					}
-
-					@Override public void onDismiss(
+	
+					@Override
+					public void onDismiss(
 							ListView listView,
 							int[] reverseSortedPositions)
 					{

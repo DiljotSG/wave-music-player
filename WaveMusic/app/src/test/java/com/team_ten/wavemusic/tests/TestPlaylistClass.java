@@ -13,21 +13,21 @@ public class TestPlaylistClass
 
 		// Since two songs with the same URI are about to be added, the second adding should fail,
 		// because playlist should not allow duplicates.
-		assert (playList.add(new Song("title1", "artist1", "album1", "uri1")));
-		assert (!playList.add(new Song("title1", "artist1", "album1", "uri1")));
+		assert (playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
+		assert (!playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
 	}
 
 	@Test public void TestGetSongMethod()
 	{
 		Playlist playList = new Playlist("Test");
 
-		playList.add(new Song("title1", "artist1", "album1", "uri1"));
+		playList.add(new Song("title1", "artist1", "album1", "uri1", 0));
 
-		playList.add(new Song("title2", "artist2", "album2", "uri2"));
+		playList.add(new Song("title2", "artist2", "album2", "uri2", 0));
 
-		playList.add(new Song("title3", "artist3", "album3", "uri3"));
+		playList.add(new Song("title3", "artist3", "album3", "uri3", 0));
 
-		playList.add(new Song("title4", "artist4", "album4", "uri4"));
+		playList.add(new Song("title4", "artist4", "album4", "uri4", 0));
 
 		int size = playList.getSize();
 

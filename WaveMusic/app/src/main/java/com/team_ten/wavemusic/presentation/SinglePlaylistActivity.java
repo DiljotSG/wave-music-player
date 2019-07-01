@@ -111,7 +111,8 @@ public class SinglePlaylistActivity extends AppCompatActivity
 			// listview.
 			if (!songList.isEmpty())
 			{
-				// Since we don't need multi-choose here, so the style is "android.R.layout.simple_list_item_1".
+				// Since we don't need multi-choose here, so the style is "android.R.layout
+				// .simple_list_item_1".
 				listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
 				// Allow "swipe to delete" in the listview.
 				listOfSongsFragment.setSwipeDismissListViewTouchListener();

@@ -66,6 +66,7 @@ public class SelectSongsActivity extends AppCompatActivity
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
 	}
+
 	/**
 	 * Pass data into listOfSongsFragment, and set its Adapter, SwipeDismissListViewTouchListener
 	 * and OnItemClickListener.
@@ -99,8 +100,7 @@ public class SelectSongsActivity extends AppCompatActivity
 			@Override public void onClick(View v)
 			{
 				SparseBooleanArray booleanArray = ((ListView) (listOfSongsFragment.getView()
-																				  .findViewById(
-																						  R.id.list_songs)))
+																				  .findViewById(R.id.list_songs)))
 						.getCheckedItemPositions();
 
 				ArrayList<Song> selected_songs = new ArrayList<>();

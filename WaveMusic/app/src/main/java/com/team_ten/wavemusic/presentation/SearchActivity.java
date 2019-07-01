@@ -123,7 +123,7 @@ public class SearchActivity extends AppCompatActivity
 
 				if (!TextUtils.isEmpty(newText))
 				{
-					for (Song song: allSongs)
+					for (Song song : allSongs)
 					{
 						if (includedInSearch(song, newText))
 						{

@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.logic;
 
 import com.team_ten.wavemusic.application.Services;
-import com.team_ten.wavemusic.objects.Playlist;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
 
@@ -34,24 +33,35 @@ public class AccessPlaylist implements IPlaylistPersistence
 	}
 
 	/**
-	 * Return the length of the playlist (number of songs)
+	 * Remove the given playlist.
 	 *
-	 * @param playlist the playlist to add the song to
+	 * @param playlistName The name of the playlist to remove.
 	 */
-	public int getLength(Playlist playlist)
+	public void removePlaylist(String playlistName)
 	{
-		return playlistPersistence.getLength(playlist);
+		playlistPersistence.removePlaylist(playlistName);
 	}
 
 	/**
 	 * Adds a Song to a Playlist in  the DB via the PLAYLIST_SONGS table
 	 *
-	 * @param song     song to add to playlist
-	 * @param playlist the playlist to add the song to
+	 * @param song         song to add to playlist
+	 * @param playlistName the playlist to add the song to
 	 */
-	public void addSong(Song song, Playlist playlist)
+	public void addSongToPlaylist(Song song, String playlistName)
 	{
-		playlistPersistence.addSong(song, playlist);
+		playlistPersistence.addSongToPlaylist(song, playlistName);
+	}
+
+	/**
+	 * Removes the given song from the given playlist
+	 *
+	 * @param song         The song to be removed.
+	 * @param playlistName The playlist to remove the song from.
+	 */
+	public void removeSongFromPlaylist(Song song, String playlistName)
+	{
+		playlistPersistence.removeSongFromPlaylist(song, playlistName);
 	}
 
 	/**
@@ -69,8 +79,18 @@ public class AccessPlaylist implements IPlaylistPersistence
 	 *
 	 * @return An array list of playlist names
 	 */
-	public ArrayList<Song> getSongsFromPlaylist()
+	public ArrayList<Song> getSongsFromPlaylist(String playlistName)
 	{
-		return playlistPersistence.getSongsFromPlaylist();
+		return playlistPersistence.getSongsFromPlaylist(playlistName);
+	}
+
+	/**
+	 * Return the length of the playlist (number of songs)
+	 *
+	 * @param playlistName the playlist to add the song to
+	 */
+	public int getPlaylistLength(String playlistName)
+	{
+		return playlistPersistence.getPlaylistLength(playlistName);
 	}
 }

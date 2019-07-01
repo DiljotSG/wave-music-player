@@ -6,7 +6,7 @@ import com.team_ten.wavemusic.persistence.ISongPersistence;
 
 import java.util.ArrayList;
 
-public class AccessSong
+public class AccessSong implements ISongPersistence
 {
 	private ISongPersistence songPersistence;
 

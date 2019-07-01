@@ -55,6 +55,28 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 	}
 
 	/**
+	 * Removes a Song from the user's library
+	 *
+	 * @param toRemove The song to remove from the user's library.
+	 */
+	public void removeSong(Song toRemove)
+	{
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '%s'");
+			st.setString(1, toRemove.getURI());
+
+			st.executeUpdate();
+			st.close();
+		}
+		catch (final SQLException e)
+		{
+			System.out.println("[!] Exception while removing song from database.");
+			throw new PersistenceException(e);
+		}
+	}
+
+	/**
 	 * Returns a Song object for the given URI.
 	 *
 	 * @param songURI The URI of the Song.
@@ -116,28 +138,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 		}
 
 		return result;
-	}
-
-	/**
-	 * Removes a Song from the user's library
-	 *
-	 * @param toRemove The song to remove from the user's library.
-	 */
-	public void removeSong(Song toRemove)
-	{
-		try (final Connection c = connection())
-		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '%s'");
-			st.setString(1, toRemove.getURI());
-
-			st.executeUpdate();
-			st.close();
-		}
-		catch (final SQLException e)
-		{
-			System.out.println("[!] Exception while removing song from database.");
-			throw new PersistenceException(e);
-		}
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.persistence;
 
-import com.team_ten.wavemusic.objects.Playlist;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
@@ -10,24 +9,32 @@ public interface IPlaylistPersistence
 	/**
 	 * Adds a playlist to the DB.
 	 *
-	 * @param name The name of the playlist to add
+	 * @param playlistName The name of the playlist to add
 	 */
-	public void addPlaylist(String name);
+	public void addPlaylist(String playlistName);
 
 	/**
-	 * Return the length of the playlist (number of songs)
+	 * Remove the given playlist.
 	 *
-	 * @param playlist the playlist to add the song to
+	 * @param playlistName The name of the playlist to remove.
 	 */
-	public int getLength(Playlist playlist);
+	public void removePlaylist(String playlistName);
 
 	/**
 	 * Adds a Song to a Playlist in  the DB via the PLAYLIST_SONGS table
 	 *
-	 * @param song     song to add to playlist
-	 * @param playlist the playlist to add the song to
+	 * @param song         song to add to playlist
+	 * @param playlistName the playlist to add the song to
 	 */
-	public void addSong(Song song, Playlist playlist);
+	public void addSongToPlaylist(Song song, String playlistName);
+
+	/**
+	 * Removes the given song from the given playlist
+	 *
+	 * @param song         The song to be removed.
+	 * @param playlistName The playlist to remove the song from.
+	 */
+	public void removeSongFromPlaylist(Song song, String playlistName);
 
 	/**
 	 * Gets all of the playlist names.
@@ -39,7 +46,14 @@ public interface IPlaylistPersistence
 	/**
 	 * Gets all of the songs in a playlist.
 	 *
-	 * @return An array list of playlist names
+	 * @return An array list of playlist names.
 	 */
-	public ArrayList<Song> getSongsFromPlaylist();
+	public ArrayList<Song> getSongsFromPlaylist(String playlistName);
+
+	/**
+	 * Return the length of the playlist (number of songs)
+	 *
+	 * @param playlistName the playlist to add the song to
+	 */
+	public int getPlaylistLength(String playlistName);
 }

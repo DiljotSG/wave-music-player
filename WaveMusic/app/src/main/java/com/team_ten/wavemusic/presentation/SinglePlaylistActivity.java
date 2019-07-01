@@ -37,12 +37,6 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	@Override protected void onResume()
 	{
 		super.onResume();
-
-		AccessPlaylist accessPlaylist = new AccessPlaylist();
-		songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
-
-		listOfSongsFragment.setSongList(songList);
-		listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}

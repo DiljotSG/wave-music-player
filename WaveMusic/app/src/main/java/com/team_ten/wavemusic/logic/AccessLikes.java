@@ -4,9 +4,10 @@ import com.team_ten.wavemusic.application.Services;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ILikesPersistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AccessLikes implements ILikesPersistence
+public class AccessLikes implements ILikesPersistence, Serializable
 {
 	private ILikesPersistence likesPersistence;
 

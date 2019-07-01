@@ -26,15 +26,15 @@ public class TestDatabaseStub
 		// Thus, there will be 5 songs in the DatabaseStub totally.
 		databaseStub = new DatabaseStub();
 
-		songOne = new Song("title1", "artist1", "album1", "uri1");
-		songTwo = new Song("title1", "artist2", "album2", "uri2");
-		songThree = new Song("title1", "artist1", "album1", "uri1");
+		songOne = new Song("title1", "artist1", "album1", "uri1", 0);
+		songTwo = new Song("title1", "artist2", "album2", "uri2", 0);
+		songThree = new Song("title1", "artist1", "album1", "uri1", 0);
 
-		songFour = new Song("title4", "artist1", "album4", "uri4");
+		songFour = new Song("title4", "artist1", "album4", "uri4", 0);
 
-		songFive = new Song("title5", "artist5", "album1", "uri5");
+		songFive = new Song("title5", "artist5", "album1", "uri5", 0);
 
-		songSix = new Song("title6", "artist1", "album1", "uri6");
+		songSix = new Song("title6", "artist1", "album1", "uri6", 0);
 
 		databaseStub.addSong(songOne);
 		databaseStub.addSong(songTwo);

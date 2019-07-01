@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
+import com.team_ten.wavemusic.logic.AccessPlaylist;
+import com.team_ten.wavemusic.logic.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
 
@@ -35,8 +36,9 @@ public class ListOfSongsFragment extends Fragment
 	private Activity callerActivity;
 	private Context context;
 	private int position;
-	ArrayAdapter listAdapter;
+	private ArrayAdapter listAdapter;
 	private String typeOfRetrieve;
+	private String nameOfPlaylist;
 
 	public ListOfSongsFragment()
 	{
@@ -68,6 +70,11 @@ public class ListOfSongsFragment extends Fragment
 		this.activityController = activityController;
 		this.callerActivity = callerActivity;
 		this.typeOfRetrieve = typeOfRetrieve;
+	}
+
+	public void setNameOfPlaylist(String nameOfPlaylist)
+	{
+		this.nameOfPlaylist = nameOfPlaylist;
 	}
 
 	@SuppressWarnings("unchecked") @Override
@@ -223,6 +230,7 @@ public class ListOfSongsFragment extends Fragment
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
+			Log.v("qwe", "345");
 			listAdapter = new ArrayAdapter<Song>(context, resource, songList);
 		}
 		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
@@ -239,33 +247,66 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	public void setSwipeDismissListViewTouchListener()
 	{
-		SwipeDismissListViewTouchListener touchListener =
-				new SwipeDismissListViewTouchListener(listView,
-																								new SwipeDismissListViewTouchListener.DismissCallbacks()
-																								{
+		SwipeDismissListViewTouchListener touchListener = null;
 
-																									@Override
-																									public boolean canDismiss(
-																											int position)
-																									{
-																										return true;
-																									}
+		if(nameOfPlaylist != null)
+		{
+			touchListener = new SwipeDismissListViewTouchListener(
+					listView,
+					new SwipeDismissListViewTouchListener.DismissCallbacks()
+					{
 
-																									@Override
-																									public void onDismiss(
-																											ListView listView,
-																											int[] reverseSortedPositions)
-																									{
+						@Override public boolean canDismiss(
+								int position)
+						{
+							return true;
+						}
 
-																										for (int index : reverseSortedPositions)
-																										{
-																											songList.remove(
-																													index);
-																										}
-																										listAdapter
-																												.notifyDataSetChanged();
-																									}
-																								});
+						@Override public void onDismiss(
+								ListView listView,
+								int[] reverseSortedPositions)
+						{
+
+							for (int index : reverseSortedPositions)
+							{
+								Song temp = songList.get(index);
+								AccessPlaylist accessPlaylist = new AccessPlaylist();
+								accessPlaylist.removeSongFromPlaylist(temp, nameOfPlaylist);
+								songList.remove(index);
+							}
+							listAdapter.notifyDataSetChanged();
+						}
+					});
+		}
+		else if (nameOfPlaylist != null)
+		{
+			touchListener = new SwipeDismissListViewTouchListener(
+					listView,
+					new SwipeDismissListViewTouchListener.DismissCallbacks()
+					{
+
+						@Override public boolean canDismiss(
+								int position)
+						{
+							return true;
+						}
+
+						@Override public void onDismiss(
+								ListView listView,
+								int[] reverseSortedPositions)
+						{
+
+							for (int index : reverseSortedPositions)
+							{
+								String temp = stringList.get(index);
+								AccessPlaylist accessPlaylist = new AccessPlaylist();
+								accessPlaylist.removePlaylist(temp);
+								stringList.remove(index);
+							}
+							listAdapter.notifyDataSetChanged();
+						}
+					});
+		}
 		listView.setOnTouchListener(touchListener);
 	}
 }

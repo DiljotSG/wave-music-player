@@ -4,9 +4,10 @@ import com.team_ten.wavemusic.application.Services;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ISongPersistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AccessSong implements ISongPersistence
+public class AccessSong implements ISongPersistence, Serializable
 {
 	private ISongPersistence songPersistence;
 

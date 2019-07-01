@@ -2,6 +2,7 @@ package com.team_ten.wavemusic.application;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
@@ -20,20 +21,20 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	// Instance variables.
-	private IDatabaseController databaseController;
-
+//	// Instance variables.
+//	private IDatabaseController databaseController;
+//
 	/**
 	 * Builds a database representing the user's library given a database.
 	 */
 	public void buildUserLibrary()
 	{
-		databaseController = new DatabaseStub();
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
+		AccessSong accessSong = new AccessSong();
 		while (scanner.hasNext())
 		{
 			Song currentSong = scanner.getNextSong();
-			databaseController.addSong(currentSong);
+			accessSong.addSong(currentSong);
 		}
 	}
 
@@ -59,9 +60,11 @@ public class ActivityController implements Serializable
 				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY ||
 					typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
 				{
+					Log.v("qwe", "123");
 					AccessSong accessSong = new AccessSong();
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> songList = accessSong.getAllSongs();
+					Log.v("qwe", ""+songList.size());
 					intent.putExtra("listSongs", songList);
 					PlaybackController.setPlaybackQueue(songList);
 				}

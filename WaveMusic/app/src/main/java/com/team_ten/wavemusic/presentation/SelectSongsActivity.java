@@ -120,7 +120,7 @@ public class SelectSongsActivity extends AppCompatActivity
 				AccessPlaylist accessPlaylist = new AccessPlaylist();
 				for(Song song: selected_songs)
 				{
-					accessPlaylist.addSong(song, nameOfPlaylist);
+					accessPlaylist.addSongToPlaylist(song, nameOfPlaylist);
 				}
 
 				if (isCreateNewPlaylist)

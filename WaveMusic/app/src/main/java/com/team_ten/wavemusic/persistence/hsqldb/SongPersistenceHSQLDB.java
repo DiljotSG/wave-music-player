@@ -3,6 +3,7 @@ package com.team_ten.wavemusic.persistence.hsqldb;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ISongPersistence;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SongPersistenceHSQLDB implements ISongPersistence
+public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 {
 
 	private final String dbPath;

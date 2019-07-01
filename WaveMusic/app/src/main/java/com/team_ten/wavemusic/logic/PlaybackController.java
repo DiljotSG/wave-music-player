@@ -36,6 +36,7 @@ public class PlaybackController
 	private static PlaybackMode playbackMode;
 	private static MediaPlayer mediaPlayer;
 	private static boolean initialized;
+	private static boolean shuffle;
 
 	/**
 	 * Initializes the media player of the playback controller.
@@ -50,6 +51,19 @@ public class PlaybackController
 			playbackMode = PlaybackMode.PLAY_ALL;
 			mediaPlayer = mp;
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				@Override
+				public void onCompletion(MediaPlayer mediaPlayer) {
+					PlaybackMode mode = PlaybackController.getPlaybackMode();
+					if (mode == PlaybackMode.LOOP_ONE) {
+						PlaybackController.restart();
+					}
+					else {
+						PlaybackController.playNext();
+					}
+				}
+			});
+			shuffle = true;
 		}
 	}
 
@@ -64,7 +78,16 @@ public class PlaybackController
 	}
 
 	/**
-	 * Returns the playback mode as an integer; intended mainly for unit testing.
+	 * Returns the playback mode.
+	 *
+	 * @return the playback mode.
+	 */
+	public static PlaybackMode getPlaybackMode() {
+		return playbackMode;
+	}
+
+	/**
+	 * Returns the playback state as an integer; intended mainly for unit testing.
 	 *
 	 * @return an integer representation of the current playback mode.
 	 */
@@ -78,6 +101,7 @@ public class PlaybackController
 	 *
 	 * @return an integer representation of the number of available playback modes.
 	 */
+
 	public static int get_num_playback_states()
 	{
 		return PlaybackMode.values().length;
@@ -198,7 +222,10 @@ public class PlaybackController
 	{
 		boolean was_paused = state == PlaybackState.PAUSED;
 
-		startSong(playbackQueue.jumpNext());
+		if (shuffle)
+			startSong(playbackQueue.jumpRandom());
+		else
+			startSong(playbackQueue.jumpNext());
 
 		if (was_paused)
 		{
@@ -256,5 +283,12 @@ public class PlaybackController
 	public static Song getCurrentSong()
 	{
 		return playbackQueue.getCurrentSong();
+	}
+
+	/**
+	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
+	 */
+	public static void toggleShuffle() {
+		PlaybackController.shuffle = !PlaybackController.shuffle;
 	}
 }

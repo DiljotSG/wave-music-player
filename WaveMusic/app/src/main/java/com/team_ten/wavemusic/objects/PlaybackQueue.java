@@ -1,6 +1,7 @@
 package com.team_ten.wavemusic.objects;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlaybackQueue
 {
@@ -151,5 +152,12 @@ public class PlaybackQueue
 		}
 
 		return curSong;
+	}
+
+	public Song jumpRandom() {
+		Random random = new Random();
+		int index = random.nextInt(playbackQueue.size());
+
+		return jumpIndex(index);
 	}
 }

@@ -5,6 +5,11 @@ import com.team_ten.wavemusic.objects.Song;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNull;
+
 public class TestPlaylistClass
 {
 	@Test public void TestAddMethod()
@@ -13,8 +18,12 @@ public class TestPlaylistClass
 
 		// Since two songs with the same URI are about to be added, the second adding should fail,
 		// because playlist should not allow duplicates.
-		assert (playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
-		assert (!playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
+		assertTrue(
+				"Adding this song should work.",
+				playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
+		assertFalse(
+				"Adding this song should fail.",
+				playList.add(new Song("title1", "artist1", "album1", "uri1", 0)));
 	}
 
 	@Test public void TestGetSongMethod()
@@ -40,9 +49,9 @@ public class TestPlaylistClass
 
 		// Thus, only the second call should return a Song object,
 		// and all others should return null.
-		assert (songOne == null);
-		assert (songTwo != null);
-		assert (songThree == null);
-		assert (songFour == null);
+		assertNull("This song does not exist", songOne);
+		assertNotNull("This song does exist.", songTwo);
+		assertNull("This song does not exist", songThree);
+		assertNull("This song does not exist", songFour);
 	}
 }

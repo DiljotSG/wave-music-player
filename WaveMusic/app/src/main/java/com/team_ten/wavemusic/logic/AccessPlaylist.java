@@ -5,6 +5,8 @@ import com.team_ten.wavemusic.objects.Playlist;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
 
+import java.util.ArrayList;
+
 public class AccessPlaylist implements IPlaylistPersistence
 {
 	private IPlaylistPersistence playlistPersistence;
@@ -50,5 +52,25 @@ public class AccessPlaylist implements IPlaylistPersistence
 	public void addSong(Song song, Playlist playlist)
 	{
 		playlistPersistence.addSong(song, playlist);
+	}
+
+	/**
+	 * Gets all of the playlist names.
+	 *
+	 * @return An array list of playlist names
+	 */
+	public ArrayList<String> getAllPlaylists()
+	{
+		return playlistPersistence.getAllPlaylists();
+	}
+
+	/**
+	 * Gets all of the songs in a playlist.
+	 *
+	 * @return An array list of playlist names
+	 */
+	public ArrayList<Song> getSongsFromPlaylist()
+	{
+		return playlistPersistence.getSongsFromPlaylist();
 	}
 }

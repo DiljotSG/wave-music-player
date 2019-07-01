@@ -62,4 +62,48 @@ public class AccessSong
 	{
 		songPersistence.removeSong(toRemove);
 	}
+
+	/**
+	 * Gets all of the artists names.
+	 *
+	 * @return An array list of artists names
+	 */
+	public ArrayList<String> getAllArtists()
+	{
+		return songPersistence.getAllArtists();
+	}
+
+	/**
+	 * Gets all of the album names.
+	 *
+	 * @return An array list of album names
+	 */
+	public ArrayList<String> getAllAlbums()
+	{
+		return songPersistence.getAllAlbums();
+	}
+
+	/**
+	 * Returns a all songs in a given album.
+	 *
+	 * @param albumName The URI of the Song.
+	 *
+	 * @return An array list of songs in the album.
+	 */
+	public ArrayList<Song> getSongsFromAlbum(String albumName)
+	{
+		return songPersistence.getSongsFromAlbum(albumName);
+	}
+
+	/**
+	 * Returns a all songs from a given artist.
+	 *
+	 * @param artistName The name of the artist.
+	 *
+	 * @return An array list of songs by the artist.
+	 */
+	public ArrayList<Song> getSongsFromArtist(String artistName)
+	{
+		return songPersistence.getSongsFromArtist(artistName);
+	}
 }

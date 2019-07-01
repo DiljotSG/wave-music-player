@@ -137,6 +137,134 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 		}
 	}
 
+	/**
+	 * Gets all of the artists names.
+	 *
+	 * @return An array list of artists names
+	 */
+	public ArrayList<String> getAllArtists()
+	{
+		final ArrayList<String> result = new ArrayList<>();
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("SELECT UNIQUE(ARTIST) FROM SONGS");
+
+			final ResultSet rs = st.executeQuery();
+
+			while (rs.next())
+			{
+				result.add(rs.getString(1));
+			}
+			st.close();
+
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Gets all of the album names.
+	 *
+	 * @return An array list of album names
+	 */
+	public ArrayList<String> getAllAlbums()
+	{
+		final ArrayList<String> result = new ArrayList<>();
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("SELECT UNIQUE(ALBUMS) FROM SONGS");
+
+			final ResultSet rs = st.executeQuery();
+
+			while (rs.next())
+			{
+				result.add(rs.getString(1));
+			}
+			st.close();
+
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns a all songs in a given album.
+	 *
+	 * @param albumName The URI of the Song.
+	 *
+	 * @return An array list of songs in the album.
+	 */
+	public ArrayList<Song> getSongsFromAlbum(String albumName)
+	{
+		ArrayList<Song> result = new ArrayList<>();
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '%s'");
+			st.setString(1, albumName);
+
+			final ResultSet rs = st.executeQuery();
+
+			while (rs.next())
+			{
+				result.add(fromResultSet(rs));
+			}
+
+			rs.close();
+			st.close();
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns a all songs from a given artist.
+	 *
+	 * @param artistName The name of the artist.
+	 *
+	 * @return An array list of songs by the artist.
+	 */
+	public ArrayList<Song> getSongsFromArtist(String artistName)
+	{
+		ArrayList<Song> result = new ArrayList<>();
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ARTIST = '%s'");
+			st.setString(1, artistName);
+
+			final ResultSet rs = st.executeQuery();
+
+			while (rs.next())
+			{
+				result.add(fromResultSet(rs));
+			}
+
+			rs.close();
+			st.close();
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+
+		return result;
+	}
+
 	private Song fromResultSet(final ResultSet rs) throws SQLException
 	{
 		final String songUri = rs.getString("URI");

@@ -104,8 +104,6 @@ public class ActivityController implements Serializable
 	{
 		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
 		intent.putExtra("song", song);
-		intent.putExtra("title", title);
-		intent.putExtra("URI", uri);
 		callerActivity.startActivity(intent);
 	}
 

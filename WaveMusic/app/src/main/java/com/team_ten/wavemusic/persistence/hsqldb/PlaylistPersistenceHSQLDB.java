@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.persistence.hsqldb;
 
-import com.team_ten.wavemusic.objects.Playlist;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
 
@@ -30,14 +29,14 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 	/**
 	 * Adds a playlist to the DB.
 	 *
-	 * @param name The name of the playlist to add
+	 * @param playlistName The name of the playlist to add
 	 */
-	public void addPlaylist(String name)
+	public void addPlaylist(String playlistName)
 	{
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES('%s')");
-			st.setString(1, name);
+			st.setString(1, playlistName);
 
 			st.executeUpdate();
 			st.close();
@@ -49,49 +48,67 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 	}
 
 	/**
-	 * Return the length of the playlist (number of songs)
+	 * Remove the given playlist.
 	 *
-	 * @param playlist the playlist to add the song to
+	 * @param playlistName The name of the playlist to remove.
 	 */
-	public int getLength(Playlist playlist)
+	public void removePlaylist(String playlistName)
 	{
-		int result = 0;
-
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = '%s'");
-			st.setString(1, playlist.getTitle());
+					"DELETE FROM PLAYLISTS WHERE NAME = '%s'");
+			st.setString(1, playlistName);
 
-			final ResultSet rs = st.executeQuery();
-			result = rs.getInt(1);
-			rs.close();
+			st.executeUpdate();
 			st.close();
 		}
 		catch (final SQLException e)
 		{
 			throw new PersistenceException(e);
 		}
-
-		return result;
 	}
-
 
 	/**
 	 * Adds a Song to a Playlist in  the DB via the PLAYLIST_SONGS table
 	 *
-	 * @param song     song to add to playlist
-	 * @param playlist the playlist to add the song to
+	 * @param song         song to add to playlist
+	 * @param playlistName the playlist to add the song to
 	 */
-	public void addSong(Song song, Playlist playlist)
+	public void addSongToPlaylist(Song song, String playlistName)
 	{
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
 					"INSERT INTO PLAYLIST_SONGS VALUES('%s', '%s', '%d')");
 			st.setString(1, song.getURI());
-			st.setString(2, playlist.getTitle());
-			st.setInt(3, getLength(playlist));
+			st.setString(2, playlistName);
+			st.setInt(3, getPlaylistLength(playlistName));
+
+			st.executeUpdate();
+			st.close();
+
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+	}
+
+	/**
+	 * Removes the given song from the given playlist
+	 *
+	 * @param song         The song to be removed.
+	 * @param playlistName The playlist to remove the song from.
+	 */
+	public void removeSongFromPlaylist(Song song, String playlistName)
+	{
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement(
+					"DELETE FROM PLAYLIST_SONGS WHERE URI = '%s' AND PLAYLIST = '%s'");
+			st.setString(1, song.getURI());
+			st.setString(1, playlistName);
 
 			st.executeUpdate();
 			st.close();
@@ -138,15 +155,16 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 	 *
 	 * @return An array list of playlist names
 	 */
-	public ArrayList<Song> getSongsFromPlaylist()
+	public ArrayList<Song> getSongsFromPlaylist(String playlistName)
 	{
 		final ArrayList<Song> result = new ArrayList<>();
 
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE URI = (SELECT * FROM PLAYLIST_SONGS WHERE SONGS" +
-					".URI" + " = PLAYLIST_SONGS.URI)");
+					"SELECT * FROM SONGS WHERE URI = (SELECT URI FROM PLAYLIST_SONGS WHERE " +
+					"PLAYLIST_SONGS.NAME = %s)");
+			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();
 
@@ -164,6 +182,35 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 
 		return result;
 	}
+
+	/**
+	 * Return the length of the playlist (number of songs)
+	 *
+	 * @param playlistName the playlist to add the song to
+	 */
+	public int getPlaylistLength(String playlistName)
+	{
+		int result = 0;
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement(
+					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = '%s'");
+			st.setString(1, playlistName);
+
+			final ResultSet rs = st.executeQuery();
+			result = rs.getInt(1);
+			rs.close();
+			st.close();
+		}
+		catch (final SQLException e)
+		{
+			throw new PersistenceException(e);
+		}
+
+		return result;
+	}
+
 
 	private Song fromResultSet(final ResultSet rs) throws SQLException
 	{

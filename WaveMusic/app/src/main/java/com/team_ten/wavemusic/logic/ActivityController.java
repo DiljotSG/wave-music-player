@@ -1,65 +1,33 @@
 package com.team_ten.wavemusic.logic;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.DatabaseStub;
 import com.team_ten.wavemusic.persistence.IDatabaseController;
+import com.team_ten.wavemusic.presentation.ListActivity;
+import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
+import com.team_ten.wavemusic.presentation.SearchActivity;
+import com.team_ten.wavemusic.presentation.SelectSongsActivity;
+import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ActivityController
+public class ActivityController implements Serializable
 {
 	// Instance variables.
-	private MainMusicActivity mainView;
-
-	/**
-	 * The constructor for the ActivityController class.
-	 *
-	 * @param mainActivity The activity that is the main application activity.
-	 */
-	public ActivityController(MainMusicActivity mainActivity)
-	{
-		mainView = mainActivity;
-	}
-
-	/**
-	 * Builds the library view for the user's songs in the default path.
-	 */
-	public void buildLibraryView()
-	{
-		// Start building the user's library.
-		final DatabaseStub databaseController = new DatabaseStub();
-
-		// Build the user library based off the default location.
-		buildUserLibrary(databaseController);
-
-		// Build the view on the main UI thread (can't be done from the background).
-		mainView.runOnUiThread(new Runnable()
-		{
-			@Override public void run()
-			{
-				updateMainView(databaseController);
-			}
-		});
-	}
-
-	// Private helper methods.
+	private IDatabaseController databaseController;
 
 	/**
 	 * Builds a database representing the user's library given a database.
-	 *
-	 * @param databaseController The databaseController object to populate.
 	 */
-	private void buildUserLibrary(DatabaseStub databaseController)
+	public void buildUserLibrary()
 	{
+		databaseController = new DatabaseStub();
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
 		while (scanner.hasNext())
 		{
@@ -69,41 +37,125 @@ public class ActivityController
 	}
 
 	/**
-	 * Actually populates the main view with the user's library.
+	 * Starts an Activity to display songs.
+	 * Since some Activities all display songs, and they receive common parameters, we start them
+	 * in this single method.
 	 *
-	 * @param databaseController The IDatabaseController to pull songs from.
+	 * @param callerActivity: the parent Activity of the Activity to be started.
+	 * @param typeOfRetrieve: the type of content to be displayed.
 	 */
-	private void updateMainView(final IDatabaseController databaseController)
+	public void startListActivity(
+			final Activity callerActivity, final ListActivity.TypeOfRetrieve typeOfRetrieve)
 	{
-		// Populate the list view in the main activity.
-		ListView listView = mainView.findViewById(R.id.list_songs);
-
-		ArrayList<Song> songList = databaseController.getLibrary();
-		PlaybackController.setPlaybackQueue(songList);
-
-		// To connect the playlist with the ListView using ArrayAdapter.
-		ArrayAdapter<Song> listAdapter = new ArrayAdapter<>(mainView,
-															android.R.layout.simple_list_item_1,
-															songList);
-		listView.setAdapter(listAdapter);
-
-		// When a song in the ListView is clicked, start a new NowPlaying activity and pass the
-		// song's title and URI into it.
-		AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
+		// Build the view on the UI thread (can't be done from the background).
+		callerActivity.runOnUiThread(new Runnable()
 		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			@Override public void run()
 			{
-				Song selectedSong = databaseController.getSong(position);
-				Intent intent = new Intent(mainView, NowPlayingMusicActivity.class);
-				intent.putExtra("song", selectedSong);
-				intent.putExtra("title", selectedSong.getName());
-				intent.putExtra("URI", selectedSong.getURI());
-				mainView.startActivity(intent);
-			}
-		};
-		listView.setOnItemClickListener(itemClickListener);
+				ArrayList<Song> songList = databaseController.getLibrary();
+				Intent intent = null;
 
-		mainView.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+				// start different Activity based on the typeOfRetrieve
+				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
+				{
+					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
+				{
+					intent = new Intent(callerActivity, SearchActivity.class);
+				}
+
+				// Pass necessary data into the Intent and start the Activity.
+				PlaybackController.setPlaybackQueue(songList);
+				intent.putExtra("listSongs", songList);
+				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
+				intent.putExtra("activityController", ActivityController.this);
+				callerActivity.startActivity(intent);
+			}
+		});
+	}
+
+	/**
+	 * Starts a NowPlayingActivity
+	 *
+	 * @param callerActivity: the parent Activity of the NowPlayingActivity to be started.
+	 * @param song:           The song to be played in the NowPlayingActivity.
+	 * @param title:          The title of the song.
+	 * @param uri:            The URI of the song.
+	 */
+	public void startNowPlayingActivity(
+			final Activity callerActivity, Song song, String title, String uri)
+	{
+		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
+		intent.putExtra("song", song);
+		callerActivity.startActivity(intent);
+	}
+
+	/**
+	 * Starts a MainActivity
+	 *
+	 * @param callerActivity:     the parent Activity of the MainActivity to be started.
+	 * @param activityController: The activityController object we will be using during the whole
+	 *                            lifecycle of this app.
+	 */
+	public void startMainActivity(
+			final Activity callerActivity, ActivityController activityController)
+	{
+		Intent intent = new Intent(callerActivity, MainMusicActivity.class);
+		intent.putExtra("activityController", activityController);
+		callerActivity.startActivity(intent);
+	}
+
+	/**
+	 * Starts a SelectSongsActivity
+	 *
+	 * @param callerActivity:      the parent Activity of the SelectSongsActivity to be started.
+	 * @param nameOfPlaylist:      The name of the playlist into which we select songs and add.
+	 * @param isCreateNewPlaylist: whether we are selecting songs to create a new playlist or to
+	 *                             add them into an existing playlist.
+	 */
+	public void startSelectSongsActivity(
+			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
+	{
+		ArrayList<Song> songList = databaseController.getLibrary();
+		Intent intent = new Intent(callerActivity, SelectSongsActivity.class);
+		intent.putExtra("listSongs", songList);
+		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
+		intent.putExtra("activityController", ActivityController.this);
+		intent.putExtra("isCreateNewPlaylist", isCreateNewPlaylist);
+		callerActivity.startActivity(intent);
+	}
+
+	/**
+	 * Starts a SinglePlaylistActivity
+	 *
+	 * @param callerActivity: the parent Activity of the SinglePlaylistActivity to be started.
+	 * @param nameOfPlaylist: The name of the playlist to be displayed.
+	 * @param songList:       The list of songs in that playlist.
+	 */
+	public void startSinglePlaylistActivity(
+			final Activity callerActivity, String nameOfPlaylist, ArrayList<Song> songList)
+	{
+		Intent intent = new Intent(callerActivity, SinglePlaylistActivity.class);
+		intent.putExtra("listSongs", songList);
+		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
+		intent.putExtra("activityController", ActivityController.this);
+		callerActivity.startActivity(intent);
 	}
 }

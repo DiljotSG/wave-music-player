@@ -41,7 +41,7 @@ public class PlaybackController
 	/**
 	 * Initializes the media player of the playback controller.
 	 */
-	public static void init()
+	public static void init(MediaPlayer mp)
 	{
 		if (!initialized)
 		{
@@ -49,7 +49,7 @@ public class PlaybackController
 			playbackQueue = new PlaybackQueue();
 			state = PlaybackState.PAUSED;
 			playbackMode = PlaybackMode.PLAY_ALL;
-			mediaPlayer = new MediaPlayer();
+			mediaPlayer = mp;
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
@@ -68,18 +68,13 @@ public class PlaybackController
 	}
 
 	/**
-	 * Initializes the media player of the playback controller for test methods (no
-	 * library calls).
+	 * Returns the playback state as an integer; intended mainly for unit testing.
+	 *
+	 * @return an integer representation of the current playback mode.
 	 */
-	public static void init_for_testing()
+	public static int get_playback_state_num()
 	{
-		if (!initialized)
-		{
-			initialized = true;
-			playbackQueue = new PlaybackQueue();
-			state = PlaybackState.PAUSED;
-			playbackMode = PlaybackMode.PLAY_ALL;
-		}
+		return state.ordinal();
 	}
 
 	/**
@@ -96,7 +91,7 @@ public class PlaybackController
 	 *
 	 * @return an integer representation of the current playback mode.
 	 */
-	public static int get_playback_state_num()
+	public static int get_playback_mode_num()
 	{
 		return playbackMode.ordinal();
 	}
@@ -132,7 +127,13 @@ public class PlaybackController
 		}
 		else
 		{
-			PlaybackController.startSong(playbackQueue.jumpFirst());
+			try {
+				PlaybackController.startSong(playbackQueue.jumpFirst());
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("[!] Could not start song; index out of bounds.");
+				throw e;
+			}
+
 		}
 
 		state = PlaybackState.PLAYING;

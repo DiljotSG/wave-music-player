@@ -7,7 +7,6 @@ import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
 
-
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
 	// Song currently being played.

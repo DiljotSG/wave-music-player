@@ -36,7 +36,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO SONGS VALUES('%s', '%s', '%s', '%s', %d)");
+			final PreparedStatement st = c.prepareStatement(
+					"INSERT INTO SONGS VALUES('%s', '%s', '%s', '%s', %d)");
 			st.setString(1, theSong.getURI());
 			st.setString(2, theSong.getArtist());
 			st.setString(3, theSong.getName());
@@ -46,7 +47,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 			st.executeUpdate();
 			st.close();
 
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			throw new PersistenceException(e);
 		}
@@ -65,7 +67,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = '%s'");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = " +
+															"'%s'");
 			st.setString(1, songURI);
 
 			final ResultSet rs = st.executeQuery();
@@ -210,7 +213,9 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '%s'");
+			final PreparedStatement
+					st
+					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '%s'");
 			st.setString(1, albumName);
 
 			final ResultSet rs = st.executeQuery();
@@ -244,7 +249,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ARTIST = '%s'");
+			final PreparedStatement st = c.prepareStatement(
+					"SELECT * FROM SONGS WHERE ARTIST = '%s'");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();

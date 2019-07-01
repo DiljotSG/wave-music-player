@@ -130,7 +130,7 @@ public class ActivityController implements Serializable
 	 * @param callerActivity:      the parent Activity of the SelectSongsActivity to be started.
 	 * @param nameOfPlaylist:      The name of the playlist into which we select songs and add.
 	 * @param isCreateNewPlaylist: whether we are selecting songs to create a new playlist or to
-	 *                              add them into an existing playlist.
+	 *                             add them into an existing playlist.
 	 */
 	public void startSelectSongsActivity(
 			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)

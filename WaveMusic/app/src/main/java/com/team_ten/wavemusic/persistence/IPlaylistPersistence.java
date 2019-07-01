@@ -24,7 +24,7 @@ public interface IPlaylistPersistence
 	/**
 	 * Adds a Song to a Playlist in  the DB via the PLAYLIST_SONGS table
 	 *
-	 * @param song song to add to playlist
+	 * @param song     song to add to playlist
 	 * @param playlist the playlist to add the song to
 	 */
 	public void addSong(Song song, Playlist playlist);

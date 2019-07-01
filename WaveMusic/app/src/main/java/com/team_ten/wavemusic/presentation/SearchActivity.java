@@ -108,9 +108,10 @@ public class SearchActivity extends AppCompatActivity
 
 				if (!TextUtils.isEmpty(newText))
 				{
-					for (Song song: allSongs)
+					for (Song song : allSongs)
 					{
-						if (song.getName() != null && song.getName().toLowerCase().contains(newText.toLowerCase()))
+						if (song.getName() != null &&
+							song.getName().toLowerCase().contains(newText.toLowerCase()))
 						{
 							results.add(song);
 						}

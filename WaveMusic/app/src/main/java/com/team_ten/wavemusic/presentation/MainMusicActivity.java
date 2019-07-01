@@ -2,6 +2,7 @@ package com.team_ten.wavemusic.presentation;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,7 +39,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				"activityController");
 		permissionManager = new PermissionManager(this);
 		sampleAssetManager = new SampleAssetManager(this);
-		PlaybackController.init();
+		PlaybackController.init(new MediaPlayer());
 
 		// Limit the code in this method to high level method calls only.
 		permissionManager.getFilePermissions();

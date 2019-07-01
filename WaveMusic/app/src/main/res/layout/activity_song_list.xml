@@ -28,7 +28,7 @@
 
             <fragment
               class = "com.team_ten.wavemusic.presentation.ListOfSongsFragment"
-                android:id="@+id/list_songs_fragment"
+                android:id="@+id/list_fragment"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"/>

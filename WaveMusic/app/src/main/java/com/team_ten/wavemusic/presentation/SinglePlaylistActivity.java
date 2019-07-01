@@ -7,7 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.logic.AccessPlaylist;
+import com.team_ten.wavemusic.logic.ActivityController;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;
@@ -37,6 +38,11 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	{
 		super.onResume();
 
+		AccessPlaylist accessPlaylist = new AccessPlaylist();
+		songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
+
+		listOfSongsFragment.setSongList(songList);
+		listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
@@ -105,7 +111,8 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		if (listOfSongsFragment != null)
 		{
 			// Pass necessary data into the fragment.
-			listOfSongsFragment.setData(songList, activityController, SinglePlaylistActivity.this);
+			listOfSongsFragment.setSongList(songList);
+			listOfSongsFragment.setData(activityController, SinglePlaylistActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 
 			// Since we need "swipe to delete" function here, we set a CustomAdapter to the
 			// listview.
@@ -128,7 +135,6 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	 */
 	private void configurateAddSongsButton()
 	{
-
 		findViewById(R.id.addSongs_button).setOnClickListener(new View.OnClickListener()
 		{
 			@Override public void onClick(View v)

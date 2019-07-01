@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.logic.AccessPlaylist;
+import com.team_ten.wavemusic.logic.ActivityController;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ import java.util.ArrayList;
 public class ListOfPlaylistsActivity extends AppCompatActivity
 {
 	// Instance variables
-	private ArrayList<Song> songList;
+	private ArrayList<String> stringList;
 	private ActivityController activityController;
-	private ListOfSongsFragment listOfSongsFragment;
+	private ListOfSongsFragment listFragment;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -87,16 +87,15 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 				"activityController");
 
 		// Get the list of songs and check that the list is of type ArrayList
-		Serializable listSongs = getIntent().getSerializableExtra("listSongs");
-		songList = null;
-		if (listSongs instanceof ArrayList && !((ArrayList) listSongs).isEmpty() &&
-			((ArrayList) listSongs).get(0) instanceof Song)
+		Serializable listStrings = getIntent().getSerializableExtra("ListStrings");
+		stringList = null;
+		if (listStrings instanceof ArrayList && ((ArrayList) listStrings).get(0) instanceof String)
 		{
-			songList = (ArrayList<Song>) listSongs;
+			stringList = (ArrayList<String>) listStrings;
 		}
 
 		// get the Fragment to which the listview belongs.
-		listOfSongsFragment
+		listFragment
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
 	}
@@ -107,21 +106,23 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 	 */
 	private void configurateFragment()
 	{
-		if (listOfSongsFragment != null)
+		if (listFragment != null)
 		{
 			// Pass necessary data into the fragment.
-			listOfSongsFragment.setData(songList, activityController,
-										ListOfPlaylistsActivity.this);
+			listFragment.setStringList(stringList);
+			listFragment.setData(activityController,
+										ListOfPlaylistsActivity.this,
+										ListActivity.TypeOfRetrieve.PLAYLIST.toString());
 
-			if (!songList.isEmpty())
+			if (!stringList.isEmpty())
 			{
 				// Since we don't need multi-choose here, so the style is "android.R.layout
 				// .simple_list_item_1".
-				listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
+				listFragment.setAdapter(android.R.layout.simple_list_item_1);
 				// Allow "swipe to delete" in the listview.
-				listOfSongsFragment.setSwipeDismissListViewTouchListener();
+				listFragment.setSwipeDismissListViewTouchListener();
 				// Display each single playlist after clicking on an item in the listview.
-				listOfSongsFragment.setOnItemClickListener();
+				listFragment.setOnItemClickListener();
 			}
 		}
 	}
@@ -148,6 +149,9 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 				{
 					@Override public void onClick(DialogInterface dialog, int which)
 					{
+						AccessPlaylist accessPlaylist = new AccessPlaylist();
+						accessPlaylist.addPlaylist(editText.getText().toString());
+
 						activityController.startSelectSongsActivity(ListOfPlaylistsActivity.this,
 																	editText.getText().toString(),
 																	true);

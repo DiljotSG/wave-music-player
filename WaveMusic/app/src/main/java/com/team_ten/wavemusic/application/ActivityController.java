@@ -53,38 +53,49 @@ public class ActivityController implements Serializable
 		{
 			@Override public void run()
 			{
-				ArrayList<Song> songList = databaseController.getLibrary();
 				Intent intent = null;
 
 				// start different Activity based on the typeOfRetrieve
-				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY)
+				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY ||
+					typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
 				{
+					AccessSong accessSong = new AccessSong();
 					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<Song> songList = accessSong.getAllSongs();
+					intent.putExtra("listSongs", songList);
+					PlaybackController.setPlaybackQueue(songList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
 				{
+					AccessSong accessSong = new AccessSong();
 					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<String> artistList = accessSong.getAllArtists();
+					intent.putExtra("ListStrings", artistList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
 				{
+					AccessSong accessSong = new AccessSong();
 					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<String> albumList = accessSong.getAllAlbums();
+					intent.putExtra("ListStrings", albumList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
 				{
+					AccessPlaylist accessPlaylist = new AccessPlaylist();
 					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
+					ArrayList<String> playlistList = accessPlaylist.getAllPlaylists();
+					intent.putExtra("ListStrings", playlistList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
 				{
+					AccessLikes accessLikes = new AccessLikes();
 					intent = new Intent(callerActivity, ListActivity.class);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
-				{
-					intent = new Intent(callerActivity, SearchActivity.class);
+					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
+					intent.putExtra("listSongs", likedSongsList);
+					PlaybackController.setPlaybackQueue(likedSongsList);
 				}
 
 				// Pass necessary data into the Intent and start the Activity.
-				PlaybackController.setPlaybackQueue(songList);
-				intent.putExtra("listSongs", songList);
 				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
 				intent.putExtra("activityController", ActivityController.this);
 				callerActivity.startActivity(intent);
@@ -134,7 +145,9 @@ public class ActivityController implements Serializable
 	public void startSelectSongsActivity(
 			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
 	{
-		ArrayList<Song> songList = databaseController.getLibrary();
+		AccessSong accessSong = new AccessSong();
+		ArrayList<Song> songList = accessSong.getAllSongs();
+
 		Intent intent = new Intent(callerActivity, SelectSongsActivity.class);
 		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
@@ -148,14 +161,49 @@ public class ActivityController implements Serializable
 	 *
 	 * @param callerActivity: the parent Activity of the SinglePlaylistActivity to be started.
 	 * @param nameOfPlaylist: The name of the playlist to be displayed.
-	 * @param songList:       The list of songs in that playlist.
 	 */
 	public void startSinglePlaylistActivity(
-			final Activity callerActivity, String nameOfPlaylist, ArrayList<Song> songList)
+			final Activity callerActivity, String nameOfPlaylist)
 	{
+		AccessPlaylist accessPlaylist = new AccessPlaylist();
+		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
+
 		Intent intent = new Intent(callerActivity, SinglePlaylistActivity.class);
 		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
+		intent.putExtra("activityController", ActivityController.this);
+		callerActivity.startActivity(intent);
+	}
+
+	/**
+	 * Starts a ListActivity based on the result of retrieve
+	 *
+	 * @param callerActivity:     the parent Activity of the SinglePlaylistActivity to be started.
+	 * @param typeOfRetrieve:     The name of the playlist to be displayed.
+	 * @param contentForRetrieve: The list of songs in that playlist.
+	 */
+	public void startAlbumOrArtistAct(
+			final Activity callerActivity,
+			String typeOfRetrieve,
+			String contentForRetrieve)
+	{
+		Intent intent = new Intent(callerActivity, ListActivity.class);
+		ArrayList<Song> songList = null;
+
+		if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()))
+		{
+			AccessSong accessSong = new AccessSong();
+			songList = accessSong.getSongsFromAlbum(contentForRetrieve);
+		}
+		else if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()))
+		{
+			AccessSong accessSong = new AccessSong();
+			songList = accessSong.getSongsFromArtist(contentForRetrieve);
+		}
+
+		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY);
+		intent.putExtra("listSongs", songList);
+		intent.putExtra("nameOfPlaylist", contentForRetrieve);
 		intent.putExtra("activityController", ActivityController.this);
 		callerActivity.startActivity(intent);
 	}

@@ -3,6 +3,8 @@ package com.team_ten.wavemusic.persistence;
 import com.team_ten.wavemusic.objects.Playlist;
 import com.team_ten.wavemusic.objects.Song;
 
+import java.util.ArrayList;
+
 public interface IPlaylistPersistence
 {
 	/**
@@ -26,4 +28,18 @@ public interface IPlaylistPersistence
 	 * @param playlist the playlist to add the song to
 	 */
 	public void addSong(Song song, Playlist playlist);
+
+	/**
+	 * Gets all of the playlist names.
+	 *
+	 * @return An array list of playlist names
+	 */
+	public ArrayList<String> getAllPlaylists();
+
+	/**
+	 * Gets all of the songs in a playlist.
+	 *
+	 * @return An array list of playlist names
+	 */
+	public ArrayList<Song> getSongsFromPlaylist();
 }

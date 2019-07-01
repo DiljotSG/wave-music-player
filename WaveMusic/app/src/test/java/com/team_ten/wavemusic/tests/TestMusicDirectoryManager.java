@@ -1,6 +1,6 @@
 package com.team_ten.wavemusic.tests;
 
-import com.team_ten.wavemusic.logic.MusicDirectoryManager;
+import com.team_ten.wavemusic.application.MusicDirectoryManager;
 
 import org.junit.Test;
 

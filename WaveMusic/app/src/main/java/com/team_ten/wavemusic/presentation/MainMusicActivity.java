@@ -13,7 +13,7 @@ import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.Main;
 import com.team_ten.wavemusic.application.PermissionManager;
 import com.team_ten.wavemusic.application.SampleAssetManager;
-import com.team_ten.wavemusic.logic.ActivityController;
+import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
 
 import java.io.File;

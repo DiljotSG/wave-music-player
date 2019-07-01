@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.tests;
+package com.team_ten.wavemusic.tests.application;
 
 import com.team_ten.wavemusic.application.MusicDirectoryManager;
 

@@ -1,7 +1,7 @@
-package com.team_ten.wavemusic.tests;
+package com.team_ten.wavemusic.tests.persistence;
 
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.DatabaseStub;
+import com.team_ten.wavemusic.tests.logic.stubs.DatabaseStub;
 
 import org.junit.Before;
 import org.junit.Test;

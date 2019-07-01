@@ -1,7 +1,8 @@
-package com.team_ten.wavemusic.tests;
+package com.team_ten.wavemusic.tests.logic;
 
 import com.team_ten.wavemusic.application.Main;
 import com.team_ten.wavemusic.logic.AccessSong;
+import com.team_ten.wavemusic.tests.logic.stubs.SongPersistenceStub;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +16,7 @@ public class AccessSongTest
 
 	@Before public void setUp()
 	{
-		Main.setDBPathName("TestWaveDB");
-		accessSong = new AccessSong();
+		accessSong = new AccessSong(new SongPersistenceStub());
 	}
 
 	@Test public void getEmptyLibrary()

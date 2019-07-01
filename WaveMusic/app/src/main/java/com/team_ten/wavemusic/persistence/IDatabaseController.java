@@ -4,7 +4,11 @@ import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public interface IDatabaseController
+/**
+ * @deprecated This Interface has been deprecated.
+ * Newer interfaces for interacting with the HSQLDB exist, in this same package.
+ */
+@Deprecated public interface IDatabaseController
 {
 	/***
 	 * Add a song to the database.

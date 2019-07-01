@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.tests;
+package com.team_ten.wavemusic.tests.logic;
 
 import android.media.MediaPlayer;
 import android.media.AudioManager;

@@ -8,5 +8,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Messages -->
+    <string name="fatalError">Fatal Error</string>
+    <string name="warning">Warning</string>
 
 </resources>

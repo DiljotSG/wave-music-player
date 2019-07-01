@@ -104,7 +104,8 @@ public class MusicDirectoryManager
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST),
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
-					files[curr].toURI().toString());
+					files[curr].toURI().toString(),
+					0);
 
 			// Iterate our "pointer".
 			curr++;

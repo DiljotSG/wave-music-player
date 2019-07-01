@@ -151,7 +151,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT UNIQUE(ARTIST) FROM SONGS");
+			final PreparedStatement st = c.prepareStatement("SELECT DISTINCT ARTIST FROM SONGS");
 
 			final ResultSet rs = st.executeQuery();
 
@@ -181,7 +181,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT UNIQUE(ALBUMS) FROM SONGS");
+			final PreparedStatement st = c.prepareStatement("SELECT DISTINCT ALBUMS FROM SONGS");
 
 			final ResultSet rs = st.executeQuery();
 

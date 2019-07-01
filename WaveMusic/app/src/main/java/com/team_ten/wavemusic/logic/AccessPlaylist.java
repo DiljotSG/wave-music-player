@@ -28,7 +28,6 @@ public class AccessPlaylist implements IPlaylistPersistence
 	 */
 	public void addPlaylist(String name)
 	{
-		// todo: check for duplicate entry
 		playlistPersistence.addPlaylist(name);
 	}
 

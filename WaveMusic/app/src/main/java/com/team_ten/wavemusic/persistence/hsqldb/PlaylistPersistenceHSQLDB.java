@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
@@ -146,8 +145,8 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE URI = (SELECT * FROM PLAYLIST_SONGS WHERE SONGS.URI" +
-					" = PLAYLIST_SONGS.URI)");
+					"SELECT * FROM SONGS WHERE URI = (SELECT * FROM PLAYLIST_SONGS WHERE SONGS" +
+					".URI" + " = PLAYLIST_SONGS.URI)");
 
 			final ResultSet rs = st.executeQuery();
 

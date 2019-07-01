@@ -147,7 +147,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			// built-in type Adapter.
 			// And since they don't need multi-choice listview either, we just use the style of
 			// "android.R.layout.simple_list_item_1" as parameter.
-			listOfSongsFragment.setAdapter(	android.R.layout.simple_list_item_1);
+			listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
 			// To make each clicking on a Song to play it.
 			listOfSongsFragment.setOnItemClickListener();
 		}

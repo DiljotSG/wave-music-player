@@ -7,7 +7,6 @@ import com.team_ten.wavemusic.tests.logic.AccessSongTest;
 import com.team_ten.wavemusic.tests.logic.PlaybackControllerTest;
 import com.team_ten.wavemusic.tests.objects.TestPlaylistClass;
 import com.team_ten.wavemusic.tests.objects.TestSongClass;
-import com.team_ten.wavemusic.tests.persistence.TestDatabaseStub;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -22,7 +21,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestMusicDirectoryManager.class,
 		TestPlaylistClass.class,
 		TestSongClass.class,
-		TestDatabaseStub.class
 })
 public class AllTests
 {

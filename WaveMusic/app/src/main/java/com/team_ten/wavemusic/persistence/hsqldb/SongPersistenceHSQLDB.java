@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 {
-
 	private final String dbPath;
 
 	public SongPersistenceHSQLDB(final String dbPath)
@@ -51,7 +50,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -73,7 +72,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		catch (final SQLException e)
 		{
 			System.out.println("[!] Exception while removing song from database.");
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -103,7 +102,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return song;
@@ -134,7 +133,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -164,7 +163,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -194,7 +193,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -230,7 +229,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -265,7 +264,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new WaveDBPersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -279,5 +278,17 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		final String albumName = rs.getString("ALBUM");
 		final int playCount = rs.getInt("PLAY_COUNT");
 		return new Song(songName, artistName, albumName, songUri, playCount);
+	}
+
+	private WaveDBPersistenceException wrapException(SQLException e)
+	{
+		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
+		if(e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
+		{
+			return new WaveDBIntegrityConstraintException(e);
+		} else
+		{
+			return new WaveDBPersistenceException(e);
+		}
 	}
 }

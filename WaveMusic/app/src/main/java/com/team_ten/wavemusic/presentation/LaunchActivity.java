@@ -12,17 +12,14 @@ import com.team_ten.wavemusic.application.ActivityController;
  */
 public class LaunchActivity extends AppCompatActivity
 {
-	// Instance variables
-	private ActivityController activityController;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		activityController = new ActivityController();
 
-		activityController.startMainActivity(LaunchActivity.this, activityController);
+		ActivityController.startMainActivity(LaunchActivity.this);
 		LaunchActivity.this.finish();
 	}
 }

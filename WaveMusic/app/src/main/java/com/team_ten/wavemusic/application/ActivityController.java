@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.ListActivity;
+import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
 import com.team_ten.wavemusic.presentation.SelectSongsActivity;
@@ -16,15 +17,15 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	// Instance variables.
-	private AccessSong accessSong;
-	private AccessPlaylist accessPlaylist;
-	private AccessLikes accessLikes;
+	//	// Instance variables.
+	private static AccessSong accessSong;
+	private static AccessPlaylist accessPlaylist;
+	private static AccessLikes accessLikes;
 
 	/**
 	 * Builds a database representing the user's library given a database.
 	 */
-	public void buildUserLibrary()
+	public static void buildUserLibrary()
 	{
 		accessSong = new AccessSong();
 		accessPlaylist = new AccessPlaylist();
@@ -43,7 +44,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param songToLike Song that is to be Liked.
 	 */
-	public void likeSong(Song songToLike)
+	public static void likeSong(Song songToLike)
 	{
 		accessLikes.likeSong(songToLike);
 	}
@@ -53,7 +54,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param songToUnlike Song that is to be Unliked.
 	 */
-	public void unlikeSong(Song songToUnlike)
+	public static void unlikeSong(Song songToUnlike)
 	{
 		accessLikes.unlikeSong(songToUnlike);
 	}
@@ -63,7 +64,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @returns An array list of liked Songs.
 	 */
-	public ArrayList<Song> getLikedSongs()
+	public static ArrayList<Song> getLikedSongs()
 	{
 		return accessLikes.getLikedSongs();
 	}
@@ -73,7 +74,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param name The name of the playlist to add
 	 */
-	public void addPlaylist(String name)
+	public static void addPlaylist(String name)
 	{
 		// todo: check for duplicate entry
 		accessPlaylist.addPlaylist(name);
@@ -84,7 +85,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param playlistName The name of the playlist to remove.
 	 */
-	public void removePlaylist(String playlistName)
+	public static void removePlaylist(String playlistName)
 	{
 		accessPlaylist.removePlaylist(playlistName);
 	}
@@ -95,7 +96,7 @@ public class ActivityController implements Serializable
 	 * @param song         song to add to playlist
 	 * @param playlistName the playlist to add the song to
 	 */
-	public void addSongToPlaylist(Song song, String playlistName)
+	public static void addSongToPlaylist(Song song, String playlistName)
 	{
 		accessPlaylist.addSongToPlaylist(song, playlistName);
 	}
@@ -106,7 +107,7 @@ public class ActivityController implements Serializable
 	 * @param song         The song to be removed.
 	 * @param playlistName The playlist to remove the song from.
 	 */
-	public void removeSongFromPlaylist(Song song, String playlistName)
+	public static void removeSongFromPlaylist(Song song, String playlistName)
 	{
 		accessPlaylist.removeSongFromPlaylist(song, playlistName);
 	}
@@ -116,7 +117,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of playlist names
 	 */
-	public ArrayList<String> getAllPlaylists()
+	public static ArrayList<String> getAllPlaylists()
 	{
 		return accessPlaylist.getAllPlaylists();
 	}
@@ -126,7 +127,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of playlist names
 	 */
-	public ArrayList<Song> getSongsFromPlaylist(String playlistName)
+	public static ArrayList<Song> getSongsFromPlaylist(String playlistName)
 	{
 		return accessPlaylist.getSongsFromPlaylist(playlistName);
 	}
@@ -136,7 +137,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param playlistName the playlist to add the song to
 	 */
-	public int getPlaylistLength(String playlistName)
+	public static int getPlaylistLength(String playlistName)
 	{
 		return accessPlaylist.getPlaylistLength(playlistName);
 	}
@@ -146,7 +147,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param theSong The song to add.
 	 */
-	public void addSong(Song theSong)
+	public static void addSong(Song theSong)
 	{
 		accessSong.addSong(theSong);
 	}
@@ -158,7 +159,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return A Song object for the Song.
 	 */
-	public Song getSong(String songURI)
+	public static Song getSong(String songURI)
 	{
 		return accessSong.getSong(songURI);
 	}
@@ -168,7 +169,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return Returns an ArrayList of every Song.
 	 */
-	public ArrayList<Song> getAllSongs()
+	public static ArrayList<Song> getAllSongs()
 	{
 		return accessSong.getAllSongs();
 	}
@@ -178,7 +179,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @param toRemove The song to remove from the user's library.
 	 */
-	public void removeSong(Song toRemove)
+	public static void removeSong(Song toRemove)
 	{
 		accessSong.removeSong(toRemove);
 	}
@@ -188,7 +189,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of artists names
 	 */
-	public ArrayList<String> getAllArtists()
+	public static ArrayList<String> getAllArtists()
 	{
 		return accessSong.getAllArtists();
 	}
@@ -198,7 +199,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of album names
 	 */
-	public ArrayList<String> getAllAlbums()
+	public static ArrayList<String> getAllAlbums()
 	{
 		return accessSong.getAllAlbums();
 	}
@@ -210,7 +211,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of songs in the album.
 	 */
-	public ArrayList<Song> getSongsFromAlbum(String albumName)
+	public static ArrayList<Song> getSongsFromAlbum(String albumName)
 	{
 		return accessSong.getSongsFromAlbum(albumName);
 	}
@@ -222,7 +223,7 @@ public class ActivityController implements Serializable
 	 *
 	 * @return An array list of songs by the artist.
 	 */
-	public ArrayList<Song> getSongsFromArtist(String artistName)
+	public static ArrayList<Song> getSongsFromArtist(String artistName)
 	{
 		return accessSong.getSongsFromArtist(artistName);
 	}
@@ -235,7 +236,7 @@ public class ActivityController implements Serializable
 	 * @param callerActivity: the parent Activity of the Activity to be started.
 	 * @param typeOfRetrieve: the type of content to be displayed.
 	 */
-	public void startListActivity(
+	public static void startListActivity(
 			final Activity callerActivity, final ListActivity.TypeOfRetrieve typeOfRetrieve)
 	{
 		// Build the view on the UI thread (can't be done from the background).
@@ -245,17 +246,44 @@ public class ActivityController implements Serializable
 			{
 				Intent intent = null;
 
+				// start different Activity based on the typeOfRetrieve
+				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY ||
+					typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<Song> songList = accessSong.getAllSongs();
+					intent.putExtra("listSongs", songList);
+					PlaybackController.setPlaybackQueue(songList);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<String> artistList = accessSong.getAllArtists();
+					intent.putExtra("listStrings", artistList);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<String> albumList = accessSong.getAllAlbums();
+					intent.putExtra("listStrings", albumList);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
+				{
+					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
+					ArrayList<String> playlistList = accessPlaylist.getAllPlaylists();
+					intent.putExtra("listStrings", playlistList);
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
+				{
+					intent = new Intent(callerActivity, ListActivity.class);
+					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
+					intent.putExtra("listSongs", likedSongsList);
+					PlaybackController.setPlaybackQueue(likedSongsList);
+				}
 
-				Log.v("qwe", "123");
-				intent = new Intent(callerActivity, ListActivity.class);
-				ArrayList<Song> songList = accessSong.getAllSongs();
-				Log.v("qwe", "" + songList.size());
-				intent.putExtra("listSongs", songList);
-				PlaybackController.setPlaybackQueue(songList);
 				// Pass necessary data into the Intent and start the Activity.
 				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
 				callerActivity.startActivity(intent);
-
 			}
 		});
 	}
@@ -268,7 +296,7 @@ public class ActivityController implements Serializable
 	 * @param title:          The title of the song.
 	 * @param uri:            The URI of the song.
 	 */
-	public void startNowPlayingActivity(
+	public static void startNowPlayingActivity(
 			final Activity callerActivity, Song song, String title, String uri)
 	{
 		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
@@ -278,16 +306,11 @@ public class ActivityController implements Serializable
 
 	/**
 	 * Starts a MainActivity
-	 *
-	 * @param callerActivity:     the parent Activity of the MainActivity to be started.
-	 * @param activityController: The activityController object we will be using during the whole
-	 *                            lifecycle of this app.
 	 */
-	public void startMainActivity(
-			final Activity callerActivity, ActivityController activityController)
+	public static void startMainActivity(
+			final Activity callerActivity)
 	{
 		Intent intent = new Intent(callerActivity, MainMusicActivity.class);
-		intent.putExtra("activityController", activityController);
 		callerActivity.startActivity(intent);
 	}
 
@@ -299,7 +322,7 @@ public class ActivityController implements Serializable
 	 * @param isCreateNewPlaylist: whether we are selecting songs to create a new playlist or to
 	 *                             add them into an existing playlist.
 	 */
-	public void startSelectSongsActivity(
+	public static void startSelectSongsActivity(
 			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
 	{
 		ArrayList<Song> songList = accessSong.getAllSongs();
@@ -307,7 +330,6 @@ public class ActivityController implements Serializable
 		Intent intent = new Intent(callerActivity, SelectSongsActivity.class);
 		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
-		intent.putExtra("activityController", ActivityController.this);
 		intent.putExtra("isCreateNewPlaylist", isCreateNewPlaylist);
 		callerActivity.startActivity(intent);
 	}
@@ -318,7 +340,7 @@ public class ActivityController implements Serializable
 	 * @param callerActivity: the parent Activity of the SinglePlaylistActivity to be started.
 	 * @param nameOfPlaylist: The name of the playlist to be displayed.
 	 */
-	public void startSinglePlaylistActivity(
+	public static void startSinglePlaylistActivity(
 			final Activity callerActivity, String nameOfPlaylist)
 	{
 		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
@@ -326,7 +348,6 @@ public class ActivityController implements Serializable
 		Intent intent = new Intent(callerActivity, SinglePlaylistActivity.class);
 		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
-		intent.putExtra("activityController", ActivityController.this);
 		callerActivity.startActivity(intent);
 	}
 
@@ -337,7 +358,7 @@ public class ActivityController implements Serializable
 	 * @param typeOfRetrieve:     The name of the playlist to be displayed.
 	 * @param contentForRetrieve: The list of songs in that playlist.
 	 */
-	public void startAlbumOrArtistAct(
+	public static void startAlbumOrArtistAct(
 			final Activity callerActivity, String typeOfRetrieve, String contentForRetrieve)
 	{
 		Intent intent = new Intent(callerActivity, ListActivity.class);
@@ -355,7 +376,6 @@ public class ActivityController implements Serializable
 		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY);
 		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", contentForRetrieve);
-		intent.putExtra("activityController", ActivityController.this);
 		callerActivity.startActivity(intent);
 	}
 }

@@ -38,7 +38,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES('?')");
+			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES(?)");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();

@@ -36,10 +36,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	 */
 	public void addSong(Song theSong)
 	{
-		System.out.println("starting adSong");
 		try (final Connection c = connection())
 		{
-			System.out.println("Connection established");
 			final PreparedStatement st = c.prepareStatement(
 					"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
 			st.setString(1, theSong.getURI());
@@ -50,7 +48,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 			st.executeUpdate();
 			st.close();
-
 		}
 		catch (final SQLException e)
 		{
@@ -67,7 +64,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '%s'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '?'");
 			st.setString(1, toRemove.getURI());
 
 			st.executeUpdate();
@@ -218,7 +215,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		{
 			final PreparedStatement
 					st
-					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '%s'");
+					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '?'");
 			st.setString(1, albumName);
 
 			final ResultSet rs = st.executeQuery();
@@ -253,7 +250,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE ARTIST = '%s'");
+					"SELECT * FROM SONGS WHERE ARTIST = '?'");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();

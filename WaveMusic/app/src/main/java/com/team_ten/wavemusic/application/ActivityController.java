@@ -260,6 +260,10 @@ public class ActivityController implements Serializable
 					Log.v("qwe", ""+songList.size());
 					intent.putExtra("listSongs", songList);
 					PlaybackController.setPlaybackQueue(songList);
+				// Pass necessary data into the Intent and start the Activity.
+				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
+				callerActivity.startActivity(intent);
+
 			}
 		});
 	}

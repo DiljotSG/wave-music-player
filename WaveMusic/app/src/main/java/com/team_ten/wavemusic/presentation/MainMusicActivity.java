@@ -46,6 +46,8 @@ public class MainMusicActivity extends CommonMusicActivity
 		sampleAssetManager.extractMusicAssets();
 		createMusicControls();
 		createLibraryViewControls();
+
+		activityController.buildUserLibrary();
 	}
 
 	public void createLibraryViewControls()

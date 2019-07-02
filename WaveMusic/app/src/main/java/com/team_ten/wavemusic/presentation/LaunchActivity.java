@@ -27,7 +27,6 @@ public class LaunchActivity extends AppCompatActivity
 		{
 			@Override public void run()
 			{
-				activityController.buildUserLibrary();
 				activityController.startMainActivity(LaunchActivity.this, activityController);
 				LaunchActivity.this.finish();
 			}

@@ -22,10 +22,12 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:/data/user/0/com.team_ten.wavemusic/app_db/WaveDB;shutdown=true",
-										   "SA",
-										   "");
+		return DriverManager.getConnection(
+				"jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+				"SA",
+				"");
 	}
+
 
 	/**
 	 * Adds a playlist to the DB.
@@ -57,8 +59,9 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement(
-					"DELETE FROM PLAYLISTS WHERE NAME = '?'");
+			final PreparedStatement
+					st
+					= c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = '?'");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();

@@ -16,23 +16,19 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	//	// Instance variables.
+	// Instance variables.
 	private AccessSong accessSong;
 	private AccessPlaylist accessPlaylist;
 	private AccessLikes accessLikes;
-
-	public ActivityController()
-	{
-		accessSong = new AccessSong();
-		accessPlaylist = new AccessPlaylist();
-		accessLikes = new AccessLikes();
-	}
 
 	/**
 	 * Builds a database representing the user's library given a database.
 	 */
 	public void buildUserLibrary()
 	{
+		accessSong = new AccessSong();
+		accessPlaylist = new AccessPlaylist();
+		accessLikes = new AccessLikes();
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
 		while (scanner.hasNext())
 		{

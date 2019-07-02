@@ -23,11 +23,11 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 	private Connection connection() throws SQLException
 	{
-		System.out.println(dbPath);
-		return DriverManager.getConnection("jdbc:hsqldb:file:/data/user/0/com.team_ten.wavemusic/app_db/WaveDB;shutdown=true",
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
 										   "SA",
 										   "");
 	}
+
 
 	/**
 	 * Adds a Song to the DB.

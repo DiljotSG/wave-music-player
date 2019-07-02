@@ -22,7 +22,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:/data/user/0/com.team_ten.wavemusic/app_db/WaveDB;shutdown=true",
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
 										   "SA",
 										   "");
 	}

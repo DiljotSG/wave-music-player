@@ -180,9 +180,7 @@ public class MainMusicActivity extends CommonMusicActivity
 			}
 
 			copyAssetsToDirectory(assetNames, dataDirectory);
-
 			Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
-			System.out.println(Main.getDBPathName());
 
 		}
 		catch (final IOException ioe)

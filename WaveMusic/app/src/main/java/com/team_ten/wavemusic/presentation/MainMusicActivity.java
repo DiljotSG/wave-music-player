@@ -25,7 +25,6 @@ import java.io.InputStreamReader;
 public class MainMusicActivity extends CommonMusicActivity
 {
 	private PermissionManager permissionManager;
-	private ActivityController activityController;
 	private SampleAssetManager sampleAssetManager;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
@@ -34,9 +33,6 @@ public class MainMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
 		permissionManager = new PermissionManager(this);
 		sampleAssetManager = new SampleAssetManager(this);
 		PlaybackController.init(new MediaPlayer(), new PlaybackQueue());
@@ -44,8 +40,8 @@ public class MainMusicActivity extends CommonMusicActivity
 		// Limit the code in this method to high level method calls only.
 		permissionManager.getFilePermissions();
 		sampleAssetManager.extractMusicAssets();
-		createMusicControls();
 		createLibraryViewControls();
+		createMusicControls();
 	}
 
 	public void createLibraryViewControls()
@@ -65,7 +61,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				{
 					@Override public void run()
 					{
-						activityController.startListActivity(MainMusicActivity.this,
+						ActivityController.startListActivity(MainMusicActivity.this,
 															 ListActivity.TypeOfRetrieve.MY_LIBRARY);
 					}
 				}).start();
@@ -80,7 +76,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				{
 					@Override public void run()
 					{
-						activityController.startListActivity(MainMusicActivity.this,
+						ActivityController.startListActivity(MainMusicActivity.this,
 															 ListActivity.TypeOfRetrieve.PLAYLIST);
 					}
 				}).start();
@@ -95,7 +91,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				{
 					@Override public void run()
 					{
-						activityController.startListActivity(MainMusicActivity.this,
+						ActivityController.startListActivity(MainMusicActivity.this,
 															 ListActivity.TypeOfRetrieve.ARTIST);
 					}
 				}).start();
@@ -110,7 +106,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				{
 					@Override public void run()
 					{
-						activityController.startListActivity(MainMusicActivity.this,
+						ActivityController.startListActivity(MainMusicActivity.this,
 															 ListActivity.TypeOfRetrieve.ALBUM);
 					}
 				}).start();
@@ -125,7 +121,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				{
 					@Override public void run()
 					{
-						activityController.startListActivity(MainMusicActivity.this,
+						ActivityController.startListActivity(MainMusicActivity.this,
 															 ListActivity.TypeOfRetrieve.LIKED_SONG);
 					}
 				}).start();
@@ -151,12 +147,11 @@ public class MainMusicActivity extends CommonMusicActivity
 			{
 				@Override public void run()
 				{
-					activityController.startListActivity(MainMusicActivity.this,
+					ActivityController.startListActivity(MainMusicActivity.this,
 														 ListActivity.TypeOfRetrieve.SEARCH);
 				}
 			}).start();
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }

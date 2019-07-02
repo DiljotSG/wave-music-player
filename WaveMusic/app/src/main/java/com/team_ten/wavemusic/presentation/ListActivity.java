@@ -134,10 +134,9 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
 		{
-			Serializable listStrings = getIntent().getSerializableExtra("ListStrings");
+			Serializable listStrings = getIntent().getSerializableExtra("listStrings");
 			stringList = null;
-			if (listStrings instanceof ArrayList &&
-				((ArrayList) listStrings).get(0) instanceof String)
+			if (listStrings instanceof ArrayList)
 			{
 				stringList = (ArrayList<String>) listStrings;
 			}
@@ -170,7 +169,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			{
 				listFragment.setStringList(stringList);
 			}
-			listFragment.setData(activityController, ListActivity.this, typeOfRetrieve);
+			listFragment.setData(ListActivity.this, typeOfRetrieve);
 
 			// To set correct Adapter for the listview in the Fragment.
 			// Since the Activities for which this class is responsible to start don't need "swipe
@@ -179,6 +178,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			// And since they don't need multi-choice listview either, we just use the style of
 			// "android.R.layout.simple_list_item_1" as parameter.
 			listFragment.setAdapter(android.R.layout.simple_list_item_1);
+
 			// To make each clicking on a Song to play it.
 			listFragment.setOnItemClickListener();
 		}

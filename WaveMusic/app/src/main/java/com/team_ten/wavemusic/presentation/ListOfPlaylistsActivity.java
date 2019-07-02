@@ -23,7 +23,6 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 {
 	// Instance variables
 	private ArrayList<String> stringList;
-	private ActivityController activityController;
 	private ListOfSongsFragment listFragment;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
@@ -69,7 +68,7 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 			{
 				@Override public void run()
 				{
-					activityController.startListActivity(ListOfPlaylistsActivity.this,
+					ActivityController.startListActivity(ListOfPlaylistsActivity.this,
 														 ListActivity.TypeOfRetrieve.SEARCH);
 				}
 			}).start();
@@ -82,13 +81,10 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
-
 		// Get the list of songs and check that the list is of type ArrayList
-		Serializable listStrings = getIntent().getSerializableExtra("ListStrings");
+		Serializable listStrings = getIntent().getSerializableExtra("listStrings");
 		stringList = null;
-		if (listStrings instanceof ArrayList && ((ArrayList) listStrings).get(0) instanceof String)
+		if (listStrings instanceof ArrayList)
 		{
 			stringList = (ArrayList<String>) listStrings;
 		}
@@ -109,9 +105,8 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 		{
 			// Pass necessary data into the fragment.
 			listFragment.setStringList(stringList);
-			listFragment.setData(activityController,
-										ListOfPlaylistsActivity.this,
-										ListActivity.TypeOfRetrieve.PLAYLIST.toString());
+			listFragment.setData(ListOfPlaylistsActivity.this,
+								 ListActivity.TypeOfRetrieve.PLAYLIST.toString());
 
 			if (!stringList.isEmpty())
 			{
@@ -148,9 +143,9 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 				{
 					@Override public void onClick(DialogInterface dialog, int which)
 					{
-						activityController.addPlaylist(editText.getText().toString());
+						ActivityController.addPlaylist(editText.getText().toString());
 
-						activityController.startSelectSongsActivity(ListOfPlaylistsActivity.this,
+						ActivityController.startSelectSongsActivity(ListOfPlaylistsActivity.this,
 																	editText.getText().toString(),
 																	true);
 					}

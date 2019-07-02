@@ -77,7 +77,7 @@ public class SelectSongsActivity extends AppCompatActivity
 		{
 			// set necessary data into the fragment.
 			listOfSongsFragment.setSongList(songList);
-			listOfSongsFragment.setData(activityController, SelectSongsActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+			listOfSongsFragment.setData(SelectSongsActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 
 			// Since user need to multi-choose items, we set the choice mode to be "ListView
 			// .CHOICE_MODE_MULTIPLE".

@@ -31,7 +31,6 @@ public class ListOfSongsFragment extends Fragment
 	private ListView listView;
 	private ArrayList<Song> songList;
 	private ArrayList<String> stringList;
-	private ActivityController activityController;
 	private Activity callerActivity;
 	private Context context;
 	private int position;
@@ -57,16 +56,12 @@ public class ListOfSongsFragment extends Fragment
 	/**
 	 * Set necessary data into the instance variables.
 	 *
-	 * @param activityController: The activityController object we will be using during the whole
-	 *                            lifecycle of this app.
 	 * @param callerActivity:     The parent Activity of this Fragment.
 	 * @param typeOfRetrieve:     The type of retrieve that asks for this fragment to display
 	 *                            content.
 	 */
-	public void setData(
-			ActivityController activityController, Activity callerActivity, String typeOfRetrieve)
+	public void setData(Activity callerActivity, String typeOfRetrieve)
 	{
-		this.activityController = activityController;
 		this.callerActivity = callerActivity;
 		this.typeOfRetrieve = typeOfRetrieve;
 	}
@@ -184,7 +179,7 @@ public class ListOfSongsFragment extends Fragment
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					Song selectedSong = songList.get(position);
-					activityController.startNowPlayingActivity(callerActivity,
+					ActivityController.startNowPlayingActivity(callerActivity,
 															   selectedSong,
 															   selectedSong.getName(),
 															   selectedSong.getURI());
@@ -200,7 +195,7 @@ public class ListOfSongsFragment extends Fragment
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					String selectedString = stringList.get(position);
-					activityController.startAlbumOrArtistAct(callerActivity,
+					ActivityController.startAlbumOrArtistAct(callerActivity,
 															 typeOfRetrieve,
 															 selectedString);
 				}
@@ -214,7 +209,7 @@ public class ListOfSongsFragment extends Fragment
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					String selectedString = stringList.get(position);
-					activityController.startSinglePlaylistActivity(callerActivity, selectedString);
+					ActivityController.startSinglePlaylistActivity(callerActivity, selectedString);
 				}
 			});
 		}
@@ -238,7 +233,11 @@ public class ListOfSongsFragment extends Fragment
 		{
 			listAdapter = new ArrayAdapter<String>(context, resource, stringList);
 		}
-		listView.setAdapter(listAdapter);
+
+		if(songList != null)
+		{
+			listView.setAdapter(listAdapter);
+		}
 	}
 
 	/**
@@ -269,7 +268,7 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								Song temp = songList.get(index);
-								activityController.removeSongFromPlaylist(temp, nameOfPlaylist);
+								ActivityController.removeSongFromPlaylist(temp, nameOfPlaylist);
 								songList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();
@@ -297,7 +296,7 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								String temp = stringList.get(index);
-								activityController.removePlaylist(temp);
+								ActivityController.removePlaylist(temp);
 								stringList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();

@@ -26,12 +26,28 @@ public class LaunchActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		copyDatabaseToDevice();
-		ActivityController.buildUserLibrary();
+		buildUserLibraryView();
 
 		ActivityController.startMainActivity(LaunchActivity.this);
 		LaunchActivity.this.finish();
 	}
+
+	/**
+	 * Builds the user library view asynchronously.
+	 */
+	private void buildUserLibraryView()
+	{
+		// Build the view asynchronously.
+		new Thread(new Runnable()
+		{
+			@Override public void run()
+			{
+				copyDatabaseToDevice();
+				ActivityController.buildUserLibrary();
+			}
+		}).start();
+	}
+
 
 	private void copyDatabaseToDevice()
 	{

@@ -51,7 +51,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '?'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = ?");
 			st.setString(1, toRemove.getURI());
 
 			st.executeUpdate();
@@ -73,7 +73,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		catch (final SQLException e)
 		{
 			System.out.println("[!] Exception while removing song from database.");
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = '?'");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = ?");
 			st.setString(1, songURI);
 
 			final ResultSet rs = st.executeQuery();
@@ -103,7 +103,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return song;
@@ -134,7 +134,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;
@@ -164,7 +164,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;
@@ -194,7 +194,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;
@@ -215,7 +215,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		{
 			final PreparedStatement
 					st
-					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '?'");
+					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = ?");
 			st.setString(1, albumName);
 
 			final ResultSet rs = st.executeQuery();
@@ -230,7 +230,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;
@@ -250,7 +250,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE ARTIST = '?'");
+					"SELECT * FROM SONGS WHERE ARTIST = ?");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -265,7 +265,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;

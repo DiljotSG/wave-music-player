@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.tests.logic.stubs;
 
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.IDatabaseController;
 
 import java.io.Serializable;
 import java.util.ArrayList;

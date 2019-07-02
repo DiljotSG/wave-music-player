@@ -44,7 +44,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = '?'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = ?");
 			st.setString(1, songToUnlike.getURI());
 
 			st.executeUpdate();
@@ -65,7 +65,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw new WaveDBPersistenceException(e);
 		}
 
 		return result;

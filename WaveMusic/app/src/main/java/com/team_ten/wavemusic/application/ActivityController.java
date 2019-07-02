@@ -2,13 +2,13 @@ package com.team_ten.wavemusic.application;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.AccessPlaylist;
 import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.persistence.hsqldb.WaveDBPersistenceException;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
@@ -21,7 +21,8 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	//	// Instance variables.
+	private static final String DUPLICATE_SONG_ERROR = "integrity constraint violation";
+	// Instance variables.
 	private static AccessSong accessSong;
 	private static AccessPlaylist accessPlaylist;
 	private static AccessLikes accessLikes;
@@ -37,9 +38,20 @@ public class ActivityController implements Serializable
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
 		while (scanner.hasNext())
 		{
-			Log.v("test", "test");
 			Song currentSong = scanner.getNextSong();
-			accessSong.addSong(currentSong);
+
+			try
+			{
+				accessSong.addSong(currentSong);
+			}
+			catch (WaveDBPersistenceException e)
+			{
+				// If it is not an integrity constraint violation, it's not due it being a duplicate
+				if (!e.getCause().toString().contains(DUPLICATE_SONG_ERROR))
+				{
+					throw e;
+				}
+			}
 		}
 	}
 

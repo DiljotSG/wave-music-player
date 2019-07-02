@@ -35,7 +35,7 @@ public class SampleAssetManager
 	{
 		for (String file : SAMPLE_TRACKS)
 		{
-			if (!fileExists(file))
+			if (!fileExists(getOutputPath(file)))
 			{
 				try
 				{

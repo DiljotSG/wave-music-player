@@ -3,6 +3,7 @@ package com.team_ten.wavemusic.persistence.hsqldb;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ILikesPersistence;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LikePersistenceHSQLDB implements ILikesPersistence
+public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 {
 	private final String dbPath;
 
@@ -35,7 +36,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO LIKES VALUES(%s)");
+			final PreparedStatement st = c.prepareStatement("INSERT INTO LIKES VALUES(?)");
 			st.setString(1, songToLike.getURI());
 
 			st.executeUpdate();
@@ -56,7 +57,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = '%s'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = '?'");
 			st.setString(1, songToUnlike.getURI());
 
 			st.executeUpdate();

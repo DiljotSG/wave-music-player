@@ -3,6 +3,7 @@ package com.team_ten.wavemusic.persistence.hsqldb;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
+public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializable
 {
 	private final String dbPath;
 
@@ -21,10 +22,12 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
-										   "SA",
-										   "");
+		return DriverManager.getConnection(
+				"jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+				"SA",
+				"");
 	}
+
 
 	/**
 	 * Adds a playlist to the DB.
@@ -35,7 +38,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES('%s')");
+			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES(?)");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();
@@ -56,8 +59,9 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement(
-					"DELETE FROM PLAYLISTS WHERE NAME = '%s'");
+			final PreparedStatement
+					st
+					= c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = '?'");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();
@@ -80,7 +84,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO PLAYLIST_SONGS VALUES('%s', '%s', '%d')");
+					"INSERT INTO PLAYLIST_SONGS VALUES('?', '?', '?')");
 			st.setString(1, song.getURI());
 			st.setString(2, playlistName);
 			st.setInt(3, getPlaylistLength(playlistName));
@@ -106,7 +110,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"DELETE FROM PLAYLIST_SONGS WHERE URI = '%s' AND PLAYLIST = '%s'");
+					"DELETE FROM PLAYLIST_SONGS WHERE URI = '?' AND PLAYLIST = '?'");
 			st.setString(1, song.getURI());
 			st.setString(1, playlistName);
 
@@ -163,7 +167,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 		{
 			final PreparedStatement st = c.prepareStatement(
 					"SELECT * FROM SONGS WHERE URI = (SELECT URI FROM PLAYLIST_SONGS WHERE " +
-					"PLAYLIST_SONGS.NAME = %s)");
+					"PLAYLIST_SONGS.NAME = '?')");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -195,7 +199,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = '%s'");
+					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = '?'");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();

@@ -24,8 +24,10 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 {
 	// Instance variables
 	private ArrayList<Song> songList;    // the list of songs to be displayed in this Activity.
+	private ArrayList<String> stringList;
 	private ActivityController activityController;
-	private ListOfSongsFragment listOfSongsFragment;
+	private ListOfSongsFragment listFragment;
+	private String typeOfRetrieve;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -114,20 +116,37 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		// Get the activityController and songList from Intent.
 		activityController = (ActivityController) getIntent().getSerializableExtra(
 				"activityController");
-		Serializable listSongs = getIntent().getSerializableExtra("listSongs");
+		typeOfRetrieve = getIntent().getStringExtra("TypeOfRetrieve");
 
-		// Check that the list is of type ArrayList
-		songList = null;
-		if (listSongs instanceof ArrayList && !((ArrayList) listSongs).isEmpty() &&
-			((ArrayList) listSongs).get(0) instanceof Song)
+		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
+			typeOfRetrieve.equals(TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			songList = (ArrayList<Song>) listSongs;
+			Serializable listSongs = getIntent().getSerializableExtra("listSongs");
+			songList = null;
+			if (listSongs instanceof ArrayList && !((ArrayList) listSongs).isEmpty() &&
+				((ArrayList) listSongs).get(0) instanceof Song)
+			{
+				songList = (ArrayList<Song>) listSongs;
+			}
+		}
+		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
+				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
+				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
+		{
+			Serializable listStrings = getIntent().getSerializableExtra("ListStrings");
+			stringList = null;
+			if (listStrings instanceof ArrayList &&
+				((ArrayList) listStrings).get(0) instanceof String)
+			{
+				stringList = (ArrayList<String>) listStrings;
+			}
 		}
 
 		// get the Fragment that is to display the listview.
-		listOfSongsFragment
+		listFragment
 				=
-				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
+				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_fragment);
 	}
 
 	/**
@@ -136,10 +155,22 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	 */
 	private void configurateFragment()
 	{
-		if (listOfSongsFragment != null)
+		if (listFragment != null)
 		{
 			// To pass necessary data into the the Fragment to display.
-			listOfSongsFragment.setData(songList, activityController, ListActivity.this);
+			if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||
+				typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
+				typeOfRetrieve.equals(TypeOfRetrieve.LIKED_SONG.toString()))
+			{
+				listFragment.setSongList(songList);
+			}
+			else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
+					 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
+					 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
+			{
+				listFragment.setStringList(stringList);
+			}
+			listFragment.setData(activityController, ListActivity.this, typeOfRetrieve);
 
 			// To set correct Adapter for the listview in the Fragment.
 			// Since the Activities for which this class is responsible to start don't need "swipe
@@ -147,9 +178,9 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			// built-in type Adapter.
 			// And since they don't need multi-choice listview either, we just use the style of
 			// "android.R.layout.simple_list_item_1" as parameter.
-			listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
+			listFragment.setAdapter(android.R.layout.simple_list_item_1);
 			// To make each clicking on a Song to play it.
-			listOfSongsFragment.setOnItemClickListener();
+			listFragment.setOnItemClickListener();
 		}
 	}
 

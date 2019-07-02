@@ -76,7 +76,8 @@ public class SelectSongsActivity extends AppCompatActivity
 		if (listOfSongsFragment != null)
 		{
 			// set necessary data into the fragment.
-			listOfSongsFragment.setData(songList, activityController, SelectSongsActivity.this);
+			listOfSongsFragment.setSongList(songList);
+			listOfSongsFragment.setData(activityController, SelectSongsActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 
 			// Since user need to multi-choose items, we set the choice mode to be "ListView
 			// .CHOICE_MODE_MULTIPLE".
@@ -114,11 +115,16 @@ public class SelectSongsActivity extends AppCompatActivity
 						selected_songs.add(songList.get(key));
 					}
 				}
+
+				for(Song song: selected_songs)
+				{
+					activityController.addSongToPlaylist(song, nameOfPlaylist);
+				}
+
 				if (isCreateNewPlaylist)
 				{
 					activityController.startSinglePlaylistActivity(SelectSongsActivity.this,
-																   nameOfPlaylist,
-																   selected_songs);
+																   nameOfPlaylist);
 				}
 				SelectSongsActivity.this.finish();
 			}

@@ -30,11 +30,10 @@ public class MainMusicActivity extends CommonMusicActivity
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
-		copyDatabaseToDevice();
-
 		// Default code on creation of an activity.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		copyDatabaseToDevice();
 
 		activityController = (ActivityController) getIntent().getSerializableExtra(
 				"activityController");
@@ -47,6 +46,8 @@ public class MainMusicActivity extends CommonMusicActivity
 		sampleAssetManager.extractMusicAssets();
 		createMusicControls();
 		createLibraryViewControls();
+
+		activityController.buildUserLibrary();
 	}
 
 	public void createLibraryViewControls()
@@ -179,14 +180,12 @@ public class MainMusicActivity extends CommonMusicActivity
 			}
 
 			copyAssetsToDirectory(assetNames, dataDirectory);
-
 			Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
 
 		}
 		catch (final IOException ioe)
 		{
-			//			Messages.warning(this, "Unable to access application data: " + ioe
-			//			.getMessage());
+			Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
 		}
 	}
 

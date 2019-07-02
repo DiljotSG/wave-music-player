@@ -36,7 +36,6 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	@Override protected void onResume()
 	{
 		super.onResume();
-
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
@@ -105,7 +104,9 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		if (listOfSongsFragment != null)
 		{
 			// Pass necessary data into the fragment.
-			listOfSongsFragment.setData(songList, activityController, SinglePlaylistActivity.this);
+			listOfSongsFragment.setSongList(songList);
+			listOfSongsFragment.setData(activityController, SinglePlaylistActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+			listOfSongsFragment.setNameOfPlaylist(nameOfPlaylist);
 
 			// Since we need "swipe to delete" function here, we set a CustomAdapter to the
 			// listview.
@@ -128,7 +129,6 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	 */
 	private void configurateAddSongsButton()
 	{
-
 		findViewById(R.id.addSongs_button).setOnClickListener(new View.OnClickListener()
 		{
 			@Override public void onClick(View v)

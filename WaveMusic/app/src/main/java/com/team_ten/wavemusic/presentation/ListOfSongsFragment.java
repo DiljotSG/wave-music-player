@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import android.widget.ListView;
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
-import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;
@@ -30,33 +30,50 @@ public class ListOfSongsFragment extends Fragment
 	private View view;
 	private ListView listView;
 	private ArrayList<Song> songList;
+	private ArrayList<String> stringList;
 	private ActivityController activityController;
 	private Activity callerActivity;
 	private Context context;
 	private int position;
-	ArrayAdapter<Song> listAdapter;
+	private ArrayAdapter listAdapter;
+	private String typeOfRetrieve;
+	private String nameOfPlaylist;
 
 	public ListOfSongsFragment()
 	{
 		// Required empty public constructor
 	}
 
+	public void setSongList(ArrayList<Song> songList)
+	{
+		this.songList = songList;
+	}
+
+	public void setStringList(ArrayList<String> stringList)
+	{
+		this.stringList = stringList;
+	}
+
 	/**
 	 * Set necessary data into the instance variables.
 	 *
-	 * @param songList:           The list of songs to be displayed in this fragment.
 	 * @param activityController: The activityController object we will be using during the whole
 	 *                            lifecycle of this app.
 	 * @param callerActivity:     The parent Activity of this Fragment.
+	 * @param typeOfRetrieve:     The type of retrieve that asks for this fragment to display
+	 *                            content.
 	 */
 	public void setData(
-			ArrayList<Song> songList,
-			ActivityController activityController,
-			Activity callerActivity)
+			ActivityController activityController, Activity callerActivity, String typeOfRetrieve)
 	{
-		this.songList = songList;
 		this.activityController = activityController;
 		this.callerActivity = callerActivity;
+		this.typeOfRetrieve = typeOfRetrieve;
+	}
+
+	public void setNameOfPlaylist(String nameOfPlaylist)
+	{
+		this.nameOfPlaylist = nameOfPlaylist;
 	}
 
 	@SuppressWarnings("unchecked") @Override
@@ -157,20 +174,50 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	public void setOnItemClickListener()
 	{
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
 			{
-				Song selectedSong = songList.get(position);
-				// Update the playback queue to match our playlist
-				PlaybackController.setPlaybackQueue(songList);
-				activityController.startNowPlayingActivity(callerActivity,
-														   selectedSong,
-														   selectedSong.getName(),
-														   selectedSong.getURI());
-			}
-		});
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					Song selectedSong = songList.get(position);
+					activityController.startNowPlayingActivity(callerActivity,
+															   selectedSong,
+															   selectedSong.getName(),
+															   selectedSong.getURI());
+				}
+			});
+		}
+		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
+				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()))
+		{
+			listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					String selectedString = stringList.get(position);
+					activityController.startAlbumOrArtistAct(callerActivity,
+															 typeOfRetrieve,
+															 selectedString);
+				}
+			});
+		}
+		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
+		{
+			listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					String selectedString = stringList.get(position);
+					activityController.startSinglePlaylistActivity(callerActivity, selectedString);
+				}
+			});
+		}
 	}
 
 	/**
@@ -178,7 +225,19 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	public void setAdapter(int resource)
 	{
-		listAdapter = new ArrayAdapter<Song>(context, resource, songList);
+		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
+		{
+			Log.v("qwe", "345");
+			listAdapter = new ArrayAdapter<Song>(context, resource, songList);
+		}
+		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
+				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
+				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
+		{
+			listAdapter = new ArrayAdapter<String>(context, resource, stringList);
+		}
 		listView.setAdapter(listAdapter);
 	}
 
@@ -187,30 +246,64 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	public void setSwipeDismissListViewTouchListener()
 	{
-		SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(
-				listView,
-				new SwipeDismissListViewTouchListener.DismissCallbacks()
-				{
-					@Override
-					public boolean canDismiss(
-							int position)
-					{
-						return true;
-					}
-	
-					@Override
-					public void onDismiss(
-							ListView listView,
-							int[] reverseSortedPositions)
+		SwipeDismissListViewTouchListener touchListener = null;
+
+		if(nameOfPlaylist != null)
+		{
+			touchListener = new SwipeDismissListViewTouchListener(
+					listView,
+					new SwipeDismissListViewTouchListener.DismissCallbacks()
 					{
 
-						for (int index : reverseSortedPositions)
+						@Override public boolean canDismiss(
+								int position)
 						{
-							songList.remove(index);
+							return true;
 						}
-						listAdapter.notifyDataSetChanged();
-					}
-				});
+
+						@Override public void onDismiss(
+								ListView listView,
+								int[] reverseSortedPositions)
+						{
+
+							for (int index : reverseSortedPositions)
+							{
+								Song temp = songList.get(index);
+								activityController.removeSongFromPlaylist(temp, nameOfPlaylist);
+								songList.remove(index);
+							}
+							listAdapter.notifyDataSetChanged();
+						}
+					});
+		}
+		else if (nameOfPlaylist != null)
+		{
+			touchListener = new SwipeDismissListViewTouchListener(
+					listView,
+					new SwipeDismissListViewTouchListener.DismissCallbacks()
+					{
+
+						@Override public boolean canDismiss(
+								int position)
+						{
+							return true;
+						}
+
+						@Override public void onDismiss(
+								ListView listView,
+								int[] reverseSortedPositions)
+						{
+
+							for (int index : reverseSortedPositions)
+							{
+								String temp = stringList.get(index);
+								activityController.removePlaylist(temp);
+								stringList.remove(index);
+							}
+							listAdapter.notifyDataSetChanged();
+						}
+					});
+		}
 		listView.setOnTouchListener(touchListener);
 	}
 }

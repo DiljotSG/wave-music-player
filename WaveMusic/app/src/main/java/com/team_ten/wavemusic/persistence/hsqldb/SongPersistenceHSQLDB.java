@@ -3,6 +3,7 @@ package com.team_ten.wavemusic.persistence.hsqldb;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ISongPersistence;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SongPersistenceHSQLDB implements ISongPersistence
+public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 {
 
 	private final String dbPath;
@@ -27,6 +28,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 										   "");
 	}
 
+
 	/**
 	 * Adds a Song to the DB.
 	 *
@@ -37,7 +39,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO SONGS VALUES('%s', '%s', '%s', '%s', %d)");
+					"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
 			st.setString(1, theSong.getURI());
 			st.setString(2, theSong.getArtist());
 			st.setString(3, theSong.getName());
@@ -46,7 +48,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 			st.executeUpdate();
 			st.close();
-
 		}
 		catch (final SQLException e)
 		{
@@ -63,7 +64,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '%s'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM SONGS WHERE URI = '?'");
 			st.setString(1, toRemove.getURI());
 
 			st.executeUpdate();
@@ -89,8 +90,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = " +
-															"'%s'");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = '?'");
 			st.setString(1, songURI);
 
 			final ResultSet rs = st.executeQuery();
@@ -215,7 +215,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 		{
 			final PreparedStatement
 					st
-					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '%s'");
+					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = '?'");
 			st.setString(1, albumName);
 
 			final ResultSet rs = st.executeQuery();
@@ -250,7 +250,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE ARTIST = '%s'");
+					"SELECT * FROM SONGS WHERE ARTIST = '?'");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();

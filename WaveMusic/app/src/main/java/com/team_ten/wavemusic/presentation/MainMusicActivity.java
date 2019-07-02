@@ -15,6 +15,7 @@ import com.team_ten.wavemusic.application.PermissionManager;
 import com.team_ten.wavemusic.application.SampleAssetManager;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
+import com.team_ten.wavemusic.objects.PlaybackQueue;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,7 +40,7 @@ public class MainMusicActivity extends CommonMusicActivity
 				"activityController");
 		permissionManager = new PermissionManager(this);
 		sampleAssetManager = new SampleAssetManager(this);
-		PlaybackController.init(new MediaPlayer());
+		PlaybackController.init(new MediaPlayer(), new PlaybackQueue());
 
 		// Limit the code in this method to high level method calls only.
 		permissionManager.getFilePermissions();

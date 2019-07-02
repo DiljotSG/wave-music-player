@@ -6,13 +6,10 @@ import android.util.Log;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.DatabaseStub;
-import com.team_ten.wavemusic.persistence.IDatabaseController;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
-import com.team_ten.wavemusic.presentation.SearchActivity;
 import com.team_ten.wavemusic.presentation.SelectSongsActivity;
 import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
 

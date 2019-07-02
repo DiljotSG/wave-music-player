@@ -23,7 +23,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true;hsqldb.lock_file=false;",
 										   "SA",
 										   "");
 	}

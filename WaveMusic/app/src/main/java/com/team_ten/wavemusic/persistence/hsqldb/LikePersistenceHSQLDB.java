@@ -22,7 +22,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true;hsqldb.lock_file=false;",
 										   "SA",
 										   "");
 	}

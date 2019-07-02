@@ -22,7 +22,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true;hsqldb.lock_file=false;",
 										   "SA",
 										   "");
 	}

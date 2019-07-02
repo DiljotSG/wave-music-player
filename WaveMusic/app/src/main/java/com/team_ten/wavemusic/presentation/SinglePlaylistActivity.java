@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.AccessPlaylist;
 import com.team_ten.wavemusic.logic.ActivityController;
 import com.team_ten.wavemusic.objects.Song;
 

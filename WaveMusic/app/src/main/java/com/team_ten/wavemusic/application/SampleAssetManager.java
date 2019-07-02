@@ -35,11 +35,11 @@ public class SampleAssetManager
 	{
 		for (String file : SAMPLE_TRACKS)
 		{
-			if (!fileExists(file))
+			if (!fileExists(getFullPathToAsset(file)))
 			{
 				try
 				{
-					extractFile(file);
+					extractFile(getFullPathToAsset(file));
 				}
 				catch (IOException e)
 				{

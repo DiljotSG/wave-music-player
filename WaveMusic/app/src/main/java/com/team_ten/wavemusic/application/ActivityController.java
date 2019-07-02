@@ -40,6 +40,7 @@ public class ActivityController implements Serializable
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
 		while (scanner.hasNext())
 		{
+			Log.v("test", "test");
 			Song currentSong = scanner.getNextSong();
 			accessSong.addSong(currentSong);
 		}

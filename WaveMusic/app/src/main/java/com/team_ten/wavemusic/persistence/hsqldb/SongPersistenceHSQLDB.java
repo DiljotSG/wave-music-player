@@ -23,7 +23,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true;hsqldb.lock_file=false;",
+		System.out.println(dbPath);
+		return DriverManager.getConnection("jdbc:hsqldb:file:/data/user/0/com.team_ten.wavemusic/app_db/WaveDB;shutdown=true",
 										   "SA",
 										   "");
 	}
@@ -35,10 +36,12 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	 */
 	public void addSong(Song theSong)
 	{
+		System.out.println("starting adSong");
 		try (final Connection c = connection())
 		{
+			System.out.println("Connection established");
 			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO SONGS VALUES('%s', '%s', '%s', '%s', %d)");
+					"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
 			st.setString(1, theSong.getURI());
 			st.setString(2, theSong.getArtist());
 			st.setString(3, theSong.getName());
@@ -90,8 +93,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = " +
-															"'%s'");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE URI = '?'");
 			st.setString(1, songURI);
 
 			final ResultSet rs = st.executeQuery();

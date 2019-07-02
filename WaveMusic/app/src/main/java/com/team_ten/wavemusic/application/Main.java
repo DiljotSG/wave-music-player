@@ -4,7 +4,7 @@ public class Main
 {
 	private static String dbName = "WaveDB";
 
-	public static void setDBPathName(final String name)
+	public synchronized static void setDBPathName(final String name)
 	{
 		try
 		{
@@ -25,7 +25,7 @@ public class Main
 		dbName = name;
 	}
 
-	public static String getDBPathName()
+	public synchronized static String getDBPathName()
 	{
 		return dbName;
 	}

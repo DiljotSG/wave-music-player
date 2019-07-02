@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.ActivityController;
+import com.team_ten.wavemusic.application.ActivityController;
 
 /**
  * Class name: LaunchActivity

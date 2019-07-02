@@ -41,12 +41,12 @@ public class PlaybackController
 	/**
 	 * Initializes the media player of the playback controller.
 	 */
-	public static void init(MediaPlayer mp)
+	public static void init(MediaPlayer mp, PlaybackQueue pq)
 	{
 		if (!initialized)
 		{
 			initialized = true;
-			playbackQueue = new PlaybackQueue();
+			playbackQueue = pq;
 			state = PlaybackState.PAUSED;
 			playbackMode = PlaybackMode.PLAY_ALL;
 			mediaPlayer = mp;

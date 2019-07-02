@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.logic;
+package com.team_ten.wavemusic.application;
 
 /*
  * Copyright 2013 Google Inc.

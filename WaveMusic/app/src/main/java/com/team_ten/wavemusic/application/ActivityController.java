@@ -1,8 +1,9 @@
-package com.team_ten.wavemusic.logic;
+package com.team_ten.wavemusic.application;
 
 import android.app.Activity;
 import android.content.Intent;
 
+import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.DatabaseStub;
 import com.team_ten.wavemusic.persistence.IDatabaseController;

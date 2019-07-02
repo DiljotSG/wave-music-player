@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.application;
 
 public class Main
 {
-	private static String dbName = "/data/user/0/com.team_ten.wavemusic/app_db/WaveDB";
+	private static String dbName = "WaveDB";
 
 	public static void setDBPathName(final String name)
 	{

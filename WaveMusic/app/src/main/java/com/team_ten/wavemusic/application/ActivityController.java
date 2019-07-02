@@ -252,47 +252,13 @@ public class ActivityController implements Serializable
 			{
 				Intent intent = null;
 
-				// start different Activity based on the typeOfRetrieve
-				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY ||
-					typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
-				{
+
 					Log.v("qwe", "123");
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> songList = accessSong.getAllSongs();
 					Log.v("qwe", ""+songList.size());
 					intent.putExtra("listSongs", songList);
 					PlaybackController.setPlaybackQueue(songList);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<String> artistList = accessSong.getAllArtists();
-					intent.putExtra("ListStrings", artistList);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<String> albumList = accessSong.getAllAlbums();
-					intent.putExtra("ListStrings", albumList);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
-				{
-					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
-					ArrayList<String> playlistList = accessPlaylist.getAllPlaylists();
-					intent.putExtra("ListStrings", playlistList);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
-					intent.putExtra("listSongs", likedSongsList);
-					PlaybackController.setPlaybackQueue(likedSongsList);
-				}
-
-				// Pass necessary data into the Intent and start the Activity.
-				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
-				intent.putExtra("activityController", ActivityController.this);
-				callerActivity.startActivity(intent);
 			}
 		});
 	}

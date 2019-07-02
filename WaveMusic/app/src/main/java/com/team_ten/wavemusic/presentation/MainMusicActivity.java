@@ -180,7 +180,7 @@ public class MainMusicActivity extends CommonMusicActivity
 
 			copyAssetsToDirectory(assetNames, dataDirectory);
 
-			Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+			Main.setDBPathName("/data/user/0/com.team_ten.wavemusic/app_db/WaveDB");
 
 		}
 		catch (final IOException ioe)

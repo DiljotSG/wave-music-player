@@ -16,8 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.ActivityController;
-import com.team_ten.wavemusic.logic.SwipeDismissListViewTouchListener;
+import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;

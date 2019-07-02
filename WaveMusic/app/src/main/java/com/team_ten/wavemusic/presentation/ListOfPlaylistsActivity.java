@@ -10,8 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.AccessPlaylist;
-import com.team_ten.wavemusic.logic.ActivityController;
+import com.team_ten.wavemusic.application.ActivityController;
 
 import java.io.Serializable;
 import java.util.ArrayList;

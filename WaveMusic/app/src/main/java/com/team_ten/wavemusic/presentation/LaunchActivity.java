@@ -1,7 +1,7 @@
 package com.team_ten.wavemusic.presentation;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
@@ -22,14 +22,7 @@ public class LaunchActivity extends AppCompatActivity
 
 		activityController = new ActivityController();
 
-		// Builds music library, then starts MainActivity and finishes this LaunchActivity.
-		new Thread(new Runnable()
-		{
-			@Override public void run()
-			{
-				activityController.startMainActivity(LaunchActivity.this, activityController);
-				LaunchActivity.this.finish();
-			}
-		}).start();
+		activityController.startMainActivity(LaunchActivity.this, activityController);
+		LaunchActivity.this.finish();
 	}
 }

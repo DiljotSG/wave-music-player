@@ -36,7 +36,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO LIKES VALUES(%s)");
+			final PreparedStatement st = c.prepareStatement("INSERT INTO LIKES VALUES(?)");
 			st.setString(1, songToLike.getURI());
 
 			st.executeUpdate();
@@ -57,7 +57,7 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = '%s'");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM LIKES WHERE URI = '?'");
 			st.setString(1, songToUnlike.getURI());
 
 			st.executeUpdate();

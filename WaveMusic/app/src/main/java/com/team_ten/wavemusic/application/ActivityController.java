@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.team_ten.wavemusic.logic.stubs.LikesPersistenceStub;
-import com.team_ten.wavemusic.logic.stubs.PlaylistPersistenceStub;
-import com.team_ten.wavemusic.logic.stubs.SongPersistenceStub;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.ListActivity;
-import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
 import com.team_ten.wavemusic.presentation.SelectSongsActivity;
@@ -20,7 +16,7 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-//	// Instance variables.
+	//	// Instance variables.
 	private AccessSong accessSong;
 	private AccessPlaylist accessPlaylist;
 	private AccessLikes accessLikes;
@@ -254,12 +250,12 @@ public class ActivityController implements Serializable
 				Intent intent = null;
 
 
-					Log.v("qwe", "123");
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<Song> songList = accessSong.getAllSongs();
-					Log.v("qwe", ""+songList.size());
-					intent.putExtra("listSongs", songList);
-					PlaybackController.setPlaybackQueue(songList);
+				Log.v("qwe", "123");
+				intent = new Intent(callerActivity, ListActivity.class);
+				ArrayList<Song> songList = accessSong.getAllSongs();
+				Log.v("qwe", "" + songList.size());
+				intent.putExtra("listSongs", songList);
+				PlaybackController.setPlaybackQueue(songList);
 				// Pass necessary data into the Intent and start the Activity.
 				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
 				callerActivity.startActivity(intent);
@@ -346,18 +342,16 @@ public class ActivityController implements Serializable
 	 * @param contentForRetrieve: The list of songs in that playlist.
 	 */
 	public void startAlbumOrArtistAct(
-			final Activity callerActivity,
-			String typeOfRetrieve,
-			String contentForRetrieve)
+			final Activity callerActivity, String typeOfRetrieve, String contentForRetrieve)
 	{
 		Intent intent = new Intent(callerActivity, ListActivity.class);
 		ArrayList<Song> songList = null;
 
-		if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()))
+		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()))
 		{
 			songList = accessSong.getSongsFromAlbum(contentForRetrieve);
 		}
-		else if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()))
+		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()))
 		{
 			songList = accessSong.getSongsFromArtist(contentForRetrieve);
 		}

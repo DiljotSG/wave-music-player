@@ -181,7 +181,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT DISTINCT ALBUMS FROM SONGS");
+			final PreparedStatement st = c.prepareStatement("SELECT DISTINCT ALBUM FROM SONGS");
 
 			final ResultSet rs = st.executeQuery();
 

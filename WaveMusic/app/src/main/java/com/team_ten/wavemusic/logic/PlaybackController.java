@@ -158,7 +158,8 @@ public class PlaybackController
 	{
 		if (mediaPlayer == null)
 		{
-			// raise exception
+			System.out.println("[!] Tried to start song with null MediaPlayer.");
+			throw new NullPointerException();
 		}
 		else if (song == null)
 		{
@@ -290,5 +291,9 @@ public class PlaybackController
 	 */
 	public static void toggleShuffle() {
 		PlaybackController.shuffle = !PlaybackController.shuffle;
+	}
+
+	public static boolean isShuffle() {
+		return shuffle;
 	}
 }

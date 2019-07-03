@@ -22,10 +22,9 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 
 	private Connection connection() throws SQLException
 	{
-		return DriverManager.getConnection(
-				"jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
-				"SA",
-				"");
+		return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
+										   "SA",
+										   "");
 	}
 
 
@@ -59,9 +58,8 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement
-					st
-					= c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = ?");
+			final PreparedStatement st = c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = " +
+															"?");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();
@@ -84,10 +82,9 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO PLAYLIST_SONGS VALUES(?, ?, ?)");
+					"INSERT INTO PLAYLIST_SONGS VALUES(?, ?)");
 			st.setString(1, song.getURI());
 			st.setString(2, playlistName);
-			st.setInt(3, getPlaylistLength(playlistName));
 
 			st.executeUpdate();
 			st.close();
@@ -166,8 +163,9 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE URI = (SELECT URI FROM PLAYLIST_SONGS WHERE " +
-					"PLAYLIST_SONGS.NAME = ?)");
+					"SELECT URI, ARTIST, NAME, ALBUM, PLAY_COUNT " + "FROM SONGS " +
+					"INNER JOIN PLAYLIST_SONGS " +
+					"ON SONGS.URI = PLAYLIST_SONGS.URI AND PLAYLIST_SONGS.NAME = ?");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -177,7 +175,6 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 				result.add(fromResultSet(rs));
 			}
 			st.close();
-
 		}
 		catch (final SQLException e)
 		{
@@ -186,35 +183,6 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 
 		return result;
 	}
-
-	/**
-	 * Return the length of the playlist (number of songs)
-	 *
-	 * @param playlistName the playlist to add the song to
-	 */
-	public int getPlaylistLength(String playlistName)
-	{
-		int result = 0;
-
-		try (final Connection c = connection())
-		{
-			final PreparedStatement st = c.prepareStatement(
-					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = ?");
-			st.setString(1, playlistName);
-
-			final ResultSet rs = st.executeQuery();
-			result = rs.getInt(1);
-			rs.close();
-			st.close();
-		}
-		catch (final SQLException e)
-		{
-			throw wrapException(e);
-		}
-
-		return result;
-	}
-
 
 	private Song fromResultSet(final ResultSet rs) throws SQLException
 	{
@@ -229,10 +197,11 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	private WaveDBPersistenceException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
-		if(e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
+		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
 			return new WaveDBIntegrityConstraintException(e);
-		} else
+		}
+		else
 		{
 			return new WaveDBPersistenceException(e);
 		}

@@ -104,23 +104,4 @@ public class PlaylistPersistenceStub implements IPlaylistPersistence
 		return playlists.get(playlistName);
 	}
 
-	/**
-	 * Return the length of the playlist (number of songs)
-	 *
-	 * @param playlistName the playlist to add the song to
-	 */
-	public int getPlaylistLength(String playlistName)
-	{
-		int result = -1;
-		if (playlists.containsKey(playlistName))
-		{
-			ArrayList<Song> existingList = playlists.get(playlistName);
-			if (existingList != null)
-			{
-				result = existingList.size();
-			}
-			playlists.replace(playlistName, existingList);
-		}
-		return result;
-	}
 }

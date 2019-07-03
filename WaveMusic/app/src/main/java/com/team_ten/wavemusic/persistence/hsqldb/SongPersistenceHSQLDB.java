@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 {
 	private final String dbPath;
+	private ArrayList<Song> library;
 
 	public SongPersistenceHSQLDB(final String dbPath)
 	{
 		this.dbPath = dbPath;
+		library = getAllSongs();
 	}
 
 	private Connection connection() throws SQLException
@@ -35,7 +37,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	 */
 	public void addSong(Song theSong)
 	{
-		if(getSong(theSong.getURI()) == null)
+		if(!library.contains(theSong))
 		{
 			try (final Connection c = connection())
 			{

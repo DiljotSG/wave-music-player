@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	// Instance variables.
+	// Instance variables
 	private static AccessSong accessSong;
 	private static AccessPlaylist accessPlaylist;
 	private static AccessLikes accessLikes;

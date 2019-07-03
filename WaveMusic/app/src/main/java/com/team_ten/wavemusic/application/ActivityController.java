@@ -131,8 +131,6 @@ public class ActivityController implements Serializable
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
 				{
 					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
-					ArrayList<String> playlistList = accessPlaylist.getAllPlaylists();
-					Library.setCurStringLibrary(playlistList);
 					intent.putExtra("title", "Playlists");
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)

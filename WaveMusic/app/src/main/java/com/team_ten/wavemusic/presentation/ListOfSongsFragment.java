@@ -132,7 +132,10 @@ public class ListOfSongsFragment extends Fragment
 	@Override public void onResume()
 	{
 		super.onResume();
-
+		if(listAdapter!= null)
+		{
+			listAdapter.notifyDataSetChanged();
+		}
 		// Resume the position of the listview after each time the screen is rotated.
 		listView.setSelection(position);
 	}
@@ -228,7 +231,7 @@ public class ListOfSongsFragment extends Fragment
 			listAdapter = new ArrayAdapter<String>(context, resource, stringList);
 		}
 
-		if(songList != null)
+		if(songList != null || stringList != null)
 		{
 			listView.setAdapter(listAdapter);
 		}
@@ -269,7 +272,7 @@ public class ListOfSongsFragment extends Fragment
 						}
 					});
 		}
-		else if (nameOfPlaylist != null)
+		else
 		{
 			touchListener = new SwipeDismissListViewTouchListener(
 					listView,

@@ -36,36 +36,40 @@ public class PlaybackController
 	private static PlaybackMode playbackMode;
 	private static MediaPlayer mediaPlayer;
 	private static boolean initialized;
+	private static boolean shuffle;
 
 	/**
 	 * Initializes the media player of the playback controller.
 	 */
-	public static void init()
+	public static void init(MediaPlayer mp, PlaybackQueue pq)
 	{
 		if (!initialized)
 		{
 			initialized = true;
-			playbackQueue = new PlaybackQueue();
+			playbackQueue = pq;
 			state = PlaybackState.PAUSED;
 			playbackMode = PlaybackMode.PLAY_ALL;
-			mediaPlayer = new MediaPlayer();
+			mediaPlayer = mp;
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				@Override
+				public void onCompletion(MediaPlayer mediaPlayer) {
+					// If the playback is not paused
+					if (PlaybackController.getPlaybackStateNum() > 0) {
+						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE) {
+							PlaybackController.restart();
+						} else {
+							PlaybackController.playNext();
+						}
+					}
+				}
+			});
+			shuffle = true;
 		}
 	}
 
-	/**
-	 * Initializes the media player of the playback controller for test methods (no
-	 * library calls).
-	 */
-	public static void init_for_testing()
-	{
-		if (!initialized)
-		{
-			initialized = true;
-			playbackQueue = new PlaybackQueue();
-			state = PlaybackState.PAUSED;
-			playbackMode = PlaybackMode.PLAY_ALL;
-		}
+	public static PlaybackState getPlaybackState() {
+		return state;
 	}
 
 	/**
@@ -73,9 +77,28 @@ public class PlaybackController
 	 *
 	 * @return an integer representation of the current playback mode.
 	 */
-	public static int get_playback_state_num()
+	public static int getPlaybackStateNum()
 	{
-		return playbackMode.ordinal();
+		return getPlaybackState().ordinal();
+	}
+
+	/**
+	 * Returns the playback mode.
+	 *
+	 * @return the playback mode.
+	 */
+	public static PlaybackMode getPlaybackMode() {
+		return playbackMode;
+	}
+
+	/**
+	 * Returns the playback state as an integer; intended mainly for unit testing.
+	 *
+	 * @return an integer representation of the current playback mode.
+	 */
+	public static int getPlaybackModeNum()
+	{
+		return getPlaybackMode().ordinal();
 	}
 
 	/**
@@ -83,7 +106,8 @@ public class PlaybackController
 	 *
 	 * @return an integer representation of the number of available playback modes.
 	 */
-	public static int get_num_playback_states()
+
+	public static int getNumPlaybackStates()
 	{
 		return PlaybackMode.values().length;
 	}
@@ -102,16 +126,21 @@ public class PlaybackController
 	 */
 	public static Song startSong()
 	{
-		if (playbackQueue.getCurrentSong() != null)
-		{
-			mediaPlayer.start();
-		}
-		else
-		{
-			PlaybackController.startSong(playbackQueue.jumpFirst());
-		}
+		if (playbackQueue.hasSongs()) {
+			if (playbackQueue.getCurrentSong() != null) {
+				mediaPlayer.start();
+			} else {
+				try {
+					PlaybackController.startSong(playbackQueue.jumpFirst());
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("[!] Could not start song; index out of bounds.");
+					throw e;
+				}
 
-		state = PlaybackState.PLAYING;
+			}
+
+			state = PlaybackState.PLAYING;
+		}
 		return getCurrentSong();
 	}
 
@@ -133,7 +162,8 @@ public class PlaybackController
 	{
 		if (mediaPlayer == null)
 		{
-			// raise exception
+			System.out.println("[!] Tried to start song with null MediaPlayer.");
+			throw new NullPointerException();
 		}
 		else if (song == null)
 		{
@@ -195,16 +225,21 @@ public class PlaybackController
 	 */
 	public static Song playNext()
 	{
-		boolean was_paused = state == PlaybackState.PAUSED;
+		if (playbackQueue.hasSongs()) {
+			boolean was_paused = state == PlaybackState.PAUSED;
 
-		startSong(playbackQueue.jumpNext());
+			if (shuffle)
+				startSong(playbackQueue.jumpRandom());
+			else
+				startSong(playbackQueue.jumpNext());
 
-		if (was_paused)
-		{
-			pause();
+			if (was_paused) {
+				pause();
+			}
 		}
 
 		return getCurrentSong();
+
 	}
 
 	/**
@@ -212,13 +247,14 @@ public class PlaybackController
 	 */
 	public static Song playPrev()
 	{
-		boolean was_paused = state == PlaybackState.PAUSED;
+		if (playbackQueue.hasSongs()) {
+			boolean was_paused = state == PlaybackState.PAUSED;
 
-		startSong(playbackQueue.jumpPrev());
+			startSong(playbackQueue.jumpPrev());
 
-		if (was_paused)
-		{
-			pause();
+			if (was_paused) {
+				pause();
+			}
 		}
 
 		return getCurrentSong();
@@ -255,5 +291,16 @@ public class PlaybackController
 	public static Song getCurrentSong()
 	{
 		return playbackQueue.getCurrentSong();
+	}
+
+	/**
+	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
+	 */
+	public static void toggleShuffle() {
+		PlaybackController.shuffle = !PlaybackController.shuffle;
+	}
+
+	public static boolean isShuffle() {
+		return shuffle;
 	}
 }

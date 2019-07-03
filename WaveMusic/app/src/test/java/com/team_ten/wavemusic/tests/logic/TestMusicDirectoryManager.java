@@ -1,8 +1,11 @@
-package com.team_ten.wavemusic.tests;
+package com.team_ten.wavemusic.tests.logic;
 
 import com.team_ten.wavemusic.logic.MusicDirectoryManager;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 public class TestMusicDirectoryManager
 {
@@ -15,9 +18,9 @@ public class TestMusicDirectoryManager
 		MusicDirectoryManager test = new MusicDirectoryManager(extPath);
 
 		// There is no next song.
-		assert (!test.hasNext());
+		assertFalse("There should be no songs in this directory.", test.hasNext());
 
 		// Getting the next song, should give null.
-		assert (test.getNextSong() == null);
+		assertNull("Asking for the next song should not work.", test.getNextSong());
 	}
 }

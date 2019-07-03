@@ -136,22 +136,4 @@ public class AccessPlaylistTest
 					 testSong);
 		System.out.println("End: Testing getting all playlists.");
 	}
-
-	@Test public void testGetPlaylistLength()
-	{
-		System.out.println("Start: Testing getting playlist length.");
-		accessPlaylist.addPlaylist(playlistName);
-		assertEquals("There should only be 1 playlist.",
-					 accessPlaylist.getAllPlaylists().size(),
-					 1);
-
-		accessPlaylist.addSongToPlaylist(testSong, playlistName);
-		assertEquals("There should only be 1 song in the playlist.",
-					 accessPlaylist.getSongsFromPlaylist(playlistName).size(),
-					 1);
-		assertEquals("The number of songs in the playlist should be 1..",
-					 accessPlaylist.getPlaylistLength(playlistName),
-					 1);
-		System.out.println("End: Testing getting playlist length.");
-	}
 }

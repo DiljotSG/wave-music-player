@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;
@@ -122,13 +123,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
 			typeOfRetrieve.equals(TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			Serializable listSongs = getIntent().getSerializableExtra("listSongs");
-			songList = null;
-			if (listSongs instanceof ArrayList && !((ArrayList) listSongs).isEmpty() &&
-				((ArrayList) listSongs).get(0) instanceof Song)
-			{
-				songList = (ArrayList<Song>) listSongs;
-			}
+			songList = Library.getCurLibrary();
 		}
 		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||

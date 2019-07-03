@@ -2,29 +2,61 @@ package com.team_ten.wavemusic.objects;
 
 import java.util.ArrayList;
 
-public class Library {
-    private static ArrayList<Song> fullLibrary = new ArrayList<>();
-    private static ArrayList<Song> curLibrary = new ArrayList<>();
+public class Library
+{
+    private static ArrayList<Song> fullSongLibrary = new ArrayList<>();
+    private static ArrayList<Song> curSongLibrary = new ArrayList<>();
+    private static ArrayList<String> curStringLibrary = new ArrayList<>();
 
-    public static void setFullLibrary(ArrayList<Song> newLibrary) {
+    public static void setFullSongLibrary(ArrayList<Song> newLibrary)
+    {
         if (newLibrary == null)
+        {
             System.out.println("[!] Tried setting fulllibrary to null; ignoring request");
+        }
         else
-           fullLibrary = newLibrary;
+        {
+            fullSongLibrary = newLibrary;
+        }
     }
 
-    public static void setCurLibrary(ArrayList<Song> newLibrary) {
+    public static void setCurSongLibrary(ArrayList<Song> newLibrary)
+    {
         if (newLibrary == null)
+        {
             System.out.println("[!] Tried setting current library to null; ignoring request");
+        }
         else
-           curLibrary = newLibrary;
+        {
+            curSongLibrary = newLibrary;
+        }
     }
 
-    public static ArrayList<Song> getFullLibrary() {
-        return fullLibrary;
+    public static void setCurStringLibrary(ArrayList<String> newLibrary)
+    {
+        if (newLibrary == null)
+        {
+            System.out.println("[!] Tried setting current library to null; ignoring request");
+        }
+        else
+        {
+            curStringLibrary = newLibrary;
+        }
     }
 
-    public static ArrayList<Song> getCurLibrary() {
-        return curLibrary;
+    public static ArrayList<Song> getFullSongLibrary()
+    {
+        return fullSongLibrary;
+    }
+
+    public static ArrayList<String> getCurStringLibrary()
+    {
+        return curStringLibrary;
+    }
+
+    public static ArrayList<Song> getCurSongLibrary()
+    {
+        return curSongLibrary;
     }
 }
+

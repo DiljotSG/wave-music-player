@@ -16,6 +16,7 @@ import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
+import com.team_ten.wavemusic.presentation.SearchActivity;
 import com.team_ten.wavemusic.presentation.SelectSongsActivity;
 import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
 
@@ -99,38 +100,47 @@ public class ActivityController implements Serializable
 				Intent intent = null;
 
 				// start different Activity based on the typeOfRetrieve
-				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY ||
-					typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
+				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY)
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> songList = accessSong.getAllSongs();
-					Library.setCurLibrary(songList);
-					PlaybackController.setPlaybackQueue(songList);
+					Library.setCurSongLibrary(songList);
+					intent.putExtra("title", "My Library");
+				}
+				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
+				{
+					intent = new Intent(callerActivity, SearchActivity.class);
+					ArrayList<Song> songList = accessSong.getAllSongs();
+					intent.putExtra("title", "Search");
+					Library.setCurSongLibrary(songList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<String> artistList = accessSong.getAllArtists();
-					intent.putExtra("listStrings", artistList);
+					Library.setCurStringLibrary(artistList);
+					intent.putExtra("title", "Artists");
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<String> albumList = accessSong.getAllAlbums();
-					intent.putExtra("listStrings", albumList);
+					Library.setCurStringLibrary(albumList);
+					intent.putExtra("title", "Albums");
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
 				{
 					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
 					ArrayList<String> playlistList = accessPlaylist.getAllPlaylists();
-					intent.putExtra("listStrings", playlistList);
+					Library.setCurStringLibrary(playlistList);
+					intent.putExtra("title", "Playlists");
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
-					Library.setCurLibrary(likedSongsList);
-					PlaybackController.setPlaybackQueue(likedSongsList);
+					Library.setCurSongLibrary(likedSongsList);
+					intent.putExtra("title", "Liked Songs");
 				}
 
 				// Pass necessary data into the Intent and start the Activity.
@@ -178,7 +188,7 @@ public class ActivityController implements Serializable
 			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
 	{
 		ArrayList<Song> songList = accessSong.getAllSongs();
-		Library.setCurLibrary(songList);
+		Library.setCurSongLibrary(songList);
 		Intent intent = new Intent(callerActivity, SelectSongsActivity.class);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
 		intent.putExtra("isCreateNewPlaylist", isCreateNewPlaylist);
@@ -195,7 +205,7 @@ public class ActivityController implements Serializable
 			final Activity callerActivity, String nameOfPlaylist)
 	{
 		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
-		Library.setCurLibrary(songList);
+		Library.setCurSongLibrary(songList);
 
 		Intent intent = new Intent(callerActivity, SinglePlaylistActivity.class);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
@@ -224,7 +234,7 @@ public class ActivityController implements Serializable
 			songList = accessSong.getSongsFromArtist(contentForRetrieve);
 		}
 
-		Library.setCurLibrary(songList);
+		Library.setCurSongLibrary(songList);
 
 		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY);
 		intent.putExtra("nameOfPlaylist", contentForRetrieve);

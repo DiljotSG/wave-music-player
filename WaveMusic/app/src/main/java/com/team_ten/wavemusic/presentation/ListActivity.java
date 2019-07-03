@@ -122,18 +122,13 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
 			typeOfRetrieve.equals(TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			songList = Library.getCurLibrary();
+			songList = Library.getCurSongLibrary();
 		}
 		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
 		{
-			Serializable listStrings = getIntent().getSerializableExtra("listStrings");
-			stringList = null;
-			if (listStrings instanceof ArrayList)
-			{
-				stringList = (ArrayList<String>) listStrings;
-			}
+				stringList = Library.getCurStringLibrary();
 		}
 
 		// get the Fragment that is to display the listview.

@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.application;
+package com.team_ten.wavemusic.logic;
 
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;

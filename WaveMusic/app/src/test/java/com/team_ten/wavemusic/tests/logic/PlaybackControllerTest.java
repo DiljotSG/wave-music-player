@@ -10,6 +10,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -109,4 +111,28 @@ public class PlaybackControllerTest
 	{
 		assertEquals(PlaybackController.restart(), null);
 	}
+
+	@Test public void toggle_shuffle_sets_correct_state() {
+		if (PlaybackController.isShuffle()) {
+			PlaybackController.toggleShuffle();
+			assertEquals(PlaybackController.isShuffle(), false);
+		}
+		else {
+			PlaybackController.toggleShuffle();
+			assertEquals(PlaybackController.isShuffle(), true);
+		}
+	}
+
+	@Test public void remain_paused_after_restart() {
+		PlaybackController.pause();
+		PlaybackController.restart();
+		assertEquals(PlaybackController.get_playback_state_num(), 0);
+	}
+
+	@Test public void start_song_doesnt_jump_to_song_not_in_queue() {
+		Song song = new Song("name", "artist", "album", "uri", 0);
+
+		assertNull(PlaybackController.startSong(song));
+	}
+
 }

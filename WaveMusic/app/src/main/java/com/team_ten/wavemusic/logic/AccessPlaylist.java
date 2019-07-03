@@ -83,14 +83,4 @@ public class AccessPlaylist implements IPlaylistPersistence, Serializable
 	{
 		return playlistPersistence.getSongsFromPlaylist(playlistName);
 	}
-
-	/**
-	 * Return the length of the playlist (number of songs)
-	 *
-	 * @param playlistName the playlist to add the song to
-	 */
-	public int getPlaylistLength(String playlistName)
-	{
-		return playlistPersistence.getPlaylistLength(playlistName);
-	}
 }

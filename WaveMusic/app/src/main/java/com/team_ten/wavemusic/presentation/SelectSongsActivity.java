@@ -13,7 +13,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public class SelectSongsActivity extends AppCompatActivity
+public class SelectSongsActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
@@ -29,6 +29,8 @@ public class SelectSongsActivity extends AppCompatActivity
 		initializeInstanceVariables();
 		configurateFragment();
 		configuratConfirmButton();
+		createMusicControls();
+
 		getSupportActionBar().setTitle("Add songs to a playlist");
 	}
 

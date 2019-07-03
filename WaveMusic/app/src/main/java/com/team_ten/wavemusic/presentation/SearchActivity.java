@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.presentation;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,11 +11,12 @@ import android.widget.SearchView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity
+public class SearchActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private SearchView searchView;
@@ -33,6 +33,7 @@ public class SearchActivity extends AppCompatActivity
 		initializeInstanceVariables();
 		setOnItemClickListener();
 		setOnQueryTextListener();
+		createMusicControls();
 
 		getSupportActionBar().setTitle("Search");
 		loadingPanel.setVisibility(View.GONE);
@@ -69,6 +70,9 @@ public class SearchActivity extends AppCompatActivity
 														   selectedSong,
 														   selectedSong.getName(),
 														   selectedSong.getURI());
+				ArrayList<Song> listWithOneSong= new ArrayList<Song>();
+				listWithOneSong.add(selectedSong);
+				PlaybackController.setPlaybackQueue(listWithOneSong);
 			}
 		};
 		listView.setOnItemClickListener(itemClickListener);

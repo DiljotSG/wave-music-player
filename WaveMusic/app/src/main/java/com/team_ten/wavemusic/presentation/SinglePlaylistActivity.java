@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.presentation;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +11,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
 
-public class SinglePlaylistActivity extends AppCompatActivity
+public class SinglePlaylistActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
@@ -27,7 +26,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		initializeInstanceVariables();
 		configurateFragment();
 		configurateAddSongsButton();
-
+		createMusicControls();
 		getSupportActionBar().setTitle(nameOfPlaylist);
 	}
 

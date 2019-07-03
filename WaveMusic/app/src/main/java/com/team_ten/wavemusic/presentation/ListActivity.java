@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +37,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 
 		initializeInstanceVariables();
 		configurateFragment();
+		createMusicControls();
 
 		// Set the title in ActionBar.
 		getSupportActionBar().setTitle(title);

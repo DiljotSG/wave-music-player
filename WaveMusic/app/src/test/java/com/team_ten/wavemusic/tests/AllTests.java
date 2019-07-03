@@ -18,7 +18,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		AccessPlaylistTest.class,
 		AccessLikesTest.class,
 		TestMusicDirectoryManager.class,
-		TestPlaylistClass.class,
 		TestSongClass.class,
 })
 public class AllTests

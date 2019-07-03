@@ -11,14 +11,12 @@ import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SinglePlaylistActivity extends AppCompatActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
-	private ActivityController ActivityController;
 	private String nameOfPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
@@ -80,7 +78,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 
-		songList = Library.getCurLibrary();
+		songList = Library.getCurSongLibrary();
 
 		// get the fragment to display listview.
 		listOfSongsFragment

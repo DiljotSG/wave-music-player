@@ -12,10 +12,8 @@ import android.widget.SearchView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity
@@ -25,7 +23,6 @@ public class SearchActivity extends AppCompatActivity
 	private ListView listView;
 	private ArrayList<Song> results;
 	private ArrayList<Song> allSongs;
-	private ActivityController ActivityController;
 	private ProgressBar loadingPanel;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
@@ -52,8 +49,7 @@ public class SearchActivity extends AppCompatActivity
 		loadingPanel = findViewById(R.id.loadingPanel);
 		results = new ArrayList<Song>();
 
-		allSongs = Library.getFullLibrary();
-
+		allSongs = ActivityController.getAccessSong().getAllSongs();
 	}
 
 	/**

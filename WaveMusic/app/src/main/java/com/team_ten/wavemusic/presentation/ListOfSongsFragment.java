@@ -82,7 +82,8 @@ public class ListOfSongsFragment extends Fragment
 		if (savedInstanceState != null)
 		{
 			position = savedInstanceState.getInt("position");
-			songList = Library.getCurLibrary();
+			songList = (ArrayList<Song>)savedInstanceState.getSerializable("songList");
+			stringList = (ArrayList<String>)savedInstanceState.getSerializable("stringList");
 		}
 	}
 
@@ -143,6 +144,7 @@ public class ListOfSongsFragment extends Fragment
 		// Sava data into Bundle so that they don't need to be rebuilt after each time the device
 		// is rotated.
 		outState.putSerializable("songList", songList);
+		outState.putSerializable("stringList", stringList);
 		outState.putInt("position", position);
 	}
 

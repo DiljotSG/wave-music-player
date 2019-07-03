@@ -45,7 +45,7 @@ public class SelectSongsActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		songList = Library.getCurLibrary();
+		songList = Library.getCurSongLibrary();
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 

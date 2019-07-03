@@ -1,6 +1,7 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,9 +27,9 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	// Instance variables
 	private ArrayList<Song> songList;    // the list of songs to be displayed in this Activity.
 	private ArrayList<String> stringList;
-	private ActivityController ActivityController;
 	private ListOfSongsFragment listFragment;
 	private String typeOfRetrieve;
+	private String title;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -39,7 +40,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		configurateFragment();
 
 		// Set the title in ActionBar.
-		setTitle();
+		getSupportActionBar().setTitle(title);
 	}
 
 	/**
@@ -83,33 +84,6 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	}
 
 	/**
-	 * Set the title shown in the ActionBar based on the type of content this activity is
-	 * displaying:
-	 * MY_LIBRARY, ALBUM, ARTIST or LIKED_SONG.
-	 * The type will be passed from ActivityController, which starts this activity.
-	 */
-	private void setTitle()
-	{
-		String typeOfRetrieve = getIntent().getStringExtra("TypeOfRetrieve");
-		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()))
-		{
-			getSupportActionBar().setTitle("My Library");
-		}
-		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()))
-		{
-			getSupportActionBar().setTitle("Albums");
-		}
-		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()))
-		{
-			getSupportActionBar().setTitle("Artists");
-		}
-		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
-		{
-			getSupportActionBar().setTitle("Liked Songs");
-		}
-	}
-
-	/**
 	 * To initialize the instance variables.
 	 */
 	private void initializeInstanceVariables()
@@ -117,10 +91,11 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		// Get the ActivityController and songList from Intent.
 
 		typeOfRetrieve = getIntent().getStringExtra("TypeOfRetrieve");
+		title = getIntent().getStringExtra("title");
 
 		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
-			typeOfRetrieve.equals(TypeOfRetrieve.LIKED_SONG.toString()))
+			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
 			songList = Library.getCurSongLibrary();
 		}
@@ -128,7 +103,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
 		{
-				stringList = Library.getCurStringLibrary();
+			stringList = Library.getCurStringLibrary();
 		}
 
 		// get the Fragment that is to display the listview.

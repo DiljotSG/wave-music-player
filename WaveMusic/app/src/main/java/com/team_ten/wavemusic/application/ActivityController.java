@@ -234,8 +234,8 @@ public class ActivityController implements Serializable
 
 		Library.setCurSongLibrary(songList);
 
-		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY);
-		intent.putExtra("nameOfPlaylist", contentForRetrieve);
+		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+		intent.putExtra("title", contentForRetrieve);
 		callerActivity.startActivity(intent);
 	}
 }

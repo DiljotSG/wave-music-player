@@ -21,6 +21,7 @@ public class MusicDirectoryManager
 	private File folder;
 	private File[] files;
 	private int curr;
+	private MediaMetadataRetriever mmdr;
 
 	/**
 	 * Constructor for the music directory manager.
@@ -32,6 +33,7 @@ public class MusicDirectoryManager
 		folder = new File(directory);
 		files = folder.listFiles();
 		curr = 0;
+		mmdr = new MediaMetadataRetriever();
 	}
 
 	/**
@@ -46,6 +48,19 @@ public class MusicDirectoryManager
 		folder = new File(directory);
 		files = folder.listFiles();
 		curr = 0;
+		mmdr = new MediaMetadataRetriever();
+	}
+
+	/**
+	 * Constructor for the music directory manager.
+	 *
+	 * @param fullPath The absolute path to the desired directory.
+	 * @param mmdr     The mocked MediaMetadataRetriever (for test cases).
+	 */
+	public MusicDirectoryManager(String fullPath, MediaMetadataRetriever mmdr)
+	{
+		this(fullPath);
+		this.mmdr = mmdr;
 	}
 
 	/**
@@ -98,7 +113,8 @@ public class MusicDirectoryManager
 		if (hasNext())
 		{
 			// Parse the metadata from the file.
-			MediaMetadataRetriever parser = new MediaMetadataRetriever();
+
+			MediaMetadataRetriever parser = mmdr;
 			parser.setDataSource(files[curr].getAbsolutePath());
 			result = new Song(
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),

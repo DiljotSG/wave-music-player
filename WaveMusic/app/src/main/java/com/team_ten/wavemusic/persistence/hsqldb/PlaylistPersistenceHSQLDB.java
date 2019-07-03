@@ -27,7 +27,6 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 										   "");
 	}
 
-
 	/**
 	 * Adds a playlist to the DB.
 	 *
@@ -35,22 +34,25 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	 */
 	public void addPlaylist(String playlistName)
 	{
-		try (final Connection c = connection())
+		if(getPlaylist(playlistName) == null)
 		{
-			final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES(?)");
-			st.setString(1, playlistName);
+			try (final Connection c = connection())
+			{
+				final PreparedStatement st = c.prepareStatement("INSERT INTO PLAYLISTS VALUES(?)");
+				st.setString(1, playlistName);
 
-			st.executeUpdate();
-			st.close();
-		}
-		catch (final SQLException e)
-		{
-			throw wrapException(e);
+				st.executeUpdate();
+				st.close();
+			}
+			catch (final SQLException e)
+			{
+				throw wrapException(e);
+			}
 		}
 	}
 
 	/**
-	 * Remove the given playlist.
+	 * Remove the given playlist from the DB.
 	 *
 	 * @param playlistName The name of the playlist to remove.
 	 */
@@ -175,6 +177,37 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 				result.add(fromResultSet(rs));
 			}
 			st.close();
+		}
+		catch (final SQLException e)
+		{
+			throw wrapException(e);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get the specified playlist name from the DB.
+	 *
+	 * @return A String that is the playlist name.
+	 */
+	private String getPlaylist(String playlistName)
+	{
+		String result = null;
+
+		try (final Connection c = connection())
+		{
+			final PreparedStatement st = c.prepareStatement("SELECT NAME FROM PLAYLISTS WHERE NAME = ?");
+			st.setString(1, playlistName);
+
+			final ResultSet rs = st.executeQuery();
+
+			if (rs.next())
+			{
+				result = rs.getString("NAME");
+			}
+			st.close();
+
 		}
 		catch (final SQLException e)
 		{

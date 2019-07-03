@@ -260,7 +260,7 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								Song temp = songList.get(index);
-								ActivityController.removeSongFromPlaylist(temp, nameOfPlaylist);
+								ActivityController.getAccessPlaylist().removeSongFromPlaylist(temp, nameOfPlaylist);
 								songList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();
@@ -288,7 +288,7 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								String temp = stringList.get(index);
-								ActivityController.removePlaylist(temp);
+								ActivityController.getAccessPlaylist().removePlaylist(temp);
 								stringList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();

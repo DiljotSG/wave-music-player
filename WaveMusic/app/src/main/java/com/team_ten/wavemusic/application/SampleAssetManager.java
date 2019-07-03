@@ -23,9 +23,9 @@ public class SampleAssetManager
 	/**
 	 * The constructor for SampleAssetManager.
 	 */
-	public SampleAssetManager(MainMusicActivity mainActivity)
+	public SampleAssetManager(MainMusicActivity mainMusicActivity)
 	{
-		mainView = mainActivity;
+		mainView = mainMusicActivity;
 	}
 
 	/**

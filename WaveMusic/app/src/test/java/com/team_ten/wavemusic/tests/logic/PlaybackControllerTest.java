@@ -8,6 +8,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -104,9 +105,10 @@ public class PlaybackControllerTest
 		assertNotEquals(PlaybackController.playPrev(), null);
 	}
 
+	@Ignore
 	@Test public void restart_returns_song()
 	{
-		//assertNotNull(PlaybackController.restart());
+		assertNotNull(PlaybackController.restart());
 	}
 
 	@Test public void toggle_shuffle_sets_correct_state() {

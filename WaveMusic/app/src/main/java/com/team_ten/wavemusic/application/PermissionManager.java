@@ -19,9 +19,9 @@ public class PermissionManager
 	/**
 	 * The constructor for PermissionManager.
 	 */
-	public PermissionManager(MainMusicActivity mainActivity)
+	public PermissionManager(MainMusicActivity mainMusicActivity)
 	{
-		mainView = mainActivity;
+		mainView = mainMusicActivity;
 	}
 
 	/**
@@ -30,10 +30,12 @@ public class PermissionManager
 	public void getFilePermissions()
 	{
 		// Get the current permissions.
-		int readPerm = ContextCompat.checkSelfPermission(mainView,
-														 Manifest.permission.READ_EXTERNAL_STORAGE);
-		int writePerm = ContextCompat.checkSelfPermission(mainView,
-														  Manifest.permission.WRITE_EXTERNAL_STORAGE);
+		int readPerm = ContextCompat.checkSelfPermission(
+				mainView,
+				Manifest.permission.READ_EXTERNAL_STORAGE);
+		int writePerm = ContextCompat.checkSelfPermission(
+				mainView,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
 		// Check if we have access.
 		boolean readAccess = readPerm == PackageManager.PERMISSION_GRANTED;
@@ -42,15 +44,17 @@ public class PermissionManager
 		// If not, request those permissions.
 		if (!readAccess)
 		{
-			ActivityCompat.requestPermissions(mainView,
-											  new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-											  PERMISSIONS_REQUEST_READ_STORAGE_CODE);
+			ActivityCompat.requestPermissions(
+					mainView,
+					new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+					PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
 		if (!writeAccess)
 		{
-			ActivityCompat.requestPermissions(mainView,
-											  new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-											  PERMISSIONS_REQUEST_WRITE_STORAGE_CODE);
+			ActivityCompat.requestPermissions(
+					mainView,
+					new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+					PERMISSIONS_REQUEST_WRITE_STORAGE_CODE);
 		}
 	}
 }

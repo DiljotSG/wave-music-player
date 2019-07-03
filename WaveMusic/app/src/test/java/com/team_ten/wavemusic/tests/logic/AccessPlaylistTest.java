@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.tests.logic;
 
 import com.team_ten.wavemusic.logic.AccessPlaylist;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.tests.logic.stubs.PlaylistPersistenceStub;
+import com.team_ten.wavemusic.persistence.stubs.PlaylistPersistenceStub;
 
 import org.junit.Before;
 import org.junit.Test;

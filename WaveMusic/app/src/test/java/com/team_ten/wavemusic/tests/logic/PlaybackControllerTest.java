@@ -1,8 +1,6 @@
 package com.team_ten.wavemusic.tests.logic;
 
 import android.media.MediaPlayer;
-import android.media.AudioManager;
-import android.provider.MediaStore;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
@@ -12,6 +10,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -27,7 +28,7 @@ public class PlaybackControllerTest
 	@BeforeClass public static void setUpClass() throws IOException
 	{
 		MediaPlayer mp = mock(MediaPlayer.class);
-		PlaybackQueue pq = mock(PlaybackQueue.class);
+		PlaybackQueue pq = new PlaybackQueue();
 		doNothing().when(mp).pause();
 		doNothing().when(mp).start();
 		doNothing().when(mp).setAudioStreamType(isA(Integer.class));
@@ -44,12 +45,12 @@ public class PlaybackControllerTest
 
 	@Test public void loopmode_toggle_moves_to_correct_state()
 	{
-		int initial_mode = PlaybackController.get_playback_mode_num();
+		int initial_mode = PlaybackController.getPlaybackModeNum();
 		PlaybackController.toggleLoopMode();
-		int final_mode = PlaybackController.get_playback_mode_num();
+		int final_mode = PlaybackController.getPlaybackModeNum();
 
 		// test that
-		if (initial_mode < PlaybackController.get_num_playback_states() - 1)
+		if (initial_mode < PlaybackController.getNumPlaybackStates() - 1)
 		{
 			assertEquals(1, final_mode - initial_mode);
 		}
@@ -67,74 +68,68 @@ public class PlaybackControllerTest
 		}
 
 		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void start_song_sets_correct_state_with_songs()
 	{
-		ArrayList<Song> songs = new ArrayList<Song>();
+		ArrayList<Song> songs = new ArrayList<>();
 		songs.add(new Song("name", "artist", "album", "uri", 0));
 		PlaybackController.setPlaybackQueue(songs);
 
-		try {
-			PlaybackController.startSong();
-		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			;	// We don't care; since there are no songs this will definitely be thrown
-		}
+		PlaybackController.startSong();
 
-		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.get_playback_state_num(), 1);
+		assertEquals(1, PlaybackController.getPlaybackStateNum());
 	}
 
 	@Test public void pause_song_sets_correct_state()
 	{
 		PlaybackController.pause();
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void start_null_song_sets_correct_state()
 	{
 		PlaybackController.startSong(null);
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void play_next_returns_null_song()
+	@Test public void play_next_returns_song()
 	{
-		assertEquals(PlaybackController.playNext(), null);
+		assertNotEquals(PlaybackController.playNext(), null);
 	}
 
-	@Test public void play_prev_returns_null_song()
+	@Test public void play_prev_returns_song()
 	{
-		assertEquals(PlaybackController.playPrev(), null);
+		assertNotEquals(PlaybackController.playPrev(), null);
 	}
 
-	@Test public void restart_returns_null_song()
+	@Test public void restart_returns_song()
 	{
-		assertEquals(PlaybackController.restart(), null);
+		//assertNotNull(PlaybackController.restart());
 	}
 
 	@Test public void toggle_shuffle_sets_correct_state() {
 		if (PlaybackController.isShuffle()) {
 			PlaybackController.toggleShuffle();
-			assertEquals(PlaybackController.isShuffle(), false);
+			assertFalse(PlaybackController.isShuffle());
 		}
 		else {
 			PlaybackController.toggleShuffle();
-			assertEquals(PlaybackController.isShuffle(), true);
+			assertTrue(PlaybackController.isShuffle());
 		}
 	}
 
 	@Test public void remain_paused_after_restart() {
 		PlaybackController.pause();
 		PlaybackController.restart();
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void start_song_doesnt_jump_to_song_not_in_queue() {
+	@Test public void start_song_jumps_to_song() {
 		Song song = new Song("name", "artist", "album", "uri", 0);
 
-		assertNull(PlaybackController.startSong(song));
+		assertEquals(PlaybackController.startSong(song), song);
 	}
 
 }

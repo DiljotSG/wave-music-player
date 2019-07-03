@@ -160,4 +160,9 @@ public class PlaybackQueue
 
 		return jumpIndex(index);
 	}
+
+	public boolean hasSongs() {
+		System.out.println(playbackQueue.size());
+		return playbackQueue.size() > 0;
+	}
 }

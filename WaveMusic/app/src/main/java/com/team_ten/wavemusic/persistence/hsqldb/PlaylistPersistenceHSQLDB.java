@@ -46,7 +46,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		{
 			final PreparedStatement
 					st
-					= c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = '?'");
+					= c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = ?");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();
@@ -69,7 +69,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO PLAYLIST_SONGS VALUES('?', '?', '?')");
+					"INSERT INTO PLAYLIST_SONGS VALUES(?, ?, ?)");
 			st.setString(1, song.getURI());
 			st.setString(2, playlistName);
 			st.setInt(3, getPlaylistLength(playlistName));
@@ -95,7 +95,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -110,7 +110,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"DELETE FROM PLAYLIST_SONGS WHERE URI = '?' AND PLAYLIST = '?'");
+					"DELETE FROM PLAYLIST_SONGS WHERE URI = ? AND PLAYLIST = ?");
 			st.setString(1, song.getURI());
 			st.setString(1, playlistName);
 
@@ -120,7 +120,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 	}
 
@@ -148,7 +148,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -167,7 +167,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		{
 			final PreparedStatement st = c.prepareStatement(
 					"SELECT * FROM SONGS WHERE URI = (SELECT URI FROM PLAYLIST_SONGS WHERE " +
-					"PLAYLIST_SONGS.NAME = '?')");
+					"PLAYLIST_SONGS.NAME = ?)");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -181,7 +181,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -199,7 +199,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = '?'");
+					"SELECT COUNT (URI) FROM PLAYLIST_SONGS WHERE NAME = ?");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -209,7 +209,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		}
 		catch (final SQLException e)
 		{
-			throw new PersistenceException(e);
+			throw wrapException(e);
 		}
 
 		return result;
@@ -224,5 +224,17 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		final String albumName = rs.getString("ALBUM");
 		final int playCount = rs.getInt("PLAY_COUNT");
 		return new Song(songName, artistName, albumName, songUri, playCount);
+	}
+
+	private WaveDBPersistenceException wrapException(SQLException e)
+	{
+		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
+		if(e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
+		{
+			return new WaveDBIntegrityConstraintException(e);
+		} else
+		{
+			return new WaveDBPersistenceException(e);
+		}
 	}
 }

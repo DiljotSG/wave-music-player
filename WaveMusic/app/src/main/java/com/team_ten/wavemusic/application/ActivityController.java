@@ -4,24 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import com.team_ten.wavemusic.logic.AccessLikes;
+import com.team_ten.wavemusic.logic.AccessPlaylist;
+import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.persistence.hsqldb.WaveDBIntegrityConstraintException;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
 import com.team_ten.wavemusic.presentation.SelectSongsActivity;
 import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
-import com.team_ten.wavemusic.logic.AccessLikes;
-import com.team_ten.wavemusic.logic.AccessSong;
-import com.team_ten.wavemusic.logic.AccessPlaylist;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	//	// Instance variables.
+	// Instance variables.
 	private static AccessSong accessSong;
 	private static AccessPlaylist accessPlaylist;
 	private static AccessLikes accessLikes;
@@ -37,9 +38,16 @@ public class ActivityController implements Serializable
 		MusicDirectoryManager scanner = new MusicDirectoryManager();
 		while (scanner.hasNext())
 		{
-			Log.v("test", "test");
 			Song currentSong = scanner.getNextSong();
-			accessSong.addSong(currentSong);
+
+			try
+			{
+				accessSong.addSong(currentSong);
+			}
+			catch (WaveDBIntegrityConstraintException e)
+			{
+				Log.v("Dup", "Duplicate song attempted to be added to library");
+			}
 		}
 	}
 

@@ -25,12 +25,12 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/addSongs_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">
                 <ImageView
-                    android:id="@+id/addSongs_button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"

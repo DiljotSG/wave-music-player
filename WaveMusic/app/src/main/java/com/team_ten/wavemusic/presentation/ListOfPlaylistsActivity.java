@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Class name: ListOfPlaylistsActivity
  * Purpose: An activity to display a list of playlists.
  */
-public class ListOfPlaylistsActivity extends AppCompatActivity
+public class ListOfPlaylistsActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private ArrayList<String> stringList;
@@ -31,8 +31,7 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lists_of_playlist);
-
-
+		createMusicControls();
 		getSupportActionBar().setTitle("Playlists");
 	}
 

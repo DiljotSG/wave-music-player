@@ -18,6 +18,7 @@ import android.widget.ListView;
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
+import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
@@ -180,6 +181,7 @@ public class ListOfSongsFragment extends Fragment
 															   selectedSong,
 															   selectedSong.getName(),
 															   selectedSong.getURI());
+					PlaybackController.setPlaybackQueue(songList);
 				}
 			});
 		}

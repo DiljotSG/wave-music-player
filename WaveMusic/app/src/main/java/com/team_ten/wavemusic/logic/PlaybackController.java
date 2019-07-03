@@ -107,7 +107,7 @@ public class PlaybackController
 	 * @return an integer representation of the number of available playback modes.
 	 */
 
-	public static int get_num_playback_states()
+	public static int getNumPlaybackStates()
 	{
 		return PlaybackMode.values().length;
 	}

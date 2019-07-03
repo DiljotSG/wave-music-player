@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.tests.logic.stubs;
+package com.team_ten.wavemusic.persistence.stubs;
 
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.ILikesPersistence;

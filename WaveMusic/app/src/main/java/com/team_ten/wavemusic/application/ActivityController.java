@@ -2,16 +2,15 @@ package com.team_ten.wavemusic.application;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
+import android.view.View;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.AccessPlaylist;
 import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.logic.MusicDirectoryManager;
-import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.hsqldb.WaveDBIntegrityConstraintException;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 
 public class ActivityController implements Serializable
 {
-	// Instance variables.
+	// Instance variables
 	private static AccessSong accessSong;
 	private static AccessPlaylist accessPlaylist;
 	private static AccessLikes accessLikes;
@@ -33,7 +32,7 @@ public class ActivityController implements Serializable
 	/**
 	 * Builds a database representing the user's library given a database.
 	 */
-	public static void buildUserLibrary()
+	public static void buildUserLibrary(final MainMusicActivity mainMusicActivity)
 	{
 		accessSong = new AccessSong();
 		accessPlaylist = new AccessPlaylist();
@@ -42,20 +41,23 @@ public class ActivityController implements Serializable
 		while (scanner.hasNext())
 		{
 			Song currentSong = scanner.getNextSong();
-
-			try
-			{
-				accessSong.addSong(currentSong);
-			}
-			catch (WaveDBIntegrityConstraintException e)
-			{
-				Log.v("Dup", "Duplicate song attempted to be added to library");
-			}
+			accessSong.addSong(currentSong);
 		}
+
+		// Remove the loading screen on the UI thread (can't be done from the background).
+		mainMusicActivity.runOnUiThread(new Runnable()
+		{
+			@Override public void run()
+			{
+				mainMusicActivity.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+				mainMusicActivity.showAllButtons();
+			}
+		});
 	}
 
 	/**
 	 * Getter for accessSong.
+	 *
 	 * @return accessSong
 	 */
 	public static AccessSong getAccessSong()
@@ -65,6 +67,7 @@ public class ActivityController implements Serializable
 
 	/**
 	 * Getter for accessPlaylist.
+	 *
 	 * @return accessPlaylist
 	 */
 	public static AccessPlaylist getAccessPlaylist()
@@ -74,6 +77,7 @@ public class ActivityController implements Serializable
 
 	/**
 	 * Getter for accessPlaylist.
+	 *
 	 * @return accessPlaylist
 	 */
 	public static AccessLikes getAccessLikes()
@@ -92,7 +96,7 @@ public class ActivityController implements Serializable
 	public static void startListActivity(
 			final Activity callerActivity, final ListActivity.TypeOfRetrieve typeOfRetrieve)
 	{
-		// Build the view on the UI thread (can't be done from the background).
+		// Build the view on the UI thread
 		callerActivity.runOnUiThread(new Runnable()
 		{
 			@Override public void run()
@@ -161,16 +165,6 @@ public class ActivityController implements Serializable
 	{
 		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
 		intent.putExtra("song", song);
-		callerActivity.startActivity(intent);
-	}
-
-	/**
-	 * Starts a MainActivity
-	 */
-	public static void startMainActivity(
-			final Activity callerActivity)
-	{
-		Intent intent = new Intent(callerActivity, MainMusicActivity.class);
 		callerActivity.startActivity(intent);
 	}
 

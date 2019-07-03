@@ -13,12 +13,11 @@ public class AccessSong implements ISongPersistence, Serializable
 
 	public AccessSong()
 	{
-		songPersistence = Services.getSongPersistence();
+		this.songPersistence = Services.getSongPersistence();
 	}
 
 	public AccessSong(final ISongPersistence songPersistence)
 	{
-		this();
 		this.songPersistence = songPersistence;
 	}
 

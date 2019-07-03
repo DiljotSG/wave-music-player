@@ -14,22 +14,19 @@
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.SinglePlaylistActivity"></activity>
         <activity android:name=".presentation.SelectSongsActivity" />
-        <activity
-            android:name=".presentation.LaunchActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".presentation.ListOfPlaylistsActivity" />
         <activity android:name=".presentation.SearchActivity" />
         <activity android:name=".presentation.ListActivity" />
         <activity
             android:name=".presentation.NowPlayingMusicActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".presentation.MainMusicActivity" />
+        <activity android:name=".presentation.MainMusicActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

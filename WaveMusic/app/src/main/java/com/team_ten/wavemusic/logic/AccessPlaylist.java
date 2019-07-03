@@ -18,6 +18,7 @@ public class AccessPlaylist implements IPlaylistPersistence, Serializable
 
 	public AccessPlaylist(final IPlaylistPersistence playlistPersistence)
 	{
+		this();
 		this.playlistPersistence = playlistPersistence;
 	}
 

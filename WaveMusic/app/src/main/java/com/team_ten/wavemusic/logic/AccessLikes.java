@@ -18,6 +18,7 @@ public class AccessLikes implements ILikesPersistence, Serializable
 
 	public AccessLikes(final ILikesPersistence likesPersistence)
 	{
+		this();
 		this.likesPersistence = likesPersistence;
 	}
 

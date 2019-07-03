@@ -18,6 +18,7 @@ public class AccessSong implements ISongPersistence, Serializable
 
 	public AccessSong(final ISongPersistence songPersistence)
 	{
+		this();
 		this.songPersistence = songPersistence;
 	}
 

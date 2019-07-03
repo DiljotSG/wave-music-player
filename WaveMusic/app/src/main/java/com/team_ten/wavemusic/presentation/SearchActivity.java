@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity
 	private ListView listView;
 	private ArrayList<Song> results;
 	private ArrayList<Song> allSongs;
-	private ActivityController activityController;
+	private ActivityController ActivityController;
 	private ProgressBar loadingPanel;
 
 	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
@@ -53,8 +53,7 @@ public class SearchActivity extends AppCompatActivity
 		results = new ArrayList<Song>();
 
 		allSongs = Library.getFullLibrary();
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
+
 	}
 
 	/**
@@ -70,7 +69,7 @@ public class SearchActivity extends AppCompatActivity
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
 				Song selectedSong = results.get(position);
-				activityController.startNowPlayingActivity(SearchActivity.this,
+				ActivityController.startNowPlayingActivity(SearchActivity.this,
 														   selectedSong,
 														   selectedSong.getName(),
 														   selectedSong.getURI());

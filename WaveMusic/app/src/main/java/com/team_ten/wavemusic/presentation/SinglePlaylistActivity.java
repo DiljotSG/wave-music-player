@@ -18,7 +18,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
-	private ActivityController activityController;
+	private ActivityController ActivityController;
 	private String nameOfPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
@@ -64,7 +64,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 			{
 				@Override public void run()
 				{
-					activityController.startListActivity(SinglePlaylistActivity.this,
+					ActivityController.startListActivity(SinglePlaylistActivity.this,
 														 ListActivity.TypeOfRetrieve.SEARCH);
 				}
 			}).start();
@@ -77,8 +77,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
+
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 
 		songList = Library.getCurLibrary();
@@ -127,7 +126,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		{
 			@Override public void onClick(View v)
 			{
-				activityController.startSelectSongsActivity(SinglePlaylistActivity.this,
+				ActivityController.startSelectSongsActivity(SinglePlaylistActivity.this,
 															nameOfPlaylist,
 															false);
 			}

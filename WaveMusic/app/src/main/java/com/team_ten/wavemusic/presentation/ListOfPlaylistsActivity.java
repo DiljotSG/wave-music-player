@@ -143,7 +143,7 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 				{
 					@Override public void onClick(DialogInterface dialog, int which)
 					{
-						ActivityController.addPlaylist(editText.getText().toString());
+						ActivityController.getAccessPlaylist().addPlaylist(editText.getText().toString());
 
 						ActivityController.startSelectSongsActivity(ListOfPlaylistsActivity.this,
 																	editText.getText().toString(),

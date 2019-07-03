@@ -26,7 +26,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	// Instance variables
 	private ArrayList<Song> songList;    // the list of songs to be displayed in this Activity.
 	private ArrayList<String> stringList;
-	private ActivityController activityController;
+	private ActivityController ActivityController;
 	private ListOfSongsFragment listFragment;
 	private String typeOfRetrieve;
 
@@ -74,7 +74,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			{
 				@Override public void run()
 				{
-					activityController.startListActivity(ListActivity.this,
+					ActivityController.startListActivity(ListActivity.this,
 														 ListActivity.TypeOfRetrieve.SEARCH);
 				}
 			}).start();
@@ -114,9 +114,8 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	 */
 	private void initializeInstanceVariables()
 	{
-		// Get the activityController and songList from Intent.
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
+		// Get the ActivityController and songList from Intent.
+
 		typeOfRetrieve = getIntent().getStringExtra("TypeOfRetrieve");
 
 		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.MY_LIBRARY.toString()) ||

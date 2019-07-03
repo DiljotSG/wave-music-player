@@ -35,22 +35,25 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	 */
 	public void addSong(Song theSong)
 	{
-		try (final Connection c = connection())
+		if(getSong(theSong.getURI()) == null)
 		{
-			final PreparedStatement st = c.prepareStatement(
-					"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
-			st.setString(1, theSong.getURI());
-			st.setString(2, theSong.getArtist());
-			st.setString(3, theSong.getName());
-			st.setString(4, theSong.getAlbum());
-			st.setInt(5, theSong.getPlayCount());
+			try (final Connection c = connection())
+			{
+				final PreparedStatement st = c.prepareStatement(
+						"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
+				st.setString(1, theSong.getURI());
+				st.setString(2, theSong.getArtist());
+				st.setString(3, theSong.getName());
+				st.setString(4, theSong.getAlbum());
+				st.setInt(5, theSong.getPlayCount());
 
-			st.executeUpdate();
-			st.close();
-		}
-		catch (final SQLException e)
-		{
-			throw wrapException(e);
+				st.executeUpdate();
+				st.close();
+			}
+			catch (final SQLException e)
+			{
+				throw wrapException(e);
+			}
 		}
 	}
 
@@ -94,8 +97,12 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 			final ResultSet rs = st.executeQuery();
 
-			// The size of the result set should be 1.
-			song = fromResultSet(rs);
+			if(rs.next())
+			{
+				// The size of the result set should be 1.
+				song = fromResultSet(rs);
+			}
+
 			rs.close();
 			st.close();
 

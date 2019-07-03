@@ -2,6 +2,7 @@ package com.team_ten.wavemusic.tests.logic;
 
 import android.media.MediaPlayer;
 import android.media.AudioManager;
+import android.provider.MediaStore;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
@@ -12,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -134,4 +136,5 @@ public class PlaybackControllerTest
 
 		assertNull(PlaybackController.startSong(song));
 	}
+
 }

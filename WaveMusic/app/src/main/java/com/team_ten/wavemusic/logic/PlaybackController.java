@@ -93,7 +93,7 @@ public class PlaybackController
 	 */
 	public static int get_playback_mode_num()
 	{
-		return playbackMode.ordinal();
+		return getPlaybackMode().ordinal();
 	}
 
 	/**

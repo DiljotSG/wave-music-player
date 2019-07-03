@@ -11,7 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -82,7 +81,7 @@ public class PlaybackControllerTest
 		}
 
 		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.getPlaybackStateNum(), 1);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void pause_song_sets_correct_state()
@@ -126,7 +125,7 @@ public class PlaybackControllerTest
 	@Test public void remain_paused_after_restart() {
 		PlaybackController.pause();
 		PlaybackController.restart();
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void start_song_doesnt_jump_to_song_not_in_queue() {

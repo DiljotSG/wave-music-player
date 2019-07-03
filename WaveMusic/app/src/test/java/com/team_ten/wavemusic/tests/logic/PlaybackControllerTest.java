@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.tests.logic;
 
 import android.media.MediaPlayer;
-import android.media.AudioManager;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
@@ -41,9 +40,9 @@ public class PlaybackControllerTest
 
 	@Test public void loopmode_toggle_moves_to_correct_state()
 	{
-		int initial_mode = PlaybackController.get_playback_mode_num();
+		int initial_mode = PlaybackController.getPlaybackModeNum();
 		PlaybackController.toggleLoopMode();
-		int final_mode = PlaybackController.get_playback_mode_num();
+		int final_mode = PlaybackController.getPlaybackModeNum();
 
 		// test that
 		if (initial_mode < PlaybackController.get_num_playback_states() - 1)
@@ -64,7 +63,7 @@ public class PlaybackControllerTest
 		}
 
 		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void start_song_sets_correct_state_with_songs()
@@ -81,19 +80,19 @@ public class PlaybackControllerTest
 		}
 
 		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.get_playback_state_num(), 1);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 1);
 	}
 
 	@Test public void pause_song_sets_correct_state()
 	{
 		PlaybackController.pause();
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void start_null_song_sets_correct_state()
 	{
 		PlaybackController.startSong(null);
-		assertEquals(PlaybackController.get_playback_state_num(), 0);
+		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
 	@Test public void play_next_returns_null_song()

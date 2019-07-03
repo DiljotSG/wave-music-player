@@ -54,12 +54,13 @@ public class PlaybackController
 			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
 				public void onCompletion(MediaPlayer mediaPlayer) {
-					PlaybackMode mode = PlaybackController.getPlaybackMode();
-					if (mode == PlaybackMode.LOOP_ONE) {
-						PlaybackController.restart();
-					}
-					else {
-						PlaybackController.playNext();
+					// If the playback is not paused
+					if (PlaybackController.getPlaybackStateNum() > 0) {
+						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE) {
+							PlaybackController.restart();
+						} else {
+							PlaybackController.playNext();
+						}
 					}
 				}
 			});
@@ -67,14 +68,18 @@ public class PlaybackController
 		}
 	}
 
+	public static PlaybackState getPlaybackState() {
+		return state;
+	}
+
 	/**
 	 * Returns the playback state as an integer; intended mainly for unit testing.
 	 *
 	 * @return an integer representation of the current playback mode.
 	 */
-	public static int get_playback_state_num()
+	public static int getPlaybackStateNum()
 	{
-		return state.ordinal();
+		return getPlaybackState().ordinal();
 	}
 
 	/**
@@ -91,7 +96,7 @@ public class PlaybackController
 	 *
 	 * @return an integer representation of the current playback mode.
 	 */
-	public static int get_playback_mode_num()
+	public static int getPlaybackModeNum()
 	{
 		return playbackMode.ordinal();
 	}
@@ -121,22 +126,21 @@ public class PlaybackController
 	 */
 	public static Song startSong()
 	{
-		if (playbackQueue.getCurrentSong() != null)
-		{
-			mediaPlayer.start();
-		}
-		else
-		{
-			try {
-				PlaybackController.startSong(playbackQueue.jumpFirst());
-			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("[!] Could not start song; index out of bounds.");
-				throw e;
+		if (playbackQueue.hasSongs()) {
+			if (playbackQueue.getCurrentSong() != null) {
+				mediaPlayer.start();
+			} else {
+				try {
+					PlaybackController.startSong(playbackQueue.jumpFirst());
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("[!] Could not start song; index out of bounds.");
+					throw e;
+				}
+
 			}
 
+			state = PlaybackState.PLAYING;
 		}
-
-		state = PlaybackState.PLAYING;
 		return getCurrentSong();
 	}
 
@@ -220,19 +224,21 @@ public class PlaybackController
 	 */
 	public static Song playNext()
 	{
-		boolean was_paused = state == PlaybackState.PAUSED;
+		if (playbackQueue.hasSongs()) {
+			boolean was_paused = state == PlaybackState.PAUSED;
 
-		if (shuffle)
-			startSong(playbackQueue.jumpRandom());
-		else
-			startSong(playbackQueue.jumpNext());
+			if (shuffle)
+				startSong(playbackQueue.jumpRandom());
+			else
+				startSong(playbackQueue.jumpNext());
 
-		if (was_paused)
-		{
-			pause();
+			if (was_paused) {
+				pause();
+			}
 		}
 
 		return getCurrentSong();
+
 	}
 
 	/**
@@ -240,13 +246,14 @@ public class PlaybackController
 	 */
 	public static Song playPrev()
 	{
-		boolean was_paused = state == PlaybackState.PAUSED;
+		if (playbackQueue.hasSongs()) {
+			boolean was_paused = state == PlaybackState.PAUSED;
 
-		startSong(playbackQueue.jumpPrev());
+			startSong(playbackQueue.jumpPrev());
 
-		if (was_paused)
-		{
-			pause();
+			if (was_paused) {
+				pause();
+			}
 		}
 
 		return getCurrentSong();

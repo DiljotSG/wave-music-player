@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.util.ArrayList;
@@ -35,6 +34,9 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	@Override protected void onResume()
 	{
 		super.onResume();
+		initializeInstanceVariables();
+		configurateFragment();
+		configurateAddSongsButton();
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
@@ -78,7 +80,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 
-		songList = Library.getCurSongLibrary();
+		songList = ActivityController.getAccessPlaylist().getSongsFromPlaylist(nameOfPlaylist);
 
 		// get the fragment to display listview.
 		listOfSongsFragment

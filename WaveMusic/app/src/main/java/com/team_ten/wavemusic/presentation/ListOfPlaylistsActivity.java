@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.objects.Library;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,9 +32,7 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lists_of_playlist);
 
-		initializeInstanceVariables();
-		configurateFragment();
-		configurateNewPlaylistButton();
+
 		getSupportActionBar().setTitle("Playlists");
 	}
 
@@ -42,6 +42,9 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 	@Override protected void onResume()
 	{
 		super.onResume();
+		initializeInstanceVariables();
+		configurateFragment();
+		configurateNewPlaylistButton();
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
 
@@ -82,13 +85,10 @@ public class ListOfPlaylistsActivity extends AppCompatActivity
 	private void initializeInstanceVariables()
 	{
 		// Get the list of songs and check that the list is of type ArrayList
-		Serializable listStrings = getIntent().getSerializableExtra("listStrings");
-		stringList = null;
-		if (listStrings instanceof ArrayList)
-		{
-			stringList = (ArrayList<String>) listStrings;
-		}
 
+		//stringList = Library.getCurStringLibrary();
+		stringList = ActivityController.getAccessPlaylist().getAllPlaylists();
+		Log.v("qwe", "" + stringList.size());
 		// get the Fragment to which the listview belongs.
 		listFragment
 				=

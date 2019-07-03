@@ -147,16 +147,6 @@ public class ActivityController implements Serializable
 	}
 
 	/**
-	 * Return the length of the playlist (number of songs)
-	 *
-	 * @param playlistName the playlist to add the song to
-	 */
-	public static int getPlaylistLength(String playlistName)
-	{
-		return accessPlaylist.getPlaylistLength(playlistName);
-	}
-
-	/**
 	 * Adds a Song to the DB.
 	 *
 	 * @param theSong The song to add.

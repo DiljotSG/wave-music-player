@@ -49,11 +49,4 @@ public interface IPlaylistPersistence
 	 * @return An array list of playlist names.
 	 */
 	public ArrayList<Song> getSongsFromPlaylist(String playlistName);
-
-	/**
-	 * Return the length of the playlist (number of songs)
-	 *
-	 * @param playlistName the playlist to add the song to
-	 */
-	public int getPlaylistLength(String playlistName);
 }

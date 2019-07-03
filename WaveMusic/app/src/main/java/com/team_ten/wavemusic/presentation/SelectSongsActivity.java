@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.Serializable;
@@ -46,15 +47,7 @@ public class SelectSongsActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		Serializable listSongs = getIntent().getSerializableExtra("listSongs");
-
-		// Check that the list is of type ArrayList
-		songList = null;
-		if (listSongs instanceof ArrayList && !((ArrayList) listSongs).isEmpty() &&
-			((ArrayList) listSongs).get(0) instanceof Song)
-		{
-			songList = (ArrayList<Song>) listSongs;
-		}
+		songList = Library.getCurLibrary();
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 		activityController = (ActivityController) getIntent().getSerializableExtra(

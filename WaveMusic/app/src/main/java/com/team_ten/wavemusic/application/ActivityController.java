@@ -8,6 +8,7 @@ import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.AccessPlaylist;
 import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.logic.PlaybackController;
+import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.hsqldb.WaveDBIntegrityConstraintException;
 import com.team_ten.wavemusic.presentation.ListActivity;
@@ -264,7 +265,7 @@ public class ActivityController implements Serializable
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> songList = accessSong.getAllSongs();
-					intent.putExtra("listSongs", songList);
+					Library.setCurLibrary(songList);
 					PlaybackController.setPlaybackQueue(songList);
 				}
 				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
@@ -289,7 +290,7 @@ public class ActivityController implements Serializable
 				{
 					intent = new Intent(callerActivity, ListActivity.class);
 					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
-					intent.putExtra("listSongs", likedSongsList);
+					Library.setCurLibrary(likedSongsList);
 					PlaybackController.setPlaybackQueue(likedSongsList);
 				}
 
@@ -338,9 +339,8 @@ public class ActivityController implements Serializable
 			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
 	{
 		ArrayList<Song> songList = accessSong.getAllSongs();
-
+		Library.setCurLibrary(songList);
 		Intent intent = new Intent(callerActivity, SelectSongsActivity.class);
-		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
 		intent.putExtra("isCreateNewPlaylist", isCreateNewPlaylist);
 		callerActivity.startActivity(intent);
@@ -356,9 +356,9 @@ public class ActivityController implements Serializable
 			final Activity callerActivity, String nameOfPlaylist)
 	{
 		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
+		Library.setCurLibrary(songList);
 
 		Intent intent = new Intent(callerActivity, SinglePlaylistActivity.class);
-		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", nameOfPlaylist);
 		callerActivity.startActivity(intent);
 	}
@@ -385,8 +385,9 @@ public class ActivityController implements Serializable
 			songList = accessSong.getSongsFromArtist(contentForRetrieve);
 		}
 
+		Library.setCurLibrary(songList);
+
 		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY);
-		intent.putExtra("listSongs", songList);
 		intent.putExtra("nameOfPlaylist", contentForRetrieve);
 		callerActivity.startActivity(intent);
 	}

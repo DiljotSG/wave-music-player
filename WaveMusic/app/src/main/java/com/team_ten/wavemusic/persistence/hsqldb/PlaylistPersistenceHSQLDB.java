@@ -109,7 +109,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 			final PreparedStatement st = c.prepareStatement(
 					"DELETE FROM PLAYLIST_SONGS WHERE URI = ? AND NAME = ?");
 			st.setString(1, song.getURI());
-			st.setString(1, playlistName);
+			st.setString(2, playlistName);
 
 			st.executeUpdate();
 			st.close();

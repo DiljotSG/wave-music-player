@@ -88,6 +88,11 @@ public class ListOfSongsFragment extends Fragment
 		}
 	}
 
+	/**
+	 * Create the view with context
+	 *
+	 * @return the view
+	 */
 	@Override public View onCreateView(
 			LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -96,11 +101,20 @@ public class ListOfSongsFragment extends Fragment
 		return view;
 	}
 
+	/**
+	 * Populate the view
+	 *
+	 */
 	@Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
 	{
 		listView = (ListView) getView().findViewById(R.id.list_songs);
 		super.onViewCreated(view, savedInstanceState);
 	}
+
+	/**
+	 * Set all handlers for the view
+	 *
+	 */
 
 	@Override public void onStart()
 	{
@@ -130,6 +144,10 @@ public class ListOfSongsFragment extends Fragment
 		super.onStart();
 	}
 
+	/**
+	 * Handler for resuming the activity
+	 *
+	 */
 	@Override public void onResume()
 	{
 		super.onResume();
@@ -140,6 +158,11 @@ public class ListOfSongsFragment extends Fragment
 		// Resume the position of the listview after each time the screen is rotated.
 		listView.setSelection(position);
 	}
+
+	/**
+	 * Save necessary information for state saving
+	 *
+	 */
 
 	@Override public void onSaveInstanceState(@NonNull Bundle outState)
 	{

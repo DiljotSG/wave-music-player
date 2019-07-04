@@ -279,13 +279,21 @@ public class MainMusicActivity extends CommonMusicActivity
 		});
 	}
 
+	/**
+	 *  Finalize the options menu
+	 *
+	 */
 	@Override public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	// handle button activities
+	/**
+	 * Handler for item selection.
+	 *
+	 * @return if the item is selected
+	 */
 	@Override public boolean onOptionsItemSelected(MenuItem item)
 	{
 		int id = item.getItemId();

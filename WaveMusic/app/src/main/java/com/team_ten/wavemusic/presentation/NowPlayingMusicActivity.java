@@ -50,6 +50,10 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 	}
 
+	/**
+	 * Set listeners and values of seek bars
+	 *
+	 */
 	private void initSeekBars() {
 		progressBar = findViewById(R.id.seekBarForMusic);
 		progressBar.setMax(100);
@@ -79,6 +83,10 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		progressBar.setVisibility(View.INVISIBLE);
 	}
 
+	/**
+	 * Set listeners and events for the Like button
+	 *
+	 */
 	private void initLike() {
 		final ImageView img = findViewById(R.id.likeImg);
 

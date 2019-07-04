@@ -157,7 +157,7 @@ The following user stories were moved to the next iteration:
 
 ### Brief Description - 2
 
-In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, one of which is with categories. On launch, the app presents the user with five categories, each of which are listed below. The second way we allow the user to browse their library, is by offering a search view. The search view allows the user to search by song name, artist or album.
+In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, one of which is with categories. On launch, the app presents the user with five categories, each of which are listed below. The second way we allow the user to browse their library is by offering a search view. The search view allows the user to search by song name, artist or album.
 
 Categories:
 *  **My Library:** Allows the user to view all songs in their library.
@@ -168,7 +168,7 @@ Categories:
 
 ### Implementation
 
-This iteration also offers the user a NowPlayingView that includes a volume control slider and a like/unlike button. The behaviour of the like button is implemented, however, the button does not change to signifiy the change in liked song state. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view sometimes leading to the same track being played consecutively (as the included library is tiny).
+This iteration also offers the user a NowPlayingView that includes a volume control slider and a like/unlike button. The behaviour of the like button is implemented, however, the button does not change to signify the change in liked song state. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view sometimes leading to the same track being played consecutively (as the included library is tiny).
 
 ### Known Issues
 
@@ -176,7 +176,7 @@ This iteration also offers the user a NowPlayingView that includes a volume cont
 
 ### Incomplete Features
 
-The following features were not completed this iteration due to the user stories listed below that were not assigned for this iteration. The assigned user stories [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1 and [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23) from iteration 2 where not completed this iteration and will be moved to iteration 3.
+The following features were not completed this iteration due to the user stories listed below that were not assigned for this iteration. The assigned user stories [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1 and [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23) from iteration 2 were not completed this iteration and will be moved to iteration 3.
 
 * Sort Music
   * [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)

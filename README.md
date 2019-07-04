@@ -168,7 +168,7 @@ Categories:
 
 ### Implementation
 
-~~There are several features that we weren't able to implement in iteration 2, such as allowing the user to scrub through songs. These features weren't possible to implement this iteration due to time constraints, but all underlying functionality for them do exist in the database classes (if it needs to access the database). These UI elements are visible, but are *not-functional*. We have moved these features to iteration 3.~~ Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view.
+This iteration also offers the user a NowPlayingView that includes a volume control slider and a like/unlike button. The behaviour of the like button is implemented, however, the button does not change to signifiy the change in liked song state. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view, this sometimes leads to the same track being played again (as the included library is tiny). When the current track is finished playing, the activity name does not update to reflect the new track that is playing.
 
 ### Known Issues
 

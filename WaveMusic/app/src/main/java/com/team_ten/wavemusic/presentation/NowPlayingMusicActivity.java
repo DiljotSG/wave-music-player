@@ -1,16 +1,24 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.widget.SeekBar;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.PlaybackController;
+import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.Song;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
 	// Song currently being played.
 	private Song song;
+	private SeekBar progressBar;
+	private SeekBar volumeBar;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -18,6 +26,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_now_playing);
 
+		initSeekBars();
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
 		song = (Song) intent.getSerializableExtra("song");
@@ -32,6 +41,35 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		getSupportActionBar().setTitle(song.getName());
 		PlaybackController.startSong(song);
 		createMusicControls();
+
+
+	}
+
+	private void initSeekBars() {
+		progressBar = findViewById(R.id.seekBarForMusic);
+		progressBar.setMax(100);
+		volumeBar = findViewById(R.id.seekBarForVolume);
+		volumeBar.setMax(AppSettings.getMaxVolume());
+		volumeBar.setProgress(AppSettings.getVolume());
+
+		volumeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+		{
+			@Override
+			public void onStopTrackingTouch(SeekBar arg0)
+			{
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar arg0)
+			{
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar arg0, int progress, boolean arg2)
+			{
+				AppSettings.setVolume(progress);
+			}
+		});
 	}
 
 	/**

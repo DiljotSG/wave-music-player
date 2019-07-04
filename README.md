@@ -176,7 +176,7 @@ There are several features that we weren't able to implement in iteration 2, inc
 
 ### Incomplete Features
 
-The following features were not completed this iteration due to the listed user stories that were not completed. These user stories will be moved to the next iteration along with [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1.
+The following features were not completed this iteration due to the incompleted user stories listed below. These user stories will be moved to the next iteration along with [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1.
 
 * Sort Music
   * [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)

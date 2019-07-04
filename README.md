@@ -20,10 +20,14 @@ Develop branch pipeline status:
   - 1.2 - [Application Features](README.md/#application-features)
   - 1.3 - [Iteration 1 user stories](README.md/#iteration-1-user-stories)
 - 2 - [Documentation for Iteration 1](README.md/#documentation-for-iteration-1)
-  - 2.1 - [Brief Description](README.md#brief-description)
+  - 2.1 - [Brief Description - 1](README.md#brief-description-1)
   - 2.2 - [Application Architecture Document](README.md/#application-architecture-document)
   - 2.3 - [Contribution Guidelines](README.md/#contribution-guidelines)
   - 2.4 - [User stories moved to Iteration 2](README.md#user-stories-moved-to-iteration-2)
+- 3 - [Documentation for Iteration 2](README.md/#documentation-for-iteration-2)
+  - 3.1 - [Brief Description - 2](README.md#brief-description-2)
+  - 3.2 - [Implementation](README.md#implementation)
+  - 3.3 - [Known Issues](README.md#known-issues)
 
 ## Contributing Members
 <table>
@@ -121,7 +125,7 @@ User stories that *will be implemented* in **iteration 1**:
 
 ## Documentation for Iteration 1
 
-### Brief Description 
+### Brief Description - 1
 
 Upon starting the Wave Music Player Application, the user is presented with their music located in Android's default Music directory. The app will automatically scan this directory for songs, and display them to the user in the `MainActivity` for playback. There are several playback controls implemented in this iteration. The buttons and the are descriptions are listed below.
 
@@ -148,3 +152,24 @@ The application comes packaged with four sample tracks, these tracks will be ext
 The following user stories were moved to the next iteration:
 
 1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1).
+ 
+## Documentation for Iteration 2
+
+### Brief Description - 2
+
+In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, the first way is with categories. On launch, the app presents the user with 5 categories. The categories are listed below. The second way we allow the user to browse their library is by offering a search view.
+
+Categories:
+*  My Library   -   Allows the user to view all songs in their library.
+*  Playlists    -   Allows the user to manage their playlists, including creating new ones, and adding/removing songs from existing playlists.
+*  Artists      -   Allows the user to browse their entire library by Artist.
+*  Albums       -   Allows the user to browse their entire library by Album
+*  Liked Songs  -   Allows the user to browse the music they have liked in their library.
+
+### Implementation
+
+There are several features that we weren't able to implement in iteration 2, including liking songs, allowing the user to scrub through songs and adjusting the media volume through a slider. These features weren't possible to implement this iteration due to time constraints, but all underlying functionality for them do exist in the database classes (if it needs to access the database). These UI elements are visible, but are *not-functional*. We have moved these features to iteration 3. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view.
+
+### Known Issues
+
+- Creating a playlist with an already existing name allows you to add more songs to the already existing playlist.

@@ -157,7 +157,7 @@ The following user stories were moved to the next iteration:
 
 ### Brief Description - 2
 
-In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, the first way is with categories. On launch, the app presents the user with five categories each of which are listed below. The second way we allow the user to browse their library, is by offering a search view.
+In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, one of which is with categories. On launch, the app presents the user with five categories, each of which are listed below. The second way we allow the user to browse their library, is by offering a search view. The search view allows the user to search by song name, artist or album.
 
 Categories:
 *  **My Library:** Allows the user to view all songs in their library.
@@ -168,15 +168,15 @@ Categories:
 
 ### Implementation
 
-There are several features that we weren't able to implement in iteration 2, including liking songs, allowing the user to scrub through songs and adjusting the media volume through a slider. These features weren't possible to implement this iteration due to time constraints, but all underlying functionality for them do exist in the database classes (if it needs to access the database). These UI elements are visible, but are *not-functional*. We have moved these features to iteration 3. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view.
+This iteration also offers the user a NowPlayingView that includes a volume control slider and a like/unlike button. The behaviour of the like button is implemented, however, the button does not change to signifiy the change in liked song state. Additionally, it is important to note that the default behaviour of the application is to *shuffle* all music in the current view sometimes leading to the same track being played consecutively (as the included library is tiny).
 
 ### Known Issues
 
-- Creating a playlist with an already existing name allows you to add duplicate songs to the already existing playlist.
+- When a song is allowed to play to its end and the next song begins playing, the title text of the activity is not updated with the now playing song's title.
 
 ### Incomplete Features
 
-The following features were not completed this iteration due to the incompleted user stories listed below. These user stories will be moved to the next iteration along with [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1.
+The following features were not completed this iteration due to the user stories listed below that were not assigned for this iteration. The assigned user stories [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1 and [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23) from iteration 2 where not completed this iteration and will be moved to iteration 3.
 
 * Sort Music
   * [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)
@@ -185,6 +185,3 @@ The following features were not completed this iteration due to the incompleted 
   * [Fade between songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/21)
   * [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23)
   * [Choose playback location in song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/62)
-* "Like" a song
-  * ["Like" a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/61)
-  * ["Un-like" a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/60)

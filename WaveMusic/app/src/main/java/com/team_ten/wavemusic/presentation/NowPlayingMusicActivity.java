@@ -1,17 +1,19 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.content.Intent;
-import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.team_ten.wavemusic.R;
+import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.Song;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import static android.net.Uri.*;
 
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
@@ -26,7 +28,9 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_now_playing);
 
+
 		initSeekBars();
+		initLike();
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
 		song = (Song) intent.getSerializableExtra("song");
@@ -71,6 +75,25 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 			}
 		});
 	}
+
+	private void initLike() {
+		final ImageView img = findViewById(R.id.likeImg);
+
+		img.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				AccessLikes clickAccess = new AccessLikes();
+
+				if (clickAccess.getLikedSongs().contains(song)) {
+					clickAccess.unlikeSong(song);
+				}
+				else {
+					clickAccess.likeSong(song);
+				}
+			}
+		});
+
+	}
+
 
 	/**
 	 * Sets the title of the NowPlayingActivity after a song is skipped forward.

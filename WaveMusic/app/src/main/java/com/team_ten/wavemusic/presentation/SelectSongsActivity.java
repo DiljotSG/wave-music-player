@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ListView;
@@ -36,7 +35,6 @@ public class SelectSongsActivity extends CommonMusicActivity
 
 	/**
 	 * Response of the song activity on being resumed
-	 *
 	 */
 	@Override protected void onResume()
 	{
@@ -73,7 +71,9 @@ public class SelectSongsActivity extends CommonMusicActivity
 		{
 			// set necessary data into the fragment.
 			listOfSongsFragment.setSongList(songList);
-			listOfSongsFragment.setData(SelectSongsActivity.this, ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+			listOfSongsFragment.setData(
+					SelectSongsActivity.this,
+					ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 
 			// Since user need to multi-choose items, we set the choice mode to be "ListView
 			// .CHOICE_MODE_MULTIPLE".
@@ -112,7 +112,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 					}
 				}
 
-				for(Song song: selected_songs)
+				for (Song song : selected_songs)
 				{
 					ActivityController.getAccessPlaylist().addSongToPlaylist(song, nameOfPlaylist);
 				}

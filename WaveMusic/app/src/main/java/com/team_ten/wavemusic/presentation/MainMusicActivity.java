@@ -2,7 +2,6 @@ package com.team_ten.wavemusic.presentation;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -15,10 +14,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.team_ten.wavemusic.R;
+import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.application.Main;
 import com.team_ten.wavemusic.application.PermissionManager;
 import com.team_ten.wavemusic.application.SampleAssetManager;
-import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
@@ -33,6 +32,7 @@ public class MainMusicActivity extends CommonMusicActivity
 	// Instance variables
 	private SampleAssetManager sampleAssetManager;
 	private PermissionManager permissionManager;
+
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		// Default code on creation of an activity.
@@ -46,12 +46,15 @@ public class MainMusicActivity extends CommonMusicActivity
 		// We can't proceed until we have read permissions to set up the user's library.
 		// The app is useless until these permissions are granted so we just spin.
 		// The permissions are set asynchronously by a popup.
-		int readPerm = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);;
+		int readPerm = ContextCompat.checkSelfPermission(this,
+														 Manifest.permission.READ_EXTERNAL_STORAGE);
 		boolean readAccess = readPerm == PackageManager.PERMISSION_GRANTED;
 
-		while (!readAccess) {
+		while (!readAccess)
+		{
 			// Get the current permissions.
-			readPerm = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+			readPerm = ContextCompat.checkSelfPermission(this,
+														 Manifest.permission.READ_EXTERNAL_STORAGE);
 			readAccess = readPerm == PackageManager.PERMISSION_GRANTED;
 		}
 
@@ -280,8 +283,7 @@ public class MainMusicActivity extends CommonMusicActivity
 	}
 
 	/**
-	 *  Finalize the options menu
-	 *
+	 * Finalize the options menu
 	 */
 	@Override public boolean onCreateOptionsMenu(Menu menu)
 	{

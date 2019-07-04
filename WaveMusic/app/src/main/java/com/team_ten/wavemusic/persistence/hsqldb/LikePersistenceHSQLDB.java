@@ -114,10 +114,11 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 	private WaveDBPersistenceException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
-		if(e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
+		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
 			return new WaveDBIntegrityConstraintException(e);
-		} else
+		}
+		else
 		{
 			return new WaveDBPersistenceException(e);
 		}

@@ -70,7 +70,7 @@ public class SearchActivity extends CommonMusicActivity
 														   selectedSong,
 														   selectedSong.getName(),
 														   selectedSong.getURI());
-				ArrayList<Song> listWithOneSong= new ArrayList<Song>();
+				ArrayList<Song> listWithOneSong = new ArrayList<Song>();
 				listWithOneSong.add(selectedSong);
 				PlaybackController.setPlaybackQueue(listWithOneSong);
 			}
@@ -79,12 +79,14 @@ public class SearchActivity extends CommonMusicActivity
 	}
 
 	/**
-	*	Return whether or not a song should be included based on search text
-	*
-	*/
-	private boolean includedInSearch(Song song, String target) {
+	 * Return whether or not a song should be included based on search text
+	 */
+	private boolean includedInSearch(Song song, String target)
+	{
 		if (song.getName() == null)
+		{
 			return false;
+		}
 
 		boolean titleIncluded = song.getName().toLowerCase().contains(target.toLowerCase());
 		boolean artistIncluded = song.getArtist().toLowerCase().contains(target.toLowerCase());

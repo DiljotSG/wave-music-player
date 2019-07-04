@@ -37,12 +37,12 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	public void addSong(Song theSong)
 	{
 		// Populate the current library for faster duplicate checking
-		if(library == null)
+		if (library == null)
 		{
 			library = getAllSongs();
 		}
 
-		if(!library.contains(theSong))
+		if (!library.contains(theSong))
 		{
 			try (final Connection c = connection())
 			{
@@ -104,7 +104,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 			final ResultSet rs = st.executeQuery();
 
-			if(rs.next())
+			if (rs.next())
 			{
 				// The size of the result set should be 1.
 				song = fromResultSet(rs);
@@ -226,9 +226,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement
-					st
-					= c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = ?");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ALBUM = ?");
 			st.setString(1, albumName);
 
 			final ResultSet rs = st.executeQuery();
@@ -262,8 +260,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement(
-					"SELECT * FROM SONGS WHERE ARTIST = ?");
+			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ARTIST = " +
+															"?");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();
@@ -297,10 +295,11 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 	private WaveDBPersistenceException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
-		if(e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
+		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
 			return new WaveDBIntegrityConstraintException(e);
-		} else
+		}
+		else
 		{
 			return new WaveDBPersistenceException(e);
 		}

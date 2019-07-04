@@ -13,7 +13,7 @@ public class AccessPlaylist implements IPlaylistPersistence, Serializable
 
 	public AccessPlaylist()
 	{
-		playlistPersistence = Services.getPlaylistPersistence();
+		this.playlistPersistence = Services.getPlaylistPersistence();
 	}
 
 	public AccessPlaylist(final IPlaylistPersistence playlistPersistence)

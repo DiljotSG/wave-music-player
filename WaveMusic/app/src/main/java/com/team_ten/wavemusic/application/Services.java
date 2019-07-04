@@ -11,6 +11,11 @@ public class Services
 {
 	private static ISongPersistence SongPersistence = null;
 
+	/**
+	 * Return the accessor/mutator for the database Songs table
+	 *
+	 * @return songPersistence: A reference to the song persistence.
+	 */
 	public static synchronized ISongPersistence getSongPersistence()
 	{
 		if (SongPersistence == null)
@@ -22,6 +27,12 @@ public class Services
 	}
 
 	private static ILikesPersistence LikesPersistence = null;
+
+	/**
+	 * Return the accessor/mutator for the database Likes table
+	 *
+	 * @return likesPersistence: A reference to the likes persistence.
+	 */
 
 	public static synchronized ILikesPersistence getLikesPersistence()
 	{
@@ -35,6 +46,11 @@ public class Services
 
 	private static IPlaylistPersistence PlaylistPersistence = null;
 
+	/**
+	 * Return the accessor/mutator for the database Playlists table
+	 *
+	 * @return playlistPersistence: A reference to the playlist persistence.
+	 */
 	public static synchronized IPlaylistPersistence getPlaylistPersistence()
 	{
 		if (PlaylistPersistence == null)

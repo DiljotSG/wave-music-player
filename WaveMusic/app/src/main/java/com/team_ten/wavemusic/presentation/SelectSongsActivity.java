@@ -11,15 +11,13 @@ import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SelectSongsActivity extends AppCompatActivity
+public class SelectSongsActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
 	private String nameOfPlaylist;
-	private ActivityController activityController;
 	private boolean isCreateNewPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
@@ -31,9 +29,15 @@ public class SelectSongsActivity extends AppCompatActivity
 		initializeInstanceVariables();
 		configurateFragment();
 		configuratConfirmButton();
+		createMusicControls();
+
 		getSupportActionBar().setTitle("Add songs to a playlist");
 	}
 
+	/**
+	 * Response of the song activity on being resumed
+	 *
+	 */
 	@Override protected void onResume()
 	{
 		super.onResume();
@@ -47,11 +51,10 @@ public class SelectSongsActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		songList = Library.getCurLibrary();
+		songList = Library.getCurSongLibrary();
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
+
 		isCreateNewPlaylist = (Boolean) getIntent().getBooleanExtra("isCreateNewPlaylist", true);
 
 		// Fet get fragment to display listview.
@@ -111,12 +114,12 @@ public class SelectSongsActivity extends AppCompatActivity
 
 				for(Song song: selected_songs)
 				{
-					activityController.addSongToPlaylist(song, nameOfPlaylist);
+					ActivityController.getAccessPlaylist().addSongToPlaylist(song, nameOfPlaylist);
 				}
 
 				if (isCreateNewPlaylist)
 				{
-					activityController.startSinglePlaylistActivity(SelectSongsActivity.this,
+					ActivityController.startSinglePlaylistActivity(SelectSongsActivity.this,
 																   nameOfPlaylist);
 				}
 				SelectSongsActivity.this.finish();

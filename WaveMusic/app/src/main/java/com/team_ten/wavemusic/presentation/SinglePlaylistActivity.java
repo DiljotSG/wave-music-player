@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.presentation;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,17 +7,14 @@ import android.view.View;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SinglePlaylistActivity extends AppCompatActivity
+public class SinglePlaylistActivity extends CommonMusicActivity
 {
 	// Instance variables
 	private ArrayList<Song> songList;
-	private ActivityController activityController;
 	private String nameOfPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
@@ -30,13 +26,16 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		initializeInstanceVariables();
 		configurateFragment();
 		configurateAddSongsButton();
-
+		createMusicControls();
 		getSupportActionBar().setTitle(nameOfPlaylist);
 	}
 
 	@Override protected void onResume()
 	{
 		super.onResume();
+		initializeInstanceVariables();
+		configurateFragment();
+		configurateAddSongsButton();
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
@@ -64,7 +63,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 			{
 				@Override public void run()
 				{
-					activityController.startListActivity(SinglePlaylistActivity.this,
+					ActivityController.startListActivity(SinglePlaylistActivity.this,
 														 ListActivity.TypeOfRetrieve.SEARCH);
 				}
 			}).start();
@@ -77,11 +76,10 @@ public class SinglePlaylistActivity extends AppCompatActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		activityController = (ActivityController) getIntent().getSerializableExtra(
-				"activityController");
+
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 
-		songList = Library.getCurLibrary();
+		songList = ActivityController.getAccessPlaylist().getSongsFromPlaylist(nameOfPlaylist);
 
 		// get the fragment to display listview.
 		listOfSongsFragment
@@ -127,7 +125,7 @@ public class SinglePlaylistActivity extends AppCompatActivity
 		{
 			@Override public void onClick(View v)
 			{
-				activityController.startSelectSongsActivity(SinglePlaylistActivity.this,
+				ActivityController.startSelectSongsActivity(SinglePlaylistActivity.this,
 															nameOfPlaylist,
 															false);
 			}

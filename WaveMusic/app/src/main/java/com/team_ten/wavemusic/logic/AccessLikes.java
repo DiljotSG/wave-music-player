@@ -13,7 +13,7 @@ public class AccessLikes implements ILikesPersistence, Serializable
 
 	public AccessLikes()
 	{
-		likesPersistence = Services.getLikesPersistence();
+		this.likesPersistence = Services.getLikesPersistence();
 	}
 
 	public AccessLikes(final ILikesPersistence likesPersistence)

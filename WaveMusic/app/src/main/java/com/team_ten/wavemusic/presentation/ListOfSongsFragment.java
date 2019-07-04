@@ -18,6 +18,7 @@ import android.widget.ListView;
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
+import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
 
@@ -82,10 +83,16 @@ public class ListOfSongsFragment extends Fragment
 		if (savedInstanceState != null)
 		{
 			position = savedInstanceState.getInt("position");
-			songList = Library.getCurLibrary();
+			songList = (ArrayList<Song>)savedInstanceState.getSerializable("songList");
+			stringList = (ArrayList<String>)savedInstanceState.getSerializable("stringList");
 		}
 	}
 
+	/**
+	 * Create the view with context
+	 *
+	 * @return the view
+	 */
 	@Override public View onCreateView(
 			LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -94,11 +101,20 @@ public class ListOfSongsFragment extends Fragment
 		return view;
 	}
 
+	/**
+	 * Populate the view
+	 *
+	 */
 	@Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
 	{
 		listView = (ListView) getView().findViewById(R.id.list_songs);
 		super.onViewCreated(view, savedInstanceState);
 	}
+
+	/**
+	 * Set all handlers for the view
+	 *
+	 */
 
 	@Override public void onStart()
 	{
@@ -128,13 +144,25 @@ public class ListOfSongsFragment extends Fragment
 		super.onStart();
 	}
 
+	/**
+	 * Handler for resuming the activity
+	 *
+	 */
 	@Override public void onResume()
 	{
 		super.onResume();
-
+		if(listAdapter!= null)
+		{
+			listAdapter.notifyDataSetChanged();
+		}
 		// Resume the position of the listview after each time the screen is rotated.
 		listView.setSelection(position);
 	}
+
+	/**
+	 * Save necessary information for state saving
+	 *
+	 */
 
 	@Override public void onSaveInstanceState(@NonNull Bundle outState)
 	{
@@ -143,6 +171,7 @@ public class ListOfSongsFragment extends Fragment
 		// Sava data into Bundle so that they don't need to be rebuilt after each time the device
 		// is rotated.
 		outState.putSerializable("songList", songList);
+		outState.putSerializable("stringList", stringList);
 		outState.putInt("position", position);
 	}
 
@@ -175,6 +204,7 @@ public class ListOfSongsFragment extends Fragment
 															   selectedSong,
 															   selectedSong.getName(),
 															   selectedSong.getURI());
+					PlaybackController.setPlaybackQueue(songList);
 				}
 			});
 		}
@@ -226,7 +256,7 @@ public class ListOfSongsFragment extends Fragment
 			listAdapter = new ArrayAdapter<String>(context, resource, stringList);
 		}
 
-		if(songList != null)
+		if(songList != null || stringList != null)
 		{
 			listView.setAdapter(listAdapter);
 		}
@@ -260,14 +290,14 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								Song temp = songList.get(index);
-								ActivityController.removeSongFromPlaylist(temp, nameOfPlaylist);
+								ActivityController.getAccessPlaylist().removeSongFromPlaylist(temp, nameOfPlaylist);
 								songList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();
 						}
 					});
 		}
-		else if (nameOfPlaylist != null)
+		else
 		{
 			touchListener = new SwipeDismissListViewTouchListener(
 					listView,
@@ -288,7 +318,7 @@ public class ListOfSongsFragment extends Fragment
 							for (int index : reverseSortedPositions)
 							{
 								String temp = stringList.get(index);
-								ActivityController.removePlaylist(temp);
+								ActivityController.getAccessPlaylist().removePlaylist(temp);
 								stringList.remove(index);
 							}
 							listAdapter.notifyDataSetChanged();

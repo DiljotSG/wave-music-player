@@ -152,19 +152,19 @@ The application comes packaged with four sample tracks, these tracks will be ext
 The following user stories were moved to the next iteration:
 
 1. [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) (from Iteration 1).
- 
+
 ## Documentation for Iteration 2
 
 ### Brief Description - 2
 
-In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, the first way is with categories. On launch, the app presents the user with 5 categories. The categories are listed below. The second way we allow the user to browse their library is by offering a search view.
+In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, the first way is with categories. On launch, the app presents the user with five categories each of which are listed below. The second way we allow the user to browse their library, is by offering a search view.
 
 Categories:
-*  My Library   -   Allows the user to view all songs in their library.
-*  Playlists    -   Allows the user to manage their playlists, including creating new ones, and adding/removing songs from existing playlists.
-*  Artists      -   Allows the user to browse their entire library by Artist.
-*  Albums       -   Allows the user to browse their entire library by Album
-*  Liked Songs  -   Allows the user to browse the music they have liked in their library.
+*  **My Library:** Allows the user to view all songs in their library.
+*  **Playlists:** Allows the user to manage their playlists, including creating new ones, and adding/removing songs from existing playlists, and removing playlists.
+*  **Artists:** Allows the user to browse their entire library by Artist.
+*  **Albums:** Allows the user to browse their entire library by Album.
+*  **Liked Songs:** Allows the user to browse the music they have liked in their library.
 
 ### Implementation
 
@@ -172,4 +172,19 @@ There are several features that we weren't able to implement in iteration 2, inc
 
 ### Known Issues
 
-- Creating a playlist with an already existing name allows you to add more songs to the already existing playlist.
+- Creating a playlist with an already existing name allows you to add duplicate songs to the already existing playlist.
+
+### Incomplete Features
+
+The following features were not completed this iteration due to the listed user stories that were not completed. These user stories will be moved to the next iteration along with [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1.
+
+* Sort Music
+  * [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)
+* Music Controls
+  * [Repeat a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/20)
+  * [Fade between songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/21)
+  * [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23)
+  * [Choose playback location in song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/62)
+* "Like" a song
+  * ["Like" a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/61)
+  * ["Un-like" a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/60)

@@ -2,8 +2,10 @@ package com.team_ten.wavemusic.presentation;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +20,7 @@ import com.team_ten.wavemusic.application.PermissionManager;
 import com.team_ten.wavemusic.application.SampleAssetManager;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
+import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
 
 import java.io.File;
@@ -62,6 +65,8 @@ public class MainMusicActivity extends CommonMusicActivity
 		buildDatabase();
 
 		PlaybackController.init(new MediaPlayer(), new PlaybackQueue());
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		AppSettings.init((AudioManager) getSystemService(Context.AUDIO_SERVICE));
 
 		// Create the controls
 		createLibraryViewControls();

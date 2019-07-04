@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,7 +86,6 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 
 		//stringList = Library.getCurStringLibrary();
 		stringList = ActivityController.getAccessPlaylist().getAllPlaylists();
-		Log.v("qwe", "" + stringList.size());
 		// get the Fragment to which the listview belongs.
 		listFragment
 				=

@@ -174,7 +174,6 @@ public class PlaybackQueue
 	 */
 	public boolean hasSongs()
 	{
-		System.out.println(playbackQueue.size());
 		return playbackQueue.size() > 0;
 	}
 }

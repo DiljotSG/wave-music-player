@@ -46,21 +46,25 @@ public class PlaybackControllerTest
 
 	@Test public void loopmodeToggleMovesToCorrectState()
 	{
+		System.out.println("Start testing that toggling loop mode sets the correct state.");
 		int initial_mode = PlaybackController.getPlaybackModeNum();
 		PlaybackController.toggleLoopMode();
 		int final_mode = PlaybackController.getPlaybackModeNum();
 
-		// test that
 		if (initial_mode < PlaybackController.getNumPlaybackStates() - 1)
 		{
-			assertEquals(1, final_mode - initial_mode);
+			assertEquals("Final mode should be one greater than initial mode:",1, final_mode - initial_mode);
 		}
 		else
-			assertEquals(0, final_mode);
+			assertEquals("Final mode should be 0:",0, final_mode);
+
+		System.out.println("End testing that toggling loop mode sets the correct state.");
 	}
 
 	@Test public void startSongSetsCorrectStateWithNoSongs()
 	{
+		System.out.println("Start testing that startSong sets the correct state with no songs.");
+
 		try {
 			PlaybackController.startSong(null);
 		}
@@ -69,63 +73,89 @@ public class PlaybackControllerTest
 		}
 
 		// State should be 0 since we can't play a song
-		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
+		assertEquals("Playback state should be 0: ", PlaybackController.getPlaybackStateNum(), 0);
+		System.out.println("End testing that startSong sets the correct state with no songs.");
 	}
 
 	@Test public void startSongSetsCorrectStateWithSongs()
 	{
+		System.out.println("Start testing that startSong sets correct state with songs.");
+
 		ArrayList<Song> songs = new ArrayList<>();
 		songs.add(new Song("name", "artist", "album", "uri", 0));
 		PlaybackController.setPlaybackQueue(songs);
 
 		PlaybackController.startSong();
 
-		assertEquals(1, PlaybackController.getPlaybackStateNum());
+		assertEquals("Playback state should be 1: ", 1, PlaybackController.getPlaybackStateNum());
+		System.out.println("End testing that startSong sets correct state with songs.");
 	}
 
 	@Test public void pauseSongSetsCorrectState()
 	{
+		System.out.println("Start testing that pause song leads to the correct playback state.");
 		PlaybackController.pause();
-		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
+		assertEquals("Playback state should be 0: ", PlaybackController.getPlaybackStateNum(), 0);
+		System.out.println("End testing that pause song leads to the correct playback state.");
 	}
 
 	@Test public void startNullSongSetsCorrectState()
 	{
+		System.out.println("Start testing that starting a null song sets correct playback state.");
+
 		PlaybackController.startSong(null);
-		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
+		assertEquals("Playback state should be 0: ", PlaybackController.getPlaybackStateNum(), 0);
+
+		System.out.println("End testing that starting a null song sets correct playback state.");
+
 	}
 
 	@Test public void playNextReturnsSong()
 	{
-		assertNotEquals(PlaybackController.playNext(), null);
+		System.out.println("Start testing that playNext returns the correct song value.");
+		assertNotEquals("Song return should not be null: ", PlaybackController.playNext(), null);
+		System.out.println("End testing that playNext returns the correct song value.");
+
 	}
 
 	@Test public void playPrevReturnsSong()
 	{
-		assertNotEquals(PlaybackController.playPrev(), null);
+		System.out.println("Start testing playPrev returns the correct song value.");
+		assertNotEquals("Song returned should not be null: ", PlaybackController.playPrev(), null);
+		System.out.println("End testing playPrev returns the correct song value.");
+
 	}
 
 	@Test public void toggleShuffleSetsCorrectState() {
+		System.out.println("Start testing that toggling shuffle sets the correct state.");
+
 		if (PlaybackController.isShuffle()) {
 			PlaybackController.toggleShuffle();
-			assertFalse(PlaybackController.isShuffle());
+			assertFalse("Shuffle should be false: ", PlaybackController.isShuffle());
 		}
 		else {
 			PlaybackController.toggleShuffle();
-			assertTrue(PlaybackController.isShuffle());
+			assertTrue("Shuffle should be true: ", PlaybackController.isShuffle());
 		}
+		System.out.println("End testing that toggling shuffle sets the correct state.");
 	}
 
 	@Test public void remainPausedAfterRestart() {
+		System.out.println("Start testing that restarting when paused stays in paused state.");
 		PlaybackController.pause();
 		PlaybackController.restart();
-		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
+		assertEquals("State num should be 0: ", PlaybackController.getPlaybackStateNum(), 0);
+		System.out.println("End testing that restarting when paused stays in paused state.");
+
 	}
 
 	@Test public void startSongJumpsToSong() {
+		System.out.println("Start testing that startSong jumps to the correct song.");
 		Song song = new Song("name", "artist", "album", "uri", 0);
 
-		assertEquals(PlaybackController.startSong(song), song);
+		assertEquals("Song returned should be the created song: ", PlaybackController.startSong(song), song);
+		System.out.println("End testing that startSong jumps to the correct song.");
+
 	}
 
 }

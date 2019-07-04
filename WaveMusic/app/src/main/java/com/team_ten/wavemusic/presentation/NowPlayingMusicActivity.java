@@ -31,6 +31,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 		initSeekBars();
 		initLike();
+
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
 		song = (Song) intent.getSerializableExtra("song");
@@ -74,6 +75,8 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 				AppSettings.setVolume(progress);
 			}
 		});
+
+		progressBar.setVisibility(View.INVISIBLE);
 	}
 
 	private void initLike() {

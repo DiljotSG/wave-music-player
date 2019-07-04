@@ -21,7 +21,7 @@ public class SongPersistenceStub implements ISongPersistence
 	 */
 	public void addSong(Song theSong)
 	{
-		if(!songList.contains(theSong))
+		if (!songList.contains(theSong))
 		{
 			songList.add(theSong);
 		}

@@ -29,11 +29,17 @@ public class Song implements Serializable
 		playCount = count;
 
 		if (artist == null)
+		{
 			artist = "Unknown Artist";
+		}
 		if (album == null)
+		{
 			album = "Unknown Album";
+		}
 		if (name == null)
+		{
 			name = "Untitled";
+		}
 	}
 
 	/**

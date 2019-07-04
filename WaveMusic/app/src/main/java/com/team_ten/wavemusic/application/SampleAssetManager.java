@@ -34,8 +34,7 @@ public class SampleAssetManager
 			"music/sample17.mp3",
 			"music/sample18.mp3",
 			"music/sample19.mp3",
-			"music/sample20.mp3",
-	};
+			"music/sample20.mp3",};
 
 	// Instance variables.
 	private MainMusicActivity mainView;

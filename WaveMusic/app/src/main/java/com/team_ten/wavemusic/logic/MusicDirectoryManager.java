@@ -6,7 +6,6 @@ import android.os.Environment;
 import com.team_ten.wavemusic.objects.Song;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class MusicDirectoryManager
@@ -32,7 +31,8 @@ public class MusicDirectoryManager
 		// Sets the instance variables.
 		directory = getExternalPath() + "/" + DEFAULT_LOCATION + "/";
 		folder = new File(directory);
-		if (!folder.exists()) {
+		if (!folder.exists())
+		{
 			folder.mkdirs();
 		}
 		files = folder.listFiles();

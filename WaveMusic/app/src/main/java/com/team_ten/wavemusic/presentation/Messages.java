@@ -9,7 +9,6 @@ public class Messages
 {
 	/**
 	 * Create an alert if the app encounters a fatal error
-	 *
 	 */
 	public static void fatalError(final Context context, String message)
 	{
@@ -21,7 +20,6 @@ public class Messages
 
 	/**
 	 * Create an alert dialogue for a warning
-	 *
 	 */
 	public static void warning(final Context context, String message)
 	{

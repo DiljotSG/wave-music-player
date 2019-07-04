@@ -2,7 +2,6 @@ package com.team_ten.wavemusic.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.team_ten.wavemusic.R;

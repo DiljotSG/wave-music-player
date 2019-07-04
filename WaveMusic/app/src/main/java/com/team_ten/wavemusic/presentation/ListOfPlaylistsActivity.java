@@ -3,7 +3,6 @@ package com.team_ten.wavemusic.presentation;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +10,7 @@ import android.widget.EditText;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
-import com.team_ten.wavemusic.objects.Library;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -140,7 +137,8 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 				{
 					@Override public void onClick(DialogInterface dialog, int which)
 					{
-						ActivityController.getAccessPlaylist().addPlaylist(editText.getText().toString());
+						ActivityController.getAccessPlaylist()
+										  .addPlaylist(editText.getText().toString());
 
 						ActivityController.startSelectSongsActivity(ListOfPlaylistsActivity.this,
 																	editText.getText().toString(),

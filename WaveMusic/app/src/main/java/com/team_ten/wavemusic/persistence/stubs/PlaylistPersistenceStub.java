@@ -24,7 +24,7 @@ public class PlaylistPersistenceStub implements IPlaylistPersistence
 	 */
 	public void addPlaylist(String playlistName)
 	{
-		if(!listOfPlaylists.contains(playlistName))
+		if (!listOfPlaylists.contains(playlistName))
 		{
 			listOfPlaylists.add(playlistName);
 		}

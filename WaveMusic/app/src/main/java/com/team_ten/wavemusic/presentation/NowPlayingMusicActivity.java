@@ -1,7 +1,6 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,8 +11,6 @@ import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.Song;
-
-import static android.net.Uri.*;
 
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
@@ -52,9 +49,9 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 	/**
 	 * Set listeners and values of seek bars
-	 *
 	 */
-	private void initSeekBars() {
+	private void initSeekBars()
+	{
 		progressBar = findViewById(R.id.seekBarForMusic);
 		progressBar.setMax(100);
 		volumeBar = findViewById(R.id.seekBarForVolume);
@@ -63,18 +60,15 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 		volumeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
 		{
-			@Override
-			public void onStopTrackingTouch(SeekBar arg0)
+			@Override public void onStopTrackingTouch(SeekBar arg0)
 			{
 			}
 
-			@Override
-			public void onStartTrackingTouch(SeekBar arg0)
+			@Override public void onStartTrackingTouch(SeekBar arg0)
 			{
 			}
 
-			@Override
-			public void onProgressChanged(SeekBar arg0, int progress, boolean arg2)
+			@Override public void onProgressChanged(SeekBar arg0, int progress, boolean arg2)
 			{
 				AppSettings.setVolume(progress);
 			}
@@ -85,19 +79,23 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 	/**
 	 * Set listeners and events for the Like button
-	 *
 	 */
-	private void initLike() {
+	private void initLike()
+	{
 		final ImageView img = findViewById(R.id.likeImg);
 
-		img.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+		img.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
 				AccessLikes clickAccess = new AccessLikes();
 
-				if (clickAccess.getLikedSongs().contains(song)) {
+				if (clickAccess.getLikedSongs().contains(song))
+				{
 					clickAccess.unlikeSong(song);
 				}
-				else {
+				else
+				{
 					clickAccess.likeSong(song);
 				}
 			}

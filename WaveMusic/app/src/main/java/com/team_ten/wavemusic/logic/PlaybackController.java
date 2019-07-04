@@ -51,14 +51,19 @@ public class PlaybackController
 			playbackMode = PlaybackMode.PLAY_ALL;
 			mediaPlayer = mp;
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-				@Override
-				public void onCompletion(MediaPlayer mediaPlayer) {
+			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+			{
+				@Override public void onCompletion(MediaPlayer mediaPlayer)
+				{
 					// If the playback is not paused
-					if (PlaybackController.getPlaybackStateNum() > 0) {
-						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE) {
+					if (PlaybackController.getPlaybackStateNum() > 0)
+					{
+						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE)
+						{
 							PlaybackController.restart();
-						} else {
+						}
+						else
+						{
 							PlaybackController.playNext();
 						}
 					}
@@ -68,7 +73,8 @@ public class PlaybackController
 		}
 	}
 
-	public static PlaybackState getPlaybackState() {
+	public static PlaybackState getPlaybackState()
+	{
 		return state;
 	}
 
@@ -87,7 +93,8 @@ public class PlaybackController
 	 *
 	 * @return the playback mode.
 	 */
-	public static PlaybackMode getPlaybackMode() {
+	public static PlaybackMode getPlaybackMode()
+	{
 		return playbackMode;
 	}
 
@@ -126,13 +133,20 @@ public class PlaybackController
 	 */
 	public static Song startSong()
 	{
-		if (playbackQueue.hasSongs()) {
-			if (playbackQueue.getCurrentSong() != null) {
+		if (playbackQueue.hasSongs())
+		{
+			if (playbackQueue.getCurrentSong() != null)
+			{
 				mediaPlayer.start();
-			} else {
-				try {
+			}
+			else
+			{
+				try
+				{
 					PlaybackController.startSong(playbackQueue.jumpFirst());
-				} catch (ArrayIndexOutOfBoundsException e) {
+				}
+				catch (ArrayIndexOutOfBoundsException e)
+				{
 					System.out.println("[!] Could not start song; index out of bounds.");
 					throw e;
 				}
@@ -225,15 +239,21 @@ public class PlaybackController
 	 */
 	public static Song playNext()
 	{
-		if (playbackQueue.hasSongs()) {
+		if (playbackQueue.hasSongs())
+		{
 			boolean was_paused = state == PlaybackState.PAUSED;
 
 			if (shuffle)
+			{
 				startSong(playbackQueue.jumpRandom());
+			}
 			else
+			{
 				startSong(playbackQueue.jumpNext());
+			}
 
-			if (was_paused) {
+			if (was_paused)
+			{
 				pause();
 			}
 		}
@@ -247,12 +267,14 @@ public class PlaybackController
 	 */
 	public static Song playPrev()
 	{
-		if (playbackQueue.hasSongs()) {
+		if (playbackQueue.hasSongs())
+		{
 			boolean was_paused = state == PlaybackState.PAUSED;
 
 			startSong(playbackQueue.jumpPrev());
 
-			if (was_paused) {
+			if (was_paused)
+			{
 				pause();
 			}
 		}
@@ -296,11 +318,13 @@ public class PlaybackController
 	/**
 	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
 	 */
-	public static void toggleShuffle() {
+	public static void toggleShuffle()
+	{
 		PlaybackController.shuffle = !PlaybackController.shuffle;
 	}
 
-	public static boolean isShuffle() {
+	public static boolean isShuffle()
+	{
 		return shuffle;
 	}
 }

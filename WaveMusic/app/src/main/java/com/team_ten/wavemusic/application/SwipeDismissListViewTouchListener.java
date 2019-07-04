@@ -378,7 +378,8 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		/**
 		 * Return a comparison between this data and other data being dismissed.
 		 *
-		 * @return  the difference in positions; cardinality of returned value indicates the "comparison" (equal, less or greater)
+		 * @return the difference in positions; cardinality of returned value indicates the
+		 * "comparison" (equal, less or greater)
 		 */
 		@Override public int compareTo(PendingDismissData other)
 		{
@@ -389,7 +390,6 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 
 	/**
 	 * Add list data to the queue of data pending dismissal.
-	 *
 	 */
 	private void performDismiss(final View dismissView, final int dismissPosition)
 	{

@@ -11,6 +11,7 @@ public class TestSongClass
 {
 	@Test public void TestEqualsMethod()
 	{
+		System.out.println("Start: Testing the equals method.");
 		// Create 3 Song Objects. songOne and songThree have the same URI, while that of songTwo
 		// is different.
 		Song songOne = new Song("title1", "artist1", "album1", "uri1", 0);
@@ -21,5 +22,6 @@ public class TestSongClass
 		// songOne and songTwo should NOT be equal and songOne and songThree should be equal.
 		assertNotEquals("These two songs should be unique", songOne, songTwo);
 		assertEquals("These two songs should be different", songOne, songThree);
+		System.out.println("End: Testing the equals method.");
 	}
 }

@@ -34,7 +34,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	 */
 	public void addPlaylist(String playlistName)
 	{
-		if(getPlaylist(playlistName) == null)
+		if (getPlaylist(playlistName) == null)
 		{
 			try (final Connection c = connection())
 			{
@@ -60,8 +60,8 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 	{
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("DELETE FROM PLAYLISTS WHERE NAME = " +
-															"?");
+			final PreparedStatement st = c.prepareStatement(
+					"DELETE FROM PLAYLISTS WHERE NAME = " + "?");
 			st.setString(1, playlistName);
 
 			st.executeUpdate();
@@ -197,7 +197,8 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT NAME FROM PLAYLISTS WHERE NAME = ?");
+			final PreparedStatement st = c.prepareStatement(
+					"SELECT NAME FROM PLAYLISTS WHERE NAME = ?");
 			st.setString(1, playlistName);
 
 			final ResultSet rs = st.executeQuery();

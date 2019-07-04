@@ -159,7 +159,8 @@ public class PlaybackQueue
 	 *
 	 * @return the Song we jumped to
 	 */
-	public Song jumpRandom() {
+	public Song jumpRandom()
+	{
 		Random random = new Random();
 		int index = random.nextInt(playbackQueue.size());
 
@@ -171,8 +172,8 @@ public class PlaybackQueue
 	 *
 	 * @return True if the queue has at least one song, false otherwise.
 	 */
-	public boolean hasSongs() {
-		System.out.println(playbackQueue.size());
+	public boolean hasSongs()
+	{
 		return playbackQueue.size() > 0;
 	}
 }

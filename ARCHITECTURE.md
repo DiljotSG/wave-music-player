@@ -29,7 +29,6 @@ The application package contains classes that are required for the basic operati
 The presentation layer is implemented through the app's activities. All of these activities are responsible for displaying information to the user in some form. Major activities are listed below:
 
 * **CommonMusicActivity:** Contains the music control buttons that are shared between other activities.
-* **LaunchActivity:** Initiates the database setup and building of the song library.
 * **ListActivity:** General list used for displaying lists of songs in My Library, Artist, and Album, and Liked Songs views.
 * **MainMusicActivity:** Controls the navigation and playback of songs in the music library.
 * **NowPlayingMusicActivity:** Displays which song is currently playing, as well as the controls to modify the playback of the song (pause, resume, skip).

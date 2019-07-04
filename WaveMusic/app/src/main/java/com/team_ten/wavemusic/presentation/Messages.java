@@ -7,6 +7,10 @@ import com.team_ten.wavemusic.R;
 
 public class Messages
 {
+	/**
+	 * Create an alert if the app encounters a fatal error
+	 *
+	 */
 	public static void fatalError(final Context context, String message)
 	{
 		AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -15,6 +19,10 @@ public class Messages
 		alertDialog.show();
 	}
 
+	/**
+	 * Create an alert dialogue for a warning
+	 *
+	 */
 	public static void warning(final Context context, String message)
 	{
 		AlertDialog alertDialog = new AlertDialog.Builder(context).create();

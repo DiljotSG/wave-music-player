@@ -34,6 +34,10 @@ public class SelectSongsActivity extends CommonMusicActivity
 		getSupportActionBar().setTitle("Add songs to a playlist");
 	}
 
+	/**
+	 * Response of the song activity on being resumed
+	 *
+	 */
 	@Override protected void onResume()
 	{
 		super.onResume();

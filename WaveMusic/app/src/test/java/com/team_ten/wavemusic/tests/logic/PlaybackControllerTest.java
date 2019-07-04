@@ -44,7 +44,7 @@ public class PlaybackControllerTest
 		//pass;
 	}
 
-	@Test public void loopmode_toggle_moves_to_correct_state()
+	@Test public void loopmodeToggleMovesToCorrectState()
 	{
 		int initial_mode = PlaybackController.getPlaybackModeNum();
 		PlaybackController.toggleLoopMode();
@@ -59,7 +59,7 @@ public class PlaybackControllerTest
 			assertEquals(0, final_mode);
 	}
 
-	@Test public void start_song_sets_correct_state_with_no_songs()
+	@Test public void startSongSetsCorrectStateWithNoSongs()
 	{
 		try {
 			PlaybackController.startSong(null);
@@ -72,7 +72,7 @@ public class PlaybackControllerTest
 		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void start_song_sets_correct_state_with_songs()
+	@Test public void startSongSetsCorrectStateWithSongs()
 	{
 		ArrayList<Song> songs = new ArrayList<>();
 		songs.add(new Song("name", "artist", "album", "uri", 0));
@@ -83,35 +83,29 @@ public class PlaybackControllerTest
 		assertEquals(1, PlaybackController.getPlaybackStateNum());
 	}
 
-	@Test public void pause_song_sets_correct_state()
+	@Test public void pauseSongSetsCorrectState()
 	{
 		PlaybackController.pause();
 		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void start_null_song_sets_correct_state()
+	@Test public void startNullSongSetsCorrectState()
 	{
 		PlaybackController.startSong(null);
 		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void play_next_returns_song()
+	@Test public void playNextReturnsSong()
 	{
 		assertNotEquals(PlaybackController.playNext(), null);
 	}
 
-	@Test public void play_prev_returns_song()
+	@Test public void playPrevReturnsSong()
 	{
 		assertNotEquals(PlaybackController.playPrev(), null);
 	}
 
-	@Ignore
-	@Test public void restart_returns_song()
-	{
-		assertNotNull(PlaybackController.restart());
-	}
-
-	@Test public void toggle_shuffle_sets_correct_state() {
+	@Test public void toggleShuffleSetsCorrectState() {
 		if (PlaybackController.isShuffle()) {
 			PlaybackController.toggleShuffle();
 			assertFalse(PlaybackController.isShuffle());
@@ -122,13 +116,13 @@ public class PlaybackControllerTest
 		}
 	}
 
-	@Test public void remain_paused_after_restart() {
+	@Test public void remainPausedAfterRestart() {
 		PlaybackController.pause();
 		PlaybackController.restart();
 		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void start_song_jumps_to_song() {
+	@Test public void startSongJumpsToSong() {
 		Song song = new Song("name", "artist", "album", "uri", 0);
 
 		assertEquals(PlaybackController.startSong(song), song);

@@ -4,6 +4,11 @@ public class Main
 {
 	private static String dbName = "WaveDB";
 
+	/**
+	 * Set the path name of the database
+	 *
+	 * @param name: the path to use
+	 */
 	public synchronized static void setDBPathName(final String name)
 	{
 		try
@@ -25,6 +30,11 @@ public class Main
 		dbName = name;
 	}
 
+	/**
+	 * Set the path name of the database
+	 *
+	 * @return dbName: the path name as a string
+	 */
 	public synchronized static String getDBPathName()
 	{
 		return dbName;

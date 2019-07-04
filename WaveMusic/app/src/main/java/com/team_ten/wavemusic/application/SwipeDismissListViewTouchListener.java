@@ -176,6 +176,11 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		};
 	}
 
+	/**
+	 * Detect motions and enable event handling on fragment touch.
+	 *
+	 * @return whether or not there was an event handled.
+	 */
 	@Override public boolean onTouch(View view, MotionEvent motionEvent)
 	{
 		if (mViewWidth < 2)
@@ -358,6 +363,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		return false;
 	}
 
+
 	class PendingDismissData implements Comparable<PendingDismissData>
 	{
 		public int position;
@@ -369,6 +375,11 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 			this.view = view;
 		}
 
+		/**
+		 * Return a comparison between this data and other data being dismissed.
+		 *
+		 * @return  the difference in positions; cardinality of returned value indicates the "comparison" (equal, less or greater)
+		 */
 		@Override public int compareTo(PendingDismissData other)
 		{
 			// Sort by descending position
@@ -376,6 +387,10 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		}
 	}
 
+	/**
+	 * Add list data to the queue of data pending dismissal.
+	 *
+	 */
 	private void performDismiss(final View dismissView, final int dismissPosition)
 	{
 		// Animate the dismissed list item to zero-height and fire the dismiss callback when

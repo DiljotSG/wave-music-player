@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.PlaybackController;
@@ -18,11 +18,11 @@ public abstract class CommonMusicActivity extends AppCompatActivity
 	 */
 	public void createMusicControls()
 	{
-		final Button skip_button = findViewById(R.id.skip_button);
-		final Button play_button = findViewById(R.id.play_button);
-		final Button pause_button = findViewById(R.id.pause_button);
-		final Button back_button = findViewById(R.id.back_button);
-		final Button skip_back_button = findViewById(R.id.skip_back_button);
+		final ImageButton skip_button = findViewById(R.id.skip_button);
+		final ImageButton play_button = findViewById(R.id.play_button);
+		final ImageButton pause_button = findViewById(R.id.pause_button);
+		final ImageButton back_button = findViewById(R.id.back_button);
+		final ImageButton skip_back_button = findViewById(R.id.skip_back_button);
 
 		// Button behaviours
 		skip_button.setOnClickListener(new View.OnClickListener()

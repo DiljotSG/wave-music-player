@@ -19,9 +19,9 @@ public class PermissionManager
 	/**
 	 * The constructor for PermissionManager.
 	 */
-	public PermissionManager(MainMusicActivity mainActivity)
+	public PermissionManager(MainMusicActivity mainMusicActivity)
 	{
-		mainView = mainActivity;
+		mainView = mainMusicActivity;
 	}
 
 	/**

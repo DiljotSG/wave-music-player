@@ -1,6 +1,7 @@
 package com.team_ten.wavemusic.objects;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlaybackQueue
 {
@@ -151,5 +152,28 @@ public class PlaybackQueue
 		}
 
 		return curSong;
+	}
+
+	/**
+	 * Jump to a random song in the PlaybackQueue
+	 *
+	 * @return the Song we jumped to
+	 */
+	public Song jumpRandom()
+	{
+		Random random = new Random();
+		int index = random.nextInt(playbackQueue.size());
+
+		return jumpIndex(index);
+	}
+
+	/**
+	 * Check if there are songs in the current PlaybackQueue
+	 *
+	 * @return True if the queue has at least one song, false otherwise.
+	 */
+	public boolean hasSongs()
+	{
+		return playbackQueue.size() > 0;
 	}
 }

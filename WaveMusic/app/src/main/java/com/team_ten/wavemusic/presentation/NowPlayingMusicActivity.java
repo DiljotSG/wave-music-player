@@ -122,7 +122,6 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 	}
 
-
 	/**
 	 * Sets the title of the NowPlayingActivity after a song is skipped forward.
 	 *

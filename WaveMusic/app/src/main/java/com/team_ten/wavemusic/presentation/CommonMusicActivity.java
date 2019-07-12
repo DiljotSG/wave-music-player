@@ -1,6 +1,5 @@
 package com.team_ten.wavemusic.presentation;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -10,7 +9,7 @@ import com.team_ten.wavemusic.objects.Song;
 
 // This abstract class shares common methods that are
 // Used in multiple activities, it's children can access these calls.
-public abstract class CommonMusicActivity extends AppCompatActivity
+public abstract class CommonMusicActivity extends PlaybackCallback
 {
 
 	/**
@@ -65,59 +64,5 @@ public abstract class CommonMusicActivity extends AppCompatActivity
 				afterBack(song);
 			}
 		});
-	}
-
-
-	/**
-	 * Optional behaviour called after a song is skipped forward.
-	 * Not abstract, as it can be _optionally_ implemented by subclasses.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	public void afterNext(Song newSong)
-	{
-		//pass
-	}
-
-	/**
-	 * Optional behaviour called after a song is played.
-	 * Not abstract, as it can be _optionally_ implemented by subclasses.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	public void afterPlay(Song newSong)
-	{
-		//pass
-	}
-
-	/**
-	 * Optional behaviour called after a song is paused.
-	 * Not abstract, as it can be _optionally_ implemented by subclasses.
-	 */
-	public void afterPause()
-	{
-		//pass
-	}
-
-	/**
-	 * Optional behaviour called after a song is restarted.
-	 * Not abstract, as it can be _optionally_ implemented by subclasses.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	public void afterRestart(Song newSong)
-	{
-		//pass
-	}
-
-	/**
-	 * Optional behaviour called after a song is skipped back.
-	 * Not abstract, as it can be _optionally_ implemented by subclasses.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	public void afterBack(Song newSong)
-	{
-		//pass
 	}
 }

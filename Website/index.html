@@ -39,13 +39,13 @@
             <a class="nav-link js-scroll-trigger" href="#functionality">Functionality</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contributors">Contributors</a>
+              <a class="nav-link js-scroll-trigger" href="#process">Process</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#demonstration">Demonstration</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#process">Process</a>
+            <a class="nav-link js-scroll-trigger" href="#contributors">Contributors</a>
           </li>
         </ul>
       </div>
@@ -98,20 +98,31 @@
     </div>
   </section>
 
-  <section id="contributors" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Contributors</h2>
-          <p class="lead"><b>Tyler Loewen: </b>Throughout this project I have developed and practiced my database related skills by implementing a large portion of Wave Music's database.</p>
-          <p class="lead"><b>Diljot Garcha: <i>description of any specific special development skills that you gained.</i></b></p>
-          <p class="lead"><b>Lukas Timmerman: <i>description of any specific special development skills that you gained.</i></b></p>
-          <p class="lead"><b>Jiehao Luo: <i>description of any specific special development skills that you gained.</i></b></p>
+  <section id="process" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Development Process</h2>
+            <h5>What went well</h5>
+            <p class="lead">By the end of iteration 2 Wave Music was stable and free from major bugs or crashes. We were able to achieve this because everyone was readily willing to help others with tasks that were not assigned to them. Because of this, we were able to complete almost all of the assigned user stories for iteration 2, only pushing one user story to iteration 3. The architecture and design of Wave Music also went well. The architecture design is organized, and the code was separated into layers that logically make sense.</p>
+            <p class="lead">Throughout the development of Wave Music, our team has been very effective in communicating with each other in a timely manner. Specifically, when team members are working on different areas of the project, communication between each other helped improve our efficiency and avoided collaboration headaches. Our initial architecture design has essentially remained unchanged which means we did a good job of estimating the requirements Wave Music would need before we began development.</p></p>
+            
+            <h5>Opportunities for improvement</h5>
+            <p class="lead">Although the architectural layers in the project were separated, the coupling between the persistence and presentation layers was too high. This required us to make some major refactoring changes to reduce coupling and allow for easier future modifications. This was likely due to lack of foresight and experience, but the tight time constraints also contributed to this occurring. We also greatly misjudged the estimated time it would take to implement the database and persistence layer, even though the estimate was already a large chunk of time. This estimate may have been met if not for the unforeseen refactoring changes that were required.</p>
+            
+            <h5>What took the most time/least/any surprises</h5>
+            <p class="lead">Implementing the database took much more time than first estimated because of a method calling order issue that initialized the database and the main Activity in the incorrect order.</p>
+            
+            <h5>Change in project direction</h5>
+            <p class="lead">Overall, the vision of Wave Music did not change at all but the scope of the features we could implement had to be reduced due to resource constraints. During our initial planning phase, we did not dedicate any time to designing a specific UI interface and layout and therefore the current iteration of Wave Music looks different than what each team member had initially envisioned in their mind. Although the appearance of Wave Music may be different than initially thought, all of the chosen features and user stories have been implemented successfully.</p>
+            
+            <h5>What did you learn about team or large project development?</h5>
+            <p class="lead">We learned that it is difficult to develop a project when team members have competing priorities and cannot focus entirely on the project. This can lead to difficulties with technical debt as developers are more inclined to quickly push out a working fix, even if it is not the best solution, due to limited time. We also learned that it is very important to communicate what portion of the project you are working on. Without doing so, a lot of unanticipated development time can be added due to components being developed independently and not interacting with other components as expected.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  
   <section id="demonstration">
     <div class="container">
       <div class="row">
@@ -122,41 +133,28 @@
       </div>
     </div>
   </section>
-
-  <section id="process" class="bg-light">
+  
+  <section id="contributors" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Development Process</h2>
-          <p class="lead">
-            <h5>What went well</h5>
-            <p>
-                By the end of iteration 2 Wave Music was stable and free from major bugs or crashes. We were able to achieve this because everyone was readily willing to help others with tasks that were not assigned to them. Because of this, we were able to complete almost all of the assigned user stories for iteration 2, only pushing one user story to iteration 3. The architecture and design of Wave Music also went well. The architecture design is organized, and the code was separated into layers that logically make sense.
-
-                Throughout the development of Wave Music, our team has been very effective in communicating with each other in a timely manner. Specifically, when team members are working on different areas of the project, communication between each other helped improve our efficiency and avoided collaboration headaches. Our initial architecture design has essentially remained unchanged which means we did a good job of estimating the requirements Wave Music would need before we began development.
-            </p>
-            <h5>Opportunities for improvement</h5>
-            <p>
-                Although the architectural layers in the project were separated, the coupling between the persistence and presentation layers was too high. This required us to make some major refactoring changes to reduce coupling and allow for easier future modifications. This was likely due to lack of foresight and experience, but the tight time constraints also contributed to this occurring. We also greatly misjudged the estimated time it would take to implement the database and persistence layer, even though the estimate was already a large chunk of time. This estimate may have been met if not for the unforeseen refactoring changes that were required.
-            </p>
-            <h5>What took the most time/least/any surprises</h5>
-            <p>
-                Implementing the database took much more time than first estimated because of a method calling order issue that initialized the database and the main Activity in the incorrect order.
-            </p>
-            <h5>Change in project direction</h5>
-            <p>
-                Overall, the vision of Wave Music did not change at all but the scope of the features we could implement had to be reduced due to resource constraints. During our initial planning phase, we did not dedicate any time to designing a specific UI interface and layout and therefore the current iteration of Wave Music looks different than what each team member had initially envisioned in their mind. Although the appearance of Wave Music may be different than initially thought, all of the chosen features and user stories have been implemented successfully.
-            </p>
-            <h5>What did you learn about team or large project development?</h5>
-            <p>
-              We learned that it is difficult to develop a project when team members have competing priorities and cannot focus entirely on the project. This can lead to difficulties with technical debt as developers are more inclined to quickly push out a working fix, even if it is not the best solution, due to limited time. We also learned that it is very important to communicate what portion of the project you are working on. Without doing so, a lot of unanticipated development time can be added due to components being developed independently and not interacting with other components as expected.
-            </p>
-          </p>
+          <h2>Contributors</h2>
+          <h5>Tyler Loewen</h5>
+          <p>Throughout this project I have developed and practiced my database related skills by implementing a large portion of Wave Music's database.</p>
+          
+          <h5>Diljot Garcha</h5>
+          <p>description of any specific special development skills that you gained.</p>
+          
+          <h5>Lukas Timmerman</h5>
+          <p>description of any specific special development skills that you gained.</p>
+          
+          <h5>Jiehao Luo</h5>
+          <p>description of any specific special development skills that you gained.</p>
         </div>
       </div>
     </div>
   </section>
-
+  
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

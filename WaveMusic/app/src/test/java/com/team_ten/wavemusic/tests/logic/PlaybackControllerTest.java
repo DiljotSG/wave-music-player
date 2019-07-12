@@ -83,7 +83,7 @@ public class PlaybackControllerTest
 		System.out.println("Start testing that startSong sets correct state with songs.");
 
 		ArrayList<Song> songs = new ArrayList<>();
-		songs.add(new Song("name", "artist", "album", "uri", 0));
+		songs.add(new Song("name", "artist", "album", "uri", "songGenre",  0));
 		PlaybackController.setPlaybackQueue(songs);
 
 		PlaybackController.startSong();
@@ -153,7 +153,7 @@ public class PlaybackControllerTest
 
 	@Test public void startSongJumpsToSong() {
 		System.out.println("Start testing that startSong jumps to the correct song.");
-		Song song = new Song("name", "artist", "album", "uri", 0);
+		Song song = new Song("name", "artist", "album", "uri", "songGenre", 0);
 
 		assertEquals("Song returned should be the created song: ", PlaybackController.startSong(song), song);
 		System.out.println("End testing that startSong jumps to the correct song.");

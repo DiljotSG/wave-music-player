@@ -19,7 +19,7 @@ public class AccessPlaylistTest
 	@Before public void setUp()
 	{
 		accessPlaylist = new AccessPlaylist(new PlaylistPersistenceStub());
-		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", 0);
+		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", "songGenre", 0);
 		playlistName = "myMix1";
 	}
 

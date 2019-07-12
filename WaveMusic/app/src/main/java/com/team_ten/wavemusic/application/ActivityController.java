@@ -11,6 +11,7 @@ import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.logic.MusicDirectoryManager;
 import com.team_ten.wavemusic.objects.Library;
 import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
@@ -103,51 +104,57 @@ public class ActivityController implements Serializable
 			{
 				Intent intent = null;
 
-				// start different Activity based on the typeOfRetrieve
-				if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY)
+				try
 				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<Song> songList = accessSong.getAllSongs();
-					Library.setCurSongLibrary(songList);
-					intent.putExtra("title", "My Library");
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
-				{
-					intent = new Intent(callerActivity, SearchActivity.class);
-					ArrayList<Song> songList = accessSong.getAllSongs();
-					intent.putExtra("title", "Search");
-					Library.setCurSongLibrary(songList);
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<String> artistList = accessSong.getAllArtists();
-					Library.setCurStringLibrary(artistList);
-					intent.putExtra("title", "Artists");
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<String> albumList = accessSong.getAllAlbums();
-					Library.setCurStringLibrary(albumList);
-					intent.putExtra("title", "Albums");
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
-				{
-					intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
-					intent.putExtra("title", "Playlists");
-				}
-				else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
-				{
-					intent = new Intent(callerActivity, ListActivity.class);
-					ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
-					Library.setCurSongLibrary(likedSongsList);
-					intent.putExtra("title", "Liked Songs");
-				}
+					// start different Activity based on the typeOfRetrieve
+					if (typeOfRetrieve == ListActivity.TypeOfRetrieve.MY_LIBRARY)
+					{
+						intent = new Intent(callerActivity, ListActivity.class);
+						ArrayList<Song> songList = accessSong.getAllSongs();
+						Library.setCurSongLibrary(songList);
+						intent.putExtra("title", "My Library");
+					}
+					else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.SEARCH)
+					{
+						intent = new Intent(callerActivity, SearchActivity.class);
+						ArrayList<Song> songList = accessSong.getAllSongs();
+						intent.putExtra("title", "Search");
+						Library.setCurSongLibrary(songList);
+					}
+					else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ARTIST)
+					{
+						intent = new Intent(callerActivity, ListActivity.class);
+						ArrayList<String> artistList = accessSong.getAllArtists();
+						Library.setCurStringLibrary(artistList);
+						intent.putExtra("title", "Artists");
+					}
+					else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.ALBUM)
+					{
+						intent = new Intent(callerActivity, ListActivity.class);
+						ArrayList<String> albumList = accessSong.getAllAlbums();
+						Library.setCurStringLibrary(albumList);
+						intent.putExtra("title", "Albums");
+					}
+					else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.PLAYLIST)
+					{
+						intent = new Intent(callerActivity, ListOfPlaylistsActivity.class);
+						intent.putExtra("title", "Playlists");
+					}
+					else if (typeOfRetrieve == ListActivity.TypeOfRetrieve.LIKED_SONG)
+					{
+						intent = new Intent(callerActivity, ListActivity.class);
+						ArrayList<Song> likedSongsList = accessLikes.getLikedSongs();
+						Library.setCurSongLibrary(likedSongsList);
+						intent.putExtra("title", "Liked Songs");
+					}
 
-				// Pass necessary data into the Intent and start the Activity.
-				intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
-				callerActivity.startActivity(intent);
+					// Pass necessary data into the Intent and start the Activity.
+					intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
+					callerActivity.startActivity(intent);
+				} catch(WaveEmptyLibraryException e)
+				{
+					System.out.println("[!] Tried setting current library to null; ignoring request");
+				}
 			}
 		});
 	}

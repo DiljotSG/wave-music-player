@@ -266,7 +266,6 @@ public class ListOfSongsFragment extends Fragment
 			touchListener = new SwipeDismissListViewTouchListener(listView,
 																  new SwipeDismissListViewTouchListener.DismissCallbacks()
 																  {
-
 																	  @Override
 																	  public boolean canDismiss(
 																			  int position)
@@ -317,13 +316,11 @@ public class ListOfSongsFragment extends Fragment
 																			  int[] reverseSortedPositions)
 																	  {
 
-																		  for (int index :
-																				  reverseSortedPositions)
+																		  for (int index : reverseSortedPositions)
 																		  {
 																			  String
 																					  temp
-																					  =
-																					  stringList.get(
+																					  = stringList.get(
 																					  index);
 																			  ActivityController.getAccessPlaylist()
 																								.removePlaylist(

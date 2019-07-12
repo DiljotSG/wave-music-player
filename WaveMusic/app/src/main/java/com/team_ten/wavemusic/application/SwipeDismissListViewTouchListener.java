@@ -200,16 +200,13 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 				// Find the child view that was touched (perform a hit test)
 				Rect rect = new Rect();
 				int childCount = mListView.getChildCount();
-				int[] listViewCoords = new int[2];
-				mListView.getLocationOnScreen(listViewCoords);
-				int x = (int) motionEvent.getRawX() - listViewCoords[0];
-				int y = (int) motionEvent.getRawY() - listViewCoords[1];
 				View child;
 				for (int i = 0; i < childCount; i++)
 				{
 					child = mListView.getChildAt(i);
 					child.getHitRect(rect);
-					if (rect.contains(x, y))
+					int[] coord = calculateCoords(motionEvent, mListView);
+					if (rect.contains(coord[0], coord[1]))
 					{
 						mDownView = child;
 						break;
@@ -363,6 +360,16 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		return false;
 	}
 
+	private int[] calculateCoords(MotionEvent motionEvent, ListView mListView)
+	{
+		int[] listViewCoords = new int[2];
+		mListView.getLocationOnScreen(listViewCoords);
+		int x = (int) motionEvent.getRawX() - listViewCoords[0];
+		int y = (int) motionEvent.getRawY() - listViewCoords[1];
+
+		int[] coords = {x, y};
+		return coords;
+	}
 
 	class PendingDismissData implements Comparable<PendingDismissData>
 	{

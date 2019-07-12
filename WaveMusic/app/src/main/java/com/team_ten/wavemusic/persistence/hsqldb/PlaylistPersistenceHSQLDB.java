@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializable
+public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 {
 	private final String dbPath;
 

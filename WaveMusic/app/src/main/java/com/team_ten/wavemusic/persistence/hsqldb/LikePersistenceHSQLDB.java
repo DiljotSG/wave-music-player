@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
+public class LikePersistenceHSQLDB implements ILikesPersistence
 {
 	private final String dbPath;
 

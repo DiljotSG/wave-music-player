@@ -28,7 +28,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 										   "");
 	}
 
-
 	/**
 	 * Adds a Song to the DB.
 	 *
@@ -47,12 +46,13 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 			try (final Connection c = connection())
 			{
 				final PreparedStatement st = c.prepareStatement(
-						"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
+						"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?, ?)");
 				st.setString(1, theSong.getURI());
 				st.setString(2, theSong.getArtist());
 				st.setString(3, theSong.getName());
 				st.setString(4, theSong.getAlbum());
-				st.setInt(5, theSong.getPlayCount());
+				st.setString(5, theSong.getGenre());
+				st.setInt(6, theSong.getPlayCount());
 
 				st.executeUpdate();
 				st.close();
@@ -112,7 +112,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 			rs.close();
 			st.close();
-
 		}
 		catch (final SQLException e)
 		{
@@ -288,8 +287,9 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		final String artistName = rs.getString("ARTIST");
 		final String songName = rs.getString("NAME");
 		final String albumName = rs.getString("ALBUM");
+		final String genreName = rs.getString("GENRE");
 		final int playCount = rs.getInt("PLAY_COUNT");
-		return new Song(songName, artistName, albumName, songUri, playCount);
+		return new Song(songName, artistName, albumName, songUri, genreName, playCount);
 	}
 
 	private WaveDBPersistenceException wrapException(SQLException e)

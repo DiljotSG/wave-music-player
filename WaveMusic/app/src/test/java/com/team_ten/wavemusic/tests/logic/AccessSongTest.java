@@ -18,7 +18,7 @@ public class AccessSongTest
 	@Before public void setUp()
 	{
 		accessSong = new AccessSong(new SongPersistenceStub());
-		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", 0);
+		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3","songGenre", 0);
 
 	}
 

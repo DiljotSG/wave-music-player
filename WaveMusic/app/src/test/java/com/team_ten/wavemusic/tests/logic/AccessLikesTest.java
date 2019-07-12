@@ -18,7 +18,7 @@ public class AccessLikesTest
 	@Before public void setUp()
 	{
 		accessLikes = new AccessLikes(new LikesPersistenceStub());
-		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", 0);
+		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", "songGenre", 0);
 	}
 
 	@Test public void testLikeSong()

@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.objects.Exceptions;
+package com.team_ten.wavemusic.objects.exceptions;
 
 /**
  * java.sql.SQLException is a checked exception, but our interface doesn't have any

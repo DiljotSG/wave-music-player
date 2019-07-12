@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.objects.Exceptions;
+package com.team_ten.wavemusic.objects.exceptions;
 
 public class WaveDatabaseIntegrityConstraintException extends WaveDatabaseException
 {

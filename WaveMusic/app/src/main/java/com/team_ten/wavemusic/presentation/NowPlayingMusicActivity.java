@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.logic.AccessLikes;
@@ -25,7 +26,6 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_now_playing);
 
-
 		initSeekBars();
 		initLike();
 
@@ -44,7 +44,26 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		PlaybackController.startSong(song);
 		createMusicControls();
 
+		updateInfo();
+	}
+
+	public void setSong(Song song)
+	{
+		this.song = song;
+	}
+
+	public void updateInfo()
+	{
 		getSupportActionBar().setTitle(song.getName());
+		TextView title = (TextView)findViewById(R.id.title);
+		TextView album = (TextView)findViewById(R.id.album);
+		TextView artist = (TextView)findViewById(R.id.artist);
+		TextView genre = (TextView)findViewById(R.id.genre);
+
+		title.setText(song.getName());
+		album.setText(song.getAlbum());
+		artist.setText(song.getArtist());
+		genre.setText(song.getGenre());
 	}
 
 	/**

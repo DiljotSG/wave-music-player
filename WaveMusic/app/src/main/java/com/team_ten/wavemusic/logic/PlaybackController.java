@@ -230,7 +230,8 @@ public class PlaybackController
 			try
 			{
 				mediaPlayer.start();
-				nowPlayingMusicActivity.getSupportActionBar().setTitle(song.getName());
+				nowPlayingMusicActivity.setSong(song);
+				nowPlayingMusicActivity.updateInfo();
 			}
 			catch (Exception e)
 			{

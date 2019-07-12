@@ -49,6 +49,15 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	@Override protected void onResume()
 	{
 		super.onResume();
+
+		// refresh the list since the it may have changed.
+		if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
+		{
+			songList = 	ActivityController.getAccessLikes().getLikedSongs();
+		}
+		listFragment.setSongList(songList);
+		listFragment.setAdapter(android.R.layout.simple_list_item_1);
+
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
 

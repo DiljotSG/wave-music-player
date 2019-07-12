@@ -16,6 +16,11 @@ package com.team_ten.wavemusic.application;
  * limitations under the License.
  */
 
+/*
+ * File modified from the original source code to adhere to SOLID principles.
+ * Modifications Copyright 2019 - Tyler Loewen, Lukas Timmerman, Jiehao Luo, and Diljot Garcha
+ */
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;

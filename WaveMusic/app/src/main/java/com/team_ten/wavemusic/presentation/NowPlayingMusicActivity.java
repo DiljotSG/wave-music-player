@@ -42,11 +42,11 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 		// Limit the code in this method to high level method calls only.
 		// Let the action bar display the title of the song playing.
-		getSupportActionBar().setTitle(song.getName());
+		PlaybackController.setNowPlayingMusicActivity(this);
 		PlaybackController.startSong(song);
 		createMusicControls();
 
-
+		getSupportActionBar().setTitle(song.getName());
 	}
 
 	private void initSeekBars() {

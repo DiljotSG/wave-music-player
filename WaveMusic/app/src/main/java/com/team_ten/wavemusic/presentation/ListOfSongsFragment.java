@@ -223,7 +223,6 @@ public class ListOfSongsFragment extends Fragment
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			Log.v("qwe", "345");
 			listAdapter = new ArrayAdapter<Song>(context, resource, songList);
 		}
 		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||

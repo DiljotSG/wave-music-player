@@ -56,16 +56,20 @@ public class PlaybackControllerTest
 			assertEquals(1, final_mode - initial_mode);
 		}
 		else
+		{
 			assertEquals(0, final_mode);
+		}
 	}
 
 	@Test public void start_song_sets_correct_state_with_no_songs()
 	{
-		try {
+		try
+		{
 			PlaybackController.startSong(null);
 		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			;	// We don't care; since there are no songs this will definitely be thrown
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			;    // We don't care; since there are no songs this will definitely be thrown
 		}
 
 		// State should be 0 since we can't play a song
@@ -105,30 +109,34 @@ public class PlaybackControllerTest
 		assertNotEquals(PlaybackController.playPrev(), null);
 	}
 
-	@Ignore
-	@Test public void restart_returns_song()
+	@Ignore @Test public void restart_returns_song()
 	{
 		assertNotNull(PlaybackController.restart());
 	}
 
-	@Test public void toggle_shuffle_sets_correct_state() {
-		if (PlaybackController.isShuffle()) {
+	@Test public void toggle_shuffle_sets_correct_state()
+	{
+		if (PlaybackController.isShuffle())
+		{
 			PlaybackController.toggleShuffle();
 			assertFalse(PlaybackController.isShuffle());
 		}
-		else {
+		else
+		{
 			PlaybackController.toggleShuffle();
 			assertTrue(PlaybackController.isShuffle());
 		}
 	}
 
-	@Test public void remain_paused_after_restart() {
+	@Test public void remain_paused_after_restart()
+	{
 		PlaybackController.pause();
 		PlaybackController.restart();
 		assertEquals(PlaybackController.getPlaybackStateNum(), 0);
 	}
 
-	@Test public void start_song_jumps_to_song() {
+	@Test public void start_song_jumps_to_song()
+	{
 		Song song = new Song("name", "artist", "album", "uri", 0);
 
 		assertEquals(PlaybackController.startSong(song), song);

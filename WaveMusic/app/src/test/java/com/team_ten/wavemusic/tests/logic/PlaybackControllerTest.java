@@ -68,8 +68,9 @@ public class PlaybackControllerTest
 		try {
 			PlaybackController.startSong(null);
 		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			;	// We don't care; since there are no songs this will definitely be thrown
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			;    // We don't care; since there are no songs this will definitely be thrown
 		}
 
 		// State should be 0 since we can't play a song
@@ -133,7 +134,8 @@ public class PlaybackControllerTest
 			PlaybackController.toggleShuffle();
 			assertFalse("Shuffle should be false: ", PlaybackController.isShuffle());
 		}
-		else {
+		else
+		{
 			PlaybackController.toggleShuffle();
 			assertTrue("Shuffle should be true: ", PlaybackController.isShuffle());
 		}
@@ -155,7 +157,5 @@ public class PlaybackControllerTest
 
 		assertEquals("Song returned should be the created song: ", PlaybackController.startSong(song), song);
 		System.out.println("End testing that startSong jumps to the correct song.");
-
 	}
-
 }

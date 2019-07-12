@@ -5,7 +5,6 @@ import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseException;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.interfaces.IPlaylistPersistence;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

@@ -1,5 +1,7 @@
 package com.team_ten.wavemusic.persistence.hsqldb;
 
+import com.team_ten.wavemusic.objects.Exceptions.WaveDatabaseIntegrityConstraintException;
+import com.team_ten.wavemusic.objects.Exceptions.WaveDatabaseException;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
 
@@ -229,16 +231,16 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		return new Song(songName, artistName, albumName, songUri, genreName, playCount);
 	}
 
-	private WaveDBPersistenceException wrapException(SQLException e)
+	private WaveDatabaseException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
 		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
-			return new WaveDBIntegrityConstraintException(e);
+			return new WaveDatabaseIntegrityConstraintException(e);
 		}
 		else
 		{
-			return new WaveDBPersistenceException(e);
+			return new WaveDatabaseException(e);
 		}
 	}
 }

@@ -153,7 +153,7 @@ public class ActivityController implements Serializable
 					callerActivity.startActivity(intent);
 				} catch(WaveEmptyLibraryException e)
 				{
-					System.out.println("[!] Tried setting current library to null; ignoring request");
+					System.out.println(e.getMessage());
 				}
 			}
 		});

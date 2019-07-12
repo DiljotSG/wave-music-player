@@ -1,6 +1,6 @@
 package com.team_ten.wavemusic.objects;
 
-import com.team_ten.wavemusic.objects.Exceptions.WaveEmptyLibraryException;
+import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
 
 import java.util.ArrayList;
 

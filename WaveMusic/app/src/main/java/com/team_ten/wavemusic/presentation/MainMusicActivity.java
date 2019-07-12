@@ -32,6 +32,29 @@ public class MainMusicActivity extends CommonMusicActivity
 	// Instance variables
 	private SampleAssetManager sampleAssetManager;
 	private PermissionManager permissionManager;
+	private static final String[] SAMPLE_TRACKS = {
+			"music/sample1.mp3",
+			"music/sample2.mp3",
+			"music/sample3.mp3",
+			"music/sample4.mp3",
+			"music/sample5.mp3",
+			"music/sample6.mp3",
+			"music/sample7.mp3",
+			"music/sample8.mp3",
+			"music/sample9.mp3",
+			"music/sample10.mp3",
+			"music/sample11.mp3",
+			"music/sample12.mp3",
+			"music/sample13.mp3",
+			"music/sample14.mp3",
+			"music/sample15.mp3",
+			"music/sample16.mp3",
+			"music/sample17.mp3",
+			"music/sample18.mp3",
+			"music/sample19.mp3",
+			"music/sample20.mp3"
+	};
+
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -59,7 +82,7 @@ public class MainMusicActivity extends CommonMusicActivity
 		}
 
 		// Extract the assets
-		sampleAssetManager = new SampleAssetManager(this);
+		sampleAssetManager = new SampleAssetManager(this, SAMPLE_TRACKS);
 		sampleAssetManager.extractMusicAssets();
 
 		// Build the DB, hide buttons, show loading screen

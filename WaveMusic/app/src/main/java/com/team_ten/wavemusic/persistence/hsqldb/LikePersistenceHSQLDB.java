@@ -107,8 +107,9 @@ public class LikePersistenceHSQLDB implements ILikesPersistence, Serializable
 		final String artistName = rs.getString("ARTIST");
 		final String songName = rs.getString("NAME");
 		final String albumName = rs.getString("ALBUM");
+		final String genreName = rs.getString("GENRE");
 		final int playCount = rs.getInt("PLAY_COUNT");
-		return new Song(songName, artistName, albumName, songUri, playCount);
+		return new Song(songName, artistName, albumName, songUri, genreName, playCount);
 	}
 
 	private WaveDBPersistenceException wrapException(SQLException e)

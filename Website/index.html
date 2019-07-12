@@ -127,70 +127,28 @@
         <div class="col-lg-8 mx-auto">
           <h2>Development Process</h2>
           <p class="lead">
-            Retro:
-    
-    Went well:
-        -were able to fix all known bugs
-        -app was stable by end of iteration
-        -didn't have to move much to next iteration
-        -everyone was readily willing to help others with tasks
-        not assigned to them 
-        -layers were well separated
-        -architecture was good
+            <h5>What went well</h5>
+            <p>
+                By the end of iteration 2 Wave Music was stable and free from major bugs or crashes. We were able to achieve this because everyone was readily willing to help others with tasks that were not assigned to them. Because of this, we were able to complete almost all of the assigned user stories for iteration 2, only pushing one user story to iteration 3. The architecture and design of Wave Music also went well. The architecture design is organized, and the code was separated into layers that logically make sense.
 
-    Opportunities:
-        -didn't properly guage time constraints
-        -code structure didn't have clear seams and 
-        interactions between presentation and persistence layer
-        were difficult
-        -implementation required not optimal/required changes
-        -lack of foresight/experince lead to heavy refactoring
-    
-
-    What took the most time/least/any surprises:
-        -database took the most time/was surprising due to 
-        difficulty debugging issues related to call order
-
-    What went right in the development process:
-        -strong communication between team members working on
-        different areas
-        -quickly fixed problems which arose
-        -overall architecture was flexible and didn't require any
-        significant changes
-
-       
-    How did the project change from your initial (iteration 0)
-    vision or stories or did it work out as predicted?
-
-        -Overall vision did not change, but the scope had to be
-        reduced to resource constraints (developer time) 
-
-        -The implementation/ui was not explicitly planned out and
-        did not necssarily match developer's mental image(s), but
-        still fulfilled the same defined user stories.
-
-
-    What did you learn about team or large project development? What
-    will you start doing, keep doing, or stop doing next time?
-
-        -It is really difficult to develop a project when developers
-        have competing priorities and cannot focus entirely on their
-        work. Especially not having extended periods of time to focus
-        on the project leads to difficulties.
-
-        -Competing schedules also make communication difficult, when
-        developers aren't available to communicate or ask questions
-        at the same times.
-
-        -A lot of unanticipated development time can be added when
-        components were developed independently and do not interact
-        as expected once they are completed and must communicate.
-
-    
-    
-
-development skills:
-
+                Throughout the development of Wave Music, our team has been very effective in communicating with each other in a timely manner. Specifically, when team members are working on different areas of the project, communication between each other helped improve our efficiency and avoided collaboration headaches. Our initial architecture design has essentially remained unchanged which means we did a good job of estimating the requirements Wave Music would need before we began development.
+            </p>
+            <h5>Opportunities for improvement</h5>
+            <p>
+                Although the architectural layers in the project were separated, the coupling between the persistence and presentation layers was too high. This required us to make some major refactoring changes to reduce coupling and allow for easier future modifications. This was likely due to lack of foresight and experience, but the tight time constraints also contributed to this occurring. We also greatly misjudged the estimated time it would take to implement the database and persistence layer, even though the estimate was already a large chunk of time. This estimate may have been met if not for the unforeseen refactoring changes that were required.
+            </p>
+            <h5>What took the most time/least/any surprises</h5>
+            <p>
+                Implementing the database took much more time than first estimated because of a method calling order issue that initialized the database and the main Activity in the incorrect order.
+            </p>
+            <h5>Change in project direction</h5>
+            <p>
+                Overall, the vision of Wave Music did not change at all but the scope of the features we could implement had to be reduced due to resource constraints. During our initial planning phase, we did not dedicate any time to designing a specific UI interface and layout and therefore the current iteration of Wave Music looks different than what each team member had initially envisioned in their mind. Although the appearance of Wave Music may be different than initially thought, all of the chosen features and user stories have been implemented successfully.
+            </p>
+            <h5>What did you learn about team or large project development?</h5>
+            <p>
+              We learned that it is difficult to develop a project when team members have competing priorities and cannot focus entirely on the project. This can lead to difficulties with technical debt as developers are more inclined to quickly push out a working fix, even if it is not the best solution, due to limited time. We also learned that it is very important to communicate what portion of the project you are working on. Without doing so, a lot of unanticipated development time can be added due to components being developed independently and not interacting with other components as expected.
+            </p>
           </p>
         </div>
       </div>

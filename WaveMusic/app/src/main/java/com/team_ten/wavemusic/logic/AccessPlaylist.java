@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.logic;
 
 import com.team_ten.wavemusic.application.Services;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
+import com.team_ten.wavemusic.persistence.interfaces.IPlaylistPersistence;
 
 import java.io.Serializable;
 import java.util.ArrayList;

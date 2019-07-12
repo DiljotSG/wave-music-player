@@ -4,42 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.team_ten.wavemusic.objects.Song;
 
-interface IPlaybackCallback
-{
-	/**
-	 * Optional behaviour called after a song is skipped forward.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	void afterNext(Song newSong);
-
-	/**
-	 * Optional behaviour called after a song is played.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	void afterPlay(Song newSong);
-
-	/**
-	 * Optional behaviour called after a song is paused.
-	 */
-	void afterPause();
-
-	/**
-	 * Optional behaviour called after a song is restarted.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	void afterRestart(Song newSong);
-
-	/**
-	 * Optional behaviour called after a song is skipped back.
-	 *
-	 * @param newSong The song that we switched to.
-	 */
-	void afterBack(Song newSong);
-}
-
 /**
  * THIS CLASS OFFERS DEFAULT BEHAVIOURS FOR THE INTERFACE ABOVE.
  * ANDROID API 23 DOES NOT SUPPORT JAVA 8'S DEFAULT INTERFACE METHODS.

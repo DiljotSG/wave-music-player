@@ -32,7 +32,8 @@ stages:
 tests:
   stage: test
   script:
-  - cd WaveMusic
-  - ./gradlew test
+    - cd WaveMusic
+    - ./gradlew test
+  allow_failure: true
   tags:
     - java

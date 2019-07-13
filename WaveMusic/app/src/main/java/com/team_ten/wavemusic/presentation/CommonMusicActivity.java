@@ -20,30 +20,32 @@ import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
 // Used in multiple activities, it's children can access these calls.
 public abstract class CommonMusicActivity extends PlaybackCallback
 {
-//	protected boolean isLight;
-//	@Override protected void onCreate(@Nullable Bundle savedInstanceState)
-//	{
-////		if(Themes.getIsLight())
-////		{
-////			AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
-////		}
-////		else
-////		{
-////			AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
-////		}
-//		//isLight = Themes.getIsLight();
-//		super.onCreate(savedInstanceState);
-//	}
-//
-//	@Override protected void onResume()
-//	{
-//		if(isLight != Themes.getIsLight())
-//		{
-//			isLight = Themes.getIsLight();
-//			recreate();
-//		}
-//		super.onResume();
-//	}
+	protected boolean isLight = true;
+
+	@Override protected void onCreate(@Nullable Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		isLight = Themes.getIsLight();
+		if(isLight)
+		{
+			AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+		}
+		else
+		{
+			AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+		}
+	}
+
+	@Override protected void onResume()
+	{
+		super.onResume();
+
+		if(isLight != Themes.getIsLight())
+		{
+			recreate();
+		}
+	}
 
 	/**
 	 * Creates the music controls for this activity.
@@ -105,7 +107,7 @@ public abstract class CommonMusicActivity extends PlaybackCallback
 	@Override public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.menu, menu);
-		if(Themes.getIsLight())
+		if (Themes.getIsLight())
 		{
 			menu.getItem(0).setIcon(R.drawable.ic_wb_sunny_black_24dp);
 		}

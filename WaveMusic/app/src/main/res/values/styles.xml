@@ -1,4 +1,6 @@
 <resources>
     <style name="Dark" parent="Theme.AppCompat.DayNight">
+        <item name="android:textColor">#FF8000</item>
     </style>
+
 </resources>

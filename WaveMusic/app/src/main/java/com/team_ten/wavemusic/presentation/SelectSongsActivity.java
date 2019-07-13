@@ -73,9 +73,8 @@ public class SelectSongsActivity extends CommonMusicActivity
 		{
 			// set necessary data into the fragment.
 			listOfSongsFragment.setSongList(songList);
-			listOfSongsFragment.setData(
-					SelectSongsActivity.this,
-					ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+			listOfSongsFragment.setData(SelectSongsActivity.this,
+										ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 
 			// Since user need to multi-choose items, we set the choice mode to be "ListView
 			// .CHOICE_MODE_MULTIPLE".
@@ -130,12 +129,12 @@ public class SelectSongsActivity extends CommonMusicActivity
 	}
 
 	/**
-	 * Since this activity doesn
+	 * Since this activity doesn't need "Search" button, we inflate "change themes" button only.
 	 */
 	@Override public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.menu_only_change_theme, menu);
-		if(Themes.getIsLight())
+		if (Themes.getIsLight())
 		{
 			menu.getItem(0).setIcon(R.drawable.ic_wb_sunny_black_24dp);
 		}

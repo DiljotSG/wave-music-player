@@ -143,12 +143,12 @@ public class SearchActivity extends CommonMusicActivity
 
 
 	/**
-	 * Since this activity doesn
+	 * Since this activity doesn't need "Search" button, we inflate "change themes" button only.
 	 */
 	@Override public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.menu_only_change_theme, menu);
-		if(Themes.getIsLight())
+		if (Themes.getIsLight())
 		{
 			menu.getItem(0).setIcon(R.drawable.ic_wb_sunny_black_24dp);
 		}

@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.AccessLikes;
+import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.Song;
@@ -18,6 +19,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	private Song song;
 	private SeekBar progressBar;
 	private SeekBar volumeBar;
+	private ImageView img;
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -25,9 +27,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_now_playing);
 
-
-		initSeekBars();
-		initLike();
+		img = (ImageView) findViewById(R.id.likeImg);
 
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
@@ -38,13 +38,38 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 			throw (new NullPointerException());
 		}
 
+		initSeekBars();
+		initLike();
+
 		// Limit the code in this method to high level method calls only.
 		// Let the action bar display the title of the song playing.
-		getSupportActionBar().setTitle(song.getName());
+		PlaybackController.setNowPlayingMusicActivity(this);
 		PlaybackController.startSong(song);
 		createMusicControls();
 
+		updateInfo();
+	}
 
+	public void setSong(Song song)
+	{
+		this.song = song;
+	}
+
+	public void updateInfo()
+	{
+		getSupportActionBar().setTitle(song.getName());
+		TextView title = (TextView) findViewById(R.id.title);
+		TextView album = (TextView) findViewById(R.id.album);
+		TextView artist = (TextView) findViewById(R.id.artist);
+		TextView genre = (TextView) findViewById(R.id.genre);
+
+		title.setText(song.getName());
+		album.setText(song.getAlbum());
+		artist.setText(song.getArtist());
+		genre.setText(song.getGenre());
+
+		// Set the "Like" button to correct state based on if the playing song is liked or not.
+		setStateOfLike();
 	}
 
 	/**
@@ -82,27 +107,43 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	 */
 	private void initLike()
 	{
-		final ImageView img = findViewById(R.id.likeImg);
+		// Set the "Like" button to correct state based on if the playing song is liked or not.
+		setStateOfLike();
 
 		img.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
 			{
-				AccessLikes clickAccess = new AccessLikes();
-
-				if (clickAccess.getLikedSongs().contains(song))
+				if (ActivityController.getAccessLikes().getLikedSongs().contains(song))
 				{
-					clickAccess.unlikeSong(song);
+					img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+					ActivityController.getAccessLikes().unlikeSong(song);
 				}
 				else
 				{
-					clickAccess.likeSong(song);
+					img.setImageResource(R.drawable.ic_favorite_black_24dp);
+					ActivityController.getAccessLikes().likeSong(song);
 				}
 			}
 		});
-
 	}
 
+	/**
+	 * Set the state of "Like" button.
+	 * If the song is liked, the icon of the button should be
+	 * concrete, otherwise it should be hollow.
+	 */
+	private void setStateOfLike()
+	{
+		if (ActivityController.getAccessLikes().getLikedSongs().contains(song))
+		{
+			img.setImageResource(R.drawable.ic_favorite_black_24dp);
+		}
+		else
+		{
+			img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+		}
+	}
 
 	/**
 	 * Sets the title of the NowPlayingActivity after a song is skipped forward.

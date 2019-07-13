@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
+import com.team_ten.wavemusic.application.IDismissCallbacks;
 import com.team_ten.wavemusic.application.SwipeDismissListViewTouchListener;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.Song;
@@ -264,9 +265,8 @@ public class ListOfSongsFragment extends Fragment
 		if (nameOfPlaylist != null)
 		{
 			touchListener = new SwipeDismissListViewTouchListener(listView,
-																  new SwipeDismissListViewTouchListener.DismissCallbacks()
+																  new IDismissCallbacks()
 																  {
-
 																	  @Override
 																	  public boolean canDismiss(
 																			  int position)
@@ -301,7 +301,7 @@ public class ListOfSongsFragment extends Fragment
 		else
 		{
 			touchListener = new SwipeDismissListViewTouchListener(listView,
-																  new SwipeDismissListViewTouchListener.DismissCallbacks()
+																  new IDismissCallbacks()
 																  {
 
 																	  @Override
@@ -317,13 +317,11 @@ public class ListOfSongsFragment extends Fragment
 																			  int[] reverseSortedPositions)
 																	  {
 
-																		  for (int index :
-																				  reverseSortedPositions)
+																		  for (int index : reverseSortedPositions)
 																		  {
 																			  String
 																					  temp
-																					  =
-																					  stringList.get(
+																					  = stringList.get(
 																					  index);
 																			  ActivityController.getAccessPlaylist()
 																								.removePlaylist(

@@ -10,6 +10,7 @@ public class Song implements Serializable
 	private String artist;
 	private String album;
 	private String URI;
+	private String genre;
 	private int playCount;
 
 	/**
@@ -19,13 +20,15 @@ public class Song implements Serializable
 	 * @param songArtist The Song's Artist.
 	 * @param songAlbum  The Song's Album.
 	 * @param songURI    The Song's URI.
+	 * @param songGenre  The Song's genre.
 	 */
-	public Song(String songName, String songArtist, String songAlbum, String songURI, int count)
+	public Song(String songName, String songArtist, String songAlbum, String songURI, String songGenre, int count)
 	{
 		name = songName;
 		artist = songArtist;
 		album = songAlbum;
 		URI = songURI;
+		genre = songGenre;
 		playCount = count;
 
 		if (artist == null)
@@ -120,6 +123,16 @@ public class Song implements Serializable
 	public void setURI(String songURI)
 	{
 		URI = songURI;
+	}
+
+	/**
+	 * Get the genre of the song.
+	 *
+	 * @return A string value that is the genre of the song.
+	 */
+	public String getGenre()
+	{
+		return genre;
 	}
 
 	/**

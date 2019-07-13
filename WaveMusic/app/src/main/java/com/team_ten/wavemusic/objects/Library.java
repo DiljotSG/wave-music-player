@@ -1,5 +1,7 @@
 package com.team_ten.wavemusic.objects;
 
+import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
+
 import java.util.ArrayList;
 
 public class Library
@@ -13,13 +15,13 @@ public class Library
 	 */
 	public static void setFullSongLibrary(ArrayList<Song> newLibrary)
 	{
-		if (newLibrary == null)
+		if (newLibrary != null)
 		{
-			System.out.println("[!] Tried setting full library to null; ignoring request");
+			fullSongLibrary = newLibrary;
 		}
 		else
 		{
-			fullSongLibrary = newLibrary;
+			throw new WaveEmptyLibraryException("Tried setting current library to null.");
 		}
 	}
 
@@ -29,13 +31,13 @@ public class Library
 	 */
 	public static void setCurSongLibrary(ArrayList<Song> newLibrary)
 	{
-		if (newLibrary == null)
+		if (newLibrary != null)
 		{
-			System.out.println("[!] Tried setting current library to null; ignoring request");
+			curSongLibrary = newLibrary;
 		}
 		else
 		{
-			curSongLibrary = newLibrary;
+			throw new WaveEmptyLibraryException("Tried setting current library to null.");
 		}
 	}
 
@@ -44,13 +46,13 @@ public class Library
 	 */
 	public static void setCurStringLibrary(ArrayList<String> newLibrary)
 	{
-		if (newLibrary == null)
+		if (newLibrary != null)
 		{
-			System.out.println("[!] Tried setting current library to null; ignoring request");
+			curStringLibrary = newLibrary;
 		}
 		else
 		{
-			curStringLibrary = newLibrary;
+			throw new WaveEmptyLibraryException("Tried setting current library to null.");
 		}
 	}
 

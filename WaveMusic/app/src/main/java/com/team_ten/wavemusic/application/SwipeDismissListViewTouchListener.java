@@ -16,6 +16,11 @@ package com.team_ten.wavemusic.application;
  * limitations under the License.
  */
 
+/*
+ * File modified from the original source code to adhere to SOLID principles.
+ * Modifications Copyright 2019 - Tyler Loewen, Lukas Timmerman, Jiehao Luo, and Diljot Garcha
+ */
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
@@ -42,7 +47,7 @@ import java.util.List;
  *
  * <p>After creating the listener, the caller should also call
  * {@link ListView#setOnScrollListener(AbsListView.OnScrollListener)}, passing
- * in the scroll listener returned by {@link #makeScrollListener()}. If a scroll listener is
+ * in the scroll listener returned by {}. If a scroll listener is
  * already assigned, the caller should still pass scroll changes through to this listener. This will
  * ensure that this {@link SwipeDismissListViewTouchListener} is paused during list view
  * scrolling.</p>
@@ -83,7 +88,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 
 	// Fixed properties
 	private ListView mListView;
-	private DismissCallbacks mCallbacks;
+	private IDismissCallbacks mCallbacks;
 	private int mViewWidth = 1; // 1 and not 0 to prevent dividing by zero
 
 	// Transient properties
@@ -99,36 +104,13 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 	private boolean mPaused;
 
 	/**
-	 * The callback interface used by {@link SwipeDismissListViewTouchListener} to inform its
-	 * client
-	 * about a successful dismissal of one or more list item positions.
-	 */
-	public interface DismissCallbacks
-	{
-		/**
-		 * Called to determine whether the given position can be dismissed.
-		 */
-		boolean canDismiss(int position);
-
-		/**
-		 * Called when the user has indicated they she would like to dismiss one or more list item
-		 * positions.
-		 *
-		 * @param listView               The originating {@link ListView}.
-		 * @param reverseSortedPositions An array of positions to dismiss, sorted in descending
-		 *                               order for convenience.
-		 */
-		void onDismiss(ListView listView, int[] reverseSortedPositions);
-	}
-
-	/**
 	 * Constructs a new swipe-to-dismiss touch listener for the given list view.
 	 *
 	 * @param listView  The list view whose items should be dismissable.
 	 * @param callbacks The callback to trigger when the user has indicated that she would like to
 	 *                  dismiss one or more list items.
 	 */
-	public SwipeDismissListViewTouchListener(ListView listView, DismissCallbacks callbacks)
+	public SwipeDismissListViewTouchListener(ListView listView, IDismissCallbacks callbacks)
 	{
 		ViewConfiguration vc = ViewConfiguration.get(listView.getContext());
 		mSlop = vc.getScaledTouchSlop();
@@ -139,41 +121,6 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 								 .getInteger(android.R.integer.config_shortAnimTime);
 		mListView = listView;
 		mCallbacks = callbacks;
-	}
-
-	/**
-	 * Enables or disables (pauses or resumes) watching for swipe-to-dismiss gestures.
-	 *
-	 * @param enabled Whether or not to watch for gestures.
-	 */
-	public void setEnabled(boolean enabled)
-	{
-		mPaused = !enabled;
-	}
-
-	/**
-	 * Returns an {@link AbsListView.OnScrollListener} to be added to the {@link
-	 * ListView} using {@link ListView#setOnScrollListener(AbsListView.OnScrollListener)}.
-	 * If a scroll listener is already assigned, the caller should still pass scroll changes
-	 * through
-	 * to this listener. This will ensure that this {@link SwipeDismissListViewTouchListener} is
-	 * paused during list view scrolling.</p>
-	 *
-	 * @see SwipeDismissListViewTouchListener
-	 */
-	public AbsListView.OnScrollListener makeScrollListener()
-	{
-		return new AbsListView.OnScrollListener()
-		{
-			@Override public void onScrollStateChanged(AbsListView absListView, int scrollState)
-			{
-				setEnabled(scrollState != AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL);
-			}
-
-			@Override public void onScroll(AbsListView absListView, int i, int i1, int i2)
-			{
-			}
-		};
 	}
 
 	/**
@@ -192,46 +139,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		{
 			case MotionEvent.ACTION_DOWN:
 			{
-				if (mPaused)
-				{
-					return false;
-				}
-
-				// Find the child view that was touched (perform a hit test)
-				Rect rect = new Rect();
-				int childCount = mListView.getChildCount();
-				int[] listViewCoords = new int[2];
-				mListView.getLocationOnScreen(listViewCoords);
-				int x = (int) motionEvent.getRawX() - listViewCoords[0];
-				int y = (int) motionEvent.getRawY() - listViewCoords[1];
-				View child;
-				for (int i = 0; i < childCount; i++)
-				{
-					child = mListView.getChildAt(i);
-					child.getHitRect(rect);
-					if (rect.contains(x, y))
-					{
-						mDownView = child;
-						break;
-					}
-				}
-
-				if (mDownView != null)
-				{
-					mDownX = motionEvent.getRawX();
-					mDownY = motionEvent.getRawY();
-					mDownPosition = mListView.getPositionForView(mDownView);
-					if (mCallbacks.canDismiss(mDownPosition))
-					{
-						mVelocityTracker = VelocityTracker.obtain();
-						mVelocityTracker.addMovement(motionEvent);
-					}
-					else
-					{
-						mDownView = null;
-					}
-				}
-				return false;
+				return actionDown(motionEvent);
 			}
 
 			case MotionEvent.ACTION_CANCEL:
@@ -241,22 +149,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 					break;
 				}
 
-				if (mDownView != null && mSwiping)
-				{
-					// cancel
-					mDownView.animate()
-							 .translationX(0)
-							 .alpha(1)
-							 .setDuration(mAnimationTime)
-							 .setListener(null);
-				}
-				mVelocityTracker.recycle();
-				mVelocityTracker = null;
-				mDownX = 0;
-				mDownY = 0;
-				mDownView = null;
-				mDownPosition = ListView.INVALID_POSITION;
-				mSwiping = false;
+				actionCancel();
 				break;
 			}
 
@@ -266,61 +159,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 				{
 					break;
 				}
-
-				float deltaX = motionEvent.getRawX() - mDownX;
-				mVelocityTracker.addMovement(motionEvent);
-				mVelocityTracker.computeCurrentVelocity(1000);
-				float velocityX = mVelocityTracker.getXVelocity();
-				float absVelocityX = Math.abs(velocityX);
-				float absVelocityY = Math.abs(mVelocityTracker.getYVelocity());
-				boolean dismiss = false;
-				boolean dismissRight = false;
-				if (Math.abs(deltaX) > mViewWidth / 2 && mSwiping)
-				{
-					dismiss = true;
-					dismissRight = deltaX > 0;
-				}
-				else if (mMinFlingVelocity <= absVelocityX && absVelocityX <= mMaxFlingVelocity &&
-						 absVelocityY < absVelocityX && mSwiping)
-				{
-					// dismiss only if flinging in the same direction as dragging
-					dismiss = (velocityX < 0) == (deltaX < 0);
-					dismissRight = mVelocityTracker.getXVelocity() > 0;
-				}
-				if (dismiss && mDownPosition != ListView.INVALID_POSITION)
-				{
-					// dismiss
-					final View downView = mDownView; // mDownView gets null'd before animation ends
-					final int downPosition = mDownPosition;
-					++mDismissAnimationRefCount;
-					mDownView.animate()
-							 .translationX(dismissRight ? mViewWidth : -mViewWidth)
-							 .alpha(0)
-							 .setDuration(mAnimationTime)
-							 .setListener(new AnimatorListenerAdapter()
-							 {
-								 @Override public void onAnimationEnd(Animator animation)
-								 {
-									 performDismiss(downView, downPosition);
-								 }
-							 });
-				}
-				else
-				{
-					// cancel
-					mDownView.animate()
-							 .translationX(0)
-							 .alpha(1)
-							 .setDuration(mAnimationTime)
-							 .setListener(null);
-				}
-				mVelocityTracker.recycle();
-				mVelocityTracker = null;
-				mDownX = 0;
-				mDownY = 0;
-				mDownView = null;
-				mDownPosition = ListView.INVALID_POSITION;
-				mSwiping = false;
+				actionUp(motionEvent);
 				break;
 			}
 
@@ -330,62 +169,170 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 				{
 					break;
 				}
-
-				mVelocityTracker.addMovement(motionEvent);
-				float deltaX = motionEvent.getRawX() - mDownX;
-				float deltaY = motionEvent.getRawY() - mDownY;
-				if (Math.abs(deltaX) > mSlop && Math.abs(deltaY) < Math.abs(deltaX) / 2)
-				{
-					mSwiping = true;
-					mSwipingSlop = (deltaX > 0 ? mSlop : -mSlop);
-					mListView.requestDisallowInterceptTouchEvent(true);
-
-					// Cancel ListView's touch (un-highlighting the item)
-					MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
-					cancelEvent.setAction(MotionEvent.ACTION_CANCEL |
-										  (motionEvent.getActionIndex() <<
-										   MotionEvent.ACTION_POINTER_INDEX_SHIFT));
-					mListView.onTouchEvent(cancelEvent);
-					cancelEvent.recycle();
-				}
-
-				if (mSwiping)
-				{
-					mDownView.setTranslationX(deltaX - mSwipingSlop);
-					mDownView.setAlpha(Math.max(0f,
-												Math.min(1f,
-														 1f - 2f * Math.abs(deltaX) / mViewWidth)));
-					return true;
-				}
-				break;
+				return actionMove(motionEvent);
 			}
 		}
 		return false;
 	}
 
-
-	class PendingDismissData implements Comparable<PendingDismissData>
+	public boolean actionDown(MotionEvent motionEvent)
 	{
-		public int position;
-		public View view;
-
-		public PendingDismissData(int position, View view)
+		if (mPaused)
 		{
-			this.position = position;
-			this.view = view;
+			return false;
 		}
 
-		/**
-		 * Return a comparison between this data and other data being dismissed.
-		 *
-		 * @return the difference in positions; cardinality of returned value indicates the
-		 * "comparison" (equal, less or greater)
-		 */
-		@Override public int compareTo(PendingDismissData other)
+		// Find the child view that was touched (perform a hit test)
+		Rect rect = new Rect();
+		int childCount = mListView.getChildCount();
+		int[] coords = calculateCoords(motionEvent, mListView);
+		View child;
+		for (int i = 0; i < childCount; i++)
 		{
-			// Sort by descending position
-			return other.position - position;
+			child = mListView.getChildAt(i);
+			child.getHitRect(rect);
+			if (rect.contains(coords[0], coords[1]))
+			{
+				mDownView = child;
+				break;
+			}
 		}
+
+		if (mDownView != null)
+		{
+			mDownX = motionEvent.getRawX();
+			mDownY = motionEvent.getRawY();
+			mDownPosition = mListView.getPositionForView(mDownView);
+			if (mCallbacks.canDismiss(mDownPosition))
+			{
+				mVelocityTracker = VelocityTracker.obtain();
+				mVelocityTracker.addMovement(motionEvent);
+			}
+			else
+			{
+				mDownView = null;
+			}
+		}
+		return false;
+	}
+
+	public void actionCancel()
+	{
+		if (mDownView != null && mSwiping)
+		{
+			// cancel
+			mDownView.animate()
+					 .translationX(0)
+					 .alpha(1)
+					 .setDuration(mAnimationTime)
+					 .setListener(null);
+		}
+		mVelocityTracker.recycle();
+		mVelocityTracker = null;
+		mDownX = 0;
+		mDownY = 0;
+		mDownView = null;
+		mDownPosition = ListView.INVALID_POSITION;
+		mSwiping = false;
+	}
+
+	public void actionUp(MotionEvent motionEvent)
+	{
+
+		float deltaX = motionEvent.getRawX() - mDownX;
+		mVelocityTracker.addMovement(motionEvent);
+		mVelocityTracker.computeCurrentVelocity(1000);
+		float velocityX = mVelocityTracker.getXVelocity();
+		float absVelocityX = Math.abs(velocityX);
+		float absVelocityY = Math.abs(mVelocityTracker.getYVelocity());
+		boolean dismiss = false;
+		boolean dismissRight = false;
+		if (Math.abs(deltaX) > mViewWidth / 2 && mSwiping)
+		{
+			dismiss = true;
+			dismissRight = deltaX > 0;
+		}
+		else if (mMinFlingVelocity <= absVelocityX && absVelocityX <= mMaxFlingVelocity &&
+				 absVelocityY < absVelocityX && mSwiping)
+		{
+			// dismiss only if flinging in the same direction as dragging
+			dismiss = (velocityX < 0) == (deltaX < 0);
+			dismissRight = mVelocityTracker.getXVelocity() > 0;
+		}
+		if (dismiss && mDownPosition != ListView.INVALID_POSITION)
+		{
+			// dismiss
+			final View downView = mDownView; // mDownView gets null'd before animation ends
+			final int downPosition = mDownPosition;
+			++mDismissAnimationRefCount;
+			mDownView.animate()
+					 .translationX(dismissRight ? mViewWidth : -mViewWidth)
+					 .alpha(0)
+					 .setDuration(mAnimationTime)
+					 .setListener(new AnimatorListenerAdapter()
+					 {
+						 @Override public void onAnimationEnd(Animator animation)
+						 {
+							 performDismiss(downView, downPosition);
+						 }
+					 });
+		}
+		else
+		{
+			// cancel
+			mDownView.animate()
+					 .translationX(0)
+					 .alpha(1)
+					 .setDuration(mAnimationTime)
+					 .setListener(null);
+		}
+		mVelocityTracker.recycle();
+		mVelocityTracker = null;
+		mDownX = 0;
+		mDownY = 0;
+		mDownView = null;
+		mDownPosition = ListView.INVALID_POSITION;
+		mSwiping = false;
+	}
+
+	public boolean actionMove(MotionEvent motionEvent)
+	{
+		mVelocityTracker.addMovement(motionEvent);
+		float deltaX = motionEvent.getRawX() - mDownX;
+		float deltaY = motionEvent.getRawY() - mDownY;
+		if (Math.abs(deltaX) > mSlop && Math.abs(deltaY) < Math.abs(deltaX) / 2)
+		{
+			mSwiping = true;
+			mSwipingSlop = (deltaX > 0 ? mSlop : -mSlop);
+			mListView.requestDisallowInterceptTouchEvent(true);
+
+			// Cancel ListView's touch (un-highlighting the item)
+			MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
+			cancelEvent.setAction(MotionEvent.ACTION_CANCEL | (motionEvent.getActionIndex() <<
+															   MotionEvent.ACTION_POINTER_INDEX_SHIFT));
+			mListView.onTouchEvent(cancelEvent);
+			cancelEvent.recycle();
+		}
+
+		if (mSwiping)
+		{
+			mDownView.setTranslationX(deltaX - mSwipingSlop);
+			mDownView.setAlpha(Math.max(0f, Math.min(1f,
+													 1f - 2f * Math.abs(deltaX) / mViewWidth)));
+			return true;
+		}
+		return false;
+	}
+
+	private int[] calculateCoords(MotionEvent motionEvent, ListView mListView)
+	{
+		int[] listViewCoords = new int[2];
+		mListView.getLocationOnScreen(listViewCoords);
+		int x = (int) motionEvent.getRawX() - listViewCoords[0];
+		int y = (int) motionEvent.getRawY() - listViewCoords[1];
+
+		int[] coords = {x, y};
+		return coords;
 	}
 
 	/**
@@ -463,5 +410,29 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 
 		mPendingDismisses.add(new PendingDismissData(dismissPosition, dismissView));
 		animator.start();
+	}
+
+	class PendingDismissData implements Comparable<PendingDismissData>
+	{
+		public int position;
+		public View view;
+
+		public PendingDismissData(int position, View view)
+		{
+			this.position = position;
+			this.view = view;
+		}
+
+		/**
+		 * Return a comparison between this data and other data being dismissed.
+		 *
+		 * @return the difference in positions; cardinality of returned value indicates the
+		 * "comparison" (equal, less or greater)
+		 */
+		@Override public int compareTo(PendingDismissData other)
+		{
+			// Sort by descending position
+			return other.position - position;
+		}
 	}
 }

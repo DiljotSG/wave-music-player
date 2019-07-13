@@ -44,37 +44,6 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 	}
 
 	/**
-	 * Inflate the "search" button on the right-top corner.
-	 */
-	@Override public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	/**
-	 * Set the click event of the "search" button on the right-top corner, which will start the
-	 * SearchActivity.
-	 */
-	@Override public boolean onOptionsItemSelected(MenuItem item)
-	{
-		int id = item.getItemId();
-
-		if (id == R.id.search)
-		{
-			new Thread(new Runnable()
-			{
-				@Override public void run()
-				{
-					ActivityController.startListActivity(ListOfPlaylistsActivity.this,
-														 ListActivity.TypeOfRetrieve.SEARCH);
-				}
-			}).start();
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	/**
 	 * To initialize the instance variables.
 	 */
 	private void initializeInstanceVariables()

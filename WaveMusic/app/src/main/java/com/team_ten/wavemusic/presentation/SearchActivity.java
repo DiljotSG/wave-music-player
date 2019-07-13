@@ -2,6 +2,8 @@ package com.team_ten.wavemusic.presentation;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -137,5 +139,39 @@ public class SearchActivity extends CommonMusicActivity
 				return false;
 			}
 		});
+	}
+
+
+	/**
+	 * Since this activity doesn
+	 */
+	@Override public boolean onCreateOptionsMenu(Menu menu)
+	{
+		getMenuInflater().inflate(R.menu.menu_only_change_theme, menu);
+		if(Themes.getIsLight())
+		{
+			menu.getItem(0).setIcon(R.drawable.ic_wb_sunny_black_24dp);
+		}
+		else
+		{
+			menu.getItem(0).setIcon(R.drawable.ic_brightness_3_black_24dp);
+		}
+		return true;
+	}
+
+	/**
+	 * Handler for item selection.
+	 *
+	 * @return if the item is selected
+	 */
+	@Override public boolean onOptionsItemSelected(MenuItem item)
+	{
+		int id = item.getItemId();
+
+		if (id == R.id.changeTheme)
+		{
+			Themes.changeTheme(this);
+		}
+		return true;
 	}
 }

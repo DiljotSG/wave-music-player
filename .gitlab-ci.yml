@@ -25,11 +25,14 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
-job1:
+stages:
+  - test
+
+# Runs the unit tests
+tests:
   stage: test
   script:
-    - cd WaveMusic
-    - ./gradlew test
-  allow_failure: true
+  - cd WaveMusic
+  - ./gradlew test
   tags:
     - java

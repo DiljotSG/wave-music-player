@@ -35,18 +35,14 @@ public class PermissionManager
 		int writePerm = ContextCompat.checkSelfPermission(mainView,
 														  Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-		// Check if we have access.
-		boolean readAccess = readPerm == PackageManager.PERMISSION_GRANTED;
-		boolean writeAccess = writePerm == PackageManager.PERMISSION_GRANTED;
-
 		// If not, request those permissions.
-		if (!readAccess)
+		if (readPerm != PackageManager.PERMISSION_GRANTED)
 		{
 			ActivityCompat.requestPermissions(mainView,
 											  new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
 											  PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
-		if (!writeAccess)
+		if (writePerm != PackageManager.PERMISSION_GRANTED)
 		{
 			ActivityCompat.requestPermissions(mainView,
 											  new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},

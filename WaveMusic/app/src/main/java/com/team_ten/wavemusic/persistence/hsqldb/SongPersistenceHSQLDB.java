@@ -1,9 +1,10 @@
 package com.team_ten.wavemusic.persistence.hsqldb;
 
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseException;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.ISongPersistence;
+import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
+public class SongPersistenceHSQLDB implements ISongPersistence
 {
 	private final String dbPath;
 	private ArrayList<Song> library;
@@ -27,7 +28,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 										   "SA",
 										   "");
 	}
-
 
 	/**
 	 * Adds a Song to the DB.
@@ -47,12 +47,13 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 			try (final Connection c = connection())
 			{
 				final PreparedStatement st = c.prepareStatement(
-						"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?)");
+						"INSERT INTO SONGS VALUES(?, ?, ?, ?, ?, ?)");
 				st.setString(1, theSong.getURI());
 				st.setString(2, theSong.getArtist());
 				st.setString(3, theSong.getName());
 				st.setString(4, theSong.getAlbum());
-				st.setInt(5, theSong.getPlayCount());
+				st.setString(5, theSong.getGenre());
+				st.setInt(6, theSong.getPlayCount());
 
 				st.executeUpdate();
 				st.close();
@@ -112,7 +113,6 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 
 			rs.close();
 			st.close();
-
 		}
 		catch (final SQLException e)
 		{
@@ -288,20 +288,21 @@ public class SongPersistenceHSQLDB implements ISongPersistence, Serializable
 		final String artistName = rs.getString("ARTIST");
 		final String songName = rs.getString("NAME");
 		final String albumName = rs.getString("ALBUM");
+		final String genreName = rs.getString("GENRE");
 		final int playCount = rs.getInt("PLAY_COUNT");
-		return new Song(songName, artistName, albumName, songUri, playCount);
+		return new Song(songName, artistName, albumName, songUri, genreName, playCount);
 	}
 
-	private WaveDBPersistenceException wrapException(SQLException e)
+	private WaveDatabaseException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
 		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
-			return new WaveDBIntegrityConstraintException(e);
+			return new WaveDatabaseIntegrityConstraintException(e);
 		}
 		else
 		{
-			return new WaveDBPersistenceException(e);
+			return new WaveDatabaseException(e);
 		}
 	}
 }

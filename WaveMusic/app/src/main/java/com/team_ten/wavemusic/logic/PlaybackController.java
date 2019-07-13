@@ -2,9 +2,11 @@ package com.team_ten.wavemusic.logic;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 import com.team_ten.wavemusic.objects.PlaybackQueue;
 import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class PlaybackController
 	private static MediaPlayer mediaPlayer;
 	private static boolean initialized;
 	private static boolean shuffle;
+	private static NowPlayingMusicActivity nowPlayingMusicActivity;
 
 	/**
 	 * Initializes the media player of the playback controller.
@@ -73,7 +76,12 @@ public class PlaybackController
 		}
 	}
 
-	public static PlaybackState getPlaybackState()
+	public static void setNowPlayingMusicActivity(NowPlayingMusicActivity activity)
+	{
+		nowPlayingMusicActivity = activity;
+	}
+
+	public static PlaybackState getPlaybackState() 
 	{
 		return state;
 	}
@@ -222,6 +230,8 @@ public class PlaybackController
 			try
 			{
 				mediaPlayer.start();
+				nowPlayingMusicActivity.setSong(song);
+				nowPlayingMusicActivity.updateInfo();
 			}
 			catch (Exception e)
 			{
@@ -259,7 +269,6 @@ public class PlaybackController
 		}
 
 		return getCurrentSong();
-
 	}
 
 	/**

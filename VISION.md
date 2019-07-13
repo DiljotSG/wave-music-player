@@ -1,20 +1,7 @@
 # Wave Music Player
 
-Master branch pipeline status:
-
-[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/master/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/master)
-
-Release branch pipeline status:
-
-[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/release/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/release)
-
-Develop branch pipeline status:
-
-[![pipeline status](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/badges/develop/pipeline.svg)](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/commits/develop)
-
 ## Table of Contents
 
-- 0 - [Contributing Members](README.md#contributing-members)
 - 1 - [Documentation for Iteration 0](README.md/#documentation-for-iteration-0)
   - 1.1 - [Application Vision Statement](README.md/#application-vision-statement)
   - 1.2 - [Application Features](README.md/#application-features)
@@ -29,48 +16,6 @@ Develop branch pipeline status:
   - 3.2 - [Implementation](README.md#implementation)
   - 3.3 - [Known Issues](README.md#known-issues)
 
-## Contributing Members
-<table>
-<tr>
-    <td style="text-align: center;">
-        <a href="https://code.cs.umanitoba.ca/powerseed">
-            <img src="https://secure.gravatar.com/avatar/332ea32ab46c3782a25fa3821fc77c87?s=800&d=identicon" width="100px;"/>
-            <br/>
-            <sub>
-                <b>Jiehao Luo</b>
-            </sub>
-        </a>
-    </td>
-    <td style="text-align: center;">
-        <a href="https://code.cs.umanitoba.ca/garchads">
-            <img src="https://secure.gravatar.com/avatar/489638821273c78330dc27fe4170b07f?s=180&d=identicon" width="100px;"/>
-            <br/>
-            <sub>
-                <b>Diljot Garcha</b>
-            </sub>
-        </a>
-    </td>
-    <td style="text-align: center;">
-        <a href="https://code.cs.umanitoba.ca/Tyler">
-            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/185/avatar.png?width=90" width="100px;"/>
-            <br/>
-            <sub>
-                <b>Tyler Loewen</b>
-            </sub>
-        </a>
-    </td>
-    <td style="text-align: center;">
-        <a href="https://code.cs.umanitoba.ca/lukas">
-            <img src="https://code.cs.umanitoba.ca/uploads/-/system/user/avatar/198/avatar.png?width=90" width="100px;"/>
-            <br/>
-            <sub>
-                <b>Lukas Timmerman</b>
-            </sub>
-        </a>
-    </td>
-</tr>
-</table>
-
 ## Documentation for Iteration 0
 
 ### Application Vision Statement
@@ -84,7 +29,6 @@ Wave will be developed for a target audience ranging from teenagers to young adu
 The users of Wave will find that the application provides a large improvement over other complicated and confusing music management tools. With a focus on simplicity, new users will be able to easily learn the functionality of the application and search for music within their library quickly. In addition to a focus on learnability, the application will provide users with a way to forward their favourite tracks to others by allowing them to export their music, either as a list of songs contained in a playlist or their entire song library. Lastly, users can customize the visual theme of the application to better suit their personal preferences.
 
 The application will be considered successful when the following criteria are met. The first metric we are interested in is the stability of the application, especially during demanding tasks such as scrolling, searching, and sorting large music libraries. The stability of the application will be measured by how often the user’s application crashes during 12-hour usage periods. This criteria will be considered a success if the user experiences less than one crash per 12-hour usage periods. Lastly, the application will be considered successful if it remains installed on a user’s device for four months. To ensure that this metric is meaningful, a goal of an average usage of 30 minutes per day throughout the four-month retention period will be set.
-
 
 ### Application Features
 
@@ -147,7 +91,7 @@ The application comes packaged with four sample tracks, these tracks will be ext
 
 **[View the repository contribution guidelines here](CONTRIBUTING.md)**.
 
-### User stories moved to Iteration 2 
+### User stories moved to Iteration 2
 
 The following user stories were moved to the next iteration:
 
@@ -160,11 +104,12 @@ The following user stories were moved to the next iteration:
 In iteration 2 of the Wave Music Player application, the team's primary focus was building the HSQL database for the application. Our app evolved in several ways this iteration. We now allow the user to browse their music library in several different ways, one of which is with categories. On launch, the app presents the user with five categories, each of which are listed below. The second way we allow the user to browse their library is by offering a search view. The search view allows the user to search by song name, artist or album.
 
 Categories:
-*  **My Library:** Allows the user to view all songs in their library.
-*  **Playlists:** Allows the user to manage their playlists, including creating new ones, and adding/removing songs from existing playlists, and removing playlists.
-*  **Artists:** Allows the user to browse their entire library by Artist.
-*  **Albums:** Allows the user to browse their entire library by Album.
-*  **Liked Songs:** Allows the user to browse the music they have liked in their library.
+
+- **My Library:** Allows the user to view all songs in their library.
+- **Playlists:** Allows the user to manage their playlists, including creating new ones, and adding/removing songs from existing playlists, and removing playlists.
+- **Artists:** Allows the user to browse their entire library by Artist.
+- **Albums:** Allows the user to browse their entire library by Album.
+- **Liked Songs:** Allows the user to browse the music they have liked in their library.
 
 ### Implementation
 
@@ -178,10 +123,10 @@ This iteration also offers the user a NowPlayingView that includes a volume cont
 
 The following features were not completed this iteration due to the user stories listed below that were not assigned for this iteration. The assigned user stories [Choose the folders that contain music](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/37) from Iteration 1 and [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23) from iteration 2 were not completed this iteration and will be moved to iteration 3.
 
-* Sort Music
-  * [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)
-* Music Controls
-  * [Repeat a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/20)
-  * [Fade between songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/21)
-  * [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23)
-  * [Choose playback location in song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/62)
+- Sort Music
+  - [Sort by most played songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/28)
+- Music Controls
+  - [Repeat a song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/20)
+  - [Fade between songs](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/21)
+  - [Add currently playing song to a playlist](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/23)
+  - [Choose playback location in song](https://code.cs.umanitoba.ca/comp3350-summer2019/team-ten-10/issues/62)

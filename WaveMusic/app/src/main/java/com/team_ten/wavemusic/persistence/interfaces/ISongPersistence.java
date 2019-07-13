@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic.persistence;
+package com.team_ten.wavemusic.persistence.interfaces;
 
 import com.team_ten.wavemusic.objects.Song;
 

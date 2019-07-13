@@ -10,41 +10,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This class uses:
+ * ,-.  ,--. ;-.  ,--. .  . ,-.  ,--. .  .  ,-. .   ,  , .  .  , ,--.  ,-. ,---. ,  ,-.  .  .
+ * |  \ |    |  ) |    |\ | |  \ |    |\ | /     \ /   | |\ |  | |    /      |   | /   \ |\ |
+ * |  | |-   |-'  |-   | \| |  | |-   | \| |      Y    | | \|  | |-   |      |   | |   | | \|
+ * |  / |    |    |    |  | |  / |    |  | \      |    | |  |  | |    \      |   | \   / |  |
+ * `-'  `--' '    `--' '  ' `-'  `--' '  '  `-'   '    ' '  ' -' `--'  `-'   '   '  `-'  '  '
+ */
 public class SampleAssetManager
 {
 	// Constants.
 	private static final String DEFAULT_LOCATION = "Music";
-	private static final String[] SAMPLE_TRACKS = {
-			"music/sample1.mp3",
-			"music/sample2.mp3",
-			"music/sample3.mp3",
-			"music/sample4.mp3",
-			"music/sample5.mp3",
-			"music/sample6.mp3",
-			"music/sample7.mp3",
-			"music/sample8.mp3",
-			"music/sample9.mp3",
-			"music/sample10.mp3",
-			"music/sample11.mp3",
-			"music/sample12.mp3",
-			"music/sample13.mp3",
-			"music/sample14.mp3",
-			"music/sample15.mp3",
-			"music/sample16.mp3",
-			"music/sample17.mp3",
-			"music/sample18.mp3",
-			"music/sample19.mp3",
-			"music/sample20.mp3",};
 
 	// Instance variables.
 	private MainMusicActivity mainView;
+	private String[] sampleTracks;
 
 	/**
 	 * The constructor for SampleAssetManager.
 	 */
-	public SampleAssetManager(MainMusicActivity mainMusicActivity)
+	public SampleAssetManager(MainMusicActivity mainMusicActivity, String[] samples)
 	{
+		// DEPENDENCY INJECTION
 		mainView = mainMusicActivity;
+		sampleTracks = samples;
 	}
 
 	/**
@@ -52,7 +42,7 @@ public class SampleAssetManager
 	 */
 	public void extractMusicAssets()
 	{
-		for (String file : SAMPLE_TRACKS)
+		for (String file : sampleTracks)
 		{
 			if (!fileExists(getOutputPath(file)))
 			{

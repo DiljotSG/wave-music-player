@@ -1,9 +1,10 @@
 package com.team_ten.wavemusic.persistence.hsqldb;
 
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseException;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.IPlaylistPersistence;
+import com.team_ten.wavemusic.persistence.interfaces.IPlaylistPersistence;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializable
+public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence
 {
 	private final String dbPath;
 
@@ -165,7 +166,7 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		try (final Connection c = connection())
 		{
 			final PreparedStatement st = c.prepareStatement(
-					"SELECT URI, ARTIST, NAME, ALBUM, PLAY_COUNT " + "FROM SONGS " +
+					"SELECT URI, ARTIST, NAME, ALBUM, GENRE, PLAY_COUNT FROM SONGS " +
 					"INNER JOIN PLAYLIST_SONGS " +
 					"ON SONGS.URI = PLAYLIST_SONGS.URI AND PLAYLIST_SONGS.NAME = ?");
 			st.setString(1, playlistName);
@@ -224,20 +225,21 @@ public class PlaylistPersistenceHSQLDB implements IPlaylistPersistence, Serializ
 		final String artistName = rs.getString("ARTIST");
 		final String songName = rs.getString("NAME");
 		final String albumName = rs.getString("ALBUM");
+		final String genreName = rs.getString("GENRE");
 		final int playCount = rs.getInt("PLAY_COUNT");
-		return new Song(songName, artistName, albumName, songUri, playCount);
+		return new Song(songName, artistName, albumName, songUri, genreName, playCount);
 	}
 
-	private WaveDBPersistenceException wrapException(SQLException e)
+	private WaveDatabaseException wrapException(SQLException e)
 	{
 		final String INTEGRITY_CONSTRAINT = "integrity constraint violation";
 		if (e.getCause().toString().contains(INTEGRITY_CONSTRAINT))
 		{
-			return new WaveDBIntegrityConstraintException(e);
+			return new WaveDatabaseIntegrityConstraintException(e);
 		}
 		else
 		{
-			return new WaveDBPersistenceException(e);
+			return new WaveDatabaseException(e);
 		}
 	}
 }

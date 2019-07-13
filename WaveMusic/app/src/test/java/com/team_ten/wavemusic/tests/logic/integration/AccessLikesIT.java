@@ -3,7 +3,7 @@ package com.team_ten.wavemusic.tests.logic.integration;
 import com.team_ten.wavemusic.logic.AccessLikes;
 import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.hsqldb.WaveDBIntegrityConstraintException;
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
 import com.team_ten.wavemusic.tests.utils.IntegrationTestSetup;
 
 import org.junit.After;
@@ -46,7 +46,7 @@ public class AccessLikesIT
 		System.out.println("End: Testing liking a song.");
 	}
 
-	@Test(expected = WaveDBIntegrityConstraintException.class)
+	@Test(expected = WaveDatabaseIntegrityConstraintException.class)
 	public void testLikingDuplicateSongs()
 	{
 		System.out.println("Start: Testing liking a duplicate song.");

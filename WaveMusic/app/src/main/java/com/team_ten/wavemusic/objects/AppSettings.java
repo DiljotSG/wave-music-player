@@ -7,7 +7,6 @@ public class AppSettings
 	private static AudioManager audioManager;
 
 	private static int maxVolume;
-
 	public static int getMaxVolume()
 	{
 		return maxVolume;

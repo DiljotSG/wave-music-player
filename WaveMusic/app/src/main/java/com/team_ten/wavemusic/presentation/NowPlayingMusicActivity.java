@@ -1,6 +1,7 @@
 package com.team_ten.wavemusic.presentation;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,9 @@ import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.Song;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NowPlayingMusicActivity extends CommonMusicActivity
 {
@@ -50,6 +54,17 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		createMusicControls();
 
 		updateInfo();
+		createUpdateTimer();
+	}
+
+	private void createUpdateTimer() {
+		new Timer().scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				progressBar.setMax(PlaybackController.getPlaybackDuration());
+				progressBar.setProgress(PlaybackController.getPlaybackPosition());
+			}
+		}, 0, 500);
 	}
 
 	public void setSong(Song song)
@@ -80,7 +95,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	private void initSeekBars()
 	{
 		progressBar = findViewById(R.id.seekBarForMusic);
-		progressBar.setMax(100);
+		progressBar.setMax(PlaybackController.getPlaybackDuration());
 		volumeBar = findViewById(R.id.seekBarForVolume);
 		volumeBar.setMax(AppSettings.getMaxVolume());
 		volumeBar.setProgress(AppSettings.getVolume());
@@ -101,7 +116,23 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 			}
 		});
 
-		progressBar.setVisibility(View.INVISIBLE);
+		progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+				if (fromUser)
+					PlaybackController.seekTo(i);
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+
+			}
+		});
 	}
 
 	/**

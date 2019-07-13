@@ -57,6 +57,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 				st.executeUpdate();
 				st.close();
+				library.add(theSong);
 			}
 			catch (final SQLException e)
 			{
@@ -79,6 +80,7 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 			st.executeUpdate();
 			st.close();
+			library.remove(toRemove);
 		}
 		catch (final SQLException e)
 		{

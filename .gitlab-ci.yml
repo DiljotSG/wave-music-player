@@ -29,7 +29,7 @@ stages:
   - test
 
 # Runs the unit tests
-unit_tests:
+tests:
   stage: test
   script:
   - cd WaveMusic

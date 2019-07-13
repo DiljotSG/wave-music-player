@@ -95,7 +95,7 @@ public class AccessSongIT
 		System.out.println("End: Testing removing a song.");
 	}
 
-	public void testGetAllArtists()
+	@Test public void testGetAllArtists()
 	{
 		System.out.println("Start: Testing getting all artists.");
 		accessSong.addSong(testSong);

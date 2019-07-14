@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.tests.logic.integration;
 
 import com.team_ten.wavemusic.logic.AccessSong;
 import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.persistence.hsqldb.WaveDBIntegrityConstraintException;
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
 import com.team_ten.wavemusic.tests.utils.IntegrationTestSetup;
 
 import org.junit.After;
@@ -41,8 +41,7 @@ public class AccessSongIT
 		System.out.println("End: Testing fetching empty library.");
 	}
 
-	@Test(expected = WaveDBIntegrityConstraintException.class)
-	public void testAddingDuplicateSongs()
+	@Test public void testAddingDuplicateSongs()
 	{
 		System.out.println("Start: Testing adding duplicate songs.");
 		accessSong.addSong(testSong);

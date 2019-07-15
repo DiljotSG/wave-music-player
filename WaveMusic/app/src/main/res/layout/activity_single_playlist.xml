@@ -42,7 +42,7 @@
                     android:text="Add songs"
                     android:layout_gravity= "center_vertical"
                     android:paddingLeft="5dp"
-                    android:textColor="#000000" />
+                    android:textColor="#FF8000" />
             </LinearLayout>
 
             <fragment

@@ -57,10 +57,12 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		createUpdateTimer();
 	}
 
-	private void createUpdateTimer() {
-		new Timer().scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
+	private void createUpdateTimer()
+	{
+		new Timer().scheduleAtFixedRate(new TimerTask()
+		{
+			@Override public void run()
+			{
 				progressBar.setMax(PlaybackController.getPlaybackDuration());
 				progressBar.setProgress(PlaybackController.getPlaybackPosition());
 			}
@@ -116,20 +118,23 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 			}
 		});
 
-		progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+		progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+		{
+			@Override public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser)
+			{
 				if (fromUser)
+				{
 					PlaybackController.seekTo(i);
+				}
 			}
 
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
+			@Override public void onStartTrackingTouch(SeekBar seekBar)
+			{
 
 			}
 
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
+			@Override public void onStopTrackingTouch(SeekBar seekBar)
+			{
 
 			}
 		});
@@ -167,9 +172,13 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 				PlaybackController.toggleShuffle();
 
 				if (PlaybackController.isShuffle())
+				{
 					shuffleimg.setAlpha(255);
+				}
 				else
+				{
 					shuffleimg.setAlpha(64);
+				}
 			}
 		});
 	}

@@ -59,7 +59,8 @@ public class PlaybackController
 		}
 	}
 
-	private static void initMediaPlayer() {
+	private static void initMediaPlayer()
+	{
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
 		{
@@ -79,9 +80,10 @@ public class PlaybackController
 				}
 			}
 		});
-		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-			@Override
-			public void onPrepared(MediaPlayer mediaPlayer) {
+		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+		{
+			@Override public void onPrepared(MediaPlayer mediaPlayer)
+			{
 				PlaybackController.setPlaybackDuration(mediaPlayer.getDuration());
 			}
 		});
@@ -92,7 +94,7 @@ public class PlaybackController
 		nowPlayingMusicActivity = activity;
 	}
 
-	public static PlaybackState getPlaybackState() 
+	public static PlaybackState getPlaybackState()
 	{
 		return state;
 	}
@@ -348,22 +350,30 @@ public class PlaybackController
 		return shuffle;
 	}
 
-	public static int getPlaybackDuration() {
+	public static int getPlaybackDuration()
+	{
 		return playbackDuration;
 	}
 
-	public static void setPlaybackDuration(int newDuration) {
+	public static void setPlaybackDuration(int newDuration)
+	{
 		playbackDuration = newDuration;
 	}
 
-	public static int getPlaybackPosition() {
-			return mediaPlayer.getCurrentPosition();
+	public static int getPlaybackPosition()
+	{
+		return mediaPlayer.getCurrentPosition();
 	}
 
-	public static void seekTo(int progress) {
+	public static void seekTo(int progress)
+	{
 		if (progress > 0)
+		{
 			mediaPlayer.seekTo(progress);
+		}
 		else
+		{
 			mediaPlayer.seekTo(0);
+		}
 	}
 }

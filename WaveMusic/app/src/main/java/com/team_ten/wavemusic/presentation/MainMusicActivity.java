@@ -1,5 +1,7 @@
 package com.team_ten.wavemusic.presentation;
 
+import utils.*;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -7,6 +9,8 @@ import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
@@ -56,11 +60,11 @@ public class MainMusicActivity extends CommonMusicActivity
 			"music/sample17.mp3",
 			"music/sample18.mp3",
 			"music/sample19.mp3",
-			"music/sample20.mp3"
-	};
+			"music/sample20.mp3"};
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
+		EspressoIdlingResource.increment();
 		// Default code on creation of an activity.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);

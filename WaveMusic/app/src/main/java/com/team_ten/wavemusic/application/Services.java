@@ -10,6 +10,8 @@ import com.team_ten.wavemusic.persistence.hsqldb.SongPersistenceHSQLDB;
 public class Services
 {
 	private static ISongPersistence SongPersistence = null;
+	private static ILikesPersistence LikesPersistence = null;
+	private static IPlaylistPersistence PlaylistPersistence = null;
 
 	/**
 	 * Return the accessor/mutator for the database Songs table
@@ -25,8 +27,6 @@ public class Services
 
 		return SongPersistence;
 	}
-
-	private static ILikesPersistence LikesPersistence = null;
 
 	/**
 	 * Return the accessor/mutator for the database Likes table
@@ -44,8 +44,6 @@ public class Services
 		return LikesPersistence;
 	}
 
-	private static IPlaylistPersistence PlaylistPersistence = null;
-
 	/**
 	 * Return the accessor/mutator for the database Playlists table
 	 *
@@ -59,6 +57,13 @@ public class Services
 		}
 
 		return PlaylistPersistence;
+	}
+
+	public static synchronized void clean()
+	{
+		SongPersistence = null;
+		LikesPersistence = null;
+		PlaylistPersistence = null;
 	}
 }
 

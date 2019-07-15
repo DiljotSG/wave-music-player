@@ -56,6 +56,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_favorite_border_black_24dp"/>
             <ImageView
+                android:id="@+id/shuffleImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/shuffle"/>
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -64,7 +70,7 @@
                 android:id="@+id/seekBarForVolume"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center_vertical"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 

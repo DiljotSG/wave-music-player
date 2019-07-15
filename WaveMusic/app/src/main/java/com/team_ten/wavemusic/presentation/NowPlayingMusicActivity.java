@@ -20,6 +20,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	private SeekBar progressBar;
 	private SeekBar volumeBar;
 	private ImageView img;
+	private ImageView shuffleimg; // Icon made by Dave Gandy from www.flaticon.com
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -27,7 +28,8 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_now_playing);
 
-		img = (ImageView) findViewById(R.id.likeImg);
+		img = findViewById(R.id.likeImg);
+		shuffleimg = findViewById(R.id.shuffleImg);
 
 		// To get the title and URI from the intent.
 		Intent intent = getIntent();
@@ -124,6 +126,19 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 					img.setImageResource(R.drawable.ic_favorite_black_24dp);
 					ActivityController.getAccessLikes().likeSong(song);
 				}
+			}
+		});
+
+		shuffleimg.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				PlaybackController.toggleShuffle();
+
+				if (PlaybackController.isShuffle())
+					shuffleimg.setAlpha(255);
+				else
+					shuffleimg.setAlpha(64);
 			}
 		});
 	}

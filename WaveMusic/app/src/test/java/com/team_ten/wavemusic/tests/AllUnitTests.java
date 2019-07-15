@@ -20,7 +20,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestMusicDirectoryManager.class,
 		TestSongClass.class,
 })
-public class AllTests
+public class AllUnitTests
 {
-
 }

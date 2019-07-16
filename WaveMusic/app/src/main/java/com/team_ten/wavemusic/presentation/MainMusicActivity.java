@@ -8,6 +8,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +28,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
 
 public class MainMusicActivity extends CommonMusicActivity
 {
@@ -54,7 +58,6 @@ public class MainMusicActivity extends CommonMusicActivity
 			"music/sample19.mp3",
 			"music/sample20.mp3"
 	};
-
 
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
@@ -303,37 +306,5 @@ public class MainMusicActivity extends CommonMusicActivity
 				}).start();
 			}
 		});
-	}
-
-	/**
-	 * Finalize the options menu
-	 */
-	@Override public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	/**
-	 * Handler for item selection.
-	 *
-	 * @return if the item is selected
-	 */
-	@Override public boolean onOptionsItemSelected(MenuItem item)
-	{
-		int id = item.getItemId();
-
-		if (id == R.id.search)
-		{
-			new Thread(new Runnable()
-			{
-				@Override public void run()
-				{
-					ActivityController.startListActivity(MainMusicActivity.this,
-														 ListActivity.TypeOfRetrieve.SEARCH);
-				}
-			}).start();
-		}
-		return super.onOptionsItemSelected(item);
 	}
 }

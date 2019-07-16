@@ -97,6 +97,8 @@ public class SelectSongsActivity extends CommonMusicActivity
 		{
 			@Override public void onClick(View v)
 			{
+				ArrayList<Song> exsitingSongs = ActivityController.getAccessPlaylist().getSongsFromPlaylist(nameOfPlaylist);
+
 				SparseBooleanArray booleanArray = ((ListView) (listOfSongsFragment.getView()
 																				  .findViewById(R.id.list_songs)))
 						.getCheckedItemPositions();
@@ -115,7 +117,10 @@ public class SelectSongsActivity extends CommonMusicActivity
 
 				for (Song song : selected_songs)
 				{
-					ActivityController.getAccessPlaylist().addSongToPlaylist(song, nameOfPlaylist);
+					if(!exsitingSongs.contains(song))
+					{
+						ActivityController.getAccessPlaylist().addSongToPlaylist(song, nameOfPlaylist);
+					}
 				}
 
 				if (isCreateNewPlaylist)

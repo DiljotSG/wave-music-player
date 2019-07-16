@@ -13,6 +13,7 @@ public class AppSettings
 		return maxVolume;
 	}
 
+
 	/**
 	 * Return the app's current volume.
 	 *

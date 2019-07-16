@@ -33,6 +33,7 @@ enum PlaybackMode
 public class PlaybackController
 {
 	//Instance variables.
+	private static int playbackDuration;
 	private static PlaybackQueue playbackQueue;
 	private static PlaybackState state;
 	private static PlaybackMode playbackMode;
@@ -53,27 +54,39 @@ public class PlaybackController
 			state = PlaybackState.PAUSED;
 			playbackMode = PlaybackMode.PLAY_ALL;
 			mediaPlayer = mp;
-			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-			{
-				@Override public void onCompletion(MediaPlayer mediaPlayer)
-				{
-					// If the playback is not paused
-					if (PlaybackController.getPlaybackStateNum() > 0)
-					{
-						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE)
-						{
-							PlaybackController.restart();
-						}
-						else
-						{
-							PlaybackController.playNext();
-						}
-					}
-				}
-			});
+			initMediaPlayer();
 			shuffle = true;
 		}
+	}
+
+	private static void initMediaPlayer()
+	{
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+		{
+			@Override public void onCompletion(MediaPlayer mediaPlayer)
+			{
+				// If the playback is not paused
+				if (PlaybackController.getPlaybackStateNum() > 0)
+				{
+					if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE)
+					{
+						PlaybackController.restart();
+					}
+					else
+					{
+						PlaybackController.playNext();
+					}
+				}
+			}
+		});
+		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+		{
+			@Override public void onPrepared(MediaPlayer mediaPlayer)
+			{
+				PlaybackController.setPlaybackDuration(mediaPlayer.getDuration());
+			}
+		});
 	}
 
 	public static void setNowPlayingMusicActivity(NowPlayingMusicActivity activity)
@@ -81,7 +94,7 @@ public class PlaybackController
 		nowPlayingMusicActivity = activity;
 	}
 
-	public static PlaybackState getPlaybackState() 
+	public static PlaybackState getPlaybackState()
 	{
 		return state;
 	}
@@ -325,6 +338,22 @@ public class PlaybackController
 	}
 
 	/**
+	 * Return the currently playbackQueue.
+	 */
+	public static PlaybackQueue getPlaybackQueue()
+	{
+		return playbackQueue;
+	}
+
+	/**
+	 * Return the Mediaplayer object.
+	 */
+	public static MediaPlayer getMediaPlayer()
+	{
+		return mediaPlayer;
+	}
+
+	/**
 	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
 	 */
 	public static void toggleShuffle()
@@ -335,5 +364,32 @@ public class PlaybackController
 	public static boolean isShuffle()
 	{
 		return shuffle;
+	}
+
+	public static int getPlaybackDuration()
+	{
+		return playbackDuration;
+	}
+
+	public static void setPlaybackDuration(int newDuration)
+	{
+		playbackDuration = newDuration;
+	}
+
+	public static int getPlaybackPosition()
+	{
+		return mediaPlayer.getCurrentPosition();
+	}
+
+	public static void seekTo(int progress)
+	{
+		if (progress > 0)
+		{
+			mediaPlayer.seekTo(progress);
+		}
+		else
+		{
+			mediaPlayer.seekTo(0);
+		}
 	}
 }

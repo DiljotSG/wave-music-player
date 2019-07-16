@@ -23,6 +23,8 @@ import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import utils.EspressoIdlingResource;
+
 public class ActivityController implements Serializable
 {
 	// Instance variables
@@ -52,6 +54,7 @@ public class ActivityController implements Serializable
 			{
 				mainMusicActivity.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 				mainMusicActivity.showAllButtons();
+				EspressoIdlingResource.decrement();
 			}
 		});
 	}

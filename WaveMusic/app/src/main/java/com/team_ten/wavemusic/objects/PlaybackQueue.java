@@ -176,4 +176,14 @@ public class PlaybackQueue
 	{
 		return playbackQueue.size() > 0;
 	}
+
+	/**
+	 * Getter for variable position.
+	 *
+	 * @return int position
+	 */
+	public int getPosition()
+	{
+		return position;
+	}
 }

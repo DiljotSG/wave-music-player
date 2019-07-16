@@ -146,6 +146,7 @@ public abstract class CommonMusicActivity extends PlaybackCallback
 			Themes.changeTheme(this);
 		}
 		return super.onOptionsItemSelected(item);
+	}
 
 	/**
 	 * For acceptance testing only, to get IdlingResource object.

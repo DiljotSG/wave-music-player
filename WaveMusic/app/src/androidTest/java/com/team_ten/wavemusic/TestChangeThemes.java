@@ -17,6 +17,8 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test the functionality of changing between 2 themes.
@@ -46,11 +48,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 		int mode = AppCompatDelegate.getDefaultNightMode();
 
 		onView(withId(R.id.changeTheme)).perform(click());
-		assert (mode != AppCompatDelegate.getDefaultNightMode());
+		assertFalse (mode == AppCompatDelegate.getDefaultNightMode());
 
 		// Change theme again, check if the current mode is identical to the initial one.
 		onView(withId(R.id.changeTheme)).perform(click());
-		assert (mode == AppCompatDelegate.getDefaultNightMode());
+		assertTrue (mode == AppCompatDelegate.getDefaultNightMode());
 	}
 
 	@After public void release()

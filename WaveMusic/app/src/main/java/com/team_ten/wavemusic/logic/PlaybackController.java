@@ -338,6 +338,22 @@ public class PlaybackController
 	}
 
 	/**
+	 * Return the currently playbackQueue.
+	 */
+	public static PlaybackQueue getPlaybackQueue()
+	{
+		return playbackQueue;
+	}
+
+	/**
+	 * Return the Mediaplayer object.
+	 */
+	public static MediaPlayer getMediaPlayer()
+	{
+		return mediaPlayer;
+	}
+
+	/**
 	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
 	 */
 	public static void toggleShuffle()

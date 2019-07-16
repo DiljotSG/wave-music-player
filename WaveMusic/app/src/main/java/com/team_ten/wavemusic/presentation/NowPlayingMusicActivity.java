@@ -33,6 +33,8 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		setContentView(R.layout.activity_now_playing);
 
 		img = findViewById(R.id.likeImg);
+		img.setTag("R.drawable.ic_favorite_border_black_24dp");
+
 		shuffleimg = findViewById(R.id.shuffleImg);
 
 		// To get the title and URI from the intent.
@@ -154,11 +156,13 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 			{
 				if (ActivityController.getAccessLikes().getLikedSongs().contains(song))
 				{
+					img.setTag("R.drawable.ic_favorite_border_black_24dp");
 					img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
 					ActivityController.getAccessLikes().unlikeSong(song);
 				}
 				else
 				{
+					img.setTag("R.drawable.ic_favorite_black_24dp");
 					img.setImageResource(R.drawable.ic_favorite_black_24dp);
 					ActivityController.getAccessLikes().likeSong(song);
 				}
@@ -192,11 +196,13 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	{
 		if (ActivityController.getAccessLikes().getLikedSongs().contains(song))
 		{
+			img.setTag("R.drawable.ic_favorite_black_24dp");
 			img.setImageResource(R.drawable.ic_favorite_black_24dp);
 		}
 		else
 		{
 			img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+			img.setTag("R.drawable.ic_favorite_border_black_24dp");
 		}
 	}
 

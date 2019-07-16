@@ -1,6 +1,7 @@
 package com.team_ten.wavemusic.acceptanceTests;
 
 import android.graphics.drawable.Drawable;
+import android.nfc.Tag;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
@@ -10,6 +11,7 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.support.test.rule.ActivityTestRule;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -26,6 +28,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Field;
+
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -39,7 +43,7 @@ import static org.hamcrest.Matchers.not;
 
 /**
  * Test the functionality of like and unlike songs.
- *
+ * <p>
  * Related feature number: 10
  */
 @RunWith(AndroidJUnit4.class) public class TestLikeSongs
@@ -119,9 +123,9 @@ import static org.hamcrest.Matchers.not;
 			@Override public void perform(UiController uiController, View view)
 			{
 				ImageView imageView = (ImageView) view;
-				Drawable.ConstantState drawable = imageView.getDrawable().getConstantState();
-				Drawable.ConstantState drawable1 = ContextCompat.getDrawable(view.getContext(), R.drawable.ic_favorite_border_black_24dp).getConstantState();
-				if(drawable.equals(drawable1))
+				String tag = imageView.getTag().toString();
+
+				if (tag.equals("R.drawable.ic_favorite_border_black_24dp"))
 				{
 					view.performClick();
 				}

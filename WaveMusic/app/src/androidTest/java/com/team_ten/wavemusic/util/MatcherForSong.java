@@ -1,19 +1,22 @@
 package com.team_ten.wavemusic.util;
 
 import android.support.test.espresso.matcher.BoundedMatcher;
+import android.util.Log;
 
 import com.team_ten.wavemusic.objects.Song;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class MatcherForSong
 {
 	public static Matcher<Object> myCustomObjectShouldHaveString(String expectedTest)
 	{
-		return myCustomObjectShouldHaveString(equalTo(expectedTest));
+		return myCustomObjectShouldHaveString(equalToIgnoringCase(expectedTest));
 	}
 
 	private static Matcher<Object> myCustomObjectShouldHaveString(final Matcher<String> expectedObject)
@@ -22,7 +25,6 @@ public class MatcherForSong
 		{
 			@Override public boolean matchesSafely(final Song actualObject)
 			{
-				// next line is important ... requiring a String having an "equals" method
 				if (expectedObject.matches(actualObject.getName()))
 				{
 					return true;

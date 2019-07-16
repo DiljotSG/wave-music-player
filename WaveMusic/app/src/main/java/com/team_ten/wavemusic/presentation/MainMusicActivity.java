@@ -313,38 +313,6 @@ public class MainMusicActivity extends CommonMusicActivity
 	}
 
 	/**
-	 * Finalize the options menu
-	 */
-	@Override public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	/**
-	 * Handler for item selection.
-	 *
-	 * @return if the item is selected
-	 */
-	@Override public boolean onOptionsItemSelected(MenuItem item)
-	{
-		int id = item.getItemId();
-
-		if (id == R.id.search)
-		{
-			new Thread(new Runnable()
-			{
-				@Override public void run()
-				{
-					ActivityController.startListActivity(MainMusicActivity.this,
-														 ListActivity.TypeOfRetrieve.SEARCH);
-				}
-			}).start();
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	/**
 	 * For acceptance testing only, to get IdlingResource object.
 	 */
 	@VisibleForTesting public IdlingResource getIdlingResource()

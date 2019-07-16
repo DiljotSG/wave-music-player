@@ -1,14 +1,17 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.acceptanceTests;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.EditText;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.junit.After;
 import org.junit.Before;
@@ -55,7 +58,7 @@ import static org.hamcrest.Matchers.not;
 	@Test public void testAddSongs()
 	{
 		// starts Playlists activity.
-		onView(withId(R.id.playLists)).perform(click());
+		onView(ViewMatchers.withId(R.id.playLists)).perform(click());
 
 		// create a new playlist, add a song into it, play it, and check if it is the song we
 		// added.

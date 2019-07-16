@@ -1,14 +1,17 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.acceptanceTests;
 
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.ListActivity;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.junit.After;
 import org.junit.Before;
@@ -56,7 +59,7 @@ public class TestSort
 	@Test public void sortBySongTitle()
 	{
 		// start "My Library" activity.
-		onView(withId(R.id.myLibrary)).perform(click());
+		onView(ViewMatchers.withId(R.id.myLibrary)).perform(click());
 
 		// verify if it is ListActivity.class that has been started and if it has the right
 		// "TypeOfRetrieve".

@@ -1,12 +1,15 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.acceptanceTests;
 
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,7 +53,7 @@ import static org.hamcrest.Matchers.is;
 	@Test public void testViewSongsProperties()
 	{
 		// start "My Library" activity, play a song and check if it is the right song.
-		onView(withId(R.id.myLibrary)).perform(click());
+		onView(ViewMatchers.withId(R.id.myLibrary)).perform(click());
 		onData(allOf(
 				is(instanceOf(Song.class)),
 				MatcherForSong.myCustomObjectShouldHaveString("Shake It Off"))).perform(click());

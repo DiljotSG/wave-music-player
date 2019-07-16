@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.util;
 
 import android.support.test.espresso.matcher.BoundedMatcher;
 

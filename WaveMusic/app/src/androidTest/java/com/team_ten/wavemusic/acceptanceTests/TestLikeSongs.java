@@ -1,4 +1,4 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.acceptanceTests;
 
 import android.graphics.drawable.Drawable;
 import android.support.test.espresso.Espresso;
@@ -6,14 +6,17 @@ import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.objects.Song;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -58,7 +61,7 @@ import static org.hamcrest.Matchers.not;
 	@Test public void testLikeAndUnlikeASong()
 	{
 		// start "My Library" activity, play a song and like it.
-		onView(withId(R.id.myLibrary)).perform(click());
+		onView(ViewMatchers.withId(R.id.myLibrary)).perform(click());
 		onData(allOf(
 				is(instanceOf(Song.class)),
 				MatcherForSong.myCustomObjectShouldHaveString("Shake It Off"))).perform(click());

@@ -1,9 +1,10 @@
-package com.team_ten.wavemusic;
+package com.team_ten.wavemusic.acceptanceTests;
 
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.rule.ActivityTestRule;
 
+import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.presentation.MainMusicActivity;
 
 import org.junit.After;

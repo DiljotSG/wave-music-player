@@ -34,9 +34,9 @@ public class MatcherForSong
 					return false;
 				}
 			}
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("getnumber should return ");
+
+			@Override public void describeTo(final Description description)
+			{
 			}
 		};
 	}

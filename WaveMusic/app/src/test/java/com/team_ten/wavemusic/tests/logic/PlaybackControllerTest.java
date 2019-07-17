@@ -5,10 +5,10 @@ import android.media.MediaPlayer;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.PlaybackQueue;
 import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -114,7 +114,7 @@ public class PlaybackControllerTest
 	@Test public void playNextReturnsSong()
 	{
 		System.out.println("Start testing that playNext returns the correct song value.");
-		assertNotEquals("Song return should not be null: ", PlaybackController.playNext(), null);
+		assertEquals("Song return should be null: ", PlaybackController.playNext(), null);
 		System.out.println("End testing that playNext returns the correct song value.");
 
 	}
@@ -122,7 +122,7 @@ public class PlaybackControllerTest
 	@Test public void playPrevReturnsSong()
 	{
 		System.out.println("Start testing playPrev returns the correct song value.");
-		assertNotEquals("Song returned should not be null: ", PlaybackController.playPrev(), null);
+		assertEquals("Song returned should be null: ", PlaybackController.playPrev(), null);
 		System.out.println("End testing playPrev returns the correct song value.");
 
 	}
@@ -151,11 +151,95 @@ public class PlaybackControllerTest
 
 	}
 
-	@Test public void startSongJumpsToSong() {
+	@Test public void jumpToSongNotInListReturnsNull() {
 		System.out.println("Start testing that startSong jumps to the correct song.");
 		Song song = new Song("name", "artist", "album", "uri", "songGenre", 0);
 
-		assertEquals("Song returned should be the created song: ", PlaybackController.startSong(song), song);
+		assertEquals("Song returned should be null: ", PlaybackController.startSong(song), null);
 		System.out.println("End testing that startSong jumps to the correct song.");
+	}
+
+	@Test public void testSetActivity() {
+		System.out.println("Start testing setting the music activity.");
+
+		NowPlayingMusicActivity a = new NowPlayingMusicActivity();
+		PlaybackController.setNowPlayingMusicActivity(a);
+
+		assertEquals("The activity should be equal to our newly created one.", PlaybackController.getNowPlayingMusicActivity(), a);
+
+		System.out.println("Start testing setting the music activity.");
+	}
+
+	@Test public void playPrevReturnsCorrectSong() {
+		System.out.println("Start test that playing previous song returns correct song.");
+		ArrayList<Song> list = new ArrayList<>();
+		Song s = null;
+		list.add(s);
+		PlaybackController.setPlaybackQueue(list);
+
+		assertEquals("Playing prev should return our song: ", s, PlaybackController.playPrev());
+		System.out.println("End test that playing previous song returns correct song.");
+	}
+
+	@Test public void playNextReturnsCorrectSong() {
+		System.out.println("Start test that playing next song returns correct song.");
+		ArrayList<Song> list = new ArrayList<>();
+		Song s = null;
+		list.add(s);
+		PlaybackController.setPlaybackQueue(list);
+
+		assertEquals("Playing prev should return our song: ", s, PlaybackController.playNext());
+		System.out.println("End test that playing next song returns correct song.");
+	}
+
+	@Test public void testStartWithNullSongThrowsException() {
+		System.out.println("Start test that starting a null song throws exception.");
+		boolean startThrew = false;
+		boolean initThrew = false;
+		try
+		{
+			PlaybackController.init(null, null);
+		} catch (NullPointerException e) {
+			initThrew = true;
+		}
+
+		try {
+			PlaybackController.startSong();
+		} catch (NullPointerException e) {
+			startThrew = true;
+		}
+
+		assertTrue("We should have thrown a null pointer exception initializing.", initThrew);
+		assertTrue("We should have thrown a null pointer exception starting song.", startThrew);
+		System.out.println("End test that starting a null song throws exception.");
+
+		try
+		{
+			setUpClass();
+		}
+		catch (IOException e) {
+			System.out.println("Error resetting test state.");
+		}
+		System.out.println("End test that starting a null song throws exception.");
+	}
+
+	@Test public void testPlaybackDurationAccess() {
+		System.out.println("Begin test playback duration access.");
+
+		int duration = 5;
+		PlaybackController.setPlaybackDuration(duration);
+		assertEquals("Playback duration should be duration: ", duration, PlaybackController.getPlaybackDuration());
+
+		System.out.println("End test playback duration access.");
+	}
+
+	@Test public void testSetDurationStayWithinSongDuration() {
+		System.out.println("Begin test playback duration access.");
+
+		int position = 5;
+		PlaybackController.seekTo(position);
+		assertEquals("Playback duration is 0, so we should get 0: ", 0, PlaybackController.getPlaybackPosition());
+
+		System.out.println("End test playback duration access.");
 	}
 }

@@ -47,16 +47,13 @@ public class PlaybackController
 	 */
 	public static void init(MediaPlayer mp, PlaybackQueue pq)
 	{
-		if (!initialized)
-		{
-			initialized = true;
-			playbackQueue = pq;
-			state = PlaybackState.PAUSED;
-			playbackMode = PlaybackMode.PLAY_ALL;
-			mediaPlayer = mp;
-			initMediaPlayer();
-			shuffle = true;
-		}
+		initialized = true;
+		playbackQueue = pq;
+		state = PlaybackState.PAUSED;
+		playbackMode = PlaybackMode.PLAY_ALL;
+		mediaPlayer = mp;
+		initMediaPlayer();
+		shuffle = true;
 	}
 
 	private static void initMediaPlayer()
@@ -92,6 +89,11 @@ public class PlaybackController
 	public static void setNowPlayingMusicActivity(NowPlayingMusicActivity activity)
 	{
 		nowPlayingMusicActivity = activity;
+	}
+
+	public static NowPlayingMusicActivity getNowPlayingMusicActivity()
+	{
+		return nowPlayingMusicActivity;
 	}
 
 	public static PlaybackState getPlaybackState()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <android.support.constraint.ConstraintLayout
-        tools:context=".presentation.NowPlayingMusicActivity"
+        tools:context=".presentation.activities.NowPlayingMusicActivity"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         xmlns:tools="http://schemas.android.com/tools"

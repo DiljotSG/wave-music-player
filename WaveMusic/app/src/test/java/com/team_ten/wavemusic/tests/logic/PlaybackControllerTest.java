@@ -3,18 +3,15 @@ package com.team_ten.wavemusic.tests.logic;
 import android.media.MediaPlayer;
 
 import com.team_ten.wavemusic.logic.PlaybackController;
-import com.team_ten.wavemusic.objects.PlaybackQueue;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
+import com.team_ten.wavemusic.objects.music.PlaybackQueue;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.NowPlayingMusicActivity;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 

@@ -5,7 +5,7 @@ import android.support.test.espresso.IdlingResource;
 import android.support.test.rule.ActivityTestRule;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
 
 import org.junit.After;
 import org.junit.Before;

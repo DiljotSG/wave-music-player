@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<android.support.constraint.ConstraintLayout tools:context=".presentation.MainMusicActivity"
+<android.support.constraint.ConstraintLayout tools:context=".presentation.activities.MainMusicActivity"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"

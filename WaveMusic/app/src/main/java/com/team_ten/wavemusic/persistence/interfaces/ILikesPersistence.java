@@ -1,6 +1,6 @@
 package com.team_ten.wavemusic.persistence.interfaces;
 
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 
 import java.util.ArrayList;
 

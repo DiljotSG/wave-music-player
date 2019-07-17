@@ -2,11 +2,10 @@ package com.team_ten.wavemusic.logic;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.util.Log;
 
-import com.team_ten.wavemusic.objects.PlaybackQueue;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
+import com.team_ten.wavemusic.objects.music.PlaybackQueue;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.NowPlayingMusicActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;

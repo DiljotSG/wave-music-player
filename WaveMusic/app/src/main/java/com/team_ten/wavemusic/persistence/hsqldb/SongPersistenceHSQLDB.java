@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.persistence.hsqldb;
 
 import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
 import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseException;
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 
 import java.sql.Connection;

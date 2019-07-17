@@ -1,9 +1,9 @@
 package com.team_ten.wavemusic.tests;
 
 import com.team_ten.wavemusic.tests.logic.TestMusicDirectoryManager;
-import com.team_ten.wavemusic.tests.logic.AccessLikesTest;
-import com.team_ten.wavemusic.tests.logic.AccessPlaylistTest;
-import com.team_ten.wavemusic.tests.logic.AccessSongTest;
+import com.team_ten.wavemusic.tests.logic.unit.AccessLikesTest;
+import com.team_ten.wavemusic.tests.logic.unit.AccessPlaylistTest;
+import com.team_ten.wavemusic.tests.logic.unit.AccessSongTest;
 import com.team_ten.wavemusic.tests.logic.PlaybackControllerTest;
 import com.team_ten.wavemusic.tests.objects.TestSongClass;
 

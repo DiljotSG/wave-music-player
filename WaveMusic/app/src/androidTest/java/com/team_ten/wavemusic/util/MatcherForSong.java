@@ -1,15 +1,12 @@
 package com.team_ten.wavemusic.util;
 
 import android.support.test.espresso.matcher.BoundedMatcher;
-import android.util.Log;
 
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class MatcherForSong

@@ -7,8 +7,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
 import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.junit.After;

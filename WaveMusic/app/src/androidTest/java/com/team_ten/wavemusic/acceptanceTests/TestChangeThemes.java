@@ -7,7 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
 
 import org.junit.After;
 import org.junit.Before;

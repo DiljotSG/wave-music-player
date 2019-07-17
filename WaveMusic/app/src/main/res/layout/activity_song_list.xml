@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<android.support.constraint.ConstraintLayout tools:context=".presentation.ListActivity"
+<android.support.constraint.ConstraintLayout tools:context=".presentation.activities.ListActivity"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <fragment
-              class = "com.team_ten.wavemusic.presentation.ListOfSongsFragment"
+              class = "com.team_ten.wavemusic.presentation.other.ListOfSongsFragment"
                 android:id="@+id/list_fragment"
                 android:layout_height="0dp"
                 android:layout_weight="1"

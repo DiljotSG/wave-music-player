@@ -8,11 +8,15 @@ public class AppSettings
 
 	private static int maxVolume;
 
+	/**
+	 * Return's the max volume.
+	 *
+	 * @return The maximum volume
+	 */
 	public static int getMaxVolume()
 	{
 		return maxVolume;
 	}
-
 
 	/**
 	 * Return the app's current volume.

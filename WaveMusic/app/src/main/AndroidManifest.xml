@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Dark">
-        <activity android:name=".presentation.SinglePlaylistActivity" />
-        <activity android:name=".presentation.SelectSongsActivity" />
-        <activity android:name=".presentation.ListOfPlaylistsActivity" />
-        <activity android:name=".presentation.SearchActivity" />
-        <activity android:name=".presentation.ListActivity" />
+        <activity android:name=".presentation.activities.SinglePlaylistActivity" />
+        <activity android:name=".presentation.activities.SelectSongsActivity" />
+        <activity android:name=".presentation.activities.ListOfPlaylistsActivity" />
+        <activity android:name=".presentation.activities.SearchActivity" />
+        <activity android:name=".presentation.activities.ListActivity" />
         <activity
-            android:name=".presentation.NowPlayingMusicActivity"
+            android:name=".presentation.activities.NowPlayingMusicActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".presentation.MainMusicActivity">
+        <activity android:name=".presentation.activities.MainMusicActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,20 +5,20 @@ import android.content.Intent;
 import android.view.View;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.logic.AccessLikes;
-import com.team_ten.wavemusic.logic.AccessPlaylist;
-import com.team_ten.wavemusic.logic.AccessSong;
+import com.team_ten.wavemusic.logic.access.AccessLikes;
+import com.team_ten.wavemusic.logic.access.AccessPlaylist;
+import com.team_ten.wavemusic.logic.access.AccessSong;
 import com.team_ten.wavemusic.logic.MusicDirectoryManager;
-import com.team_ten.wavemusic.objects.Library;
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Library;
+import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
-import com.team_ten.wavemusic.presentation.ListActivity;
-import com.team_ten.wavemusic.presentation.ListOfPlaylistsActivity;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
-import com.team_ten.wavemusic.presentation.NowPlayingMusicActivity;
-import com.team_ten.wavemusic.presentation.SearchActivity;
-import com.team_ten.wavemusic.presentation.SelectSongsActivity;
-import com.team_ten.wavemusic.presentation.SinglePlaylistActivity;
+import com.team_ten.wavemusic.presentation.activities.ListActivity;
+import com.team_ten.wavemusic.presentation.activities.ListOfPlaylistsActivity;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
+import com.team_ten.wavemusic.presentation.activities.NowPlayingMusicActivity;
+import com.team_ten.wavemusic.presentation.activities.SearchActivity;
+import com.team_ten.wavemusic.presentation.activities.SelectSongsActivity;
+import com.team_ten.wavemusic.presentation.activities.SinglePlaylistActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,36 +60,6 @@ public class ActivityController implements Serializable
 	}
 
 	/**
-	 * Getter for accessSong.
-	 *
-	 * @return accessSong
-	 */
-	public static AccessSong getAccessSong()
-	{
-		return accessSong;
-	}
-
-	/**
-	 * Getter for accessPlaylist.
-	 *
-	 * @return accessPlaylist
-	 */
-	public static AccessPlaylist getAccessPlaylist()
-	{
-		return accessPlaylist;
-	}
-
-	/**
-	 * Getter for accessPlaylist.
-	 *
-	 * @return accessPlaylist
-	 */
-	public static AccessLikes getAccessLikes()
-	{
-		return accessLikes;
-	}
-
-	/**
 	 * Starts an Activity to display songs.
 	 * Since some Activities all display songs, and they receive common parameters, we start them
 	 * in this single method.
@@ -98,7 +68,8 @@ public class ActivityController implements Serializable
 	 * @param typeOfRetrieve: the type of content to be displayed.
 	 */
 	public static void startListActivity(
-			final Activity callerActivity, final ListActivity.TypeOfRetrieve typeOfRetrieve)
+			final Activity callerActivity,
+			final ListActivity.TypeOfRetrieve typeOfRetrieve)
 	{
 		// Build the view on the UI thread
 		callerActivity.runOnUiThread(new Runnable()
@@ -164,14 +135,12 @@ public class ActivityController implements Serializable
 
 	/**
 	 * Starts a NowPlayingActivity
-	 *
 	 * @param callerActivity: the parent Activity of the NowPlayingActivity to be started.
 	 * @param song:           The song to be played in the NowPlayingActivity.
-	 * @param title:          The title of the song.
-	 * @param uri:            The URI of the song.
 	 */
 	public static void startNowPlayingActivity(
-			final Activity callerActivity, Song song, String title, String uri)
+			final Activity callerActivity,
+			Song song)
 	{
 		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
 		intent.putExtra("song", song);
@@ -187,7 +156,9 @@ public class ActivityController implements Serializable
 	 *                             add them into an existing playlist.
 	 */
 	public static void startSelectSongsActivity(
-			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
+			final Activity callerActivity,
+			String nameOfPlaylist,
+			boolean isCreateNewPlaylist)
 	{
 		ArrayList<Song> songList = accessSong.getAllSongs();
 		Library.setCurSongLibrary(songList);
@@ -204,7 +175,8 @@ public class ActivityController implements Serializable
 	 * @param nameOfPlaylist: The name of the playlist to be displayed.
 	 */
 	public static void startSinglePlaylistActivity(
-			final Activity callerActivity, String nameOfPlaylist)
+			final Activity callerActivity,
+			String nameOfPlaylist)
 	{
 		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
 		Library.setCurSongLibrary(songList);
@@ -222,7 +194,9 @@ public class ActivityController implements Serializable
 	 * @param contentForRetrieve: The list of songs in that playlist.
 	 */
 	public static void startAlbumOrArtistAct(
-			final Activity callerActivity, String typeOfRetrieve, String contentForRetrieve)
+			final Activity callerActivity,
+			String typeOfRetrieve,
+			String contentForRetrieve)
 	{
 		Intent intent = new Intent(callerActivity, ListActivity.class);
 		ArrayList<Song> songList = null;
@@ -241,5 +215,35 @@ public class ActivityController implements Serializable
 		intent.putExtra("TypeOfRetrieve", ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 		intent.putExtra("title", contentForRetrieve);
 		callerActivity.startActivity(intent);
+	}
+
+	/**
+	 * Getter for accessSong.
+	 *
+	 * @return accessSong
+	 */
+	public static AccessSong getAccessSong()
+	{
+		return accessSong;
+	}
+
+	/**
+	 * Getter for accessPlaylist.
+	 *
+	 * @return accessPlaylist
+	 */
+	public static AccessPlaylist getAccessPlaylist()
+	{
+		return accessPlaylist;
+	}
+
+	/**
+	 * Getter for accessPlaylist.
+	 *
+	 * @return accessPlaylist
+	 */
+	public static AccessLikes getAccessLikes()
+	{
+		return accessLikes;
 	}
 }

@@ -1,7 +1,5 @@
 package com.team_ten.wavemusic.acceptanceTests;
 
-import android.graphics.drawable.Drawable;
-import android.nfc.Tag;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
@@ -9,15 +7,13 @@ import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.content.ContextCompat;
 import android.support.test.rule.ActivityTestRule;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
 import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.hamcrest.BaseMatcher;
@@ -27,8 +23,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.lang.reflect.Field;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;

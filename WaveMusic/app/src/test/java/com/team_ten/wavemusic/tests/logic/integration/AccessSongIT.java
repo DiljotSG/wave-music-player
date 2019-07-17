@@ -1,8 +1,7 @@
 package com.team_ten.wavemusic.tests.logic.integration;
 
-import com.team_ten.wavemusic.logic.AccessSong;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
+import com.team_ten.wavemusic.logic.access.AccessSong;
+import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.tests.utils.IntegrationTestSetup;
 
 import org.junit.After;

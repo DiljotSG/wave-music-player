@@ -11,3 +11,7 @@ We can improve the UI by deciding on new locations on the display for each butto
 * Song Information: At the now playing music view the only song information that is displayed is the song's name. Most people will want more information about the song than this. To improve this we will display the song's name along with the artist, album, and genre. This information will be displayed somewhere in the centre of the display at a large enough font size to be easily legible.
 
 The success of these improvements will be measured by completing user tests that determine if the UI element under testing is both visually appealing, easy to understand its function, and easy to use (physically). The success criteria for these tests will be that at least 90% of users have a positive response for each individual test. For example, nine out of ten users that test for visual quality suggest that the element is visually appealing. These tests will be done by giving each user a very basic set of instructions to complete within the app. We will then record their performance and compare to each features performance to the other users that tested.
+
+## Project Velocity
+
+![](Velocity.png)

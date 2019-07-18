@@ -81,10 +81,15 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 		TextView artist = (TextView) findViewById(R.id.artist);
 		TextView genre = (TextView) findViewById(R.id.genre);
 
-		title.setText(song.getName());
-		album.setText(song.getAlbum());
-		artist.setText(song.getArtist());
-		genre.setText(song.getGenre());
+		String fullName = "Song: " + song.getName();
+		String fullAlbum = "Album: " + song.getAlbum();
+		String fullArtist = "Artist: " + song.getArtist();
+		String fullGenre = "Genre: " + song.getGenre();
+
+		title.setText(fullName);
+		album.setText(fullAlbum);
+		artist.setText(fullArtist);
+		genre.setText(fullGenre);
 
 		// Set the "Like" button to correct state based on if the playing song is liked or not.
 		setStateOfLike();

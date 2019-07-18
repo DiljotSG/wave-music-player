@@ -1,7 +1,7 @@
 package com.team_ten.wavemusic.tests.utils;
 
-import com.team_ten.wavemusic.application.Main;
-import com.team_ten.wavemusic.application.Services;
+import com.team_ten.wavemusic.application.db.Main;
+import com.team_ten.wavemusic.application.db.Services;
 
 import java.io.File;
 import java.io.FileInputStream;

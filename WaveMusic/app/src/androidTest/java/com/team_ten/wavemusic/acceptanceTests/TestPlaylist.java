@@ -9,8 +9,8 @@ import android.support.test.runner.AndroidJUnit4;
 import android.widget.EditText;
 
 import com.team_ten.wavemusic.R;
-import com.team_ten.wavemusic.objects.Song;
-import com.team_ten.wavemusic.presentation.MainMusicActivity;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
 import com.team_ten.wavemusic.util.MatcherForSong;
 
 import org.junit.After;
@@ -73,10 +73,10 @@ import static org.hamcrest.Matchers.not;
 		onData(allOf(
 				is(instanceOf(Song.class)),
 				MatcherForSong.myCustomObjectShouldHaveString("Shake It Off"))).perform(click());
-		onView(withId(R.id.title)).check(matches(withText("Shake It Off")));
-		onView(withId(R.id.album)).check(matches(withText("1989 (Deluxe)")));
-		onView(withId(R.id.artist)).check(matches(withText("Taylor Swift")));
-		onView(withId(R.id.genre)).check(matches(withText("Country")));
+		onView(withId(R.id.title)).check(matches(withText("Song: Shake It Off")));
+		onView(withId(R.id.album)).check(matches(withText("Album: 1989 (Deluxe)")));
+		onView(withId(R.id.artist)).check(matches(withText("Artist: Taylor Swift")));
+		onView(withId(R.id.genre)).check(matches(withText("Genre: Country")));
 
 		// back to the activity that displays the playlist we just created.
 		// delete the song we just added and check if it no longer exists.

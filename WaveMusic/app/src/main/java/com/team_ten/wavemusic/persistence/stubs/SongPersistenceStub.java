@@ -1,6 +1,6 @@
 package com.team_ten.wavemusic.persistence.stubs;
 
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package com.team_ten.wavemusic.logic;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
 
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 
 import java.io.File;
 import java.util.Arrays;

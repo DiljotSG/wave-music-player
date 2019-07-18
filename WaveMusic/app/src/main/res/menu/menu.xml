@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/changeTheme"
+        android:title=""
+        app:showAsAction="always"
+        android:icon="@drawable/ic_wb_sunny_black_24dp"
+        />
+
+    <item
         android:id="@+id/search"
         android:title=""
         app:showAsAction="always"

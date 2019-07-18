@@ -20,6 +20,11 @@ Wave Music is an android application developed with Android Studio that allows u
 * If you wish to contribute to Wave Music please see the [contribution guidelines](CONTRIBUTING.md)
 * A [license](LICENSE.txt) is provided
 
+## Known Issues
+
+* Scrubbing the position of a song's playback may be unpredictable due to some songs having incorrect song length metadata. It should work as intended for normal songs.
+* Normal text colour should be white for the dark theme and black for the light theme instead of orange.
+
 ## Contributing Members
 
 <table>

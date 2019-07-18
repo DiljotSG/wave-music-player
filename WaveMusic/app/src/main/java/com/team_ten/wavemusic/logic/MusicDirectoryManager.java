@@ -3,7 +3,7 @@ package com.team_ten.wavemusic.logic;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
 
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.Song;
 
 import java.io.File;
 import java.util.Arrays;
@@ -86,7 +86,7 @@ public class MusicDirectoryManager
 	{
 		// Basic error checking.
 		boolean result = false;
-		if (files != null && curr < files.length)
+		while (files != null && curr < files.length)
 		{
 			// Grab the file extension.
 			String extension = getCurrentExtension();
@@ -95,13 +95,9 @@ public class MusicDirectoryManager
 			if (extension != null && isValidExtension(extension))
 			{
 				result = true;
+				break;
 			}
-			else
-			{
-				// This specific file is not a music file, keep going.
-				curr++;
-				result = hasNext();
-			}
+			curr++;
 		}
 		return result;
 	}
@@ -125,6 +121,7 @@ public class MusicDirectoryManager
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST),
 					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
 					files[curr].toURI().toString(),
+					parser.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE),
 					0);
 
 			// Iterate our "pointer".

@@ -3,8 +3,9 @@ package com.team_ten.wavemusic.logic;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
-import com.team_ten.wavemusic.objects.PlaybackQueue;
-import com.team_ten.wavemusic.objects.Song;
+import com.team_ten.wavemusic.objects.music.PlaybackQueue;
+import com.team_ten.wavemusic.objects.music.Song;
+import com.team_ten.wavemusic.presentation.activities.NowPlayingMusicActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,46 +32,67 @@ enum PlaybackMode
 public class PlaybackController
 {
 	//Instance variables.
+	private static int playbackDuration;
 	private static PlaybackQueue playbackQueue;
 	private static PlaybackState state;
 	private static PlaybackMode playbackMode;
 	private static MediaPlayer mediaPlayer;
 	private static boolean initialized;
 	private static boolean shuffle;
+	private static NowPlayingMusicActivity nowPlayingMusicActivity;
 
 	/**
 	 * Initializes the media player of the playback controller.
 	 */
 	public static void init(MediaPlayer mp, PlaybackQueue pq)
 	{
-		if (!initialized)
+		initialized = true;
+		playbackQueue = pq;
+		state = PlaybackState.PAUSED;
+		playbackMode = PlaybackMode.PLAY_ALL;
+		mediaPlayer = mp;
+		initMediaPlayer();
+		shuffle = true;
+	}
+
+	private static void initMediaPlayer()
+	{
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
 		{
-			initialized = true;
-			playbackQueue = pq;
-			state = PlaybackState.PAUSED;
-			playbackMode = PlaybackMode.PLAY_ALL;
-			mediaPlayer = mp;
-			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+			@Override public void onCompletion(MediaPlayer mediaPlayer)
 			{
-				@Override public void onCompletion(MediaPlayer mediaPlayer)
+				// If the playback is not paused
+				if (PlaybackController.getPlaybackStateNum() > 0)
 				{
-					// If the playback is not paused
-					if (PlaybackController.getPlaybackStateNum() > 0)
+					if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE)
 					{
-						if (PlaybackController.getPlaybackMode() == PlaybackMode.LOOP_ONE)
-						{
-							PlaybackController.restart();
-						}
-						else
-						{
-							PlaybackController.playNext();
-						}
+						PlaybackController.restart();
+					}
+					else
+					{
+						PlaybackController.playNext();
 					}
 				}
-			});
-			shuffle = true;
-		}
+			}
+		});
+		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+		{
+			@Override public void onPrepared(MediaPlayer mediaPlayer)
+			{
+				PlaybackController.setPlaybackDuration(mediaPlayer.getDuration());
+			}
+		});
+	}
+
+	public static void setNowPlayingMusicActivity(NowPlayingMusicActivity activity)
+	{
+		nowPlayingMusicActivity = activity;
+	}
+
+	public static NowPlayingMusicActivity getNowPlayingMusicActivity()
+	{
+		return nowPlayingMusicActivity;
 	}
 
 	public static PlaybackState getPlaybackState()
@@ -222,6 +244,8 @@ public class PlaybackController
 			try
 			{
 				mediaPlayer.start();
+				nowPlayingMusicActivity.setSong(song);
+				nowPlayingMusicActivity.updateInfo();
 			}
 			catch (Exception e)
 			{
@@ -259,7 +283,6 @@ public class PlaybackController
 		}
 
 		return getCurrentSong();
-
 	}
 
 	/**
@@ -316,6 +339,22 @@ public class PlaybackController
 	}
 
 	/**
+	 * Return the currently playbackQueue.
+	 */
+	public static PlaybackQueue getPlaybackQueue()
+	{
+		return playbackQueue;
+	}
+
+	/**
+	 * Return the Mediaplayer object.
+	 */
+	public static MediaPlayer getMediaPlayer()
+	{
+		return mediaPlayer;
+	}
+
+	/**
 	 * Toggle whether or not we are shuffling playback (true -> false, false ->true)
 	 */
 	public static void toggleShuffle()
@@ -326,5 +365,32 @@ public class PlaybackController
 	public static boolean isShuffle()
 	{
 		return shuffle;
+	}
+
+	public static int getPlaybackDuration()
+	{
+		return playbackDuration;
+	}
+
+	public static void setPlaybackDuration(int newDuration)
+	{
+		playbackDuration = newDuration;
+	}
+
+	public static int getPlaybackPosition()
+	{
+		return mediaPlayer.getCurrentPosition();
+	}
+
+	public static void seekTo(int progress)
+	{
+		if (progress > 0)
+		{
+			mediaPlayer.seekTo(progress);
+		}
+		else
+		{
+			mediaPlayer.seekTo(0);
+		}
 	}
 }

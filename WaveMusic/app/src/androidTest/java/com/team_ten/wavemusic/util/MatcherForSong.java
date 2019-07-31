@@ -22,14 +22,7 @@ public class MatcherForSong
 		{
 			@Override public boolean matchesSafely(final Song actualObject)
 			{
-				if (expectedObject.matches(actualObject.getName()))
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				return expectedObject.matches(actualObject.getName());
 			}
 
 			@Override public void describeTo(final Description description)

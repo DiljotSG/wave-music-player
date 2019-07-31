@@ -22,7 +22,13 @@ public class Song implements Serializable
 	 * @param songURI    The Song's URI.
 	 * @param songGenre  The Song's genre.
 	 */
-	public Song(String songName, String songArtist, String songAlbum, String songURI, String songGenre, int count)
+	public Song(
+			String songName,
+			String songArtist,
+			String songAlbum,
+			String songURI,
+			String songGenre,
+			int count)
 	{
 		name = songName;
 		artist = songArtist;

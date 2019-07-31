@@ -8,12 +8,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@SuiteClasses({
-		AccessSongIT.class,
-		AccessLikesIT.class,
-		AccessPlaylistIT.class
-})
+@RunWith(Suite.class) @SuiteClasses({
+		AccessSongIT.class, AccessLikesIT.class, AccessPlaylistIT.class})
 public class AllIntegrationTests
 {
 }

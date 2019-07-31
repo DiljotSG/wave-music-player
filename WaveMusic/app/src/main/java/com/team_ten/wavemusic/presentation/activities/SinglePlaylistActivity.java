@@ -65,9 +65,8 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 		{
 			// Pass necessary data into the fragment.
 			listOfSongsFragment.setSongList(songList);
-			listOfSongsFragment.setData(
-					SinglePlaylistActivity.this,
-					ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
+			listOfSongsFragment.setData(SinglePlaylistActivity.this,
+										ListActivity.TypeOfRetrieve.MY_LIBRARY.toString());
 			listOfSongsFragment.setNameOfPlaylist(nameOfPlaylist);
 
 			// Since we need "swipe to delete" function here, we set a CustomAdapter to the

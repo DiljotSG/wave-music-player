@@ -15,8 +15,8 @@ public class TestSongClass
 		// Create 3 Song Objects. songOne and songThree have the same URI, while that of songTwo
 		// is different.
 		Song songOne = new Song("title1", "artist1", "album1", "uri1", "genre1", 0);
-		Song songTwo = new Song("title2", "artist2", "album2", "uri2","genre2", 0);
-		Song songThree = new Song("title1", "artist1", "album1", "uri1","genre2", 0);
+		Song songTwo = new Song("title2", "artist2", "album2", "uri2", "genre2", 0);
+		Song songThree = new Song("title1", "artist1", "album1", "uri1", "genre2", 0);
 
 		// Since two Song Objects are equal if they have the same URI,
 		// songOne and songTwo should NOT be equal and songOne and songThree should be equal.

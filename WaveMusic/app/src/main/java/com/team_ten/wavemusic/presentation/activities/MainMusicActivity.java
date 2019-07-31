@@ -1,7 +1,5 @@
 package com.team_ten.wavemusic.presentation.activities;
 
-import utils.*;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -18,8 +16,8 @@ import android.widget.Button;
 import com.team_ten.wavemusic.R;
 import com.team_ten.wavemusic.application.ActivityController;
 import com.team_ten.wavemusic.application.db.Main;
-import com.team_ten.wavemusic.application.managers.PermissionManager;
 import com.team_ten.wavemusic.application.managers.BundledAssetManager;
+import com.team_ten.wavemusic.application.managers.PermissionManager;
 import com.team_ten.wavemusic.logic.PlaybackController;
 import com.team_ten.wavemusic.objects.AppSettings;
 import com.team_ten.wavemusic.objects.music.PlaybackQueue;
@@ -29,6 +27,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import utils.EspressoIdlingResource;
 
 public class MainMusicActivity extends CommonMusicActivity
 {

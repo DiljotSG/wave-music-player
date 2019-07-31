@@ -69,8 +69,7 @@ public class SearchActivity extends CommonMusicActivity
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
 				Song selectedSong = results.get(position);
-				ActivityController.startNowPlayingActivity(SearchActivity.this,
-														   selectedSong);
+				ActivityController.startNowPlayingActivity(SearchActivity.this, selectedSong);
 				ArrayList<Song> listWithOneSong = new ArrayList<Song>();
 				listWithOneSong.add(selectedSong);
 				PlaybackController.setPlaybackQueue(listWithOneSong);

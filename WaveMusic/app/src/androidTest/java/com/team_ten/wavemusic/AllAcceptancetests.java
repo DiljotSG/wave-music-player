@@ -11,16 +11,13 @@ import com.team_ten.wavemusic.acceptanceTests.TestViewSongsProperties;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@RunWith(Suite.class) @Suite.SuiteClasses({
 		TestChangeThemes.class,
 		TestLikeSongs.class,
 		TestMusicControl.class,
 		TestPlaylist.class,
 		TestSearch.class,
 		TestSort.class,
-		TestViewSongsProperties.class
-})
-public class AllAcceptancetests
+		TestViewSongsProperties.class}) public class AllAcceptancetests
 {
 }

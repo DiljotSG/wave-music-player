@@ -17,7 +17,7 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 	private String nameOfPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
-	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
+	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_single_playlist);

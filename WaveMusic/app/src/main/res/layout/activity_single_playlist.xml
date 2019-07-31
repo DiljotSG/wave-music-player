@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="Add songs"
                     android:layout_gravity= "center_vertical"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textColor="#FF8000" />
             </LinearLayout>
 

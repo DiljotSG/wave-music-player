@@ -1,5 +1,6 @@
 package com.team_ten.wavemusic.presentation.other;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -258,7 +259,7 @@ import java.util.ArrayList;
 	/**
 	 * Set a SwipeDismissListViewTouchListener to the listView, which allows "swipe to delete".
 	 */
-	public void setSwipeDismissListViewTouchListener()
+	@SuppressLint("ClickableViewAccessibility") public void setSwipeDismissListViewTouchListener()
 	{
 		SwipeDismissListViewTouchListener touchListener;
 

@@ -41,14 +41,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_add_circle_black_24dp" />
+                    android:src="@drawable/ic_add_circle_black_24dp"
+                    android:contentDescription="Add Circle Icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add to playlist"
                     android:layout_gravity= "center_vertical"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textColor="#FF8000" />
             </LinearLayout>
 

@@ -23,8 +23,8 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 		setContentView(R.layout.activity_single_playlist);
 
 		initializeInstanceVariables();
-		configurateFragment();
-		configurateAddSongsButton();
+		configureFragment();
+		configureAddSongsButton();
 		createMusicControls();
 
 		if (getSupportActionBar() != null)
@@ -37,8 +37,8 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 	{
 		super.onResume();
 		initializeInstanceVariables();
-		configurateFragment();
-		configurateAddSongsButton();
+		configureFragment();
+		configureAddSongsButton();
 		// invisible the loading panel.
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
@@ -53,7 +53,7 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 
 		songList = ActivityController.getAccessPlaylist().getSongsFromPlaylist(nameOfPlaylist);
 
-		// get the fragment to display listview.
+		// get the fragment to display listView.
 		listOfSongsFragment
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
@@ -63,7 +63,7 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 	 * Pass data into listOfSongsFragment, and set its Adapter, SwipeDismissListViewTouchListener
 	 * and OnItemClickListener.
 	 */
-	private void configurateFragment()
+	private void configureFragment()
 	{
 		if (listOfSongsFragment != null)
 		{
@@ -74,15 +74,15 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 			listOfSongsFragment.setNameOfPlaylist(nameOfPlaylist);
 
 			// Since we need "swipe to delete" function here, we set a CustomAdapter to the
-			// listview.
+			// listView.
 			if (!songList.isEmpty())
 			{
 				// Since we don't need multi-choose here, so the style is "android.R.layout
 				// .simple_list_item_1".
 				listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_1);
-				// Allow "swipe to delete" in the listview.
+				// Allow "swipe to delete" in the listView.
 				listOfSongsFragment.setSwipeDismissListViewTouchListener();
-				// Display each single playlist after clicking on an item in the listview.
+				// Display each single playlist after clicking on an item in the listView.
 				listOfSongsFragment.setOnItemClickListener();
 			}
 		}
@@ -92,7 +92,7 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 	 * Set click event for the "add Songs" button, which starts SelectSongsActivity for
 	 * user to select songs and add them into this playlist.
 	 */
-	private void configurateAddSongsButton()
+	private void configureAddSongsButton()
 	{
 		findViewById(R.id.addSongs_button).setOnClickListener(new View.OnClickListener()
 		{

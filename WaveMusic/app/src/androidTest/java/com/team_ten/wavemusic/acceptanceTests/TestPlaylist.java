@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 /**
- * Test the functionalities related to playlists, including creating and deleting a playlist, adding
+ * Test the functionality's related to playlists, including creating and deleting a playlist, adding
  * and removing songs to it, and playing a song in it.
  * <p>
  * Related feature number: 16

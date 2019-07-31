@@ -18,6 +18,6 @@ import org.junit.runners.Suite;
 		TestPlaylist.class,
 		TestSearch.class,
 		TestSort.class,
-		TestViewSongsProperties.class}) public class AllAcceptancetests
+		TestViewSongsProperties.class}) public class AllAcceptanceTests
 {
 }

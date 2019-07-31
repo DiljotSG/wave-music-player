@@ -41,7 +41,7 @@ import java.util.List;
 
 /**
  * A {@link View.OnTouchListener} that makes the list items in a {@link ListView}
- * dismissable. {@link ListView} is given special treatment because by default it handles touches
+ * dismissible. {@link ListView} is given special treatment because by default it handles touches
  * for its list items... i.e. it's in charge of drawing the pressed state (the list selector),
  * handling list item clicks, etc.
  *
@@ -73,7 +73,7 @@ import java.util.List;
  * <p>This class Requires API level 12 or later due to use of {@link
  * ViewPropertyAnimator}.</p>
  *
- * <p>For a generalized {@link View.OnTouchListener} that makes any view dismissable,
+ * <p>For a generalized {@link View.OnTouchListener} that makes any view dismissible,
  * see {@link SwipeDismissListViewTouchListener}.</p>
  *
  * @see SwipeDismissListViewTouchListener
@@ -106,7 +106,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 	/**
 	 * Constructs a new swipe-to-dismiss touch listener for the given list view.
 	 *
-	 * @param listView  The list view whose items should be dismissable.
+	 * @param listView  The list view whose items should be dismissible.
 	 * @param callbacks The callback to trigger when the user has indicated that she would like to
 	 *                  dismiss one or more list items.
 	 */
@@ -185,13 +185,13 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		// Find the child view that was touched (perform a hit test)
 		Rect rect = new Rect();
 		int childCount = mListView.getChildCount();
-		int[] coords = calculateCoords(motionEvent, mListView);
+		int[] coordinates = calculateCoordinates(motionEvent, mListView);
 		View child;
 		for (int i = 0; i < childCount; i++)
 		{
 			child = mListView.getChildAt(i);
 			child.getHitRect(rect);
-			if (rect.contains(coords[0], coords[1]))
+			if (rect.contains(coordinates[0], coordinates[1]))
 			{
 				mDownView = child;
 				break;
@@ -324,15 +324,15 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		return false;
 	}
 
-	private int[] calculateCoords(MotionEvent motionEvent, ListView mListView)
+	private int[] calculateCoordinates(MotionEvent motionEvent, ListView mListView)
 	{
-		int[] listViewCoords = new int[2];
-		mListView.getLocationOnScreen(listViewCoords);
-		int x = (int) motionEvent.getRawX() - listViewCoords[0];
-		int y = (int) motionEvent.getRawY() - listViewCoords[1];
+		int[] listViewCoordinates = new int[2];
+		mListView.getLocationOnScreen(listViewCoordinates);
+		int x = (int) motionEvent.getRawX() - listViewCoordinates[0];
+		int y = (int) motionEvent.getRawY() - listViewCoordinates[1];
 
-		int[] coords = {x, y};
-		return coords;
+		int[] coordinates = {x, y};
+		return coordinates;
 	}
 
 	/**
@@ -342,8 +342,8 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 	{
 		// Animate the dismissed list item to zero-height and fire the dismiss callback when
 		// all dismissed list item animations have completed. This triggers layout on each
-		// animation
-		// frame; in the future we may want to do something smarter and more performant.
+		// animation frame; in the future we may want to do something smarter with better
+		// performance.
 
 		final ViewGroup.LayoutParams lp = dismissView.getLayoutParams();
 		final int originalHeight = dismissView.getHeight();

@@ -42,8 +42,8 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 	{
 		super.onResume();
 		initializeInstanceVariables();
-		configurateFragment();
-		configurateNewPlaylistButton();
+		configureFragment();
+		configureNewPlaylistButton();
 		findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 	}
 
@@ -56,7 +56,7 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 
 		//stringList = Library.getCurStringLibrary();
 		stringList = ActivityController.getAccessPlaylist().getAllPlaylists();
-		// get the Fragment to which the listview belongs.
+		// get the Fragment to which the listView belongs.
 		listFragment
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
@@ -66,7 +66,7 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 	 * Pass data into listOfSongsFragment, and set its Adapter, SwipeDismissListViewTouchListener
 	 * and OnItemClickListener.
 	 */
-	private void configurateFragment()
+	private void configureFragment()
 	{
 		if (listFragment != null)
 		{
@@ -80,9 +80,9 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 				// Since we don't need multi-choose here, so the style is "android.R.layout
 				// .simple_list_item_1".
 				listFragment.setAdapter(android.R.layout.simple_list_item_1);
-				// Allow "swipe to delete" in the listview.
+				// Allow "swipe to delete" in the listView.
 				listFragment.setSwipeDismissListViewTouchListener();
-				// Display each single playlist after clicking on an item in the listview.
+				// Display each single playlist after clicking on an item in the listView.
 				listFragment.setOnItemClickListener();
 			}
 		}
@@ -92,7 +92,7 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 	 * Set the click event of the "new_Playlist_button", which will display a dialog for
 	 * users to enter the name of the playlist to be created.
 	 */
-	private void configurateNewPlaylistButton()
+	private void configureNewPlaylistButton()
 	{
 
 		findViewById(R.id.new_Playlist_button).setOnClickListener(new View.OnClickListener()

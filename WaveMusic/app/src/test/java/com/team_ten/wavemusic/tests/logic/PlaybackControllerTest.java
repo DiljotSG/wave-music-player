@@ -22,9 +22,8 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.mock;
 
-public class PlaybackControllerTest
+@SuppressWarnings("ConstantConditions") public class PlaybackControllerTest
 {
-
 	@BeforeClass public static void setUpClass() throws IOException
 	{
 		MediaPlayer mp = mock(MediaPlayer.class);

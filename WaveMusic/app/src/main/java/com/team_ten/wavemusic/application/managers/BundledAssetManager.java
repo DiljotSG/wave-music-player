@@ -66,7 +66,7 @@ public class BundledAssetManager
 	 *
 	 * @throws IOException Throws an IOException in case something goes sour.
 	 */
-	private void extractFile(String fileName) throws IOException
+	@SuppressWarnings("ResultOfMethodCallIgnored") private void extractFile(String fileName) throws IOException
 	{
 		// Create an asset manager.
 		AssetManager manager = mainView.getApplicationContext().getResources().getAssets();

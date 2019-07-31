@@ -106,37 +106,41 @@ public class SelectSongsActivity extends CommonMusicActivity
 																  .getSongsFromPlaylist(
 																		  nameOfPlaylist);
 
-				SparseBooleanArray booleanArray = ((ListView) (listOfSongsFragment.getView()
-																				  .findViewById(R.id.list_songs)))
-						.getCheckedItemPositions();
-
-				ArrayList<Song> selected_songs = new ArrayList<>();
-
-				for (int i = 0; i < booleanArray.size(); i++)
+				if (listOfSongsFragment.getView() != null)
 				{
-					int key = booleanArray.keyAt(i);
+					SparseBooleanArray booleanArray = ((ListView) (listOfSongsFragment.getView()
+																					  .findViewById(
+																							  R.id.list_songs)))
+							.getCheckedItemPositions();
 
-					if (booleanArray.get(key))
+					ArrayList<Song> selected_songs = new ArrayList<>();
+
+					for (int i = 0; i < booleanArray.size(); i++)
 					{
-						selected_songs.add(songList.get(key));
-					}
-				}
+						int key = booleanArray.keyAt(i);
 
-				for (Song song : selected_songs)
-				{
-					if (!existingSongs.contains(song))
+						if (booleanArray.get(key))
+						{
+							selected_songs.add(songList.get(key));
+						}
+					}
+
+					for (Song song : selected_songs)
 					{
-						ActivityController.getAccessPlaylist()
-										  .addSongToPlaylist(song, nameOfPlaylist);
+						if (!existingSongs.contains(song))
+						{
+							ActivityController.getAccessPlaylist()
+											  .addSongToPlaylist(song, nameOfPlaylist);
+						}
 					}
-				}
 
-				if (isCreateNewPlaylist)
-				{
-					ActivityController.startSinglePlaylistActivity(SelectSongsActivity.this,
-																   nameOfPlaylist);
+					if (isCreateNewPlaylist)
+					{
+						ActivityController.startSinglePlaylistActivity(SelectSongsActivity.this,
+																	   nameOfPlaylist);
+					}
+					SelectSongsActivity.this.finish();
 				}
-				SelectSongsActivity.this.finish();
 			}
 		});
 	}

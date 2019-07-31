@@ -110,7 +110,7 @@ public class PlaybackQueue
 	 *
 	 * @return The song we just skipped to, null if the song is not in the queue.
 	 */
-	public Song jumpSong(Song song)
+	@SuppressWarnings("UnusedReturnValue") public Song jumpSong(Song song)
 	{
 		curSong = null;
 

@@ -131,7 +131,10 @@ public class ActivityController implements Serializable
 					}
 
 					// Pass necessary data into the Intent and start the Activity.
-					intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
+					if (intent != null)
+					{
+						intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
+					}
 					callerActivity.startActivity(intent);
 				}
 				catch (WaveEmptyLibraryException e)

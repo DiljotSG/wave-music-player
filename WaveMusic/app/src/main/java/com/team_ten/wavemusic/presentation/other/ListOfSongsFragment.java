@@ -24,7 +24,7 @@ import com.team_ten.wavemusic.presentation.activities.ListActivity;
 
 import java.util.ArrayList;
 
-public class ListOfSongsFragment extends Fragment
+@SuppressWarnings("NullableProblems") public class ListOfSongsFragment extends Fragment
 {
 	// Instance variables
 
@@ -104,7 +104,10 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	@Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
 	{
-		listView = getView().findViewById(R.id.list_songs);
+		if (getView() != null)
+		{
+			listView = getView().findViewById(R.id.list_songs);
+		}
 		super.onViewCreated(view, savedInstanceState);
 	}
 
@@ -257,7 +260,7 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	public void setSwipeDismissListViewTouchListener()
 	{
-		SwipeDismissListViewTouchListener touchListener = null;
+		SwipeDismissListViewTouchListener touchListener;
 
 		if (nameOfPlaylist != null)
 		{

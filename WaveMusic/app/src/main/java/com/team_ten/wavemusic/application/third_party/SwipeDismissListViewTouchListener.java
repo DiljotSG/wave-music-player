@@ -101,6 +101,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 	private VelocityTracker mVelocityTracker;
 	private int mDownPosition;
 	private View mDownView;
+	@SuppressWarnings("unused")
 	private boolean mPaused;
 
 	/**

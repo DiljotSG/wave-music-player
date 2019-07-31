@@ -46,7 +46,7 @@ public class IntegrationTestSetup
 		}
 	}
 
-	public static void clearDatabase()
+	@SuppressWarnings("ResultOfMethodCallIgnored") public static void clearDatabase()
 	{
 		testDB.delete();
 		Services.clean();

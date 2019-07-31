@@ -3,7 +3,7 @@ package com.team_ten.wavemusic.objects.music;
 import java.io.Serializable;
 
 // An individual song with all of a song's properties.
-public class Song implements Serializable
+@SuppressWarnings({"NullableProblems", "unused"}) public class Song implements Serializable
 {
 	// Instance variables.
 	private String name;

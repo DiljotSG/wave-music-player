@@ -12,7 +12,7 @@ import android.widget.ListView;
  * client
  * about a successful dismissal of one or more list item positions.
  */
-public interface IDismissCallbacks
+@SuppressWarnings("unused") public interface IDismissCallbacks
 {
 	/**
 	 * Called to determine whether the given position can be dismissed.

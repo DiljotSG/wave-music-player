@@ -24,7 +24,7 @@ import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
 
 // This abstract class shares common methods that are
 // Used in multiple activities, it's children can access these calls.
-public abstract class CommonMusicActivity extends PlaybackCallback
+@SuppressWarnings("ALL") public abstract class CommonMusicActivity extends PlaybackCallback
 {
 	private boolean isLight = true;
 

@@ -24,17 +24,20 @@ public class SelectSongsActivity extends CommonMusicActivity
 	private boolean isCreateNewPlaylist;
 	private ListOfSongsFragment listOfSongsFragment;
 
-	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
+	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_songs);
 
 		initializeInstanceVariables();
-		configurateFragment();
-		configuratConfirmButton();
+		configureFragment();
+		configureConfirmButton();
 		createMusicControls();
 
-		getSupportActionBar().setTitle("Add songs to a playlist");
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle("Add songs to a playlist");
+		}
 	}
 
 	/**
@@ -69,7 +72,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 	 * Pass data into listOfSongsFragment, and set its Adapter, SwipeDismissListViewTouchListener
 	 * and OnItemClickListener.
 	 */
-	private void configurateFragment()
+	private void configureFragment()
 	{
 		if (listOfSongsFragment != null)
 		{
@@ -92,7 +95,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 	 * set the click event of the "confirm" button, which add the selected songs into a
 	 * specific playlist.
 	 */
-	private void configuratConfirmButton()
+	private void configureConfirmButton()
 	{
 
 		findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener()

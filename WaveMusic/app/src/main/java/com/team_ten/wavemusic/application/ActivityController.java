@@ -40,11 +40,20 @@ public class ActivityController implements Serializable
 		accessSong = new AccessSong();
 		accessPlaylist = new AccessPlaylist();
 		accessLikes = new AccessLikes();
-		MusicDirectoryManager scanner = new MusicDirectoryManager();
-		while (scanner.hasNext())
+
+		try
 		{
-			Song currentSong = scanner.getNextSong();
-			accessSong.addSong(currentSong);
+			MusicDirectoryManager scanner = new MusicDirectoryManager();
+
+			while (scanner.hasNext())
+			{
+				Song currentSong = scanner.getNextSong();
+				accessSong.addSong(currentSong);
+			}
+		}
+		catch (WaveEmptyLibraryException e)
+		{
+			System.out.println(e.getMessage());
 		}
 
 		// Remove the loading screen on the UI thread (can't be done from the background).

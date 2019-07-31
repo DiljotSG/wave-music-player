@@ -29,7 +29,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	private String typeOfRetrieve;
 	private String title;
 
-	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
+	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_song_list);
@@ -39,7 +39,10 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		createMusicControls();
 
 		// Set the title in ActionBar.
-		getSupportActionBar().setTitle(title);
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(title);
+		}
 	}
 
 	/**

@@ -42,6 +42,7 @@ public class PermissionManager
 											  new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
 											  PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
+
 		if (writePerm != PackageManager.PERMISSION_GRANTED)
 		{
 			ActivityCompat.requestPermissions(mainView,

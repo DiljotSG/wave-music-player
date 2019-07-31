@@ -223,12 +223,12 @@ public class PlaybackController
 			catch (IllegalArgumentException e)
 			{
 				System.out.printf("Illegal argument playing <%s>.", song.getURI());
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 			catch (IOException e)
 			{
 				System.out.printf("IO Exception playing <%s>.", song.getURI());
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 
 			try
@@ -238,7 +238,7 @@ public class PlaybackController
 			catch (Exception e)
 			{
 				System.out.println("Exception while preparing audio.");
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 
 			try
@@ -250,7 +250,7 @@ public class PlaybackController
 			catch (Exception e)
 			{
 				System.out.println("Exception while starting audio.");
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 		}
 

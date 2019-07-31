@@ -52,7 +52,7 @@ public class AccessLikes implements ILikesPersistence, Serializable
 	/**
 	 * Get a list of all liked Songs.
 	 *
-	 * @returns An array list of liked Songs.
+	 * @return An array list of liked Songs.
 	 */
 	public ArrayList<Song> getLikedSongs()
 	{

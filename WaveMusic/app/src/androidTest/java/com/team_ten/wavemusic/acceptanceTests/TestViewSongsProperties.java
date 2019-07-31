@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 
 /**
- * Test the functionalities related to View Song's Properties, including viewing title, album,
+ * Test the functionality's related to View Song's Properties, including viewing title, album,
  * artist and genre.
  *
  * Related feature number: 17

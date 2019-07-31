@@ -21,7 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
- * Test the functionalities related to Search, including search by song's title, albums and artists.
+ * Test the functionality's related to Search, including search by song's title, albums and artists.
  * <p>
  * Related feature number: 9
  */

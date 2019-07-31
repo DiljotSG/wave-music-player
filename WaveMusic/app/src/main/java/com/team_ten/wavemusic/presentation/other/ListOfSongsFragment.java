@@ -117,7 +117,7 @@ public class ListOfSongsFragment extends Fragment
 	{
 		super.onStart();
 
-		// let the listview record the position the user is viewing, so that after rotating the
+		// let the listView record the position the user is viewing, so that after rotating the
 		// screen, the position can be resumed.
 		listView.setOnScrollListener(new AbsListView.OnScrollListener()
 		{
@@ -151,7 +151,7 @@ public class ListOfSongsFragment extends Fragment
 		{
 			listAdapter.notifyDataSetChanged();
 		}
-		// Resume the position of the listview after each time the screen is rotated.
+		// Resume the position of the listView after each time the screen is rotated.
 		listView.setSelection(position);
 	}
 
@@ -163,7 +163,7 @@ public class ListOfSongsFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 
-		// Sava data into Bundle so that they don't need to be rebuilt after each time the device
+		// Save data into Bundle so that they don't need to be rebuilt after each time the device
 		// is rotated.
 		outState.putSerializable("songList", songList);
 		outState.putSerializable("stringList", stringList);
@@ -171,7 +171,7 @@ public class ListOfSongsFragment extends Fragment
 	}
 
 	/**
-	 * Set the choice mode of the listview
+	 * Set the choice mode of the listView
 	 *
 	 * @param mode: the mode.
 	 */
@@ -181,7 +181,7 @@ public class ListOfSongsFragment extends Fragment
 	}
 
 	/**
-	 * Set click event of the items in the listview: start a NowPlayingActivity and play that song.
+	 * Set click event of the items in the listView: start a NowPlayingActivity and play that song.
 	 */
 	public void setOnItemClickListener()
 	{
@@ -230,7 +230,7 @@ public class ListOfSongsFragment extends Fragment
 	}
 
 	/**
-	 * Set a built-in type ArrayAdapter to the listview.
+	 * Set a built-in type ArrayAdapter to the listView.
 	 */
 	public void setAdapter(int resource)
 	{
@@ -254,7 +254,7 @@ public class ListOfSongsFragment extends Fragment
 	}
 
 	/**
-	 * Set a SwipeDismissListViewTouchListener to the listview, which allows "swipe to delete".
+	 * Set a SwipeDismissListViewTouchListener to the listView, which allows "swipe to delete".
 	 */
 	public void setSwipeDismissListViewTouchListener()
 	{

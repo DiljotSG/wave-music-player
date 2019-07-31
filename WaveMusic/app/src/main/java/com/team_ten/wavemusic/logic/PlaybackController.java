@@ -347,7 +347,7 @@ public class PlaybackController
 	}
 
 	/**
-	 * Return the Mediaplayer object.
+	 * Return the MediaPlayer object.
 	 */
 	public static MediaPlayer getMediaPlayer()
 	{

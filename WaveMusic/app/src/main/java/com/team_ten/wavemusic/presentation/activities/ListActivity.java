@@ -35,7 +35,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		setContentView(R.layout.activity_song_list);
 
 		initializeInstanceVariables();
-		configurateFragment();
+		configureFragment();
 		createMusicControls();
 
 		// Set the title in ActionBar.
@@ -53,9 +53,9 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 		super.onResume();
 
 		// refresh the list since the it may have changed.
-		if(typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
+		if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			songList = 	ActivityController.getAccessLikes().getLikedSongs();
+			songList = ActivityController.getAccessLikes().getLikedSongs();
 		}
 		listFragment.setSongList(songList);
 		listFragment.setAdapter(android.R.layout.simple_list_item_1);
@@ -86,7 +86,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			stringList = Library.getCurStringLibrary();
 		}
 
-		// get the Fragment that is to display the listview.
+		// get the Fragment that is to display the listView.
 		listFragment
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_fragment);
@@ -96,7 +96,7 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 	 * Pass data into listOfSongsFragment, and set its Adapter, SwipeDismissListViewTouchListener
 	 * and OnItemClickListener.
 	 */
-	private void configurateFragment()
+	private void configureFragment()
 	{
 		if (listFragment != null)
 		{
@@ -115,11 +115,11 @@ public class ListActivity extends CommonMusicActivity implements Serializable
 			}
 			listFragment.setData(ListActivity.this, typeOfRetrieve);
 
-			// To set correct Adapter for the listview in the Fragment.
+			// To set correct Adapter for the listView in the Fragment.
 			// Since the Activities for which this class is responsible to start don't need "swipe
 			// to delete" function, we just set a
 			// built-in type Adapter.
-			// And since they don't need multi-choice listview either, we just use the style of
+			// And since they don't need multi-choice listView either, we just use the style of
 			// "android.R.layout.simple_list_item_1" as parameter.
 			listFragment.setAdapter(android.R.layout.simple_list_item_1);
 

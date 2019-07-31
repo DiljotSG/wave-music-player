@@ -99,9 +99,9 @@ public class SearchActivity extends CommonMusicActivity
 	}
 
 	/**
-	 * The listview will refresh after each time the user enter a character.
+	 * The listView will refresh after each time the user enter a character.
 	 * If a song's title has all the characters the user entered, it will appear in the
-	 * listview.
+	 * listView.
 	 */
 	private void setOnQueryTextListener()
 	{

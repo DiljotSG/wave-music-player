@@ -62,7 +62,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 
 		isCreateNewPlaylist = (Boolean) getIntent().getBooleanExtra("isCreateNewPlaylist", true);
 
-		// Fet get fragment to display listview.
+		// Fet get fragment to display listView.
 		listOfSongsFragment
 				=
 				(ListOfSongsFragment) getSupportFragmentManager().findFragmentById(R.id.list_songs_fragment);
@@ -85,7 +85,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 			// .CHOICE_MODE_MULTIPLE".
 			listOfSongsFragment.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-			// Set adapter to the listview, since user need to multi-choose items, we use the
+			// Set adapter to the listView, since user need to multi-choose items, we use the
 			// "simple_list_item_multiple_choice" style.
 			listOfSongsFragment.setAdapter(android.R.layout.simple_list_item_multiple_choice);
 		}
@@ -102,7 +102,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 		{
 			@Override public void onClick(View v)
 			{
-				ArrayList<Song> exsitingSongs = ActivityController.getAccessPlaylist()
+				ArrayList<Song> existingSongs = ActivityController.getAccessPlaylist()
 																  .getSongsFromPlaylist(
 																		  nameOfPlaylist);
 
@@ -124,7 +124,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 
 				for (Song song : selected_songs)
 				{
-					if (!exsitingSongs.contains(song))
+					if (!existingSongs.contains(song))
 					{
 						ActivityController.getAccessPlaylist()
 										  .addSongToPlaylist(song, nameOfPlaylist);

@@ -67,7 +67,7 @@ import static org.junit.Assert.assertTrue;
 				is(instanceOf(Song.class)),
 				MatcherForSong.myCustomObjectShouldHaveString("Shake It Off"))).perform(click());
 
-		// set a new volume using seekbar to see if it works.
+		// set a new volume using seek bar to see if it works.
 		onView(withId(R.id.seekBarForVolume)).perform(setProgress(5));
 		assertTrue(AppSettings.getVolume() == 5);
 
@@ -83,18 +83,18 @@ import static org.junit.Assert.assertTrue;
 		onView(withId(R.id.skip_button)).perform(click());
 		assertTrue(currentPosition + 1 == PlaybackController.getPlaybackQueue().getPosition());
 
-		// Turn on shuffle, the isShuffle() method in PlaybackController class should return ture.
+		// Turn on shuffle, the isShuffle() method in PlaybackController class should return true.
 		// Since when shuffle is on, a random next song will play, it is possible for its position
 		// in the playbackQueue to be or not to be next to that of the current playing song, so we
 		// can not check the positions like we did above when shuffle is off.
 		onView(withId(R.id.shuffleImg)).perform(click());
 		assertTrue(PlaybackController.isShuffle());
 
-		// Click pause button to see if the Mediaplayer stops playing.
+		// Click pause button to see if the MediaPlayer stops playing.
 		onView(withId(R.id.pause_button)).perform(click());
 		assertFalse(PlaybackController.getMediaPlayer().isPlaying());
 
-		// Click play button to see if the Mediaplayer starts playing.
+		// Click play button to see if the MediaPlayer starts playing.
 		onView(withId(R.id.play_button)).perform(click());
 		assertTrue(PlaybackController.getMediaPlayer().isPlaying());
 	}

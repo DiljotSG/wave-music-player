@@ -43,7 +43,7 @@ public class PlaybackControllerTest
 		//pass;
 	}
 
-	@Test public void loopmodeToggleMovesToCorrectState()
+	@Test public void loopModeToggleMovesToCorrectState()
 	{
 		System.out.println("Start testing that toggling loop mode sets the correct state.");
 		int initial_mode = PlaybackController.getPlaybackModeNum();

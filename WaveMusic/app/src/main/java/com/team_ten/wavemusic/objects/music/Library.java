@@ -41,9 +41,9 @@ public class Library
 	}
 
 	/**
-	 * Allows you to get a string list of the current libary.
+	 * Allows you to get a string list of the current library.
 	 *
-	 * @return The current libary as strings.
+	 * @return The current library as strings.
 	 */
 	public static ArrayList<String> getCurStringLibrary()
 	{

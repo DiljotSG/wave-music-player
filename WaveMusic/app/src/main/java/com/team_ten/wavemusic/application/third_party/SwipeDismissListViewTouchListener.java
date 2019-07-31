@@ -331,8 +331,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		int x = (int) motionEvent.getRawX() - listViewCoordinates[0];
 		int y = (int) motionEvent.getRawY() - listViewCoordinates[1];
 
-		int[] coordinates = {x, y};
-		return coordinates;
+		return new int[] {x, y};
 	}
 
 	/**

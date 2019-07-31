@@ -21,7 +21,6 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	// Song currently being played.
 	private Song song;
 	private SeekBar progressBar;
-	private SeekBar volumeBar;
 	private ImageView img;
 	private ImageView shuffleImg; // Icon made by Dave Gandy from www.flaticon.com
 
@@ -106,7 +105,7 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	{
 		progressBar = findViewById(R.id.seekBarForMusic);
 		progressBar.setMax(PlaybackController.getPlaybackDuration());
-		volumeBar = findViewById(R.id.seekBarForVolume);
+		SeekBar volumeBar = findViewById(R.id.seekBarForVolume);
 		volumeBar.setMax(AppSettings.getMaxVolume());
 		volumeBar.setProgress(AppSettings.getVolume());
 

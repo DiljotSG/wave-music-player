@@ -28,7 +28,6 @@ public class ListOfSongsFragment extends Fragment
 {
 	// Instance variables
 
-	private View view;
 	private ListView listView;
 	private ArrayList<Song> songList;
 	private ArrayList<String> stringList;
@@ -95,7 +94,7 @@ public class ListOfSongsFragment extends Fragment
 	@Override public View onCreateView(
 			LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		view = inflater.inflate(R.layout.fragment_list_of_songs, container, false);
+		View view = inflater.inflate(R.layout.fragment_list_of_songs, container, false);
 		context = inflater.getContext();
 		return view;
 	}

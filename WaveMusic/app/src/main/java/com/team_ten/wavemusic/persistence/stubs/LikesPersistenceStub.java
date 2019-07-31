@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LikesPersistenceStub implements ILikesPersistence
 {
-	private ArrayList<Song> songList;
+	private final ArrayList<Song> songList;
 
 	public LikesPersistenceStub()
 	{

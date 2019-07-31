@@ -137,7 +137,7 @@ public class PlaybackQueue
 	 *
 	 * @return The song we just skipped to.
 	 */
-	public Song jumpIndex(int index)
+	private Song jumpIndex(int index)
 	{
 		curSong = null;
 

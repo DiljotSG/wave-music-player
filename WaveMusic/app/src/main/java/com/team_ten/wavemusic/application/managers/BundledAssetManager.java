@@ -23,8 +23,8 @@ public class BundledAssetManager
 	private static final String DEFAULT_LOCATION = "Music";
 
 	// Instance variables
-	private MainMusicActivity mainView;
-	private String[] sampleTracks;
+	private final MainMusicActivity mainView;
+	private final String[] sampleTracks;
 
 	/**
 	 * The constructor for BundledAssetManager.

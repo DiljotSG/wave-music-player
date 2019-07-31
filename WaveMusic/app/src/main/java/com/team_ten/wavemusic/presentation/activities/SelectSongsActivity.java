@@ -60,7 +60,7 @@ public class SelectSongsActivity extends CommonMusicActivity
 
 		nameOfPlaylist = getIntent().getStringExtra("nameOfPlaylist");
 
-		isCreateNewPlaylist = (Boolean) getIntent().getBooleanExtra("isCreateNewPlaylist", true);
+		isCreateNewPlaylist = getIntent().getBooleanExtra("isCreateNewPlaylist", true);
 
 		// Fet get fragment to display listView.
 		listOfSongsFragment

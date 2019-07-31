@@ -7,7 +7,6 @@ import com.team_ten.wavemusic.objects.music.PlaybackQueue;
 import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.presentation.activities.NowPlayingMusicActivity;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doNothing;
@@ -36,11 +36,6 @@ public class PlaybackControllerTest
 		doNothing().when(mp).setDataSource(anyString());
 		doNothing().when(mp).prepare();
 		PlaybackController.init(mp, pq);
-	}
-
-	@AfterClass public static void tearDownClass()
-	{
-		//pass;
 	}
 
 	@Test public void loopModeToggleMovesToCorrectState()
@@ -119,7 +114,7 @@ public class PlaybackControllerTest
 	@Test public void playNextReturnsSong()
 	{
 		System.out.println("Start testing that playNext returns the correct song value.");
-		assertEquals("Song return should be null: ", PlaybackController.playNext(), null);
+		assertNull("Song return should be null: ", PlaybackController.playNext());
 		System.out.println("End testing that playNext returns the correct song value.");
 
 	}
@@ -127,7 +122,7 @@ public class PlaybackControllerTest
 	@Test public void playPrevReturnsSong()
 	{
 		System.out.println("Start testing playPrev returns the correct song value.");
-		assertEquals("Song returned should be null: ", PlaybackController.playPrev(), null);
+		assertNull("Song returned should be null: ", PlaybackController.playPrev());
 		System.out.println("End testing playPrev returns the correct song value.");
 
 	}
@@ -164,7 +159,7 @@ public class PlaybackControllerTest
 		System.out.println("Start testing that startSong jumps to the correct song.");
 		Song song = new Song("name", "artist", "album", "uri", "songGenre", 0);
 
-		assertEquals("Song returned should be null: ", PlaybackController.startSong(song), null);
+		assertNull("Song returned should be null: ", PlaybackController.startSong(song));
 		System.out.println("End testing that startSong jumps to the correct song.");
 	}
 

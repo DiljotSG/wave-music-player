@@ -50,11 +50,11 @@ public class SearchActivity extends CommonMusicActivity
 	 */
 	private void initializeInstanceVariables()
 	{
-		searchView = (SearchView) findViewById(R.id.searchView);
-		listView = (ListView) findViewById(R.id.resultOfSearch);
+		searchView = findViewById(R.id.searchView);
+		listView = findViewById(R.id.resultOfSearch);
 		listView.setTextFilterEnabled(true);
 		loadingPanel = findViewById(R.id.loadingPanel);
-		results = new ArrayList<Song>();
+		results = new ArrayList<>();
 
 		allSongs = ActivityController.getAccessSong().getAllSongs();
 	}
@@ -73,7 +73,7 @@ public class SearchActivity extends CommonMusicActivity
 			{
 				Song selectedSong = results.get(position);
 				ActivityController.startNowPlayingActivity(SearchActivity.this, selectedSong);
-				ArrayList<Song> listWithOneSong = new ArrayList<Song>();
+				ArrayList<Song> listWithOneSong = new ArrayList<>();
 				listWithOneSong.add(selectedSong);
 				PlaybackController.setPlaybackQueue(listWithOneSong);
 			}
@@ -127,9 +127,9 @@ public class SearchActivity extends CommonMusicActivity
 							results.add(song);
 						}
 					}
-					ArrayAdapter<Song> listAdapter = new ArrayAdapter<Song>(SearchActivity.this,
-																			android.R.layout.simple_list_item_1,
-																			results);
+					ArrayAdapter<Song> listAdapter = new ArrayAdapter<>(SearchActivity.this,
+																		android.R.layout.simple_list_item_1,
+																		results);
 					listView.setAdapter(listAdapter);
 				}
 				else

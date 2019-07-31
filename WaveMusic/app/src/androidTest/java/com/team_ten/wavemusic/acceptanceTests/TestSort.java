@@ -34,16 +34,17 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 
-/**
+/*
  * Test the functionality of sort by song's title, albums and artists.
  *
  * Related feature number: 8
- */ public class TestSort
+ */
+public class TestSort
 {
 	@Rule
-	public ActivityTestRule<MainMusicActivity>
+	public final ActivityTestRule<MainMusicActivity>
 			activityRule
-			= new ActivityTestRule<MainMusicActivity>(MainMusicActivity.class, true);
+			= new ActivityTestRule<>(MainMusicActivity.class, true);
 
 	private IdlingResource idlingresource;
 

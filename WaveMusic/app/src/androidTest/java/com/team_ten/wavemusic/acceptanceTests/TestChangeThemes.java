@@ -18,8 +18,8 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Test the functionality of changing between 2 themes.
@@ -29,9 +29,9 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class) public class TestChangeThemes
 {
 	@Rule
-	public ActivityTestRule<MainMusicActivity>
+	public final ActivityTestRule<MainMusicActivity>
 			activityRule
-			= new ActivityTestRule<MainMusicActivity>(MainMusicActivity.class, true);
+			= new ActivityTestRule<>(MainMusicActivity.class, true);
 
 	private IdlingResource idlingresource;
 
@@ -49,11 +49,11 @@ import static org.junit.Assert.assertTrue;
 		int mode = AppCompatDelegate.getDefaultNightMode();
 
 		onView(withId(R.id.changeTheme)).perform(click());
-		assertFalse(mode == AppCompatDelegate.getDefaultNightMode());
+		assertNotEquals(mode, AppCompatDelegate.getDefaultNightMode());
 
 		// Change theme again, check if the current mode is identical to the initial one.
 		onView(withId(R.id.changeTheme)).perform(click());
-		assertTrue(mode == AppCompatDelegate.getDefaultNightMode());
+		assertEquals(mode, AppCompatDelegate.getDefaultNightMode());
 	}
 
 	@After public void release()

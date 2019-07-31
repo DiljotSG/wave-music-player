@@ -14,7 +14,7 @@ public class PermissionManager
 	private static final int PERMISSIONS_REQUEST_WRITE_STORAGE_CODE = 1;
 
 	// Instance variables.
-	private MainMusicActivity mainView;
+	private final MainMusicActivity mainView;
 
 	/**
 	 * The constructor for PermissionManager.

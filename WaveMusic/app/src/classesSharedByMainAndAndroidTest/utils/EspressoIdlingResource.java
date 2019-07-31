@@ -6,7 +6,7 @@ public class EspressoIdlingResource
 {
 	private static final String RESOURCE = "GLOBAL";
 
-	private static SimpleCountingIdlingResource
+	private static final SimpleCountingIdlingResource
 			mCountingIdlingResource
 			= new SimpleCountingIdlingResource(RESOURCE);
 

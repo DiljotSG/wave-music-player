@@ -19,7 +19,6 @@ public class AccessLikesIT
 {
 	// Instance variable
 	private AccessLikes accessLikes;
-	private AccessSong accessSong;
 	private Song testSong;
 
 	@Before public void setUp() throws IOException
@@ -27,7 +26,7 @@ public class AccessLikesIT
 		System.out.println("Setting up for AccessLikes Integration tests.");
 		IntegrationTestSetup.setupDatabase();
 
-		accessSong = new AccessSong();
+		AccessSong accessSong = new AccessSong();
 		assertNotNull(accessSong);
 		accessLikes = new AccessLikes();
 		assertNotNull(accessLikes);

@@ -18,7 +18,6 @@ public class AccessPlaylistIT
 {
 	// Instance variable
 	private AccessPlaylist accessPlaylist;
-	private AccessSong accessSong;
 	private Song testSong;
 	private String playlistName;
 
@@ -27,7 +26,7 @@ public class AccessPlaylistIT
 		System.out.println("Setting up for AccessPlaylist Integration tests.");
 		IntegrationTestSetup.setupDatabase();
 
-		accessSong = new AccessSong();
+		AccessSong accessSong = new AccessSong();
 		assertNotNull(accessSong);
 		accessPlaylist = new AccessPlaylist();
 		assertNotNull(accessPlaylist);

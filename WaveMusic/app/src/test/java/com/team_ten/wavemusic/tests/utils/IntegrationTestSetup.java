@@ -14,7 +14,6 @@ public class IntegrationTestSetup
 {
 	private static final String PATH_TO_DB_SCRIPT = "src/main/assets/db/WaveDB.script";
 	private static final int ONE_BYTE = 1024;
-	private static File theDB;
 	private static File testDB;
 
 	public static void setupDatabase() throws IOException
@@ -23,7 +22,7 @@ public class IntegrationTestSetup
 		testDB = File.createTempFile("TestWaveDB", ".script");
 
 		// Get the correct path to the DB
-		theDB = new File(PATH_TO_DB_SCRIPT);
+		File theDB = new File(PATH_TO_DB_SCRIPT);
 		copyDatabase(theDB, testDB);
 
 		Main.setDBPathName(testDB.getAbsolutePath().replace(".script", ""));

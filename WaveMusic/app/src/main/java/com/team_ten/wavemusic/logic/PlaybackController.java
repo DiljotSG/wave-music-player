@@ -37,7 +37,6 @@ public class PlaybackController
 	private static PlaybackState state;
 	private static PlaybackMode playbackMode;
 	private static MediaPlayer mediaPlayer;
-	private static boolean initialized;
 	private static boolean shuffle;
 	private static NowPlayingMusicActivity nowPlayingMusicActivity;
 
@@ -46,7 +45,6 @@ public class PlaybackController
 	 */
 	public static void init(MediaPlayer mp, PlaybackQueue pq)
 	{
-		initialized = true;
 		playbackQueue = pq;
 		state = PlaybackState.PAUSED;
 		playbackMode = PlaybackMode.PLAY_ALL;

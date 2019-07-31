@@ -75,11 +75,15 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 	public void updateInfo()
 	{
-		getSupportActionBar().setTitle(song.getName());
-		TextView title = (TextView) findViewById(R.id.title);
-		TextView album = (TextView) findViewById(R.id.album);
-		TextView artist = (TextView) findViewById(R.id.artist);
-		TextView genre = (TextView) findViewById(R.id.genre);
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(song.getName());
+		}
+
+		TextView title = findViewById(R.id.title);
+		TextView album = findViewById(R.id.album);
+		TextView artist = findViewById(R.id.artist);
+		TextView genre = findViewById(R.id.genre);
 
 		String fullName = "Song: " + song.getName();
 		String fullAlbum = "Album: " + song.getAlbum();
@@ -179,11 +183,11 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 
 				if (PlaybackController.isShuffle())
 				{
-					shuffleimg.setAlpha(255);
+					shuffleimg.setAlpha(1F);
 				}
 				else
 				{
-					shuffleimg.setAlpha(64);
+					shuffleimg.setAlpha(0.4F);
 				}
 			}
 		});
@@ -216,7 +220,11 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	@Override public void afterNext(Song newSong)
 	{
 		song = newSong;
-		getSupportActionBar().setTitle(song.getName());
+
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(song.getName());
+		}
 	}
 
 	/**
@@ -227,7 +235,11 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	@Override public void afterPlay(Song newSong)
 	{
 		song = newSong;
-		getSupportActionBar().setTitle(song.getName());
+
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(song.getName());
+		}
 	}
 
 	/**
@@ -238,7 +250,11 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	@Override public void afterRestart(Song newSong)
 	{
 		song = newSong;
-		getSupportActionBar().setTitle(song.getName());
+
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(song.getName());
+		}
 	}
 
 	/**
@@ -249,6 +265,10 @@ public class NowPlayingMusicActivity extends CommonMusicActivity
 	@Override public void afterBack(Song newSong)
 	{
 		song = newSong;
-		getSupportActionBar().setTitle(song.getName());
+
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(song.getName());
+		}
 	}
 }

@@ -32,9 +32,6 @@ import utils.EspressoIdlingResource;
 
 public class MainMusicActivity extends CommonMusicActivity
 {
-	// Instance variables
-	private BundledAssetManager bundledAssetManager;
-	private PermissionManager permissionManager;
 	private static final String[] SAMPLE_TRACKS = {
 			"music/sample1.mp3",
 			"music/sample2.mp3",
@@ -69,7 +66,7 @@ public class MainMusicActivity extends CommonMusicActivity
 		hideAllButtons();
 
 		// Get permissions
-		permissionManager = new PermissionManager(this);
+		PermissionManager permissionManager = new PermissionManager(this);
 		permissionManager.getFilePermissions();
 
 		// We can't proceed until we have read permissions to set up the user's library.
@@ -88,7 +85,7 @@ public class MainMusicActivity extends CommonMusicActivity
 		}
 
 		// Extract the assets
-		bundledAssetManager = new BundledAssetManager(this, SAMPLE_TRACKS);
+		BundledAssetManager bundledAssetManager = new BundledAssetManager(this, SAMPLE_TRACKS);
 		bundledAssetManager.extractMusicAssets();
 
 		// Build the DB
@@ -171,13 +168,17 @@ public class MainMusicActivity extends CommonMusicActivity
 		{
 
 			assetNames = assetManager.list(DB_PATH);
-			for (int i = 0; i < assetNames.length; i++)
-			{
-				assetNames[i] = DB_PATH + "/" + assetNames[i];
-			}
 
-			copyAssetsToDirectory(assetNames, dataDirectory);
-			Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+			if (assetNames != null)
+			{
+				for (int i = 0; i < assetNames.length; i++)
+				{
+					assetNames[i] = DB_PATH + "/" + assetNames[i];
+				}
+
+				copyAssetsToDirectory(assetNames, dataDirectory);
+				Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+			}
 
 		}
 		catch (final IOException ioe)

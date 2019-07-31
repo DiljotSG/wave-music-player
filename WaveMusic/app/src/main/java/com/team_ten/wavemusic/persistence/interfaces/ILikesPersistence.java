@@ -11,19 +11,19 @@ public interface ILikesPersistence
 	 *
 	 * @param songToLike Song that is to be Liked.
 	 */
-	public void likeSong(Song songToLike);
+	void likeSong(Song songToLike);
 
 	/**
 	 * Unlikes a song in the DB.
 	 *
 	 * @param songToUnlike Song that is to be Unliked.
 	 */
-	public void unlikeSong(Song songToUnlike);
+	void unlikeSong(Song songToUnlike);
 
 	/**
 	 * Get a list of all liked Songs.
 	 *
 	 * @return An array list of liked Songs.
 	 */
-	public ArrayList<Song> getLikedSongs();
+	ArrayList<Song> getLikedSongs();
 }

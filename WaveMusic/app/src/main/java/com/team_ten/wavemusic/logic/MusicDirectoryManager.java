@@ -3,6 +3,7 @@ package com.team_ten.wavemusic.logic;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
 
+import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
 import com.team_ten.wavemusic.objects.music.Song;
 
 import java.io.File;
@@ -33,7 +34,10 @@ public class MusicDirectoryManager
 		folder = new File(directory);
 		if (!folder.exists())
 		{
-			folder.mkdirs();
+			if (!folder.mkdirs())
+			{
+				throw new WaveEmptyLibraryException("Failed to make directory(ies)");
+			}
 		}
 		files = folder.listFiles();
 		curr = 0;

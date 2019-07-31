@@ -11,14 +11,14 @@ public interface ISongPersistence
 	 *
 	 * @param theSong The song to add.
 	 */
-	public void addSong(Song theSong);
+	void addSong(Song theSong);
 
 	/**
 	 * Removes a Song from the user's library.
 	 *
 	 * @param toRemove The song to remove from the user's library.
 	 */
-	public void removeSong(Song toRemove);
+	void removeSong(Song toRemove);
 
 	/**
 	 * Returns a Song object for the given URI.
@@ -27,28 +27,28 @@ public interface ISongPersistence
 	 *
 	 * @return A Song object for the Song.
 	 */
-	public Song getSong(String songURI);
+	Song getSong(String songURI);
 
 	/**
 	 * Gets every song in the library.
 	 *
 	 * @return Returns an ArrayList of every Song.
 	 */
-	public ArrayList<Song> getAllSongs();
+	ArrayList<Song> getAllSongs();
 
 	/**
 	 * Gets all of the artists names.
 	 *
 	 * @return An array list of artists names
 	 */
-	public ArrayList<String> getAllArtists();
+	ArrayList<String> getAllArtists();
 
 	/**
 	 * Gets all of the album names.
 	 *
 	 * @return An array list of album names
 	 */
-	public ArrayList<String> getAllAlbums();
+	ArrayList<String> getAllAlbums();
 
 	/**
 	 * Returns a all songs in a given album.
@@ -57,7 +57,7 @@ public interface ISongPersistence
 	 *
 	 * @return An array list of songs in the album.
 	 */
-	public ArrayList<Song> getSongsFromAlbum(String albumName);
+	ArrayList<Song> getSongsFromAlbum(String albumName);
 
 	/**
 	 * Returns a all songs from a given artist.
@@ -66,5 +66,5 @@ public interface ISongPersistence
 	 *
 	 * @return An array list of songs by the artist.
 	 */
-	public ArrayList<Song> getSongsFromArtist(String artistName);
+	ArrayList<Song> getSongsFromArtist(String artistName);
 }

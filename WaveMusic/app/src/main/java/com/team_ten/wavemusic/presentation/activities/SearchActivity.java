@@ -28,7 +28,7 @@ public class SearchActivity extends CommonMusicActivity
 	private ArrayList<Song> allSongs;
 	private ProgressBar loadingPanel;
 
-	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
+	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
@@ -38,7 +38,10 @@ public class SearchActivity extends CommonMusicActivity
 		setOnQueryTextListener();
 		createMusicControls();
 
-		getSupportActionBar().setTitle("Search");
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle("Search");
+		}
 		loadingPanel.setVisibility(View.GONE);
 	}
 

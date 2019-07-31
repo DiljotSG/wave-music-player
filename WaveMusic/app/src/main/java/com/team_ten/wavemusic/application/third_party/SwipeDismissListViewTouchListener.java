@@ -175,7 +175,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		return false;
 	}
 
-	public boolean actionDown(MotionEvent motionEvent)
+	private boolean actionDown(MotionEvent motionEvent)
 	{
 		if (mPaused)
 		{
@@ -216,7 +216,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		return false;
 	}
 
-	public void actionCancel()
+	private void actionCancel()
 	{
 		if (mDownView != null && mSwiping)
 		{
@@ -236,7 +236,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		mSwiping = false;
 	}
 
-	public void actionUp(MotionEvent motionEvent)
+	private void actionUp(MotionEvent motionEvent)
 	{
 
 		float deltaX = motionEvent.getRawX() - mDownX;
@@ -295,7 +295,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 		mSwiping = false;
 	}
 
-	public boolean actionMove(MotionEvent motionEvent)
+	private boolean actionMove(MotionEvent motionEvent)
 	{
 		mVelocityTracker.addMovement(motionEvent);
 		float deltaX = motionEvent.getRawX() - mDownX;

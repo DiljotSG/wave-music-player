@@ -26,7 +26,11 @@ public class SinglePlaylistActivity extends CommonMusicActivity
 		configurateFragment();
 		configurateAddSongsButton();
 		createMusicControls();
-		getSupportActionBar().setTitle(nameOfPlaylist);
+
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle(nameOfPlaylist);
+		}
 	}
 
 	@Override protected void onResume()

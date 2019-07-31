@@ -22,12 +22,17 @@ public class ListOfPlaylistsActivity extends CommonMusicActivity
 	private ArrayList<String> stringList;
 	private ListOfSongsFragment listFragment;
 
-	@SuppressWarnings("unchecked") @Override protected void onCreate(Bundle savedInstanceState)
+	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lists_of_playlist);
 		createMusicControls();
-		getSupportActionBar().setTitle("Playlists");
+
+		// Set the title in ActionBar.
+		if (getSupportActionBar() != null)
+		{
+			getSupportActionBar().setTitle("Playlists");
+		}
 	}
 
 	/**

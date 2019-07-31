@@ -2,11 +2,11 @@ package com.team_ten.wavemusic.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.annotation.VisibleForTesting;
-import android.support.test.espresso.IdlingResource;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -17,9 +17,10 @@ import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.presentation.interfaces.PlaybackCallback;
 import com.team_ten.wavemusic.presentation.other.Themes;
 
+import utils.EspressoIdlingResource;
+
 import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
-import utils.EspressoIdlingResource;
 
 // This abstract class shares common methods that are
 // Used in multiple activities, it's children can access these calls.

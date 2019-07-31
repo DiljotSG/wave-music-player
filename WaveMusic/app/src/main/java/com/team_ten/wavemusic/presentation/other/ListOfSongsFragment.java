@@ -195,8 +195,7 @@ public class ListOfSongsFragment extends Fragment
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					Song selectedSong = songList.get(position);
-					ActivityController.startNowPlayingActivity(callerActivity,
-															   selectedSong);
+					ActivityController.startNowPlayingActivity(callerActivity, selectedSong);
 					PlaybackController.setPlaybackQueue(songList);
 				}
 			});
@@ -263,74 +262,54 @@ public class ListOfSongsFragment extends Fragment
 
 		if (nameOfPlaylist != null)
 		{
-			touchListener = new SwipeDismissListViewTouchListener(listView,
-																  new IDismissCallbacks()
-																  {
-																	  @Override
-																	  public boolean canDismiss(
-																			  int position)
-																	  {
-																		  return true;
-																	  }
+			touchListener = new SwipeDismissListViewTouchListener(listView, new IDismissCallbacks()
+			{
+				@Override public boolean canDismiss(
+						int position)
+				{
+					return true;
+				}
 
-																	  @Override
-																	  public void onDismiss(
-																			  ListView listView,
-																			  int[] reverseSortedPositions)
-																	  {
+				@Override public void onDismiss(
+						ListView listView, int[] reverseSortedPositions)
+				{
 
-																		  for (int index :
-																				  reverseSortedPositions)
-																		  {
-																			  Song
-																					  temp
-																					  =
-																					  songList.get(
-																					  index);
-																			  ActivityController.getAccessPlaylist()
-																								.removeSongFromPlaylist(
-																										temp,
-																										nameOfPlaylist);
-																			  songList.remove(index);
-																		  }
-																		  listAdapter.notifyDataSetChanged();
-																	  }
-																  });
+					for (int index : reverseSortedPositions)
+					{
+						Song temp = songList.get(index);
+						ActivityController.getAccessPlaylist().removeSongFromPlaylist(
+								temp,
+								nameOfPlaylist);
+						songList.remove(index);
+					}
+					listAdapter.notifyDataSetChanged();
+				}
+			});
 		}
 		else
 		{
-			touchListener = new SwipeDismissListViewTouchListener(listView,
-																  new IDismissCallbacks()
-																  {
+			touchListener = new SwipeDismissListViewTouchListener(listView, new IDismissCallbacks()
+			{
 
-																	  @Override
-																	  public boolean canDismiss(
-																			  int position)
-																	  {
-																		  return true;
-																	  }
+				@Override public boolean canDismiss(
+						int position)
+				{
+					return true;
+				}
 
-																	  @Override
-																	  public void onDismiss(
-																			  ListView listView,
-																			  int[] reverseSortedPositions)
-																	  {
+				@Override public void onDismiss(
+						ListView listView, int[] reverseSortedPositions)
+				{
 
-																		  for (int index : reverseSortedPositions)
-																		  {
-																			  String
-																					  temp
-																					  = stringList.get(
-																					  index);
-																			  ActivityController.getAccessPlaylist()
-																								.removePlaylist(
-																										temp);
-																			  stringList.remove(
-																					  index);
-																		  }
-																		  listAdapter.notifyDataSetChanged();
-																	  }
-																  });
+					for (int index : reverseSortedPositions)
+					{
+						String temp = stringList.get(index);
+						ActivityController.getAccessPlaylist().removePlaylist(temp);
+						stringList.remove(index);
+					}
+					listAdapter.notifyDataSetChanged();
+				}
+			});
 		}
 		listView.setOnTouchListener(touchListener);
 	}

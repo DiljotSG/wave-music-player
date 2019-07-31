@@ -18,7 +18,7 @@ public class AccessSongTest
 	@Before public void setUp()
 	{
 		accessSong = new AccessSong(new SongPersistenceStub());
-		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3","songGenre", 0);
+		testSong = new Song("ghosts n stuff", "deadmau5", "albumName", "test.mp3", "songGenre", 0);
 
 	}
 
@@ -50,10 +50,9 @@ public class AccessSongTest
 		System.out.println("Start: Testing getting an existing song.");
 		accessSong.addSong(testSong);
 		accessSong.getSong(testSong.getURI());
-		assertEquals(
-				"The song we fetch should be the test song.",
-				accessSong.getAllSongs().get(0),
-				testSong);
+		assertEquals("The song we fetch should be the test song.",
+					 accessSong.getAllSongs().get(0),
+					 testSong);
 		System.out.println("End: Testing getting an existing song.");
 	}
 
@@ -61,14 +60,12 @@ public class AccessSongTest
 	{
 		System.out.println("Start: Testing adding a song.");
 		accessSong.addSong(testSong);
-		assertEquals(
-				"The number of songs in the library, should be 1.",
-				accessSong.getAllSongs().size(),
-				1);
+		assertEquals("The number of songs in the library, should be 1.",
+					 accessSong.getAllSongs().size(),
+					 1);
 		assertEquals("Check that the only song is equal to the one we made",
 					 accessSong.getAllSongs().get(0),
-					 testSong
-					 );
+					 testSong);
 		System.out.println("End: Testing adding a song.");
 	}
 
@@ -77,15 +74,13 @@ public class AccessSongTest
 		System.out.println("Start: Testing removing a song.");
 		accessSong.addSong(testSong);
 		accessSong.removeSong(testSong);
-		assertEquals(
-				"The number of songs in the library, should be 0.",
-				accessSong.getAllSongs().size(),
-				0);
+		assertEquals("The number of songs in the library, should be 0.",
+					 accessSong.getAllSongs().size(),
+					 0);
 		accessSong.removeSong(testSong);
-		assertEquals(
-				"Test removing the same song again, size should be 0.",
-				accessSong.getAllSongs().size(),
-				0);
+		assertEquals("Test removing the same song again, size should be 0.",
+					 accessSong.getAllSongs().size(),
+					 0);
 		System.out.println("End: Testing removing a song.");
 	}
 
@@ -97,10 +92,7 @@ public class AccessSongTest
 				"The artist in the library should be equal to that of the test song we added.",
 				accessSong.getAllArtists().get(0),
 				testSong.getArtist());
-		assertEquals(
-				"There should only be 1 artist.",
-				accessSong.getAllArtists().size(),
-				1);
+		assertEquals("There should only be 1 artist.", accessSong.getAllArtists().size(), 1);
 		System.out.println("End: Testing getting all artists.");
 
 	}
@@ -113,10 +105,7 @@ public class AccessSongTest
 				"The albums in the library should be equal to that of the test song we added.",
 				accessSong.getAllAlbums().get(0),
 				testSong.getAlbum());
-		assertEquals(
-				"There should only be 1 album.",
-				accessSong.getAllAlbums().size(),
-				1);
+		assertEquals("There should only be 1 album.", accessSong.getAllAlbums().size(), 1);
 		System.out.println("End: Testing getting all albums.");
 	}
 
@@ -124,10 +113,9 @@ public class AccessSongTest
 	{
 		System.out.println("Start: Testing getting all songs from an album.");
 		accessSong.addSong(testSong);
-		assertEquals(
-				"There should only be only 1 song from the test album.",
-				accessSong.getSongsFromAlbum(testSong.getAlbum()).size(),
-				1);
+		assertEquals("There should only be only 1 song from the test album.",
+					 accessSong.getSongsFromAlbum(testSong.getAlbum()).size(),
+					 1);
 		System.out.println("End: Testing getting all songs from an album.");
 	}
 
@@ -135,10 +123,9 @@ public class AccessSongTest
 	{
 		System.out.println("Start: Testing getting all songs from an artist.");
 		accessSong.addSong(testSong);
-		assertEquals(
-				"There should only be only 1 song from the test artist.",
-				accessSong.getSongsFromArtist(testSong.getArtist()).size(),
-				1);
+		assertEquals("There should only be only 1 song from the test artist.",
+					 accessSong.getSongsFromArtist(testSong.getArtist()).size(),
+					 1);
 		System.out.println("End: Testing getting all songs from an artist.");
 	}
 }

@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.view.View;
 
 import com.team_ten.wavemusic.R;
+import com.team_ten.wavemusic.logic.MusicDirectoryManager;
 import com.team_ten.wavemusic.logic.access.AccessLikes;
 import com.team_ten.wavemusic.logic.access.AccessPlaylist;
 import com.team_ten.wavemusic.logic.access.AccessSong;
-import com.team_ten.wavemusic.logic.MusicDirectoryManager;
+import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
 import com.team_ten.wavemusic.objects.music.Library;
 import com.team_ten.wavemusic.objects.music.Song;
-import com.team_ten.wavemusic.objects.exceptions.WaveEmptyLibraryException;
 import com.team_ten.wavemusic.presentation.activities.ListActivity;
 import com.team_ten.wavemusic.presentation.activities.ListOfPlaylistsActivity;
 import com.team_ten.wavemusic.presentation.activities.MainMusicActivity;
@@ -68,8 +68,7 @@ public class ActivityController implements Serializable
 	 * @param typeOfRetrieve: the type of content to be displayed.
 	 */
 	public static void startListActivity(
-			final Activity callerActivity,
-			final ListActivity.TypeOfRetrieve typeOfRetrieve)
+			final Activity callerActivity, final ListActivity.TypeOfRetrieve typeOfRetrieve)
 	{
 		// Build the view on the UI thread
 		callerActivity.runOnUiThread(new Runnable()
@@ -125,7 +124,8 @@ public class ActivityController implements Serializable
 					// Pass necessary data into the Intent and start the Activity.
 					intent.putExtra("TypeOfRetrieve", typeOfRetrieve.toString());
 					callerActivity.startActivity(intent);
-				} catch(WaveEmptyLibraryException e)
+				}
+				catch (WaveEmptyLibraryException e)
 				{
 					System.out.println(e.getMessage());
 				}
@@ -135,12 +135,12 @@ public class ActivityController implements Serializable
 
 	/**
 	 * Starts a NowPlayingActivity
+	 *
 	 * @param callerActivity: the parent Activity of the NowPlayingActivity to be started.
 	 * @param song:           The song to be played in the NowPlayingActivity.
 	 */
 	public static void startNowPlayingActivity(
-			final Activity callerActivity,
-			Song song)
+			final Activity callerActivity, Song song)
 	{
 		Intent intent = new Intent(callerActivity, NowPlayingMusicActivity.class);
 		intent.putExtra("song", song);
@@ -156,9 +156,7 @@ public class ActivityController implements Serializable
 	 *                             add them into an existing playlist.
 	 */
 	public static void startSelectSongsActivity(
-			final Activity callerActivity,
-			String nameOfPlaylist,
-			boolean isCreateNewPlaylist)
+			final Activity callerActivity, String nameOfPlaylist, boolean isCreateNewPlaylist)
 	{
 		ArrayList<Song> songList = accessSong.getAllSongs();
 		Library.setCurSongLibrary(songList);
@@ -175,8 +173,7 @@ public class ActivityController implements Serializable
 	 * @param nameOfPlaylist: The name of the playlist to be displayed.
 	 */
 	public static void startSinglePlaylistActivity(
-			final Activity callerActivity,
-			String nameOfPlaylist)
+			final Activity callerActivity, String nameOfPlaylist)
 	{
 		ArrayList<Song> songList = accessPlaylist.getSongsFromPlaylist(nameOfPlaylist);
 		Library.setCurSongLibrary(songList);
@@ -194,9 +191,7 @@ public class ActivityController implements Serializable
 	 * @param contentForRetrieve: The list of songs in that playlist.
 	 */
 	public static void startAlbumOrArtistAct(
-			final Activity callerActivity,
-			String typeOfRetrieve,
-			String contentForRetrieve)
+			final Activity callerActivity, String typeOfRetrieve, String contentForRetrieve)
 	{
 		Intent intent = new Intent(callerActivity, ListActivity.class);
 		ArrayList<Song> songList = null;

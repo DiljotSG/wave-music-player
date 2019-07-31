@@ -2,8 +2,6 @@ package com.team_ten.wavemusic.application.third_party;
 
 import android.widget.ListView;
 
-import com.team_ten.wavemusic.application.third_party.SwipeDismissListViewTouchListener;
-
 /*
  * File modified from the original source code to adhere to SOLID principles.
  * Modifications Copyright 2019 - Tyler Loewen, Lukas Timmerman, Jiehao Luo, and Diljot Garcha

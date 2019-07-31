@@ -1,7 +1,7 @@
 package com.team_ten.wavemusic.persistence.hsqldb;
 
-import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
 import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseException;
+import com.team_ten.wavemusic.objects.exceptions.WaveDatabaseIntegrityConstraintException;
 import com.team_ten.wavemusic.objects.music.Song;
 import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 
@@ -262,8 +262,8 @@ public class SongPersistenceHSQLDB implements ISongPersistence
 
 		try (final Connection c = connection())
 		{
-			final PreparedStatement st = c.prepareStatement("SELECT * FROM SONGS WHERE ARTIST = " +
-															"?");
+			final PreparedStatement st = c.prepareStatement(
+					"SELECT * FROM SONGS WHERE ARTIST = " + "?");
 			st.setString(1, artistName);
 
 			final ResultSet rs = st.executeQuery();

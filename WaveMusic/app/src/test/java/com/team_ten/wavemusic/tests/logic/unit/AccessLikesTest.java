@@ -58,9 +58,7 @@ public class AccessLikesTest
 					 accessLikes.getLikedSongs().get(0),
 					 testSong);
 		accessLikes.unlikeSong(testSong);
-		assertEquals("Our test song should not be liked.",
-					 accessLikes.getLikedSongs().size(),
-					 0);
+		assertEquals("Our test song should not be liked.", accessLikes.getLikedSongs().size(), 0);
 		System.out.println("End: Testing un-liking a song.");
 	}
 

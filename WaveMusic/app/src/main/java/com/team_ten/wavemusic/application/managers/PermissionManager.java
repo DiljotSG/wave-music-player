@@ -30,31 +30,23 @@ public class PermissionManager
 	public void getFilePermissions()
 	{
 		// Get the current permissions.
-		int readPerm = ContextCompat.checkSelfPermission(
-				mainView,
-				Manifest.permission.READ_EXTERNAL_STORAGE
-			);
-		int writePerm = ContextCompat.checkSelfPermission(
-				mainView,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE
-			 );
+		int readPerm = ContextCompat.checkSelfPermission(mainView,
+														 Manifest.permission.READ_EXTERNAL_STORAGE);
+		int writePerm = ContextCompat.checkSelfPermission(mainView,
+														  Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
 		// If not, request those permissions.
 		if (readPerm != PackageManager.PERMISSION_GRANTED)
 		{
-			ActivityCompat.requestPermissions(
-					mainView,
-					new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-					PERMISSIONS_REQUEST_READ_STORAGE_CODE
-			 );
+			ActivityCompat.requestPermissions(mainView,
+											  new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+											  PERMISSIONS_REQUEST_READ_STORAGE_CODE);
 		}
 		if (writePerm != PackageManager.PERMISSION_GRANTED)
 		{
-			ActivityCompat.requestPermissions(
-					mainView,
-					new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-					PERMISSIONS_REQUEST_WRITE_STORAGE_CODE
-			 );
+			ActivityCompat.requestPermissions(mainView,
+											  new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+											  PERMISSIONS_REQUEST_WRITE_STORAGE_CODE);
 		}
 	}
 }

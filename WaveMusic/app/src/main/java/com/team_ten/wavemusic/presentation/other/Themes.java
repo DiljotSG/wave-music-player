@@ -12,7 +12,7 @@ public class Themes
 
 	public static void changeTheme(Activity activity)
 	{
-		if(isLight)
+		if (isLight)
 		{
 			isLight = false;
 			AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);

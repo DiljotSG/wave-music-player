@@ -38,8 +38,7 @@ import static org.hamcrest.Matchers.is;
  * Test the functionality of sort by song's title, albums and artists.
  *
  * Related feature number: 8
- */
-public class TestSort
+ */ public class TestSort
 {
 	@Rule
 	public ActivityTestRule<MainMusicActivity>

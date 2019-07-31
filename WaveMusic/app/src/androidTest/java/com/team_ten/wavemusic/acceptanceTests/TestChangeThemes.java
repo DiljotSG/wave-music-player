@@ -49,11 +49,11 @@ import static org.junit.Assert.assertTrue;
 		int mode = AppCompatDelegate.getDefaultNightMode();
 
 		onView(withId(R.id.changeTheme)).perform(click());
-		assertFalse (mode == AppCompatDelegate.getDefaultNightMode());
+		assertFalse(mode == AppCompatDelegate.getDefaultNightMode());
 
 		// Change theme again, check if the current mode is identical to the initial one.
 		onView(withId(R.id.changeTheme)).perform(click());
-		assertTrue (mode == AppCompatDelegate.getDefaultNightMode());
+		assertTrue(mode == AppCompatDelegate.getDefaultNightMode());
 	}
 
 	@After public void release()

@@ -1,19 +1,18 @@
 package com.team_ten.wavemusic.application.db;
 
-import com.team_ten.wavemusic.application.db.Main;
-import com.team_ten.wavemusic.persistence.interfaces.ILikesPersistence;
-import com.team_ten.wavemusic.persistence.interfaces.IPlaylistPersistence;
-import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 import com.team_ten.wavemusic.persistence.hsqldb.LikePersistenceHSQLDB;
 import com.team_ten.wavemusic.persistence.hsqldb.PlaylistPersistenceHSQLDB;
 import com.team_ten.wavemusic.persistence.hsqldb.SongPersistenceHSQLDB;
+import com.team_ten.wavemusic.persistence.interfaces.ILikesPersistence;
+import com.team_ten.wavemusic.persistence.interfaces.IPlaylistPersistence;
+import com.team_ten.wavemusic.persistence.interfaces.ISongPersistence;
 
 /**
  * This class uses:
- *   ___   ___   _  _    ___   _      ___   _____    ___    _  _
- *  / __| |_ _| | \| |  / __| | |    | __| |_   _|  / _ \  | \| |
- *  \__ \  | |  | .` | | (_ | | |__  | _|    | |   | (_) | | .` |
- *  |___/ |___| |_|\_|  \___| |____| |___|   |_|    \___/  |_|\_|
+ * ___   ___   _  _    ___   _      ___   _____    ___    _  _
+ * / __| |_ _| | \| |  / __| | |    | __| |_   _|  / _ \  | \| |
+ * \__ \  | |  | .` | | (_ | | |__  | _|    | |   | (_) | | .` |
+ * |___/ |___| |_|\_|  \___| |____| |___|   |_|    \___/  |_|\_|
  */
 public class Services
 {

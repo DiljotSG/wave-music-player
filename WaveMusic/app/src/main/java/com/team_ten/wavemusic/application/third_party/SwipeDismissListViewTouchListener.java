@@ -24,6 +24,7 @@ package com.team_ten.wavemusic.application.third_party;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.os.SystemClock;
 import android.view.MotionEvent;
@@ -129,7 +130,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener
 	 *
 	 * @return whether or not there was an event handled.
 	 */
-	@Override public boolean onTouch(View view, MotionEvent motionEvent)
+	@SuppressLint("ClickableViewAccessibility") @Override public boolean onTouch(View view, MotionEvent motionEvent)
 	{
 		if (mViewWidth < 2)
 		{

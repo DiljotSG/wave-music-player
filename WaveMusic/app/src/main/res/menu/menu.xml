@@ -4,14 +4,14 @@
     <item
         android:id="@+id/changeTheme"
         android:title=""
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_wb_sunny_black_24dp"
         />
 
     <item
         android:id="@+id/search"
         android:title=""
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_search_black_24dp"
         />
 </menu>

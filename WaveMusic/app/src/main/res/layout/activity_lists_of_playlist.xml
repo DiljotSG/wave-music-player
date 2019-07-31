@@ -34,14 +34,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_add_circle_black_24dp" />
+                    android:src="@drawable/ic_add_circle_black_24dp"
+                    android:contentDescription="Add Circle Icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Create a new playlist"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textColor="#FF8000" />
             </LinearLayout>
 

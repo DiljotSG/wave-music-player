@@ -10,8 +10,8 @@ public class Song implements Serializable
 	private String artist;
 	private String album;
 	private String URI;
-	private String genre;
-	private int playCount;
+	private final String genre;
+	private final int playCount;
 
 	/**
 	 * Constructor for a song.

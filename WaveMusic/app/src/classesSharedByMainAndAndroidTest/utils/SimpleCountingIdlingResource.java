@@ -4,7 +4,7 @@ import android.support.test.espresso.IdlingResource;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class SimpleCountingIdlingResource implements IdlingResource
+class SimpleCountingIdlingResource implements IdlingResource
 {
 	private final String mResourceName;
 

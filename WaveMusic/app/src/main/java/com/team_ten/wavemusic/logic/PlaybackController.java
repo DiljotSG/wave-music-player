@@ -93,7 +93,7 @@ public class PlaybackController
 		return nowPlayingMusicActivity;
 	}
 
-	public static PlaybackState getPlaybackState()
+	private static PlaybackState getPlaybackState()
 	{
 		return state;
 	}
@@ -113,7 +113,7 @@ public class PlaybackController
 	 *
 	 * @return the playback mode.
 	 */
-	public static PlaybackMode getPlaybackMode()
+	private static PlaybackMode getPlaybackMode()
 	{
 		return playbackMode;
 	}
@@ -331,7 +331,7 @@ public class PlaybackController
 	/**
 	 * Return the currently playing song.
 	 */
-	public static Song getCurrentSong()
+	private static Song getCurrentSong()
 	{
 		return playbackQueue.getCurrentSong();
 	}

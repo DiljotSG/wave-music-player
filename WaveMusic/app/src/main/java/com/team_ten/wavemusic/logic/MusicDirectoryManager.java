@@ -18,8 +18,8 @@ public class MusicDirectoryManager
 	private static final String DEFAULT_LOCATION = "Music";
 
 	// Instance variables.
-	private String directory;
-	private File folder;
+	private final String directory;
+	private final File folder;
 	private File[] files;
 	private int curr;
 	private MediaMetadataRetriever mmdr;
@@ -49,7 +49,7 @@ public class MusicDirectoryManager
 	 *
 	 * @param fullPath The absolute path to the desired directory.
 	 */
-	public MusicDirectoryManager(String fullPath)
+	@SuppressWarnings("WeakerAccess") public MusicDirectoryManager(String fullPath)
 	{
 		// Sets the instance variables
 		directory = fullPath;

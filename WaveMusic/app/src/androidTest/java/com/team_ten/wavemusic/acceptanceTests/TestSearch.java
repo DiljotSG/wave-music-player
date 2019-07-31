@@ -28,9 +28,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class TestSearch
 {
 	@Rule
-	public ActivityTestRule<MainMusicActivity>
+	public final ActivityTestRule<MainMusicActivity>
 			activityRule
-			= new ActivityTestRule<MainMusicActivity>(MainMusicActivity.class, true);
+			= new ActivityTestRule<>(MainMusicActivity.class, true);
 
 	private IdlingResource idlingresource;
 

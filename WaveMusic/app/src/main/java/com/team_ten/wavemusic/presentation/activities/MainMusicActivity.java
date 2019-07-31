@@ -120,7 +120,7 @@ public class MainMusicActivity extends CommonMusicActivity
 	/**
 	 * Hides all the buttons on the main view.
 	 */
-	public void hideAllButtons()
+	private void hideAllButtons()
 	{
 		findViewById(R.id.skip_button).setVisibility(View.GONE);
 		findViewById(R.id.play_button).setVisibility(View.GONE);
@@ -190,7 +190,7 @@ public class MainMusicActivity extends CommonMusicActivity
 	/**
 	 * Copies the DB assets to the device (from the sample project).
 	 */
-	public void copyAssetsToDirectory(String[] assets, File directory) throws IOException
+	private void copyAssetsToDirectory(String[] assets, File directory) throws IOException
 	{
 		AssetManager assetManager = getAssets();
 
@@ -225,7 +225,7 @@ public class MainMusicActivity extends CommonMusicActivity
 	/**
 	 * Creates the controls for accessing the library
 	 */
-	public void createLibraryViewControls()
+	private void createLibraryViewControls()
 	{
 		final Button myLibrary_button = findViewById(R.id.myLibrary);
 		final Button playlists_button = findViewById(R.id.playLists);

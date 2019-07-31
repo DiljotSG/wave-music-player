@@ -35,6 +35,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -46,9 +47,9 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class) public class TestMusicControl
 {
 	@Rule
-	public ActivityTestRule<MainMusicActivity>
+	public final ActivityTestRule<MainMusicActivity>
 			activityRule
-			= new ActivityTestRule<MainMusicActivity>(MainMusicActivity.class, true);
+			= new ActivityTestRule<>(MainMusicActivity.class, true);
 
 	private IdlingResource idlingresource;
 
@@ -69,7 +70,7 @@ import static org.junit.Assert.assertTrue;
 
 		// set a new volume using seek bar to see if it works.
 		onView(withId(R.id.seekBarForVolume)).perform(setProgress(5));
-		assertTrue(AppSettings.getVolume() == 5);
+		assertEquals(5, AppSettings.getVolume());
 
 		// Turn off shuffle, click "skip" first and then "skip_back",the positions of the
 		// playing songs in playbackQueue should be in sequence.
@@ -77,11 +78,11 @@ import static org.junit.Assert.assertTrue;
 
 		int currentPosition = PlaybackController.getPlaybackQueue().getPosition();
 		onView(withId(R.id.skip_back_button)).perform(click());
-		assertTrue(currentPosition - 1 == PlaybackController.getPlaybackQueue().getPosition());
+		assertEquals(currentPosition - 1, PlaybackController.getPlaybackQueue().getPosition());
 
 		currentPosition = PlaybackController.getPlaybackQueue().getPosition();
 		onView(withId(R.id.skip_button)).perform(click());
-		assertTrue(currentPosition + 1 == PlaybackController.getPlaybackQueue().getPosition());
+		assertEquals(currentPosition + 1, PlaybackController.getPlaybackQueue().getPosition());
 
 		// Turn on shuffle, the isShuffle() method in PlaybackController class should return true.
 		// Since when shuffle is on, a random next song will play, it is possible for its position
@@ -104,6 +105,7 @@ import static org.junit.Assert.assertTrue;
 		IdlingRegistry.getInstance().unregister(idlingresource);
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	private static ViewAction setProgress(final int progress)
 	{
 		return new ViewAction()

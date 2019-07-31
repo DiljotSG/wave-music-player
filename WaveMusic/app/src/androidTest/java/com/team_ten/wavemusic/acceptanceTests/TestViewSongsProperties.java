@@ -29,17 +29,17 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 
-/**
- * Test the functionality's related to View Song's Properties, including viewing title, album,
- * artist and genre.
- *
- * Related feature number: 17
+/*
+  Test the functionality's related to View Song's Properties, including viewing title, album,
+  artist and genre.
+
+  Related feature number: 17
  */ public class TestViewSongsProperties
 {
 	@Rule
-	public ActivityTestRule<MainMusicActivity>
+	public final ActivityTestRule<MainMusicActivity>
 			activityRule
-			= new ActivityTestRule<MainMusicActivity>(MainMusicActivity.class, true);
+			= new ActivityTestRule<>(MainMusicActivity.class, true);
 
 	private IdlingResource idlingresource;
 

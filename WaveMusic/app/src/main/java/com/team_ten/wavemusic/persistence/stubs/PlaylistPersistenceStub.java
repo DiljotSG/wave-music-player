@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class PlaylistPersistenceStub implements IPlaylistPersistence
 {
-	private ArrayList<String> listOfPlaylists;
-	private HashMap<String, ArrayList<Song>> playlists;
+	private final ArrayList<String> listOfPlaylists;
+	private final HashMap<String, ArrayList<Song>> playlists;
 
 	public PlaylistPersistenceStub()
 	{

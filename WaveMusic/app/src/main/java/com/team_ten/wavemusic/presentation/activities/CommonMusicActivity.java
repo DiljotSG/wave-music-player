@@ -26,7 +26,7 @@ import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
 // Used in multiple activities, it's children can access these calls.
 public abstract class CommonMusicActivity extends PlaybackCallback
 {
-	protected boolean isLight = true;
+	private boolean isLight = true;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
@@ -56,7 +56,7 @@ public abstract class CommonMusicActivity extends PlaybackCallback
 	/**
 	 * Creates the music controls for this activity.
 	 */
-	public void createMusicControls()
+	void createMusicControls()
 	{
 		final ImageButton skip_button = findViewById(R.id.skip_button);
 		final ImageButton play_button = findViewById(R.id.play_button);

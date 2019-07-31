@@ -104,7 +104,7 @@ public class ListOfSongsFragment extends Fragment
 	 */
 	@Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
 	{
-		listView = (ListView) getView().findViewById(R.id.list_songs);
+		listView = getView().findViewById(R.id.list_songs);
 		super.onViewCreated(view, savedInstanceState);
 	}
 
@@ -237,13 +237,13 @@ public class ListOfSongsFragment extends Fragment
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.SEARCH.toString()) ||
 			typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.LIKED_SONG.toString()))
 		{
-			listAdapter = new ArrayAdapter<Song>(context, resource, songList);
+			listAdapter = new ArrayAdapter<>(context, resource, songList);
 		}
 		else if (typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ARTIST.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.ALBUM.toString()) ||
 				 typeOfRetrieve.equals(ListActivity.TypeOfRetrieve.PLAYLIST.toString()))
 		{
-			listAdapter = new ArrayAdapter<String>(context, resource, stringList);
+			listAdapter = new ArrayAdapter<>(context, resource, stringList);
 		}
 
 		if (songList != null || stringList != null)

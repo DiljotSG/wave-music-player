@@ -2,7 +2,7 @@ package com.team_ten.wavemusic.presentation.interfaces;
 
 import com.team_ten.wavemusic.objects.music.Song;
 
-public interface IPlaybackCallback
+interface IPlaybackCallback
 {
 	/**
 	 * Optional behaviour called after a song is skipped forward.

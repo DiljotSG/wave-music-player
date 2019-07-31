@@ -17,7 +17,7 @@ public interface IDismissCallbacks
 	/**
 	 * Called to determine whether the given position can be dismissed.
 	 */
-	boolean canDismiss(int position);
+	@SuppressWarnings("SameReturnValue") boolean canDismiss(int position);
 
 	/**
 	 * Called when the user has indicated they she would like to dismiss one or more list item

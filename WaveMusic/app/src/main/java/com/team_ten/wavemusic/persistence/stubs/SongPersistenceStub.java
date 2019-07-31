@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SongPersistenceStub implements ISongPersistence
 {
-	private ArrayList<Song> songList;
+	private final ArrayList<Song> songList;
 
 	public SongPersistenceStub()
 	{
